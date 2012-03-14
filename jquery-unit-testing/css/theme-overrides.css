@@ -1,0 +1,7 @@
+article:after{
+    content:"@johnkpaul";
+    color:blue;
+    position:absolute;
+    bottom:0px;
+    font-weight:bold;
+}
