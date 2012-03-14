@@ -95,16 +95,29 @@
 <article class='slide slide-list'>
     <h2>But my god, in terms of debugging</h2>
     <script src="http://gist-it.appspot.com/github/johnkpaul/Slide-Cropper/raw/master/jquery.slidecropper.js"></script>
-    
+    <div class="notes">
+        It's fairly clean, but that took some effort
+        Originally, it was one gigantic this.each plugin method
+    </div> 
 </article>
 
 <article class='slide slide-list'>
-    <h2>Manual debugging sucks</h2>
+    <h2>Lots of Manual debugging sucks</h2>
     <ul>
         <li>Refreshing every few seconds</li>
         <li>Lots of clicking after that</li>
-        <li>Lots of step debugging in Firebug after that</li>
+        <li>Lots of step debugging in Chrome dev tools/Firebug after that</li>
     </ul>
+</article>
+
+<article class="slide slide-list plugin-slide">
+    <h2>So what's a better way?</h2>
+    <ul>
+        <li>Organize your code unit testably</li>
+        <li>Private properties/methods still possible</li>
+        <li>Can test against the Plugin "class" separately from any DOM</li>
+    </ul>
+    <script src="http://gist-it.appspot.com/github/johnkpaul/jquery-plugin-patterns/raw/presentation-changes/jquery.basic.plugin-boilerplate.js"></script>
 </article>
 
 <article class='slide slide-list'>

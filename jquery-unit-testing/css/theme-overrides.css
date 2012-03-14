@@ -1,4 +1,11 @@
-
+.gister-gist{
+        float:right;
+        width:70%;
+}
+pre.prettyprint{font-size:12px;}
+.slide{overflow:auto;}
+.plugin-slide h2{margin-bottom:5px;}
+.plugin-slide ul{float:left;}
 .deck-container .notes {
   display: none; }
 
