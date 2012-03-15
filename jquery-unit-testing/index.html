@@ -27,22 +27,6 @@
 </script>
 
 
-<script type='text/coderdeck' id='coderdeck-style-example'>
-	<html>
-		<title>test</title>
-		<style>
-			CODE
-		</style>
-		<body>
-			<h1>I'm a H1 heading</h1>
-			<h2>I'm a H2 heading</h2>
-			<p>Pargraph of text &lt;p&gt; here</p>
-			<div class='stuff'>I'm a div &lt;div&gt; with class "stuff"</div>
-			<div id='my-div'>I'm a &lt;div&gt; with id "my-div"</div>
-		</body>
-	</html>
-</script> 	
-
 <article class='slide slide-subhead'>
 <h1>jQuery Plugin Unit Testing</h1>
 </article>
@@ -202,13 +186,14 @@
     <h2>Putting meat on those bones</h2>
     <ul>
         <li>What are we really trying to verify?</li>
-        <li>Can no longer test with one pass through of the code</li>
+        <li>Can no longer test by using one straightforward path</li>
         <li>Behavior verification using sinon's spy</li>
         <li>Faking a real event using jQuery's custom events and trigger</li>
         <li>getBoundingClientRect will make more sense on the next slide</li>
     </ul>
    <script src="https://gist.github.com/2041117.js?file=gistfile1.js"></script>
 </article>
+
 <article class="slide slide-list plugin-slide">
     <h2>More Plugin code</h2>
     <ul>
@@ -226,6 +211,28 @@
         a lot of unit testing is developing a knack for how to find the seam
     </div>
 </article>
+
+<article class="slide slide-list plugin-slide">
+    <h2>A browser integration test</h2>
+    <ul>
+        <li>No more fake events</li>
+        <li>No more fake elements</li>
+        <li>much harder to wrap head around</li>
+        <li>need to have async tests to use the actual events</li>
+    </ul>
+    <script src="https://gist.github.com/2041617.js?file=gistfile1.js"></script>
+</article>
+
+<article class='slide slide-list'>
+    <h2>Final thoughts</h2>
+    <ul>
+        <li>further research - speed difference</li>
+        <li>I wish jQuery functions were more "functional"</li>
+    </ul>
+    <div class="notes">
+    </div>
+</article>
+
 <article class='slide slide-list'>
     <h2>Tools</h2>
     <ul>
