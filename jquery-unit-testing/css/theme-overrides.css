@@ -1,11 +1,3 @@
-.gister-gist{
-        float:right;
-        width:70%;
-}
-pre.prettyprint{font-size:12px;}
-.slide{overflow:auto;}
-.plugin-slide h2{margin-bottom:5px;}
-.plugin-slide ul{float:left;}
 .deck-container .notes {
   display: none; }
 
@@ -39,6 +31,14 @@ pre.prettyprint{font-size:12px;}
     display: none; } 
 }
 
+.plugin-slide .gister-gist{
+        float:right;
+        width:70%;
+}
+.plugin-slide pre.prettyprint{font-size:12px;}
+.plugin-slide.slide{overflow:auto;}
+.plugin-slide h2{margin-bottom:5px;}
+.plugin-slide ul{float:left;width:25%;}
 article:after{
     content:'@johnkpaul #jquerynyc';
     padding-bottom:10px;
@@ -47,3 +47,4 @@ article:after{
     bottom:0px;
     font-weight:bold;
 }
+

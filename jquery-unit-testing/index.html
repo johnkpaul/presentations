@@ -48,18 +48,22 @@
 </article>
 
 <article class='slide slide-subhead'>
-<h1>But Why?</h1>
+<h1>The Plan</h1>
+<h2>1) What I like about it</h2>
+<h2>2) The Pattern that I like</h2>
+<h2>3) The Demo</h2>
+<h2>4) Tips, tricks and thoughts</h2>
+</article>
+
+<article class='slide slide-subhead'>
+<h1>Why learn to do this?</h1>
 <h2>You're here aren't you?</h2>
 <h2>You must think it's cool</h2>
-<div class="notes">
-    Unit testing on it's own just makes things easier
-    complex step debugging becomes rarer
-    how much time does it take to get your page/plugin into the right state to test a bug
-</div>
+<h2>I didn't always know about it</h2>
 </article>
 
 <article class='slide slide-list'>
-<h3>Not fancy plugin</h3>
+<h3>Here's a story - slide cropper plugin</h3>
 <textarea class='coder-editor'>
 <script src='dist/jquery.min.js'></script>
 <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
@@ -90,6 +94,10 @@
 </style>
 <ul class='log'></ul>
 </textarea>
+<div class="notes">
+    the usual ajax upload of image, and then crop the image by sliding and dragging the image around
+    seems straightforward, but tons of edge cases
+</div>
 </article>
 
 <article class='slide slide-list'>
@@ -98,6 +106,7 @@
     <div class="notes">
         It's fairly clean, but that took some effort
         Originally, it was one gigantic this.each plugin method
+        lots of edge cases, I didn't show you all the mistakes
     </div> 
 </article>
 
@@ -105,9 +114,14 @@
     <h2>Lots of Manual debugging sucks</h2>
     <ul>
         <li>Refreshing every few seconds</li>
-        <li>Lots of clicking after that</li>
+        <li>Lots of clicking after that, to get the page into the right state</li>
         <li>Lots of step debugging in Chrome dev tools/Firebug after that</li>
     </ul>
+    <div class="notes">
+        Unit testing on it's own just makes things easier
+        complex step debugging becomes rarer
+        how much time does it take to get your page/plugin into the right state to test a bug
+    </div>
 </article>
 
 <article class="slide slide-list plugin-slide">
@@ -118,6 +132,15 @@
         <li>Can test against the Plugin "class" separately from any DOM</li>
     </ul>
     <script src="http://gist-it.appspot.com/github/johnkpaul/jquery-plugin-patterns/raw/presentation-changes/jquery.basic.plugin-boilerplate.js"></script>
+</article>
+
+<article class="slide slide-list">
+    <h2>Test with no real DOM?</h2>
+    <ul>
+        <li>You <i>could</i> use <a href="https://developer.mozilla.org/en/Document_Object_Model_(DOM)/event.initMouseEvent">event.initMouseEvent()</a></li>
+        <li>That's a very frustrating way to do it</li>
+        <li>Can test against the Plugin "class" separately from any DOM</li>
+    </ul>
 </article>
 
 <article class='slide slide-list'>
