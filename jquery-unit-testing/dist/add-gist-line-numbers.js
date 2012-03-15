@@ -1,7 +1,7 @@
 var fixGistRules = [
 ".gist .gist-highlight {  border-left: 3ex solid #eee;  position: relative;}",
 ".gist .gist-highlight pre { counter-reset: linenumbers;}",
-".gist .gist-highlight pre div:before { color: #aaa; content: counter(linenumbers); counter-increment: linenumbers;  left: -3ex; position: absolute; text-align: right; width: 2.5ex;}" ];
+".gist .gist-highlight pre div:before { color: #aaa; content: counter(linenumbers); counter-increment: linenumbers;  left: -2.5em; position: absolute; text-align: right; width: 2.5em;}" ];
 
 var head = document.getElementsByTagName('head')[0],
     style = document.createElement('style');
