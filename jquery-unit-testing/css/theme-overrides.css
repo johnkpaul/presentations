@@ -11,7 +11,7 @@ ul{font-size:125%;}
 .plugin-slide h2{margin-bottom:5px;}
 .plugin-slide ul{float:left;width:25%;}
 article:after{
-    content:'@johnkpaul #jquerynyc slides - http://bit.ly/jquery-unit-testing SSID - Simon Password - london2london';
+    content:'@johnkpaul | #jquerynyc | slides - http://bit.ly/jquery-unit-testing | SSID - Simon | Password - london2london';
     padding-bottom:10px;
     color:black;
     position:absolute;
