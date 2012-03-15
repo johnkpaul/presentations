@@ -138,7 +138,7 @@
     <h2>How close to the browser should we get?</h2>
     <ul>
         <li>How do we programatically create events?</li>
-        <li>You <i>could</i> use <a href="https://developer.mozilla.org/en/Document_Object_Model_(DOM)/event.initMouseEvent">event.initMouseEvent()</a></li>
+        <li>You <i>could</i> use <a href="https://developer.mozilla.org/en/Document_Object_Model_(DOM)/event.initMouseEvent">document.createEvent and event.initMouseEvent()</a></li>
         <li>That's a very frustrating way to do it</li>
         <li>How do we make sure that our unit tests run in isolation</li>
         <li>Can test against the Plugin "class" separately from any HTML dependency using jQuery's DOM builder</li>
