@@ -203,12 +203,29 @@
     <ul>
         <li>What are we really trying to verify?</li>
         <li>Can no longer test with one pass through of the code</li>
-        <li>Behavior verification</li>
+        <li>Behavior verification using sinon's spy</li>
         <li>Faking a real event using jQuery's custom events and trigger</li>
+        <li>getBoundingClientRect will make more sense on the next slide</li>
     </ul>
    <script src="https://gist.github.com/2041117.js?file=gistfile1.js"></script>
 </article>
+<article class="slide slide-list plugin-slide">
+    <h2>More Plugin code</h2>
+    <ul>
+        <li>We have a few places that we need to inject our own data</li>
+        <li>using event.target that was overriden on the previous slide</li>
+        <li>using the overridden getBoundingClientRect, we can inject into offset()</li>
+        <li>How do we know getBoundingClientRect is what to override? --></li>
+    </ul>
+    <script src="https://gist.github.com/2041247.js?file=gistfile1.js"></script>
+</article>
 
+<article class="slide slide-list">
+    <img src="./images/offset-source.png">
+    <div class="notes">
+        a lot of unit testing is developing a knack for how to find the seam
+    </div>
+</article>
 <article class='slide slide-list'>
     <h2>Tools</h2>
     <ul>
