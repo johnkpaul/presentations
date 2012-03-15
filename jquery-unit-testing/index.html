@@ -28,7 +28,12 @@
 
 
 <article class='slide slide-subhead'>
-<h1>jQuery Plugin Unit Testing</h1>
+    <h1>jQuery Plugin Unit Testing</h1>
+    <div class="notes">
+        introduce myself
+        don't save questions
+        yell at me if I don't notice your hand
+    </div>
 </article>
 
 <article class='slide slide-subhead'>
@@ -118,7 +123,7 @@
     <ul>
         <li>Organizes your code into a clasically unit testable unit</li>
         <li>Private properties/methods still possible</li>
-        <li>Can test against the Plugin class separately from any DOM</li>
+        <li>Can test against the Plugin class in isolation</li>
     </ul>
     <script src="http://gist-it.appspot.com/github/johnkpaul/jquery-plugin-patterns/raw/presentation-changes/jquery.basic.plugin-boilerplate.js"></script>
 </article>
@@ -230,11 +235,11 @@
 <article class='slide slide-list'>
     <h2>Final thoughts</h2>
     <ul>
-        <li>state vs behavior is hard, because most of UI is really about behavior</li>
-        <li>further research - speed difference of integration test</li>
+        <li>State vs behavior is hard, because most jQuery work seems very like behavior</li>
+        <li>Further research - speed difference of integration test</li>
         <li>I wish jQuery functions were more "functional", as in, I wish that I could override the globals that are used with extra parameters</li>
-        <li>we are used to click/keyup as an event, but scroll is a little more complicated to reason about</li>
-        <li>reading through the source is key to good seams</li>
+        <li>We are used to click/keyup as an event, but scroll/timeouts/intervals are a little more complicated to reason about</li>
+        <li>Reading through the source is key to good seams</li>
     </ul>
     <div class="notes">
     </div>
@@ -251,9 +256,9 @@
     <ul>
         <li><a href="http://coding.smashingmagazine.com/2011/10/11/essential-jquery-plugin-patterns/">jQuery Essential Plugin Patterns by Addy Osmani</a></li>
         <li><a href="">QUnit</a></li>
-        <li><a href="">Mockjax</a></li>
         <li><a href="">Sinon.JS</a></li>
-        <li><a href="">jQuery source viewer</a></li>
+        <li><a href="">Mockjax</a></li>
+        <li><a href="http://james.padolsey.com/jquery/#v=1.6.2&fn=jQuery.fn.offset">jQuery source viewer by James Padolsey</a></li>
     </ul>
 </article>
 
@@ -282,47 +287,7 @@
 	});
 </script>
 
-<script type="text/javascript">
-
-/*
-  * Add this to the top of your post.  This will get interpreted in and applies to your page
-  * e.g.
-  * 
-  * (this code)
-  *
-  * # My Summer Vacation
-  *
-  * ## Grandma's House
-  * 
-  * We left for Grandma's house at 2pm on Friday.  I was so excited to see her pet Bear and Fox!
-*/
-
-var fixGistRules = [
-".gist .gist-highlight {  border-left: 3ex solid #eee;  position: relative;}",
-".gist .gist-highlight pre { counter-reset: linenumbers;}",
-".gist .gist-highlight pre div:before { color: #aaa; content: counter(linenumbers); counter-increment: linenumbers;  left: -3ex; position: absolute; text-align: right; width: 2.5ex;}" ];
-
-var head = document.getElementsByTagName('head')[0],
-    style = document.createElement('style');
-
-rules = new Array();
-var i=0;
-for ( i=0; i< fixGistRules.length; i++ ){
-  var fullrule = document.createTextNode(fixGistRules[i]);
-  rules.push(fullrule);
-}
-
-style.type = 'text/css';
-
-for ( var i=0; i< rules.length; i++ ){
-  if(style.styleSheet){
-    style.styleSheet.cssText = rules[i].nodeValue;
-  }else {
-    style.appendChild(rules[i]);
-    head.appendChild(style);
-  }
-}
-</script>
+<script type="text/javascript" src="./dist/add-gist-line-numbers.js"></script>
 
 </body>
 </html>
