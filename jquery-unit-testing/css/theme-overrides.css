@@ -1,5 +1,6 @@
 .deck-container .notes {
-  display: none; }
+  display: none;
+}
 
 ul{font-size:125%;}
 .plugin-slide .gister-gist, .plugin-slide .gist{
@@ -10,6 +11,8 @@ ul{font-size:125%;}
 .plugin-slide.slide{overflow:auto;}
 .plugin-slide h2{margin-bottom:5px;}
 .plugin-slide ul{float:left;width:25%;}
+
+.cropper-code .gister-gist{padding-bottom:20px;font-size:13px;}
 article:after{
     content:'@johnkpaul | #jquerynyc | slides - http://bit.ly/jquery-unit-testing | SSID - Simon | Password - london2london';
     padding-bottom:10px;

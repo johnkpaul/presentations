@@ -99,7 +99,7 @@
 </div>
 </article>
 
-<article class='slide slide-list'>
+<article class='slide slide-list cropper-code'>
     <h2>But my god, in terms of debugging</h2>
     <script src="http://gist-it.appspot.com/github/johnkpaul/Slide-Cropper/raw/master/jquery.slidecropper.js"></script>
     <div class="notes">
@@ -114,7 +114,7 @@
     <ul>
         <li>Lots of manual debugging sucks</li>
         <li>Refreshing every few seconds</li>
-        <li>Lots of clicking after that, to get the page into the right state</li>
+        <li>After refreshing, more clicking just to get the page into the right state</li>
         <li>Lots of step debugging in Chrome dev tools/Firebug after that</li>
     </ul>
     <div class="notes">
@@ -125,7 +125,7 @@
 </article>
 
 <article class="slide slide-list plugin-slide">
-    <h2>So what's a better pattern?</h2>
+    <h2>So what's a better plugin pattern, with unit testability in mind?</h2>
     <ul>
         <li>Organizes your code into a clasically unit testable unit</li>
         <li>Private properties/methods still possible</li>
@@ -242,6 +242,7 @@
     <h2>Final thoughts</h2>
     <ul>
         <li>State vs behavior is hard, because most jQuery work seems very like behavior</li>
+        <li>Potentially remove the dependency on window completely</li>
         <li>Further research - speed difference of integration test</li>
         <!--<li>I wish jQuery functions were more "functional", as in, I wish that I could override the globals that are used with extra parameters</li>-->
         <li>We are used to click/keyup as an event, but scroll/timeouts/intervals are a little more complicated to reason about</li>
