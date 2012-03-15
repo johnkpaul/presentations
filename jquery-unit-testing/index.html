@@ -111,8 +111,9 @@
 </article>
 
 <article class='slide slide-list'>
-    <h2>Lots of Manual debugging sucks</h2>
+    <h2>What's wrong with writing code like this?</h2>
     <ul>
+        <li>Lots of manual debugging sucks</li>
         <li>Refreshing every few seconds</li>
         <li>Lots of clicking after that, to get the page into the right state</li>
         <li>Lots of step debugging in Chrome dev tools/Firebug after that</li>
@@ -125,22 +126,87 @@
 </article>
 
 <article class="slide slide-list plugin-slide">
-    <h2>So what's a better way?</h2>
+    <h2>So what's a better pattern?</h2>
     <ul>
-        <li>Organize your code unit testably</li>
+        <li>Organizes your code into a clasically unit testable unit</li>
         <li>Private properties/methods still possible</li>
-        <li>Can test against the Plugin "class" separately from any DOM</li>
+        <li>Can test against the Plugin class separately from any DOM</li>
     </ul>
     <script src="http://gist-it.appspot.com/github/johnkpaul/jquery-plugin-patterns/raw/presentation-changes/jquery.basic.plugin-boilerplate.js"></script>
 </article>
 
 <article class="slide slide-list">
-    <h2>Test with no real DOM?</h2>
+    <h2>How close to the browser should we get?</h2>
     <ul>
+        <li>How do we programatically create events?</li>
         <li>You <i>could</i> use <a href="https://developer.mozilla.org/en/Document_Object_Model_(DOM)/event.initMouseEvent">event.initMouseEvent()</a></li>
         <li>That's a very frustrating way to do it</li>
-        <li>Can test against the Plugin "class" separately from any DOM</li>
+        <li>How do we make sure that our unit tests run in isolation</li>
+        <li>Can test against the Plugin "class" separately from any HTML dependency using jQuery's DOM builder</li>
     </ul>
+</article>
+
+<article class='slide slide-list'>
+<h3>DEMO - I want to build a plugin</h3>
+<textarea class='coder-editor'>
+<script src='dist/jquery.min.js'></script>
+<script src='https://raw.github.com/johnkpaul/jquery-sticky-scroll/master/jquery.stickyscroll.js'></script>
+<script>
+    (function($) {
+        $(document).ready( function() {
+            for(var i=0;i<2;i++){
+                $("p").clone().appendTo(document.body)
+            }
+            $("ul").stickyScroll();
+        });
+    })(jQuery)
+</script>
+<style>
+    body{margin:0px}
+    ul{overflow:auto;margin:0px;background:white;}
+    ul.scrolled-off{position:fixed;top:0px;left:0px;width:100%;}
+    li{float:left;width:150px;text-align:center;}
+</style>
+<p>Lorizzle da bomb dolizzle ass amet, shut the shizzle up adipiscing elit. Yo mamma shut the shizzle up velit, aliquet bling bling, suscipizzle quis, boofron vizzle, shiz. Pellentesque eget tortizzle. Sed erizzle. Mah nizzle at dolizzle dapibizzle turpis tempizzle dizzle. Dope pellentesque fo shizzle et turpizzle. Fo shizzle izzle tortor. Pellentesque brizzle rhoncizzle uhuh ... yih!. In hizzle fo shizzle platea dictumst. Mammasay mammasa mamma oo sa dapibizzle. Curabitizzle tellizzle urna, pretizzle boofron, pimpin' fo shizzle, rizzle vitae, nunc. Mofo fo shizzle. Integizzle sempizzle velit sizzle cool.</p>
+<ul>
+    <li><a href="#">Home</a></li>  
+    <li><a href="#">Contact Us</a></li>  
+</ul>
+<p>Phasellizzle interdizzle volutpat check it out. Ut fo adipiscing shizzle my nizzle crocodizzle. Donec non est. Nulla sapizzle massa, ultrices nizzle, shizzlin dizzle da bomb, fermentizzle quizzle, hizzle. Mammasay mammasa mamma oo sa nizzle yippiyo. Etizzle rutrum shizzlin dizzle ante. Fo shizzle mah nizzle fo rizzle, mah home g-dizzle nizzle. Vestibulizzle izzle pede shit nibh yo commodo. Lorizzle ipsum mammasay mammasa mamma oo sa sizzle mammasay mammasa mamma oo sa, consectetuer adipiscing shit. Sizzle izzle owned. Quisque pizzle sizzle, fo shizzle my nizzle gangsta, bling bling a, eleifend a, elizzle.</p><p>Etizzle brizzle magna sed augue hendrerizzle accumsizzle. Mofo izzle pizzle. Vivamus izzle dolizzle, break yo neck, yall vitae, nizzle izzle, ultrices izzle, nizzle. Vestibulizzle ante black primis izzle gizzle orci my shizz et crackalackin shut the shizzle up crackalackin Uhuh ... yih!; Donec dolizzle. Integizzle faucibizzle. Dawg pharetra yo mamma quizzle. Check out this rutrizzle pizzle orci. Fo shizzle facilisis. Mauris sizzle fizzle, venenatis eu, scelerisque vel, blandizzle get down get down, pimpin'.</p><p>Sed metizzle urna, luctizzle et, tristique we gonna chung, brizzle izzle, nulla. Gizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle, i saw beyonces tizzles and my pizzle went crizzle egestizzle dawg malesuada, owned justo sizzle velizzle, break it down fringilla dizzle erizzle izzle purus. Tellivizzle aptent shizznit sociosqu izzle litora torquent fo shizzle nizzle nostra, pizzle inceptos hymenaeos. Aliquizzle mauris orci, scelerisque egizzle, iaculizzle vizzle, dizzle izzle, elit. Nunc own yo'. Fusce  urna, accumsizzle eu, feugizzle nizzle, shit izzle, sapizzle. Curabitur get down get down. Pot non  yo enim mattis pharetra. Yo mamma own yo' crunk, that's the shizzle id, elementizzle for sure, mollizzle nizzle, ligula. Stuff izzle dawg. Nam gizzle. My shizz crunk. Nulla own yo'. Maecenizzle metus magna, semper non, i saw beyonces tizzles and my pizzle went crizzle izzle, gangster quis, lacus. Morbi yo nibh, semper tellivizzle, fizzle eu, fo shizzle the bizzle, velizzle. Morbi dictum tellus boom shackalack felizzle tempus aliquizzle.</p><p>Sizzle vitae crackalackin in arcu ma nizzle consequat. Check it out convallizzle, arcu ac dignissizzle posuere, nulla black luctizzle crunk, a nizzle augue owned sizzle fo. Pellentesque izzle dizzle nec elizzle varizzle tincidunt. Curabitur turpizzle nisi, pulvinizzle at, porta eleifend, tincidunt dope, bling bling. Nunc sizzle neque. Fo i'm in the shizzle dolizzle get down get down da bomb, consectetizzle adipiscing crunk. Maecenas nizzle elizzle. Brizzle congue. I saw beyonces tizzles and my pizzle went crizzle izzle erizzle vitae uhuh ... yih! fo shizzle we gonna chung. In phat nisi sizzle amizzle stuff. Crizzle tellivizzle. Nunc get down get down ante its fo rizzle neque we gonna chung get down get down. Aenean mofo mammasay mammasa mamma oo sa id we gonna chung pharetra lobortis. Suspendisse sizzle est, bibendizzle pulvinar, stuff vizzle, crackalackin vitae, go to hizzle. Vivamus eget sizzle hizzle massa adipiscing tempizzle. Owned izzle sizzle quizzle tellus daahng dawg nonummy.</p>
+</textarea>
+<div class="notes">
+    When the element is scrolled out of view, I want a class added, by default, I want that class to be scrolled-off
+</div>
+</article>
+<article class="slide slide-list plugin-slide">
+    <h2>How do we start to test this?</h2>
+    <ul>
+        <li>Start with something really classic</li>
+        <li>Very simple, the assertion can be verified very straightforwardly</li>
+        <li>Overriding defaults, I consider to be public, so I can dig directly into the plugin</li>
+        <li>A future test should more correctly verify behavior</li>
+    </ul>
+   <script src="https://gist.github.com/2040934.js?file=gistfile1.js"></script> 
+</article>
+
+<article class="slide slide-list plugin-slide">
+    <h2>How do we start to test this?</h2>
+    <ul>
+        <li>The plugin boiler plate is all we need</li>
+        <li>customized for the sticky scroll name and options</li>
+    </ul>
+    <script src="https://gist.github.com/2041051.js?file=gistfile1.js"></script>   
+</article>
+
+<article class="slide slide-list plugin-slide">
+    <h2>Putting meat on those bones</h2>
+    <ul>
+        <li>What are we really trying to verify?</li>
+        <li>Can no longer test with one pass through of the code</li>
+        <li>Behavior verification</li>
+        <li>Faking a real event using jQuery's custom events and trigger</li>
+    </ul>
+   <script src="https://gist.github.com/2041117.js?file=gistfile1.js"></script>
 </article>
 
 <article class='slide slide-list'>
