@@ -35,7 +35,7 @@
     <h1>The Plan</h1>
     <h2>1) What I like about unit testing plugins</h2>
     <h2>2) The Pattern that I like</h2>
-    <h2>3) The Demo</h2>
+    <h2>3) The Walkthrough</h2>
     <h2>4) Tips, tricks and thoughts</h2>
 </article>
 
@@ -233,7 +233,7 @@
         <li>state vs behavior is hard, because most of UI is really about behavior</li>
         <li>further research - speed difference of integration test</li>
         <li>I wish jQuery functions were more "functional", as in, I wish that I could override the globals that are used with extra parameters</li>
-        <li>click/keyup are really easy to mock out, because we're very used to that pattern, but scrolling is difficult</li>
+        <li>we are used to click/keyup as an event, but scroll is a little more complicated to reason about</li>
         <li>reading through the source is key to good seams</li>
     </ul>
     <div class="notes">
@@ -281,5 +281,48 @@
 		$.deck('.slide');
 	});
 </script>
+
+<script type="text/javascript">
+
+/*
+  * Add this to the top of your post.  This will get interpreted in and applies to your page
+  * e.g.
+  * 
+  * (this code)
+  *
+  * # My Summer Vacation
+  *
+  * ## Grandma's House
+  * 
+  * We left for Grandma's house at 2pm on Friday.  I was so excited to see her pet Bear and Fox!
+*/
+
+var fixGistRules = [
+".gist .gist-highlight {  border-left: 3ex solid #eee;  position: relative;}",
+".gist .gist-highlight pre { counter-reset: linenumbers;}",
+".gist .gist-highlight pre div:before { color: #aaa; content: counter(linenumbers); counter-increment: linenumbers;  left: -3ex; position: absolute; text-align: right; width: 2.5ex;}" ];
+
+var head = document.getElementsByTagName('head')[0],
+    style = document.createElement('style');
+
+rules = new Array();
+var i=0;
+for ( i=0; i< fixGistRules.length; i++ ){
+  var fullrule = document.createTextNode(fixGistRules[i]);
+  rules.push(fullrule);
+}
+
+style.type = 'text/css';
+
+for ( var i=0; i< rules.length; i++ ){
+  if(style.styleSheet){
+    style.styleSheet.cssText = rules[i].nodeValue;
+  }else {
+    style.appendChild(rules[i]);
+    head.appendChild(style);
+  }
+}
+</script>
+
 </body>
 </html>
