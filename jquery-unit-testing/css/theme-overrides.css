@@ -14,7 +14,7 @@ ul{font-size:125%;}
 
 .cropper-code .gister-gist{padding-bottom:20px;font-size:13px;}
 article:after{
-    content:'@johnkpaul | #jquerynyc | slides - http://bit.ly/jquery-unit-testing | SSID - Simon | Password - london2london';
+    content:'@johnkpaul | slides - http://bit.ly/jquery-unit-testing';
     padding-bottom:10px;
     color:black;
     position:absolute;
