@@ -46,9 +46,98 @@
                                         </ul>
 				</section>
 				
+				<section>
+                                    <h2>5 different ways to define <code>this</code></h2>
+                                        <ul>
+                                            <li>"method" call</li>
+                                            <li>baseless function call</li>
+                                            <li>using call</li>
+                                            <li>using apply</li>
+                                            <li>constructor with new</li>
+                                        </ul>
+                                        <footer><a href="http://javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">List shamelessly stolen from @angusTweets</a></footer>
+				</section>
 				<!-- Example of nested vertical slides -->
 				<section>
-                                        
+                                        <section>
+                                            <h2>"method" call</h2>
+                                            <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        obj.alertName("Hey"); // Hey John K. Paul
+                                                </code></pre>
+                                        </section>
+                                        <section>
+                                            <h2>baseless function call</h2>
+                                            <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+        alertName("Hey"); // Hey undefined
+                                                </code></pre>
+                                        </section>
+                                    <section>
+                                            <h2>using call</h2>
+                                    <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+        var newContext = {
+            fullName:"John Doe"
+        };
+        alertName.call(newContext, "Hey"); // Hey John Doe
+                                            </code></pre>
+                                    </section>
+                                    <section>
+                                            <h2>using apply</h2>
+                                    <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+        var newContext = {
+            fullName:"John Doe"
+        };
+        alertName.apply(newContext, ["Hey"]); // Hey John Doe
+                                            </code></pre>
+                                    </section>
+                                    <section>
+                                            <h2>constructor with new</h2>
+                                    <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+
+        //DON'T DO WHAT IS ON THE NEXT LINE EVAR
+        var newObject = new alertname(); //THIS IS A MISTAKE
+        newObject.fullName = "John Doe";
+        newObject.alertName("Hey"); // Hey John Doe
+                                            </code></pre>
+                                    </section>
 				</section>
 
 				<section>
