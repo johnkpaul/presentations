@@ -141,147 +141,118 @@
 				</section>
 
 				<section>
-					<h2>Holistic Overview</h2>
-					<p>
-						Press <strong>SPACE</strong> to enter the slide overview!
-					</p>
+					<h2>What on earth is prototypical inheritance</h2>
+					<p>What is inheritance...really?</p>
+                                        <p class="fragment">Is it <code>classes</code>?</p>
+                                        <p class="fragment">Is it <code>blueprints</code>?</p>
+                                        <p class="fragment">Is it <code>super</code>?</p>
+                                        <p class="fragment">No, none of these</p>
 				</section>
 
 				<section>
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like:
-					</p>
-					<ul>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=cube">Cube</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=page">Page</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=concave">Concave</a></li>
-					</ul>
+					<h1>Code Reuse</h1>
+					<p>This is what we really care about</p>
+					<p>Write code once, use in multiple situations</p>
+					<p>prototypical inheritance makes this easy</p>
+                                        <p class="fragment">don't think about <code>new</code>, <code>super</code>, and <code>extends</code></p>
+                                        <p class="fragment">don't even think about javascript's prototype property</p>
+                                        <p class="fragment">Prototypical inheritence is about fallbacks</p>
 				</section>
 
 				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
+                                        <section>
+					    <h3>How does prototypical inhertiance work?</h3>
+                                            <pre><code contenteditable>
+        var base = {
+            firstName:"John",
+            lastName:"Paul",
+            getFullName:function(){
+               return this.firstName + " " + this.lastName; 
+            },
+        }; // base is the fallback
+
+        var obj = Object.create(base); // where the magic happens
+        obj.alertName = function(){
+                alert(this.getFullName());    
+        };
+
+        obj.alertName(); // John Paul
+        obj.hasOwnProperty("alertName"); // true
+        obj.hasOwnProperty("firstName"); //false
+        base.hasOwnProperty("alertName"); // false
+        base.hasOwnProperty("firstName"); // true
+
+        // this is code reuse!
+        obj.getFullName === base.getFullName  //true
+                                                </code></pre>
+                                        </section>
 				</section>
 				
 				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
+					<h2>Caveat</h2>
+                                        <p>Not all js engines have Object.create</p>
+                                        <div class="fragment">
+                                                <p>You can think of this like jQuery</p>
+                                                <p>If you want to look under the hood...</p>
+                                                <pre><code contenteditable>
+            if (!Object.create) {
+                Object.create = function (o) {
+                    function F() {}
+                    F.prototype = o;
+                    return new F();
+                };
+            }
+                                                    </code></pre>
+                                            <p>Ask me after and I'll explain all of the magic</p>
+                                        </div>
 				</section>
 
 				<section>
-					<section data-state="alert">
-						<h2>Global State</h2>
-						<p>
-							Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-							will be added as a class to the document element when the slide is open. This let's you
-							apply broader style changes, like switching the background.
-						</p>
-						<a href="#/7/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section data-state="blackout">
-						<h2>"blackout"</h2>
-						<a href="#/7/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section data-state="soothe">
-						<h2>"soothe"</h2>
-						<a href="#/7/0" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
+                                    <h4>function expression vs function declaration</h4>
+                                    <p class="fragment">THEY LOOK EXACTLY THE SAME</p>
+                                    <div class="fragment">
+                                    
+                                                <pre><code contenteditable>
+    function declaration(){}
+
+    var expression = function(){}; // assignment expression
+
+    var expression = function expression(){};
+
+    (function expression(){})(); // () is the grouping operator 
+
+    new function expression(){}; // new expression
+
+    0, function expression(){}; // the comma is an operator
+                                                    </code></pre>
+                                    
+                                    <p>Only easy rule - if there's no name, it's a expression</p>
+                                    <p>If there is a name, it depends extremely on context</p>
+                                    </div>
 				</section>
 
 				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						The nice thing about standards is that there are so many to choose from</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						For years there has been a theory that millions of monkeys typing at random on millions of typewriters would 
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.
-					</blockquote>
+					<h2>Why do we care about all of this?</h2>
+                                        <p>Hoisting</p>
+                                                <pre><code contenteditable>
+    testFunc(); // undefined is not a function
+    var testFunc = function(){ alert("hey!"); };
+                                                    </code></pre>
+                                                <pre><code contenteditable>
+    testFunc();
+    function testFunc(){ alert("hey!"); }; // works fine
+                                                    </code></pre>
 				</section>
 				
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code contenteditable>
-	var supports3DTransforms =  document.body.style['webkitPerspective'] !== undefined || 
-					document.body.style['MozPerspective'] !== undefined ||
-					document.body.style['perspective'] !== undefined;
+				
 
-	function linkify( selector ) {
-	    if( supports3DTransforms ) {
-	        
-	        var nodes = document.querySelectorAll( selector );
-
-	        for( var i = 0, len = nodes.length; i < len; i++ ) {
-	            var node = nodes[i];
-
-	            if( !node.className || !node.className.match( /roll/g ) ) {
-	                node.className += ' roll';
-	                node.innerHTML = '<span data-title="'+ node.text +'">' + node.innerHTML + '</span>';
-	            }
-	        };
-	    }
-	}
-
-	linkify( 'a' );
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
+				
+				
 				
 				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,<br/>
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Fragmented Views</h2>
-					<p>Hit the next arrow...</p>
-					<p class="fragment">... to step through ...</p>
-					<ol>
-						<li class="fragment"><code>any type</code></li>
-						<li class="fragment"><em>of view</em></li>
-						<li class="fragment"><strong>fragments</strong></li>
-					</ol>
-				</section>
-				
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://hakim.se/experiments/html5/breakdom/" target="_blank">
-						<img width="320" height="412" src="https://s3.amazonaws.com/hakim-static/reveal-js/breakdom.png">
-					</a>
-				</section>
-				
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on github</a></li>
-						<li><a href="http://hakim.se/projects/reveal-js">Read more on my site</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
-				
-				<section>
-					<h1>THE END</h1>
-					<h3 class="inverted">BY Hakim El Hattab / hakim.se</h3>
+					<h1>QUESTIONS</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">about.me/johnkpaul</h3>
 				</section>
 			</div>
 
