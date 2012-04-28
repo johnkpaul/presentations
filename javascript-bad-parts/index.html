@@ -134,6 +134,7 @@
 
         //DON'T DO WHAT IS ON THE NEXT LINE EVAR
         var newObject = new alertname(); //THIS IS A MISTAKE
+        newObject.alertName("Hey"); // Hey undefined
         newObject.fullName = "John Doe";
         newObject.alertName("Hey"); // Hey John Doe
                                             </code></pre>
@@ -156,7 +157,7 @@
 					<p>prototypical inheritance makes this easy</p>
                                         <p class="fragment">don't think about <code>new</code>, <code>super</code>, and <code>extends</code></p>
                                         <p class="fragment">don't even think about javascript's prototype property</p>
-                                        <p class="fragment">Prototypical inheritence is about fallbacks</p>
+                                        <p class="fragment">Prototypical inheritence is about <strong>fallbacks</strong></p>
 				</section>
 
 				<section>
@@ -208,12 +209,32 @@
 				</section>
 
 				<section>
+					<h2>Why do we care about all of this?</h2>
+                                        <p>Hoisting</p>
+                                                <pre><code contenteditable>
+    testFunc(); // undefined is not a function
+    var testFunc = function(){ alert("hey!"); };
+                                                    </code></pre>
+                                                <pre><code contenteditable>
+    testFunc(); // testFunc is not defined
+    (function testFunc(){ alert("hey!"); }) 
+                                                    </code></pre>
+                                                <pre><code contenteditable>
+    testFunc();
+    function testFunc(){ alert("hey!"); }; // works fine
+                                                    </code></pre>
+				</section>
+
+				<section>
                                     <h4>function expression vs function declaration</h4>
-                                    <p class="fragment">THEY LOOK EXACTLY THE SAME</p>
                                     <div class="fragment">
                                     
                                                 <pre><code contenteditable>
     function declaration(){}
+
+    (function expression(){
+        function declaration(){}
+    }())
 
     var expression = function(){}; // assignment expression
 
@@ -230,24 +251,6 @@
                                     <p>If there is a name, it depends extremely on context</p>
                                     </div>
 				</section>
-
-				<section>
-					<h2>Why do we care about all of this?</h2>
-                                        <p>Hoisting</p>
-                                                <pre><code contenteditable>
-    testFunc(); // undefined is not a function
-    var testFunc = function(){ alert("hey!"); };
-                                                    </code></pre>
-                                                <pre><code contenteditable>
-    testFunc();
-    function testFunc(){ alert("hey!"); }; // works fine
-                                                    </code></pre>
-				</section>
-				
-				
-
-				
-				
 				
 				<section>
 					<h1>QUESTIONS</h1>
