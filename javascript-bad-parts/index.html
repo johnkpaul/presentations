@@ -39,10 +39,21 @@
 				<section>
 					<h2>What's so not bad?</h2>
                                         <ul>
-                                            <li>void</li>
                                             <li>with</li>
-                                            <li>type coersion</li>
                                             <li>eval</li>
+                                            <li>void</li>
+                                            <li>type coersion</li>
+                                            <li>continue/switch</li>
+                                        </ul>
+					<p>How often do these issues come up?</p>
+				</section>
+
+				<section>
+					<h2>The real bad parts</h2>
+                                        <ul>
+                                            <li>How does <code>this</code> work?</li>
+                                            <li>How does prototypical inheritance work?</li>
+                                            <li>Hoisting? Why are my functions or vars undefined?</li>
                                         </ul>
 				</section>
 				
@@ -125,15 +136,15 @@
                                     <pre><code contenteditable>
         var obj = {
             fullName:"John K. Paul",
-            alertName:function(greeting){
-                alert(greeting + " " + this.fullName);    
-            }
+            Constructor:function(){
+                this.alertName = function(greeting){
+                     alert(greeting + " " + this.fullName);    
+                }
+             }
         };
 
-        var alertName = obj.alertName;
-
-        //DON'T DO WHAT IS ON THE NEXT LINE EVAR
-        var newObject = new alertname(); //THIS IS A MISTAKE
+        //this inside the Constructor function is a new object
+        var newObject = new obj.Constructor(); 
         newObject.alertName("Hey"); // Hey undefined
         newObject.fullName = "John Doe";
         newObject.alertName("Hey"); // Hey John Doe
@@ -191,10 +202,9 @@
 				
 				<section>
 					<h2>Caveat</h2>
-                                        <p>Not all js engines have Object.create</p>
+                                        <p>Not all js environments have Object.create</p>
+                                        <p>But we have a solution for < IE9 </p>
                                         <div class="fragment">
-                                                <p>You can think of this like jQuery</p>
-                                                <p>If you want to look under the hood...</p>
                                                 <pre><code contenteditable>
             if (!Object.create) {
                 Object.create = function (o) {
@@ -204,13 +214,13 @@
                 };
             }
                                                     </code></pre>
-                                            <p>Ask me after and I'll explain all of the magic</p>
+                                            <p class="fragment">If you want to look under the hood...</p>
+                                            <p class="fragment">Ask me after and I'll explain all of the magic</p>
                                         </div>
 				</section>
 
 				<section>
-					<h2>Why do we care about all of this?</h2>
-                                        <p>Hoisting</p>
+					<h2>hoisting? Why is everything undefined?</h2>
                                                 <pre><code contenteditable>
     testFunc(); // undefined is not a function
     var testFunc = function(){ alert("hey!"); };
@@ -227,7 +237,31 @@
 
 				<section>
                                     <h4>function expression vs function declaration</h4>
-                                    <div class="fragment">
+                                    <ul>
+                                        <li>declarations are hoisted to the top of their scope</li>
+                                        <li>expressions are not</li>
+                                        <li>additionally, all var declarations are hoisted</li>
+                                    </ul>
+                                                <pre><code contenteditable>
+    (function(){
+        var hello = "world";
+        //some other code
+        var expression = function(){ alert("expression!"); };
+        var foo = "bar";
+        function declaration(){ alert("declaration!"); }; 
+    })();                                                    </code></pre>
+                                                <pre><code contenteditable>
+    (function(){
+        function declaration(){ alert("declaration!"); }; 
+        var foo, hello, expression;
+        hello = "world";
+        //some other code
+        expression = function(){ alert("expression!"); };
+        foo = "bar";
+    })();                                                     </code></pre>
+                                </section>
+                                <section>
+                                    <div>
                                     
                                                 <pre><code contenteditable>
     function declaration(){}
