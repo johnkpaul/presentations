@@ -29,7 +29,8 @@
 				<section>
 					<h1>Javascript</h1>
 					<h3 class="inverted">The Real Bad Parts</h3>
-					<h3 class="inverted">By @johnkpaul</h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/nycjs</span></h3>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
@@ -48,6 +49,15 @@
                                             <li>continue/switch</li>
                                         </ul>
 					<p>How often do these issues come up?</p>
+				</section>
+
+				<section>
+					<h2>The real bad parts</h2>
+                                        <ul>
+                                            <li>difficult concepts to grasp in the javascript language</li>
+                                            <li>You'll have enough background for your own research</li>
+                                            <li>Ask questions if you have them</li>
+                                        </ul>
 				</section>
 
 				<section>
@@ -205,6 +215,7 @@
                                         <p>Not all js environments have Object.create</p>
                                         <p>But we have a solution for < IE9 </p>
                                         <div class="fragment">
+                                            <p>If you want to look under the hood...</p>
                                                 <pre><code contenteditable>
             if (!Object.create) {
                 Object.create = function (o) {
@@ -214,7 +225,6 @@
                 };
             }
                                                     </code></pre>
-                                            <p class="fragment">If you want to look under the hood...</p>
                                             <p class="fragment">Ask me after and I'll explain all of the magic</p>
                                         </div>
 				</section>
@@ -236,11 +246,11 @@
 				</section>
 
 				<section>
-                                    <h4 style="margin-bottom:10px;">function expression vs function declaration</h4>
+                                    <h4 style="margin-bottom:10px;">How does hoisting work?</h4>
                                     <ul style="font-size:.65em;line-height:1.1em;">
                                         <li>declarations are hoisted to the top of their scope</li>
                                         <li>expressions are not</li>
-                                        <li>additionally, all var declarations are hoisted</li>
+                                        <li>additionally, all var declarations are hoisted, but not initializations</li>
                                     </ul>
                                                 <pre><code contenteditable>
     (function(){
