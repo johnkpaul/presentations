@@ -70,7 +70,7 @@
 				</section>
 				
 				<section>
-                                    <h2>5 different ways to define <code>this</code></h2>
+                                    <h2>5 different ways to set <code>this</code></h2>
                                         <ul>
                                             <li>"method" call</li>
                                             <li>baseless function call</li>
@@ -147,20 +147,15 @@
                                     <section>
                                             <h2>constructor with new</h2>
                                     <pre><code contenteditable>
-        var obj = {
-            fullName:"John K. Paul",
-            Constructor:function(){
-                this.alertName = function(greeting){
-                     alert(greeting + " " + this.fullName);    
+        var Constructor = function(){
+                this.sayHey = function(){
+                     alert("Hey");    
                 }
              }
-        };
 
         //this inside the Constructor function is a new object
-        var newObject = new obj.Constructor(); 
-        newObject.alertName("Hey"); // Hey undefined
-        newObject.fullName = "John Doe";
-        newObject.alertName("Hey"); // Hey John Doe
+        var newObject = new Constructor(); 
+        newObject.sayHey() // Hey 
                                             </code></pre>
                                     </section>
 				</section>
@@ -299,7 +294,7 @@
 				<section>
 					<h1>QUESTIONS</h1>
 					<h3 class="inverted">By @johnkpaul</h3>
-					<h3 class="inverted">about.me/johnkpaul</h3>
+					<h3 class="inverted">www.johnkpaul.com</h3>
 				</section>
 			</div>
 
