@@ -1,0 +1,221 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Async Javascript: Callbacks are so old school</title>
+
+		<meta name="description" content="Presentation for NYC.js">
+		<meta name="author" content="John K. Paul">
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+
+		<link rel="stylesheet" href="lib/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div id="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Asynchronous Javascript</h1>
+					<h3 class="inverted">Callbacks are so old school</h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/pghasync</span></h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+                                    <h2>What's bad but not <i>so</i> bad?</h2>
+                                        <p>from <i>Bad Parts: Appendix B - JavaScript: The Good Parts</i></p>
+                                        <ul>
+                                            <li>with</li>
+                                            <li>eval</li>
+                                            <li>void</li>
+                                            <li>type coersion</li>
+                                            <li>continue/switch</li>
+                                        </ul>
+					<p>How often do these issues come up?</p>
+				</section>
+
+				<section>
+                                        <section>
+                                            <h2>"method" call</h2>
+                                            <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        obj.alertName("Hey"); // Hey John K. Paul
+                                                </code></pre>
+                                        </section>
+                                        <section>
+                                            <h2>baseless function call</h2>
+                                            <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+        alertName("Hey"); // Hey undefined
+        //equivalent to window.alertName("Hey"); 
+                                                </code></pre>
+                                        </section>
+                                    <section>
+                                            <h2>using call</h2>
+                                    <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+        var newContext = {
+            fullName:"John Doe"
+        };
+        alertName.call(newContext, "Hey"); // Hey John Doe
+                                            </code></pre>
+                                    </section>
+                                    <section>
+                                            <h2>using apply</h2>
+                                    <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+        var newContext = {
+            fullName:"John Doe"
+        };
+        alertName.apply(newContext, ["Hey"]); // Hey John Doe
+                                            </code></pre>
+                                    </section>
+                                    <section>
+                                            <h2>constructor with new</h2>
+                                    <pre><code contenteditable>
+        var Constructor = function(){
+                this.sayHey = function(){
+                     alert("Hey");    
+                }
+             }
+
+        //this inside the Constructor function is a new object
+        var newObject = new Constructor(); 
+        newObject.sayHey() // Hey 
+                                            </code></pre>
+                                    </section>
+				</section>
+
+				<section>
+                                        <h2>Fat Arrow =></h2>
+					<p>In the next version of Javascript...</p>
+                                        <pre><code>
+//with fat arrow inner function
+var myObj = {
+  longOuter: function() {
+    console.log(this); //this is myObj
+    var fatInner = () => 
+      console.log(this); //this is myObj
+    fatInner(); 
+  }
+}
+
+myObj.longOuter(); 
+                                        </code></pre>
+                                        <footer><a href="http://javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">shamlessly stolen from here</a></footer>
+				</section>
+
+				
+				<section>
+					<h1>QUESTIONS</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">johnkpaul.com</h3>
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="js/reveal.js"></script>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
+		
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: false,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'neon', // default/neon
+
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+
+                        Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
+                            pre.ondblclick = function(event){
+                                eval(pre.firstChild.textContent);
+                                pre.firstChild.blur();
+                                pre.blur();
+                            }
+                        });
+		</script>
+
+	</body>
+</html>
