@@ -6,7 +6,7 @@
 		
 		<title>Javascript: The Real Bad Parts</title>
 
-		<meta name="description" content="Presentation for NYC.js">
+		<meta name="description" content="Presentation for PGH Tech Fest">
 		<meta name="author" content="John K. Paul">
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -175,7 +175,7 @@ var myObj = {
 
 myObj.longOuter(); 
                                         </code></pre>
-                                        <footer><a href="http://javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">shamlessly stolen from here</a></footer>
+                                        <footer><a href="http://javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">shamelessly stolen from here</a></footer>
 				</section>
 
 				<section>
@@ -248,11 +248,33 @@ myObj.longOuter();
         //as close to Object.create's functionality in old IEs
         function F() {}
         F.prototype = o;
-        return new F();
+        return new F(); 
     };
                                                     </code></pre>
                                         <ul>
+                                            <li class="fragment">"prototype" is an overloaded term</li>
                                             <li class="fragment">What is the prototype property on a function?  </li>
+                                            <li class="fragment">Horrible name <br> fallbackOfObjectsCreatedWithNew would be better</li>
+                                        </ul>
+				</section>
+				<section>
+                                        <h2>What does <code>new</code> do?</h2>
+                                                <pre><code contenteditable>
+    //GROSS OVERSIMPLIFICATION
+    function myNew(constructorFunction){
+
+       var newObj = Object.create(constructorFunction.prototype);
+
+       newObj.constructor = constructorFunction;
+
+       constructorFunction.call(newObj);
+
+       return newObj; 
+    }
+                                                    </code></pre>
+                                        <ul>
+                                            <li class="fragment">convoluted</li>
+                                            <li class="fragment">not necessary</li>
                                         </ul>
 				</section>
 
@@ -317,11 +339,46 @@ myObj.longOuter();
     new function expression(){}; // new expression
 
     0, function expression(){}; // the comma is an operator
+
+    void function expression(){}
+    +function expression(){}
                                                     </code></pre>
                                     
                                     <p>Only easy rule - if there's no name, it's a expression</p>
                                     <p>If there is a name, it depends extremely on context</p>
                                     </div>
+				</section>
+				<section>
+                                    <pre><code>
+  // Don't conditionally declare functions
+  if (true) {
+    function foo() {
+      return 'first';
+    }
+  }
+  else {
+    function foo() {
+      return 'second';
+    }
+  }
+
+  // Instead, use function expressions:
+  var foo;
+  if (true) {
+    foo = function() {
+      return 'first';
+    };
+  }
+  else {
+    foo = function() {
+      return 'second';
+    };
+  }
+</code></pre>
+<a href="http://kangax.github.com/nfe">shamelessly stolen from here, with lots more good reading</a>
+				</section>
+				<section>
+                                    <h2>Summary</h2>
 				</section>
 				
 				<section>
