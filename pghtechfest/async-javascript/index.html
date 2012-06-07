@@ -6,7 +6,7 @@
 		
 		<title>Async Javascript: Callbacks are so old school</title>
 
-		<meta name="description" content="Presentation for NYC.js">
+		<meta name="description" content="Presentation for PGH Tech Fest">
 		<meta name="author" content="John K. Paul">
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -40,14 +40,81 @@
 				
 				<section>
                                     <h2>Callbacks</h2>
-                                    <ul>
+<pre><code>
+//browser
+$.get('/users', function(users){
+  //use users array
+});
+
+//nodejs
+fs = require('fs')
+fs.readFile('/etc/hosts', function (err,data) {
+  if (err) { /* Handle Error */}
+  console.log(data);
+});
+</pre></code>
+                                    <ul class="fragment">
                                         <li>straightforward</li>
                                         <li>conventional</li>
                                         <li>asynchronous?</li>
-                                        <li class="fragment">Just a design pattern</li>
                                     </ul>
-                                    <h2 class="fragment">Let me show you some code</h2>
 				</section>
+				<!--<section style="display:none;">
+                                    <h2>Is it necessarily asynchronous?</h2>
+<pre><code>
+//browser
+$.get('/users', function(users){
+  //use users array
+});
+</pre></code>
+                                    </section>-->
+				<section>
+<h2>Callback Hell</h2>
+<pre>
+                        <code>
+    step1(function (value1) {
+            step2(function (value2) {
+                step3(function (value3) {
+                    step4(function (value4) {
+                        step5(function (value5) {
+                            step6(function (value6) {
+                            // Do something with value6
+                            });
+                        });
+                    });
+                });
+            });
+    });
+                        </code>
+</pre>
+<!-- taken from http://raynos.github.com/presentation/shower/controlflow.htm?full#PyramidOfDoom -->
+				</section>
+				<section>
+                                        <h2>Parallel asynchronous requests</h2>                        
+                                    <pre><code contenteditable>
+var fs = require('fs');
+var file1,file2;
+
+fs.readFile('file1', function (err, buffer) {
+  if (err) { /* handle error */ }
+  file1 = buffer;
+  checkIfDone();
+});
+
+fs.readFile('file2', function (err, buffer) {
+  if (err) { /* handle error */ }
+  file2 = buffer;
+  checkIfDone();
+});
+
+function checkIfDone(){
+  if(file1 !== undefined && file2 !== undefined){
+    processFiles(file1,file2);
+  }
+}
+                                    </code></pre>
+
+                                </section>
 				<section>
                                         <h2>Serial asynchronous requests</h2>                        
                                     <pre><code contenteditable>
@@ -71,42 +138,167 @@
                                         <p class="fragment"> What's the problem here?</p>
 				</section>
 
-				<section>
-                                        <h2>Parallel asynchronous requests</h2>                        
-                                    <pre><code contenteditable>
-var fs = require('fs');
-var file1,file2;
-
-fs.readFile('file1', function (err, buffer) {
-  if (err) {/* handle error */ }
-  file1 = buffer;
-  checkIfDone();
-});
-
-fs.readFile('file2', function (err, buffer) {
-  if (err) {/* handle error */ }
-  file2 = buffer;
-  checkIfDone();
-});
-
-function checkIfDone(){
-  if(file1 !== undefined && file2 !== undefined){
-    processFiles(file1,file2);
-  }
-}
-                                    </code></pre>
-
-                                </section>
 
 				<section>
                                         <h2>Clunky much?</h2>
                                     <ul>
-                                        <li>Doesn't scale easily</li>
-                                        <li>conventional</li>
-                                        <li>asynchronous?</li>
+                                        <li>Tons of boilerplate</li>
+                                        <li>Doesn't scale easily to large numbers of tasks</li>
+                                        <li>Need wider and taller monitors</li>
                                         <li class="fragment">Just a design pattern</li>
                                     </ul>
+                                    <div class="fragment" style="margin-top:20px;">
+                                        <h2>Why is this necessary?</h2>
+                                        <ul>
+                                            <li>JS is single threaded</li>
+                                            <li>The event loop</li>
+                                            <li>Need a way to do something with future state</li>
+                                            <li class="fragment">Just a design pattern</li>
+                                        </ul>
+                                    </div>
 				</section>
+				<section>
+                                    <h2>Deferreds/Promises</h2>
+                                    <ul>
+                                        <li>let's return the future state</li>
+                                        <li>callers can pretend the state is already there</li>
+                                        <li>more readable, easier to express intent</li>
+                                        <li class="fragment">terminology sidetrack</li>
+                                    </ul>
+                                    <pre><code contenteditable>
+    var deferred = $.ajax({
+        url: API_URLS.FOLLOWERS_IDS+"johnkpaul"
+    });
+
+    deferred.then(function(data){
+             //do something with data.ids 
+    });
+
+    deferred.then(function(data){
+             //do something else with data.ids 
+    });
+
+                                    </code></pre>
+                                    
+				</section>
+				<section>
+                                    <h2>Composition - solving clunkiness</h2>
+                                    <h3>Parallel async calls</h3>
+                                    <pre><code contenteditable>
+    var user1FollowersReq = $.ajax({
+        url: API_URLS.FOLLOWERS_IDS+"user1"
+    });
+    var user2FollowersReq = $.ajax({
+        url: API_URLS.FOLLOWERS_IDS+"user2"
+    });
+
+    $.when(user1FollowersReq, user2FollowersReq)
+        .done(function(user1Followers, user2Follwers){
+            //use both user's followers
+        });
+
+                                    </code></pre>
+                                </section>
+				<section>
+                                    <h2>$.when()</h2>
+                                    <h3>achieveing parallel async</h3>
+                                    <pre><code contenteditable>
+var dataSource1 = new $.Deferred();
+var dataSource2 = new $.Deferred();
+        
+$.when(dataSource1, dataSource2).then(function(data1, data2){
+    alert(data1+data2);
+});
+
+setTimeout(function(){
+    dataSource1.resolve(1);
+},500);
+
+setTimeout(function(){
+    dataSource2.resolve(10);
+},1000);
+                                    </code></pre>
+
+                                </section>
+				<section>
+                                    <h2>Composition - solving clunkiness</h2>
+                                    <h3>Serial async calls</h3>
+                                    <pre><code contenteditable>
+var user1Followers = $.ajax({
+    url: API_URLS.FOLLOWERS_IDS+"user1"
+});
+
+user1FollowersReq.pipe(function(followers){
+         return $.ajax({
+            url: API_URLS.USERS_LOOKUPS+followers.ids.join(",")
+         });
+}).then(function(userData){
+         //now use the user data 
+});
+
+                                    </code></pre>
+                                    
+				</section>
+				<section>
+                                    <h2>pipe</h2>
+                                    <pre><code contenteditable>
+var num = 1;
+var deferred = new $.Deferred();
+deferred.resolve(num); 
+
+deferred.pipe(double).pipe(triple)
+.then(function(result){
+  alert(result);
+});
+
+function double(num){
+  return (new $.Deferred).resolve(num * 2); 
+}
+
+function triple(num){
+  return (new $.Deferred).resolve(num * 3); 
+}
+                                    </code></pre>
+                                </section>
+				<section>
+                                    <h2>not just ajax</h2>
+                                    <ul>
+                                        <li>pub/sub behavior</li>
+                                        <li>90% of nodejs APIs</li>
+                                    </ul>
+                                </section>
+				<section>
+                                        <h2>Converting node callback hell</h2>                        
+                                    <pre><code contenteditable>
+var fs = require('fs');
+
+fs.readFile('file1', function (err, buffer) {
+  if (err) { failback(err); }
+  callback(buffer);
+});
+
+var deferred = Q.defer();
+fs.readFile('file1', deferred.makeNodeResolver());
+deferred.then(callback, failback);
+
+//and now my heart melts
+var readFile = Q.nbind(fs.readFile, fs);
+readFile('file1').then(callback,failback);
+
+                                    </code></pre>
+
+                                </section>
+				<section>
+                                    <h2>Alternative implementations</h2>
+                                    <h3>CommonJS vs jQuery</h3>
+                                    <ul>
+                                        <li>jQuery.Deferred</li>
+                                        <li>Q</li>
+                                        <li>dojo.deferred</li>
+                                        <li>when.js</li>
+                                    </ul>
+                                </section>
+                                    
 
 				
 				<section>
@@ -130,6 +322,7 @@ function checkIfDone(){
 		</div>
 		
 		<script src="js/reveal.js"></script>
+		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 
 		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
 		<script src="lib/highlight.js"></script>
