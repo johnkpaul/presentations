@@ -106,7 +106,7 @@
 
         var alertName = obj.alertName;
         alertName("Hey"); // Hey undefined
-        //equivalent to window.alertName("Hey"); 
+        //this is set to null
                                                 </code></pre>
                                         </section>
                                     <section>
@@ -352,36 +352,28 @@ myObj.longOuter();
                                     <pre><code>
   // Don't conditionally declare functions
   if (true) {
-    function foo() {
-      return 'first';
-    }
+    function foo() { return 'first'; }
   }
   else {
-    function foo() {
-      return 'second';
-    }
+    function foo() { return 'second'; }
   }
 
   // Instead, use function expressions:
   var foo;
   if (true) {
-    foo = function() {
-      return 'first';
-    };
+    foo = function() { return 'first'; };
   }
   else {
-    foo = function() {
-      return 'second';
-    };
+    foo = function() { return 'second'; };
   }
 </code></pre>
 <a href="http://kangax.github.com/nfe">shamelessly stolen from here, with lots more good reading</a>
 				</section>
 				<section>
-                                    <h2>Summary</h2>
+                                    <h2>Takeaways</h2>
                                     <ul>
-                                        <li>this can be set in many different ways</li>
-                                        <li>prototypical inhertience is based on callbacks</li>
+                                        <li><code>this</code> can be set in many different ways</li>
+                                        <li>prototypical inheritance is based on fallbacks</li>
                                         <li>function and variable declarations are hoisted</li>
                                     </ul>
 				</section>
