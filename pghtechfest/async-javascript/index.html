@@ -69,6 +69,36 @@ $.get('/users', function(users){
 </pre></code>
                                     </section>-->
 				<section>
+                                    <h2>callbacks.are("clunky")</h2>
+                                    <ul>
+                                        <li>Tons of boilerplate</li>
+                                        <li>Doesn't scale easily to large numbers of tasks</li>
+                                        <li>forces us to use continuation passing style</li>
+                                    </ul>
+				</section>
+				<section>
+                                    <h2>Continuation Passing Style (CPS)</h2>
+                                    <pre><code>
+        var userData;
+
+        $.get("/user/1",function(data){
+            userData = data;
+        });
+
+        console.log(userData);
+        // AAAH WHY IS IT UNDEFINED? 
+                                    </code></pre>
+				</section>
+				<section>
+                                        <h2>Why is this necessary?</h2>
+                                        <ul>
+                                            <li>JS is single threaded</li>
+                                            <li>The event loop</li>
+                                            <li>Need a way to do something with future state</li>
+                                            <li class="fragment">Just a design pattern</li>
+                                        </ul>
+				</section>
+				<section>
 <h2>Callback Hell</h2>
 <pre>
                         <code>
@@ -140,24 +170,6 @@ function checkIfDone(){
 
 
 				<section>
-                                        <h2>Clunky much?</h2>
-                                    <ul>
-                                        <li>Tons of boilerplate</li>
-                                        <li>Doesn't scale easily to large numbers of tasks</li>
-                                        <li>Need wider and taller monitors</li>
-                                        <li class="fragment">Just a design pattern</li>
-                                    </ul>
-                                    <div class="fragment" style="margin-top:20px;">
-                                        <h2>Why is this necessary?</h2>
-                                        <ul>
-                                            <li>JS is single threaded</li>
-                                            <li>The event loop</li>
-                                            <li>Need a way to do something with future state</li>
-                                            <li class="fragment">Just a design pattern</li>
-                                        </ul>
-                                    </div>
-				</section>
-				<section>
                                     <h2>Deferreds/Promises</h2>
                                     <ul>
                                         <li>let's return the future state</li>
@@ -170,14 +182,32 @@ function checkIfDone(){
         url: API_URLS.FOLLOWERS_IDS+"johnkpaul"
     });
 
-    deferred.then(function(data){
+    deferred.done(function(data){
              //do something with data.ids 
     });
 
-    deferred.then(function(data){
+    deferred.done(function(data){
              //do something else with data.ids 
     });
 
+                                    </code></pre>
+                                    
+				</section>
+				<section>
+                                    <h2>Deferred Object</h2>
+                                    <pre><code contenteditable>
+    var deferred = new $.Deferred();
+    deferred.done(callback);
+    deferred.fail(errback);
+
+    deferred.resolve({username:"John Paul"});
+
+    function callback(user){
+        alert(user.username);    
+    }
+
+    function errback(err){
+    }
                                     </code></pre>
                                     
 				</section>
@@ -206,7 +236,7 @@ function checkIfDone(){
 var dataSource1 = new $.Deferred();
 var dataSource2 = new $.Deferred();
         
-$.when(dataSource1, dataSource2).then(function(data1, data2){
+$.when(dataSource1, dataSource2).done(function(data1, data2){
     alert(data1+data2);
 });
 
@@ -224,7 +254,7 @@ setTimeout(function(){
                                     <h2>Composition - solving clunkiness</h2>
                                     <h3>Serial async calls</h3>
                                     <pre><code contenteditable>
-var user1Followers = $.ajax({
+var user1FollowersReq = $.ajax({
     url: API_URLS.FOLLOWERS_IDS+"user1"
 });
 
@@ -232,7 +262,7 @@ user1FollowersReq.pipe(function(followers){
          return $.ajax({
             url: API_URLS.USERS_LOOKUPS+followers.ids.join(",")
          });
-}).then(function(userData){
+}).done(function(userData){
          //now use the user data 
 });
 
@@ -247,7 +277,7 @@ var deferred = new $.Deferred();
 deferred.resolve(num); 
 
 deferred.pipe(double).pipe(triple)
-.then(function(result){
+.done(function(result){
   alert(result);
 });
 
@@ -261,9 +291,14 @@ function triple(num){
                                     </code></pre>
                                 </section>
 				<section>
+                                    <h2>Benefits</h2>
+                                    <ul>
+                                        <li>less annoyances</li>
+                                        <li>signifcantly more unit testable</li>
+                                    </ul>
                                     <h2>not just ajax</h2>
                                     <ul>
-                                        <li>pub/sub behavior</li>
+                                        <li>any pub/sub behavior</li>
                                         <li>90% of nodejs APIs</li>
                                     </ul>
                                 </section>
@@ -273,17 +308,17 @@ function triple(num){
 var fs = require('fs');
 
 fs.readFile('file1', function (err, buffer) {
-  if (err) { failback(err); }
+  if (err) { errback(err); }
   callback(buffer);
 });
 
 var deferred = Q.defer();
 fs.readFile('file1', deferred.makeNodeResolver());
-deferred.then(callback, failback);
+deferred.then(callback, errback);
 
 //and now my heart melts
 var readFile = Q.nbind(fs.readFile, fs);
-readFile('file1').then(callback,failback);
+readFile('file1').then(callback,errback);
 
                                     </code></pre>
 
