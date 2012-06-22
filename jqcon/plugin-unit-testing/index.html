@@ -1,0 +1,363 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>jQuery Plugin Unit Testing - Get around the event loop</title>
+
+		<meta name="description" content="Presentation for jQuery Conf 2012">
+		<meta name="author" content="John K. Paul">
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+
+		<link rel="stylesheet" href="lib/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div id="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>jQuery Plugin unit testing</h1>
+					<h3 class="inverted">Get Around the Event Loop</h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+                                    <h2>We're used to debugging</h2>
+                                    <p>example of slide cropper</p>
+				</section>
+
+				<section>
+                                    <h2>but debugging is frustrating</h2>
+                                    <ul>
+                                        <li>Refreshing every few seconds</li>
+                                        <li>have to click/use the page to get into the correct state</li>
+                                        <li>step debugging to actually find the problem</li>
+                                    </ul>
+
+				</section>
+
+				<section>
+					<h2>Some parts of unit testing are easy</h2>
+                                        <ul>
+                                            <li>imperative code</li>
+                                            <li>functions that don't call other function, leaves of your execution tree</li>
+                                            <li>library code should be trusted</li>
+                                        </ul>
+				</section>
+
+				<section>
+					<h2>The real bad parts</h2>
+                                        <ul>
+                                            <li>How does <code>this</code> work?</li>
+                                            <li>How does prototypical inheritance work?</li>
+                                            <li>Hoisting? Why are my functions or vars undefined?</li>
+                                        </ul>
+				</section>
+				
+				<section>
+                                    <h2>5 different ways to set <code>this</code></h2>
+                                        <ul>
+                                            <li>"method" call</li>
+                                            <li>baseless function call</li>
+                                            <li>using call</li>
+                                            <li>using apply</li>
+                                            <li>constructor with new</li>
+                                        </ul>
+                                        <footer><a href="http://javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">List shamlessly stolen from here</a></footer>
+				</section>
+				<!-- Example of nested vertical slides -->
+				<section>
+                                        <section>
+                                            <h2>"method" call</h2>
+                                            <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        obj.alertName("Hey"); // Hey John K. Paul
+                                                </code></pre>
+                                        </section>
+                                        <section>
+                                            <h2>baseless function call</h2>
+                                            <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+        alertName("Hey"); // Hey undefined
+        //equivalent to window.alertName("Hey"); 
+                                                </code></pre>
+                                        </section>
+                                    <section>
+                                            <h2>using call</h2>
+                                    <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+        var newContext = {
+            fullName:"John Doe"
+        };
+        alertName.call(newContext, "Hey"); // Hey John Doe
+                                            </code></pre>
+                                    </section>
+                                    <section>
+                                            <h2>using apply</h2>
+                                    <pre><code contenteditable>
+        var obj = {
+            fullName:"John K. Paul",
+            alertName:function(greeting){
+                alert(greeting + " " + this.fullName);    
+            }
+        };
+
+        var alertName = obj.alertName;
+        var newContext = {
+            fullName:"John Doe"
+        };
+        alertName.apply(newContext, ["Hey"]); // Hey John Doe
+                                            </code></pre>
+                                    </section>
+                                    <section>
+                                            <h2>constructor with new</h2>
+                                    <pre><code contenteditable>
+        var Constructor = function(){
+                this.sayHey = function(){
+                     alert("Hey");    
+                }
+             }
+
+        //this inside the Constructor function is a new object
+        var newObject = new Constructor(); 
+        newObject.sayHey() // Hey 
+                                            </code></pre>
+                                    </section>
+				</section>
+
+				<section>
+					<h2>What on earth is prototypical inheritance</h2>
+					<p>What is inheritance...really?</p>
+                                        <p class="fragment">Is it <code>classes</code>?</p>
+                                        <p class="fragment">Is it <code>blueprints</code>?</p>
+                                        <p class="fragment">Is it <code>super</code>?</p>
+                                        <p class="fragment">No, none of these</p>
+				</section>
+
+				<section>
+					<h1>Code Reuse</h1>
+					<p>This is what we really care about</p>
+					<p>Write code once, use in multiple situations</p>
+					<p>prototypical inheritance makes this easy</p>
+                                        <p class="fragment">don't think about <code>new</code>, <code>super</code>, and <code>extends</code></p>
+                                        <p class="fragment">don't even think about javascript's prototype property</p>
+                                        <p class="fragment">Prototypical inheritence is about <strong>fallbacks</strong></p>
+				</section>
+
+				<section>
+                                        <section>
+					    <h3>How does prototypical inhertiance work?</h3>
+                                            <pre><code contenteditable>
+        var base = {
+            firstName:"John",
+            lastName:"Paul",
+            getFullName:function(){
+               return this.firstName + " " + this.lastName; 
+            },
+        }; // base is the fallback
+
+        var obj = Object.create(base); // where the magic happens
+        obj.alertName = function(){
+                alert(this.getFullName());    
+        };
+
+        obj.alertName(); // John Paul
+
+        // this is code reuse!
+        alert("getFullName" in obj) //true
+        alert(obj.getFullName === base.getFullName)  //true
+                                                </code></pre>
+                                        </section>
+				</section>
+				
+				<section>
+					<h2>Caveat</h2>
+                                        <p>Not all js environments have Object.create</p>
+                                        <p>But we have a solution for < IE9 </p>
+                                        <div class="fragment">
+                                            <p>If you want to look under the hood...</p>
+                                                <pre><code contenteditable>
+            if (!Object.create) {
+                Object.create = function (o) {
+                    function F() {}
+                    F.prototype = o;
+                    return new F();
+                };
+            }
+                                                    </code></pre>
+                                            <p class="fragment">Ask me after and I'll explain all of the magic</p>
+                                        </div>
+				</section>
+
+				<section>
+					<h2>hoisting? Why is everything undefined?</h2>
+                                                <pre><code contenteditable>
+    testFunc(); // undefined is not a function
+    var testFunc = function(){ alert("hey!"); };
+                                                    </code></pre>
+                                                <pre><code contenteditable>
+    testFunc(); // testFunc is not defined
+    (function testFunc(){ alert("hey!"); }) 
+                                                    </code></pre>
+                                                <pre><code contenteditable>
+    testFunc();
+    function testFunc(){ alert("hey!"); }; // works fine
+                                                    </code></pre>
+				</section>
+
+				<section>
+                                    <h4 style="margin-bottom:10px;">How does hoisting work?</h4>
+                                    <ul style="font-size:.65em;line-height:1.1em;">
+                                        <li>declarations are hoisted to the top of their scope</li>
+                                        <li>expressions are not</li>
+                                        <li>additionally, all var declarations are hoisted, but not initializations</li>
+                                    </ul>
+                                                <pre><code contenteditable>
+    (function(){
+        var hello = "world";
+        //some other code
+        var expression = function(){ alert("expression!"); };
+        var foo = "bar";
+        function declaration(){ alert("declaration!"); }; 
+    })();                                                    </code></pre>
+                                                <pre><code contenteditable>
+    (function(){
+        var foo, hello, expression;
+        function declaration(){ alert("declaration!"); }; 
+        hello = "world";
+        //some other code
+        expression = function(){ alert("expression!"); };
+        foo = "bar";
+    })();                                                     </code></pre>
+                                </section>
+                                <section>
+                                    <div>
+                                    
+                                                <pre><code contenteditable>
+    function declaration(){}
+
+    (function expression(){
+        function declaration(){}
+    }())
+
+    var expression = function(){}; // assignment expression
+
+    var expression = function expression(){};
+
+    (function expression(){})(); // () is the grouping operator 
+
+    new function expression(){}; // new expression
+
+    0, function expression(){}; // the comma is an operator
+                                                    </code></pre>
+                                    
+                                    <p>Only easy rule - if there's no name, it's a expression</p>
+                                    <p>If there is a name, it depends extremely on context</p>
+                                    </div>
+				</section>
+				
+				<section>
+					<h1>QUESTIONS</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">www.johnkpaul.com</h3>
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="js/reveal.js"></script>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
+		
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: false,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'neon', // default/neon
+
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+
+                        Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
+                            pre.ondblclick = function(event){
+                                eval(pre.firstChild.textContent);
+                                pre.firstChild.blur();
+                                pre.blur();
+                            }
+                        });
+		</script>
+
+	</body>
+</html>
