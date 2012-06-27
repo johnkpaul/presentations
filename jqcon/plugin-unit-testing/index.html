@@ -15,6 +15,8 @@
 		<link rel="stylesheet" href="css/main.css">
 
 		<link rel="stylesheet" href="lib/zenburn.css">
+		<link rel="stylesheet" href="pnotify/jquery.pnotify.default.css">
+		<link rel="stylesheet" href="jqueryui/css/dot-luv/jqueryui.custom.css">
 	</head>
 	
 	<body>
@@ -109,6 +111,7 @@
 				</section>
 
 				<section>
+					<h2>Some parts of unit testing are easy</h2>
                                         <ul>
                                             <li>functions that don't call other function, leaves of your execution tree</li>
                                             <li>library code should be trusted</li>
@@ -119,7 +122,7 @@
                 return arr.length;
             }
 
-            function testArrayLength:(){
+            function testArrayLength(){
                 equals(arrayLength([1]), 1);
                 equals(arrayLength([1, 2, 3]), 3);
                 equals(arrayLength(Array(100)), 100);
@@ -129,234 +132,51 @@
                                             </code></pre>
 				</section>
 				<section>
+					<h2>Some parts of unit testing are easy</h2>
+                                        <ul>
+                                            <li>library code should be trusted</li>
+                                        </ul>
+
+                                            <pre><code contenteditable>
+
+            function testjQueryActsAsAdvertised(){
+                var $div = $('<'+'div/>');
+                $div.addClass('test');
+
+                equals($div.get(0).className, 'test');
+
+                $div.appendTo(document.body);
+                equals($('.test').length, 1);
+            }
+
+            testjQueryActsAsAdvertised();
+                                            </code></pre>
+                                        <p class="fragment">Don't do this, don't worry about it</p>
+				</section>
+				<section>
 					<h2>The real bad parts</h2>
-                                        <ul>
-                                            <li>How does <code>this</code> work?</li>
-                                            <li>How does prototypical inheritance work?</li>
-                                            <li>Hoisting? Why are my functions or vars undefined?</li>
-                                        </ul>
-				</section>
-				
-				<section>
-                                    <h2>5 different ways to set <code>this</code></h2>
-                                        <ul>
-                                            <li>"method" call</li>
-                                            <li>baseless function call</li>
-                                            <li>using call</li>
-                                            <li>using apply</li>
-                                            <li>constructor with new</li>
-                                        </ul>
-                                        <footer><a href="http://javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">List shamlessly stolen from here</a></footer>
-				</section>
-				<!-- Example of nested vertical slides -->
-				<section>
-                                        <section>
-                                            <h2>"method" call</h2>
+					<h3>Events</h3>
                                             <pre><code contenteditable>
-        var obj = {
-            fullName:"John K. Paul",
-            alertName:function(greeting){
-                alert(greeting + " " + this.fullName);    
-            }
-        };
+        function setupAccordian(){
+            $('.accordian li').click(function(){
+                $(this).find('ul').show();     
+            });
+        }
 
-        obj.alertName("Hey"); // Hey John K. Paul
-                                                </code></pre>
-                                        </section>
-                                        <section>
-                                            <h2>baseless function call</h2>
-                                            <pre><code contenteditable>
-        var obj = {
-            fullName:"John K. Paul",
-            alertName:function(greeting){
-                alert(greeting + " " + this.fullName);    
-            }
-        };
-
-        var alertName = obj.alertName;
-        alertName("Hey"); // Hey undefined
-        //equivalent to window.alertName("Hey"); 
-                                                </code></pre>
-                                        </section>
-                                    <section>
-                                            <h2>using call</h2>
-                                    <pre><code contenteditable>
-        var obj = {
-            fullName:"John K. Paul",
-            alertName:function(greeting){
-                alert(greeting + " " + this.fullName);    
-            }
-        };
-
-        var alertName = obj.alertName;
-        var newContext = {
-            fullName:"John Doe"
-        };
-        alertName.call(newContext, "Hey"); // Hey John Doe
-                                            </code></pre>
-                                    </section>
-                                    <section>
-                                            <h2>using apply</h2>
-                                    <pre><code contenteditable>
-        var obj = {
-            fullName:"John K. Paul",
-            alertName:function(greeting){
-                alert(greeting + " " + this.fullName);    
-            }
-        };
-
-        var alertName = obj.alertName;
-        var newContext = {
-            fullName:"John Doe"
-        };
-        alertName.apply(newContext, ["Hey"]); // Hey John Doe
-                                            </code></pre>
-                                    </section>
-                                    <section>
-                                            <h2>constructor with new</h2>
-                                    <pre><code contenteditable>
-        var Constructor = function(){
-                this.sayHey = function(){
-                     alert("Hey");    
+        function setupWindowScrollHandler(){
+           $(window).scroll(function(event){
+                var offset = $(this.element).offset();
+                if( $('window').scrollTop() > offset.top || 
+                    $('window').scrollLeft() > offset.left){
+                    $(this.element).addClass('scrolledOff'); 
+                } 
+                else{
+                    $(this.element).removeClass('scrolledOff'); 
                 }
-             }
+            });
+        }
 
-        //this inside the Constructor function is a new object
-        var newObject = new Constructor(); 
-        newObject.sayHey() // Hey 
                                             </code></pre>
-                                    </section>
-				</section>
-
-				<section>
-					<h2>What on earth is prototypical inheritance</h2>
-					<p>What is inheritance...really?</p>
-                                        <p class="fragment">Is it <code>classes</code>?</p>
-                                        <p class="fragment">Is it <code>blueprints</code>?</p>
-                                        <p class="fragment">Is it <code>super</code>?</p>
-                                        <p class="fragment">No, none of these</p>
-				</section>
-
-				<section>
-					<h1>Code Reuse</h1>
-					<p>This is what we really care about</p>
-					<p>Write code once, use in multiple situations</p>
-					<p>prototypical inheritance makes this easy</p>
-                                        <p class="fragment">don't think about <code>new</code>, <code>super</code>, and <code>extends</code></p>
-                                        <p class="fragment">don't even think about javascript's prototype property</p>
-                                        <p class="fragment">Prototypical inheritence is about <strong>fallbacks</strong></p>
-				</section>
-
-				<section>
-                                        <section>
-					    <h3>How does prototypical inhertiance work?</h3>
-                                            <pre><code contenteditable>
-        var base = {
-            firstName:"John",
-            lastName:"Paul",
-            getFullName:function(){
-               return this.firstName + " " + this.lastName; 
-            },
-        }; // base is the fallback
-
-        var obj = Object.create(base); // where the magic happens
-        obj.alertName = function(){
-                alert(this.getFullName());    
-        };
-
-        obj.alertName(); // John Paul
-
-        // this is code reuse!
-        alert("getFullName" in obj) //true
-        alert(obj.getFullName === base.getFullName)  //true
-                                                </code></pre>
-                                        </section>
-				</section>
-				
-				<section>
-					<h2>Caveat</h2>
-                                        <p>Not all js environments have Object.create</p>
-                                        <p>But we have a solution for < IE9 </p>
-                                        <div class="fragment">
-                                            <p>If you want to look under the hood...</p>
-                                                <pre><code contenteditable>
-            if (!Object.create) {
-                Object.create = function (o) {
-                    function F() {}
-                    F.prototype = o;
-                    return new F();
-                };
-            }
-                                                    </code></pre>
-                                            <p class="fragment">Ask me after and I'll explain all of the magic</p>
-                                        </div>
-				</section>
-
-				<section>
-					<h2>hoisting? Why is everything undefined?</h2>
-                                                <pre><code contenteditable>
-    testFunc(); // undefined is not a function
-    var testFunc = function(){ alert("hey!"); };
-                                                    </code></pre>
-                                                <pre><code contenteditable>
-    testFunc(); // testFunc is not defined
-    (function testFunc(){ alert("hey!"); }) 
-                                                    </code></pre>
-                                                <pre><code contenteditable>
-    testFunc();
-    function testFunc(){ alert("hey!"); }; // works fine
-                                                    </code></pre>
-				</section>
-
-				<section>
-                                    <h4 style="margin-bottom:10px;">How does hoisting work?</h4>
-                                    <ul style="font-size:.65em;line-height:1.1em;">
-                                        <li>declarations are hoisted to the top of their scope</li>
-                                        <li>expressions are not</li>
-                                        <li>additionally, all var declarations are hoisted, but not initializations</li>
-                                    </ul>
-                                                <pre><code contenteditable>
-    (function(){
-        var hello = "world";
-        //some other code
-        var expression = function(){ alert("expression!"); };
-        var foo = "bar";
-        function declaration(){ alert("declaration!"); }; 
-    })();                                                    </code></pre>
-                                                <pre><code contenteditable>
-    (function(){
-        var foo, hello, expression;
-        function declaration(){ alert("declaration!"); }; 
-        hello = "world";
-        //some other code
-        expression = function(){ alert("expression!"); };
-        foo = "bar";
-    })();                                                     </code></pre>
-                                </section>
-                                <section>
-                                    <div>
-                                    
-                                                <pre><code contenteditable>
-    function declaration(){}
-
-    (function expression(){
-        function declaration(){}
-    }())
-
-    var expression = function(){}; // assignment expression
-
-    var expression = function expression(){};
-
-    (function expression(){})(); // () is the grouping operator 
-
-    new function expression(){}; // new expression
-
-    0, function expression(){}; // the comma is an operator
-                                                    </code></pre>
-                                    
-                                    <p>Only easy rule - if there's no name, it's a expression</p>
-                                    <p>If there is a name, it depends extremely on context</p>
-                                    </div>
 				</section>
 				
 				<section>
@@ -381,6 +201,8 @@
 		
 		<script src="js/reveal.js"></script>
 
+                <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+                <script src='pnotify/jquery.pnotify.js'></script>
 		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
 		<script src="lib/highlight.js"></script>
 		<script src="lib/classList.js"></script>
@@ -419,14 +241,31 @@
 
                         Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
                             pre.ondblclick = function(event){
-                                eval(pre.firstChild.textContent);
+                                var preRunCode = ';$.pnotify_remove_all();';
+                                eval(preRunCode+pre.firstChild.textContent);
                                 pre.firstChild.blur();
                                 pre.blur();
                             }
                         });
 
-                        equals = function(){
-                        
+                         $.pnotify.defaults.delay = 1500;
+                        equals = function(a, b){
+                            if(a == b){
+                                $.pnotify({
+                                    text: 'PASS',
+                                    animate_speed: 'fast',
+                                    type: 'success',
+                                    styling: 'jqueryui'
+                                }) 
+                            } 
+                            else{
+                                $.pnotify({
+                                    text: 'fail: '+a+' is not equal to ' + b,
+                                    type: 'error',
+                                    animate_speed: 'fast',
+                                    styling: 'jqueryui'
+                                }) 
+                            }
                         }
 		</script>
 
