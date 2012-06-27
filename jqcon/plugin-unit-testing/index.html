@@ -39,7 +39,41 @@
 				
 				<section>
                                     <h2>We're used to debugging</h2>
-                                    <p>example of slide cropper</p>
+                                    <iframe src="./slidecropper.html" style="width:900px;height:700px;"></iframe>
+				</section>
+				<section>
+                                            <pre><code contenteditable style='font-size:104%'>
+            var constrainBoundaries = function(el) {
+                    var pos = el.position();
+                    var parentHeight = el.parent().height();
+                    var parentWidth= el.parent().width();
+
+                    if(pos.top > 0) {
+                            el.css("top",0);
+                    } else if(pos.top < -1*(el.height()- parentHeight)) {
+                            el.css("top",-1*(el.height()-parentHeight));
+                    }
+                    if(pos.left> 0) {
+                            el.css("left",0);
+                    } else if(pos.left < -1 *(el.width()- parentWidth)) {
+                            el.css("left", -1 * (el.width()-parentWidth));
+                    }
+
+            };
+            var calculateCrop = function(el) {
+                    var pos = el.position();
+                    var parentHeight = el.parent().height();
+                    var parentWidth= el.parent().width();
+                    var cropBoundary = {
+                            "x1":-1 * pos.left,
+                            "y1":-1 * pos.top,
+                            "x2":(-1 * pos.left)+parentWidth,
+                            "y2":(-1 * pos.top)+parentHeight,
+                    }
+
+                    el.data("crop", cropBoundary);
+            };
+                                                </code></pre>
 				</section>
 
 				<section>
@@ -55,12 +89,45 @@
 				<section>
 					<h2>Some parts of unit testing are easy</h2>
                                         <ul>
-                                            <li>imperative code</li>
+                                            <li>imperative code, do this, then do this, then do that</li>
+                                        </ul>
+                                            <pre><code contenteditable>
+            function sumAndSquare(a, b){
+                var sum = a + b;
+                var square = Math.pow(sum, 2);
+                return square;
+            }
+
+            function testSum(){
+                equals(sumAndSquare(1,2), 9);
+                equals(sumAndSquare(9,4), 169);
+                equals(sumAndSquare(100,32), 17424);     
+            }
+
+            testSum();
+                                            </code></pre>
+				</section>
+
+				<section>
+                                        <ul>
                                             <li>functions that don't call other function, leaves of your execution tree</li>
                                             <li>library code should be trusted</li>
                                         </ul>
-				</section>
 
+                                            <pre><code contenteditable>
+            function arrayLength(arr){
+                return arr.length;
+            }
+
+            function testArrayLength:(){
+                equals(arrayLength([1]), 1);
+                equals(arrayLength([1, 2, 3]), 3);
+                equals(arrayLength(Array(100)), 100);
+            }
+
+            testArrayLength();
+                                            </code></pre>
+				</section>
 				<section>
 					<h2>The real bad parts</h2>
                                         <ul>
@@ -357,6 +424,10 @@
                                 pre.blur();
                             }
                         });
+
+                        equals = function(){
+                        
+                        }
 		</script>
 
 	</body>
