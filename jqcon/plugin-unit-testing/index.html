@@ -202,7 +202,7 @@
     Plugin.prototype.init = function () { 
         var self = this;
         this.$element.click(function(){
-            self.handleAccordionClick();
+            //self.handleAccordionClick();
         });
     };
 
@@ -210,9 +210,9 @@
         this.$sections.show();
     };
 
-    $.fn['myPlugin'] = function ( options ) {
+    $.fn['accordionPlugin'] = function ( options ) {
         return this.each(function () {
-            $.data(this, 'myPlugin', new Plugin( this, options ))
+            $.data(this, 'accordionPlugin', new Plugin( this, options ))
         });
     }
                                             </code></pre>
@@ -223,8 +223,8 @@
         var clicked = false;
         var $ul = $("<"+"ul/>");
 
-        $ul.myPlugin();
-        $ul.data('myPlugin')
+        $ul.accordionPlugin();
+        $ul.data('accordionPlugin')
           .handleAccordionClick = function(){clicked = true;}
 
         $ul.trigger('click');
@@ -238,12 +238,12 @@
                                             <pre data-depends='plugin'><code contenteditable>
         var $ul = $("<"+"ul/>");
 
-        $ul.myPlugin();
-        var plugin = $ul.data('myPlugin');
+        $ul.accordionPlugin();
+        var plugin = $ul.data('accordionPlugin');
         plugin.handleAccordionClick = sinon.spy();
 
         $ul.trigger('click');
-        ok(plugin.handleAccordionClick.called);
+        ok(plugin.handleAccordionClick.called,'spy was called');
                                             </code></pre>
 				</section>
 				<section>
@@ -255,10 +255,49 @@
         $innerUl.hide().wrap('<'+'li/>');
 
         equal($innerUl.css('display'), 'none');
-        $ul.myPlugin();
-        $ul.data('myPlugin').handleAccordionClick();
+        $ul.accordionPlugin();
+        $ul.data('accordionPlugin').handleAccordionClick();
 
         equal($innerUl.css('display'), 'block');
+                                            </code></pre>
+                                            <p class="fragment">Using fixtures makes this easer</p>
+				</section>
+				<section>
+                                    <h2>I want to build this</h2>
+                                    <iframe src="./stickyscroll.html" style="width:900px;height:700px;"></iframe>
+				</section>
+				<section>
+                                            <pre data-depends='stickyscroll'><code contenteditable>
+        var $el = $(document.createElement('div'));
+        $el.stickyScroll();
+
+        var plugin = $.data($el.get(0), "plugin_stickyScroll");
+        plugin.elementScrolledOff = sinon.spy();
+        plugin.elementScrolledOn = sinon.spy();
+
+        var event = jQuery.Event("scroll");
+        event.target = $({scrollTop:99});
+        $(window).trigger(event);
+
+        equal(plugin.elementScrolledOff.called, false);
+        equal(plugin.elementScrolledOn.called, true);
+                                            </code></pre>
+				</section>
+				<section>
+                                            <pre data-depends='stickyscroll'><code contenteditable>
+    Plugin.prototype.init = function(){
+        var self = this,
+        offset = $(this.element).offset();
+        $(window).scroll(function(event){
+            if(elementIsOutsideViewport(event.target, offset)){
+                self.elementScrolledOff(); 
+            } 
+            else{
+                self.elementScrolledOn();
+            }
+        });
+
+    }
                                             </code></pre>
                                             <p class="fragment">Using fixtures makes this easer</p>
 				</section>
@@ -281,6 +320,58 @@
 			<div class="progress"><span></span></div>
 			
 		</div>
+                                            <pre id='stickyscroll' style="display:none"><code contenteditable>
+
+var pluginName = "stickyScroll",
+    defaults = {
+        "class":"scrolled-off"
+    }
+
+    function Plugin( element, options ) {
+        this.element = element;
+        this.options = $.extend( {}, defaults, options) ;
+
+        this._defaults = defaults;
+
+        this.init();
+    }
+
+    Plugin.prototype.init = function(){
+        var self = this,
+        offset = $(this.element).offset();
+        $(window).scroll(function(event){
+            if(elementIsOutsideViewport(event.target, offset)){
+                self.elementScrolledOff(); 
+            } 
+            else{
+                self.elementScrolledOn();
+            }
+        });
+
+    }
+
+    Plugin.prototype.elementScrolledOn = function(){
+        $(this.element).removeClass(this.options["class"]);        
+    }
+
+    Plugin.prototype.elementScrolledOff = function(){
+        $(this.element).addClass(this.options["class"]);        
+    }
+
+    $.fn.stickyScroll = function(options){
+        return this.each(function(){
+            if (!$.data(this, 'plugin_' + pluginName)) {
+                $.data(this, 'plugin_' + pluginName,
+                    new Plugin( this, options ));
+            }        
+        });
+    }
+
+    function elementIsOutsideViewport(viewport,offset){
+        var $viewport = $(viewport);
+        return $viewport.scrollTop() > offset.top || $viewport.scrollLeft() > offset.left;
+    }
+                                            </code></pre>
 		
 		<script src="js/reveal.js"></script>
 		<script src="js/qunit.js"></script>
