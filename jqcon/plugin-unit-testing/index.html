@@ -82,8 +82,8 @@
                                     <h2>but debugging is frustrating</h2>
                                     <ul>
                                         <li>Refreshing every few seconds</li>
-                                        <li>have to click/use the page to get into the correct state</li>
-                                        <li>step debugging to actually find the problem</li>
+                                        <li>have to use the page to get into the correct state</li>
+                                        <li>step debugging to actually find and address problem</li>
                                     </ul>
 
 				</section>
@@ -93,6 +93,7 @@
                                     <ul>
                                         <li>no need to manually use the browser to check your code</li>
                                         <li>really fast feedback</li>
+                                        <li>test in isolation, no need to use your whole app</li>
                                     </ul>
 
 				</section>
@@ -109,9 +110,9 @@
             }
 
             function testSum(){
-                equals(sumAndSquare(1,2), 9);
-                equals(sumAndSquare(9,4), 169);
-                equals(sumAndSquare(100,32), 17424);     
+                equal(sumAndSquare(1,2), 9);
+                equal(sumAndSquare(9,4), 169);
+                equal(sumAndSquare(100,32), 17424);     
             }
 
             testSum();
@@ -122,7 +123,6 @@
 					<h2>Some parts of unit testing are easy</h2>
                                         <ul>
                                             <li>functions that don't call other function, leaves of your execution tree</li>
-                                            <li>library code should be trusted</li>
                                         </ul>
 
                                             <pre><code contenteditable>
@@ -131,9 +131,9 @@
             }
 
             function testArrayLength(){
-                equals(arrayLength([1]), 1);
-                equals(arrayLength([1, 2, 3]), 3);
-                equals(arrayLength(Array(100)), 100);
+                equal(arrayLength([1]), 1);
+                equal(arrayLength([1, 2, 3]), 3);
+                equal(arrayLength(Array(100)), 100);
             }
 
             testArrayLength();
@@ -151,10 +151,10 @@
                 var $div = $('<'+'div/>');
                 $div.addClass('test');
 
-                equals($div.get(0).className, 'test');
+                equal($div.get(0).className, 'test');
 
                 $div.appendTo(document.body);
-                equals($('.test').length, 1);
+                equal($('.test').length, 1);
             }
 
             testjQueryActsAsAdvertised();
@@ -163,26 +163,22 @@
 				</section>
 				<section>
 					<h2>The real bad parts</h2>
-					<h3>Events</h3>
+					<h3>Events: How would you test this?</h3>
                                             <pre><code contenteditable>
-        function setupAccordian(){
-            $('.accordian li').click(function(){
-                $(this).find('ul').show();     
-            });
-        }
+        $('.accordion').click(function(){
+            $(this).find('ul').show();     
+        });
 
-        function setupWindowScrollHandler(){
-           $(window).scroll(function(event){
-                var offset = $(this.element).offset();
-                if( $('window').scrollTop() > offset.top || 
-                    $('window').scrollLeft() > offset.left){
-                    $(this.element).addClass('scrolledOff'); 
-                } 
-                else{
-                    $(this.element).removeClass('scrolledOff'); 
-                }
-            });
-        }
+       $(window).scroll(function(event){
+            var offset = $(this.element).offset();
+            if( $('window').scrollTop() > offset.top || 
+                $('window').scrollLeft() > offset.left){
+                $(this.element).addClass('scrolledOff'); 
+            } 
+            else{
+                $(this.element).removeClass('scrolledOff'); 
+            }
+        });
 
                                             </code></pre>
 				</section>
@@ -190,7 +186,81 @@
 				<section>
 					<h2>The Short Answer?</h2>
                                         <p class="fragment">don't write code like that</p>
-                                        <p class="fragment">plugins + organization</p>
+                                        <p class="fragment">it does too much, in one place</p>
+                                        <p class="fragment">plugins need organization</p>
+                                        <p class="fragment">learn patterns and best practices</p>
+				</section>
+				<section>
+					<h3>Make code easy to stub out</h3>
+                                            <pre id='plugin'><code contenteditable>
+    function Plugin( element, options ) {
+        this.$element = $(element);
+        this.$sections = this.$element.find('ul').hide();
+        this.init();
+    }
+
+    Plugin.prototype.init = function () { 
+        var self = this;
+        this.$element.click(function(){
+            self.handleAccordionClick();
+        });
+    };
+
+    Plugin.prototype.handleAccordionClick = function () {
+        this.$sections.show();
+    };
+
+    $.fn['myPlugin'] = function ( options ) {
+        return this.each(function () {
+            $.data(this, 'myPlugin', new Plugin( this, options ))
+        });
+    }
+                                            </code></pre>
+				</section>
+				<section>
+					<h2>test event handlers with trigger</h2>
+                                            <pre data-depends='plugin'><code contenteditable>
+        var clicked = false;
+        var $ul = $("<"+"ul/>");
+
+        $ul.myPlugin();
+        $ul.data('myPlugin')
+          .handleAccordionClick = function(){clicked = true;}
+
+        $ul.trigger('click');
+
+        equal(clicked, true);
+                                            </code></pre>
+                                            <p class="fragment">SinonJS makes this much easier</p>
+				</section>
+				<section>
+					<h2>With SinonJS</h2>
+                                            <pre data-depends='plugin'><code contenteditable>
+        var $ul = $("<"+"ul/>");
+
+        $ul.myPlugin();
+        var plugin = $ul.data('myPlugin');
+        plugin.handleAccordionClick = sinon.spy();
+
+        $ul.trigger('click');
+        ok(plugin.handleAccordionClick.called);
+                                            </code></pre>
+				</section>
+				<section>
+					<h2>Can test plugin "methods" directly</h2>
+                                            <pre data-depends='plugin'><code contenteditable>
+        var $ul = $('<'+'ul>');
+        var $innerUl = $('<'+'ul/>');
+        $ul.appendTo(document.body).append($innerUl);
+        $innerUl.hide().wrap('<'+'li/>');
+
+        equal($innerUl.css('display'), 'none');
+        $ul.myPlugin();
+        $ul.data('myPlugin').handleAccordionClick();
+
+        equal($innerUl.css('display'), 'block');
+                                            </code></pre>
+                                            <p class="fragment">Using fixtures makes this easer</p>
 				</section>
 				<section>
 					<h1>QUESTIONS</h1>
@@ -213,6 +283,8 @@
 		</div>
 		
 		<script src="js/reveal.js"></script>
+		<script src="js/qunit.js"></script>
+		<script src="js/sinon.js"></script>
 
                 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
                 <script src='pnotify/jquery.pnotify.js'></script>
@@ -254,16 +326,21 @@
 
                         Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
                             pre.ondblclick = function(event){
-                                var preRunCode = ';$.pnotify_remove_all();';
-                                eval(preRunCode+pre.firstChild.textContent);
+                                var preRunCode = ';$.pnotify_remove_all();test("test",function(){';
+                                if($(pre).data('depends')){
+                                   var el = document.getElementById($.data(pre, 'depends'))
+                                   preRunCode += el.textContent;
+                                }
+                                var postRunCode = '});';
+                                eval(preRunCode+pre.firstChild.textContent+postRunCode);
                                 pre.firstChild.blur();
                                 pre.blur();
                             }
                         });
 
                          $.pnotify.defaults.delay = 1500;
-                        equals = function(a, b){
-                            if(a == b){
+                        QUnit.log = function(details){
+                            if(details.result){
                                 $.pnotify({
                                     text: 'PASS',
                                     animate_speed: 'fast',
@@ -272,8 +349,18 @@
                                 }) 
                             } 
                             else{
+                                var message = details.message || "";
+                                if(message.indexOf('Expected at least one assertion, but none were run') > -1){
+                                    return; 
+                                }
+                                if (details.expected) {
+                                    if (message) {
+                                            message += ", ";
+                                    }
+                                    message = "expected: " + details.expected + ", but was: " + details.actual;
+                                }
                                 $.pnotify({
-                                    text: 'fail: '+a+' is not equal to ' + b,
+                                    text: message,
                                     type: 'error',
                                     animate_speed: 'fast',
                                     styling: 'jqueryui'
