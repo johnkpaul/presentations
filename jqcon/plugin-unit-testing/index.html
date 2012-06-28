@@ -221,7 +221,7 @@
 					<h2>test event handlers with trigger</h2>
                                             <pre data-depends='plugin'><code contenteditable>
         var clicked = false;
-        var $ul = $("<"+"ul/>");
+        var $ul = $(document.createElement('ul'));
 
         $ul.accordionPlugin();
         $ul.data('accordionPlugin')
@@ -236,7 +236,7 @@
 				<section>
 					<h2>With SinonJS</h2>
                                             <pre data-depends='plugin'><code contenteditable>
-        var $ul = $("<"+"ul/>");
+        var $ul = $(document.createElement('ul'));
 
         $ul.accordionPlugin();
         var plugin = $ul.data('accordionPlugin');
@@ -249,10 +249,10 @@
 				<section>
 					<h2>Can test plugin "methods" directly</h2>
                                             <pre data-depends='plugin'><code contenteditable>
-        var $ul = $('<'+'ul>');
-        var $innerUl = $('<'+'ul/>');
+        var $ul = $(document.createElement('ul'));
+        var $innerUl = $(document.createElement('ul'));
         $ul.appendTo(document.body).append($innerUl);
-        $innerUl.hide().wrap('<'+'li/>');
+        $innerUl.hide().wrap(document.createElement('li'));
 
         equal($innerUl.css('display'), 'none');
         $ul.accordionPlugin();
@@ -260,31 +260,15 @@
 
         equal($innerUl.css('display'), 'block');
                                             </code></pre>
-                                            <p class="fragment">Using fixtures makes this easer</p>
+                                            <p class="fragment">Using fixtures makes this easier</p>
 				</section>
 				<section>
                                     <h2>I want to build this</h2>
                                     <iframe src="./stickyscroll.html" style="width:900px;height:700px;"></iframe>
 				</section>
 				<section>
-                                            <pre data-depends='stickyscroll'><code contenteditable>
-        var $el = $(document.createElement('div'));
-        $el.stickyScroll();
-
-        var plugin = $.data($el.get(0), "plugin_stickyScroll");
-        plugin.elementScrolledOff = sinon.spy();
-        plugin.elementScrolledOn = sinon.spy();
-
-        var event = jQuery.Event("scroll");
-        event.target = $({scrollTop:99});
-        $(window).trigger(event);
-
-        equal(plugin.elementScrolledOff.called, false);
-        equal(plugin.elementScrolledOn.called, true);
-                                            </code></pre>
-				</section>
-				<section>
-                                            <pre data-depends='stickyscroll'><code contenteditable>
+                                <h2>Somewhere, we have code like this</h2>
+                                            <pre data-depends='stickyscroll' id='newinit'><code contenteditable>
     Plugin.prototype.init = function(){
         var self = this,
         offset = $(this.element).offset();
@@ -299,7 +283,24 @@
 
     }
                                             </code></pre>
-                                            <p class="fragment">Using fixtures makes this easer</p>
+				</section>
+				<section>
+                                <h2>I want my test like this</h2>
+                                            <pre data-depends='stickyscroll newinit'><code contenteditable>
+        var $el = $(document.createElement('div'));
+        $el.stickyScroll();
+
+        var plugin = $.data($el.get(0), "plugin_stickyScroll");
+        plugin.elementScrolledOff = sinon.spy();
+        plugin.elementScrolledOn = sinon.spy();
+
+        var event = jQuery.Event("scroll");
+        event.target = $({scrollTop:99});
+        $(window).trigger(event);
+
+        equal(plugin.elementScrolledOff.called, false);
+        equal(plugin.elementScrolledOn.called, true);
+                                            </code></pre>
 				</section>
 				<section>
 					<h1>QUESTIONS</h1>
@@ -419,13 +420,21 @@ var pluginName = "stickyScroll",
                             pre.ondblclick = function(event){
                                 var preRunCode = ';$.pnotify_remove_all();test("test",function(){';
                                 if($(pre).data('depends')){
-                                   var el = document.getElementById($.data(pre, 'depends'))
-                                   preRunCode += el.textContent;
+                                    var ids = $(pre).data('depends').split(" ");
+                                    for(var id in ids){
+                                        preRunCode += getSourceFromEl(ids[id]);
+                                    }
                                 }
                                 var postRunCode = '});';
                                 eval(preRunCode+pre.firstChild.textContent+postRunCode);
                                 pre.firstChild.blur();
                                 pre.blur();
+
+                                function getSourceFromEl(id){
+                                   var el = document.getElementById(id)
+                                   return el.textContent;
+                                
+                                }
                             }
                         });
 
