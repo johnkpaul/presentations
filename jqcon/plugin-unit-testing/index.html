@@ -31,7 +31,8 @@
 				<section>
 					<h1>jQuery Plugin unit testing</h1>
 					<h3 class="inverted">Get Around the Event Loop</h3>
-                                        <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="color:red;text-transform:lowercase;">By @johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:none;">jQuery Conference 2012</span></h3>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
@@ -39,6 +40,13 @@
 					</script>
 				</section>
 				
+				<section>
+                                    <h2 style='text-transform:lowercase'>@johnkpaul</h2>
+                                    <h3>Just this guy</h3>
+                                    <h3 class="fragment">From NYC</h3>
+                                    <h3 class="fragment">and unit tests his javascript</h3>
+				</section>
+
 				<section>
                                     <h2>My first plugin</h2>
                                     <iframe src="./slidecropper.html" style="width:900px;height:700px;"></iframe>
@@ -81,10 +89,12 @@
 				<section>
                                     <h2>but debugging is frustrating</h2>
                                     <ul>
-                                        <li>Refreshing every few seconds</li>
-                                        <li>have to use the page to get into the correct state</li>
-                                        <li>step debugging to actually find and address problem</li>
+                                        <li>Write some code</li>
+                                        <li>Refresh every few seconds</li>
+                                        <li>Have to use the page to get into the correct state</li>
+                                        <li>Step debugging to actually find and address problem</li>
                                     </ul>
+<img src='http://knightly-slumber.com/worldofwarcraft/files/normal_headdesk.jpg'/>
 
 				</section>
 
@@ -92,6 +102,7 @@
                                     <h2>Unit testing is the answer</h2>
                                     <ul>
                                         <li>no need to manually use the browser to check your code</li>
+                                        <li>much less console/alert debugging</li>
                                         <li>really fast feedback</li>
                                         <li>test in isolation, no need to use your whole app</li>
                                     </ul>
@@ -104,9 +115,7 @@
                                         </ul>
                                             <pre><code contenteditable>
             function sumAndSquare(a, b){
-                var sum = a + b;
-                var square = Math.pow(sum, 2);
-                return square;
+                
             }
 
             function testSum(){
@@ -127,7 +136,7 @@
 
                                             <pre><code contenteditable>
             function arrayLength(arr){
-                return arr.length;
+                
             }
 
             function testArrayLength(){
@@ -143,12 +152,13 @@
 					<h2>Some parts of unit testing are easy</h2>
                                         <ul>
                                             <li>library code should be trusted</li>
+                                            <li>Don't do this, don't worry about it</li>
                                         </ul>
 
                                             <pre><code contenteditable>
 
             function testjQueryActsAsAdvertised(){
-                var $div = $('<'+'div/>');
+                var $div = $(document.createElement('div'));
                 $div.addClass('test');
 
                 equal($div.get(0).className, 'test');
@@ -159,7 +169,6 @@
 
             testjQueryActsAsAdvertised();
                                             </code></pre>
-                                        <p class="fragment">Don't do this, don't worry about it</p>
 				</section>
 				<section>
 					<h2>The real bad parts</h2>
@@ -191,7 +200,6 @@
                                         <p class="fragment">learn patterns and best practices</p>
 				</section>
 				<section>
-					<h3>Make code easy to stub out</h3>
                                             <pre id='plugin'><code contenteditable>
     function Plugin( element, options ) {
         this.$element = $(element);
@@ -202,7 +210,7 @@
     Plugin.prototype.init = function () { 
         var self = this;
         this.$element.click(function(){
-            //self.handleAccordionClick();
+            self.handleAccordionClick();
         });
     };
 
@@ -260,7 +268,7 @@
 
         equal($innerUl.css('display'), 'block');
                                             </code></pre>
-                                            <p class="fragment">Using fixtures makes this easier</p>
+                                            <p class="fragment">Using fixtures/jQuery's DOM builder makes this easier</p>
 				</section>
 				<section>
                                     <h2>I want to build this</h2>
@@ -282,30 +290,91 @@
         });
 
     }
+
+    function elementIsOutsideViewport(viewport,offset){
+        var $viewport = $(viewport);
+        return $viewport.scrollTop() > offset.top || 
+               $viewport.scrollLeft() > offset.left;
+    }
                                             </code></pre>
 				</section>
 				<section>
                                 <h2>I want my test like this</h2>
                                             <pre data-depends='stickyscroll newinit'><code contenteditable>
-        var $el = $(document.createElement('div'));
-        $el.stickyScroll();
+    var $el = $(document.createElement('div'));
+    
+    $el.stickyScroll();
 
-        var plugin = $.data($el.get(0), "plugin_stickyScroll");
-        plugin.elementScrolledOff = sinon.spy();
-        plugin.elementScrolledOn = sinon.spy();
+    var plugin = $.data($el.get(0), "plugin_stickyScroll");
+    plugin.elementScrolledOff = sinon.spy();
+    plugin.elementScrolledOn = sinon.spy();
 
-        var event = jQuery.Event("scroll");
-        event.target = $({scrollTop:99});
-        $(window).trigger(event);
+    var event = jQuery.Event("scroll");
+    event.target = $({scrollTop:101});
+    $(window).trigger(event);
 
-        equal(plugin.elementScrolledOff.called, false);
-        equal(plugin.elementScrolledOn.called, true);
+    equal(plugin.elementScrolledOff.called, true, 'off works');
+    equal(plugin.elementScrolledOn.called, false, 'on works');
                                             </code></pre>
 				</section>
 				<section>
-					<h1>QUESTIONS</h1>
-					<h3 class="inverted">By @johnkpaul</h3>
-					<h3 class="inverted">www.johnkpaul.com</h3>
+                                <h2>Ajax tests</h2>
+                                            <pre data-depends='' id="ajaxinit">
+<code contenteditable>    Plugin.prototype.init = function(){
+        var self = this;
+        this.getData().done(function(data){
+            self.$element.text(data.message);
+        });
+    }
+    Plugin.prototype.getData = function(){ return $.get('/data');}</code></pre>
+                                            <pre data-depends='ajaxplugin ajaxinit'>
+<code contenteditable>     var xhr = sinon.useFakeXMLHttpRequest();
+     var requests = this.requests = [];
+     xhr.onCreate = function (newXhr) {
+            requests.push(newXhr);
+     };  
+
+     var $el = $(document.createElement('div')).ajaxPlugin();
+     requests[0].respond(200, 
+                        { "Content-Type": "application/json" },
+                        '{"message":"hey!"}')
+     equal($el.text(), "hey!"); </code></pre>
+				</section>
+				<section>
+                                    <h2>Browser integration tests?</h2>
+                                    <ul>
+                                        <li>How do we programatically create <em>real</em> events?</li>
+                                        <li><a href="https://developer.mozilla.org/en/Document_Object_Model_(DOM)/event.initMouseEvent">document.createEvent and event.initMouseEvent()</a></li>
+                                        <li>almost just as headdesk inducing as before</li>
+                                        <li><a href="http://jsperf.com/native-browser-events-vs-jquery-trigger">jsPerf: not any slower</a></li>
+                                    </ul>
+				</section>
+				<section>
+                                <h2>What did we talk about?</h2>
+                                <ul>
+                                    <li class="fragment">Utilize jQuery event objects and trigger</li>
+                                    <li class="fragment">Write plugins with seams</li>
+                                    <li class="fragment">Use utility libraries</li>
+                                    <li class="fragment">Read the source - where to mock your data</li>
+                                </ul>
+				</section>
+				<section>
+                                <h2>Resources</h2>
+                                <ul>
+                                    <li>QUnit</li>
+                                    <li>SinonJS</li>
+                                    <li><a href="http://james.padolsey.com/jquery/">jQuery source viewer</a></li>
+                                </ul>
+				</section>
+				<section>
+					<h1>QUESTIONS?</h1>
+					<h3 style='text-transform:none;color:red;'>thanks for listening!</h3>
+					<h3 class="inverted"><span style="text-transform:none;">http://bit.ly/jqconunittesting</span></h3>
+					<h3 class="inverted"><span style="text-transform:none;">by @johnkpaul</span></h3>
+					<h3 class="inverted"><span style="text-transform:none;">www.johnkpaul.com</span></h3>
+					<h3 class="inverted"><span style="text-transform:none;">johnkpaul.tumblr.com</span></h3>
+					<h3 class="inverted"><span style="text-transform:none;">email: john@johnkpaul.com</span></h3>
+					<h3 class="inverted"><span style="text-transform:none;">irc: johnkpaul</span></h3>
 				</section>
 			</div>
 
@@ -321,6 +390,34 @@
 			<div class="progress"><span></span></div>
 			
 		</div>
+                                            <pre id='ajaxplugin' style="display:none"><code contenteditable>
+
+var pluginName = "ajaxSomething",
+    defaults = {
+    }
+
+    function Plugin( element, options ) {
+        this.element = element;
+        this.$element = $(element);
+        this.options = $.extend( {}, defaults, options) ;
+
+        this._defaults = defaults;
+
+        this.init();
+    }
+
+    Plugin.prototype.init = function(){
+    }
+
+    $.fn.ajaxPlugin = function(options){
+        return this.each(function(){
+            if (!$.data(this, 'plugin_' + pluginName)) {
+                $.data(this, 'plugin_' + pluginName,
+                    new Plugin( this, options ));
+            }        
+        });
+    }
+                                            </code></pre>
                                             <pre id='stickyscroll' style="display:none"><code contenteditable>
 
 var pluginName = "stickyScroll",
@@ -330,6 +427,7 @@ var pluginName = "stickyScroll",
 
     function Plugin( element, options ) {
         this.element = element;
+        this.$element = $(element);
         this.options = $.extend( {}, defaults, options) ;
 
         this._defaults = defaults;
@@ -378,7 +476,7 @@ var pluginName = "stickyScroll",
 		<script src="js/qunit.js"></script>
 		<script src="js/sinon.js"></script>
 
-                <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+                <script src='js/jquery.js'></script>
                 <script src='pnotify/jquery.pnotify.js'></script>
 		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
 		<script src="lib/highlight.js"></script>
@@ -422,11 +520,14 @@ var pluginName = "stickyScroll",
                                 if($(pre).data('depends')){
                                     var ids = $(pre).data('depends').split(" ");
                                     for(var id in ids){
-                                        preRunCode += getSourceFromEl(ids[id]);
+                                        preRunCode += getSourceFromEl(ids[id]) + ';';
                                     }
                                 }
                                 var postRunCode = '});';
-                                eval(preRunCode+pre.firstChild.textContent+postRunCode);
+
+var code = preRunCode+pre.firstChild.textContent+postRunCode;
+console.log(code);
+                                eval(code);
                                 pre.firstChild.blur();
                                 pre.blur();
 
@@ -437,6 +538,7 @@ var pluginName = "stickyScroll",
                                 }
                             }
                         });
+
 
                          $.pnotify.defaults.delay = 1500;
                         QUnit.log = function(details){
@@ -469,5 +571,8 @@ var pluginName = "stickyScroll",
                         }
 		</script>
 
+                <style>
+                    code{} 
+                </style>
 	</body>
 </html>
