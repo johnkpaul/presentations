@@ -15,6 +15,8 @@
 		<link rel="stylesheet" href="css/main.css">
 
 		<link rel="stylesheet" href="lib/zenburn.css">
+		<link rel="stylesheet" href="pnotify/jquery.pnotify.default.css">
+		<link rel="stylesheet" href="jqueryui/css/dot-luv/jqueryui.custom.css">
 	</head>
 	
 	<body>
@@ -50,7 +52,7 @@
                                                 <pre><code contenteditable>
     function add(){
         var sum = 0;
-        for(var i = 0;i<arguments.length;i++){
+        for(var i = 0;i&lt;arguments.length;i++){
             sum += arguments[i];
         }
         return sum;
@@ -73,19 +75,6 @@
                                                 </code></pre>
 				</section>
 
-                                <section>
-                                    <div>
-                                    
-                                                <pre><code contenteditable>
-    function declaration(){}
-
-    (function expression()
-                                                </code></pre>
-                                    
-                                    <p>Only easy rule - if there's no name, it's a expression</p>
-                                    <p>If there is a name, it depends extremely on context</p>
-                                    </div>
-				</section>
 				
 				<section>
 					<h1>QUESTIONS</h1>
@@ -108,6 +97,11 @@
 		</div>
 		
 		<script src="js/reveal.js"></script>
+		<script src="js/qunit.js"></script>
+		<script src="js/sinon.js"></script>
+
+                <script src='js/jquery.js'></script>
+                <script src='pnotify/jquery.pnotify.js'></script>
 
 		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
 		<script src="lib/highlight.js"></script>
@@ -147,11 +141,59 @@
 
                         Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
                             pre.ondblclick = function(event){
-                                eval(pre.firstChild.textContent);
+                                var preRunCode = ';$.pnotify_remove_all();test("test",function(){';
+                                if($(pre).data('depends')){
+                                    var ids = $(pre).data('depends').split(" ");
+                                    for(var id in ids){
+                                        preRunCode += getSourceFromEl(ids[id]) + ';';
+                                    }
+                                }
+                                var postRunCode = '});';
+
+                                var code = preRunCode+pre.firstChild.textContent+postRunCode;
+                                console.log(code);
+                                eval(code);
                                 pre.firstChild.blur();
                                 pre.blur();
+
+                                function getSourceFromEl(id){
+                                   var el = document.getElementById(id)
+                                   return el.textContent;
+                                
+                                }
                             }
                         });
+
+
+                         $.pnotify.defaults.delay = 1500;
+                        QUnit.log = function(details){
+                            if(details.result){
+                                $.pnotify({
+                                    text: 'PASS',
+                                    animate_speed: 'fast',
+                                    type: 'success',
+                                    styling: 'jqueryui'
+                                }) 
+                            } 
+                            else{
+                                var message = details.message || "";
+                                if(message.indexOf('Expected at least one assertion, but none were run') > -1){
+                                    return; 
+                                }
+                                if (details.expected) {
+                                    if (message) {
+                                            message += ", ";
+                                    }
+                                    message = "expected: " + details.expected + ", but was: " + details.actual;
+                                }
+                                $.pnotify({
+                                    text: message,
+                                    type: 'error',
+                                    animate_speed: 'fast',
+                                    styling: 'jqueryui'
+                                }) 
+                            }
+                        }
 		</script>
 
 	</body>
