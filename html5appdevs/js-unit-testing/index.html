@@ -32,7 +32,8 @@
 					<h1>Unit Testing</h1>
 					<h3 class="inverted">Single Page Applications</h3>
                                         <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
-                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/presentations</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/html5devs</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">github.com/johnkpaul/twitter-show-more-example</span></h3>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
@@ -42,9 +43,11 @@
 				
 				<section>
                                     <h2>Unit Testing</h2>
-                                        <p>Domenic did an amazing job. I should skip this slide.</p>
+                                        <p>Domenic did an amazing job. I bet he convinced you all.</p>
                                         <ul>
-                                            <li>I'm tired of manually refreshing and manually debugging <i>everything</i></li>
+                                            <li>I'm was tired of manually refreshing and manually debugging <i>everything</i></li>
+                                            <li>I was tired of not knowing when I've broken something</li>
+                                            <li>I was tired of using my app to find all the edge cases</li>
                                         </ul>
 				</section>
 				<section>
@@ -58,21 +61,74 @@
         return sum;
     }
     
-    equal(10, add(1, 2, 3, 4));
-    equal(100, add(50, 50));
+    equal(10, add(1, 2, 3, 4), "sum should be 10");
+    equal(100, add(50, 50), "sum should be 100");
                                                 </code></pre>
 				</section>
 				<section>
-                                    <h2>And I can refactor</h2>
+                                    <h2>Refactoring is awesome</h2>
                                                 <pre><code contenteditable>
     function add(){
         return Array.prototype.slice.call(arguments)
-                    .reduce(function(prev, current){return prev + current;});
+                        .reduce(function(prev, current){
+                            return prev + current;
+                        });
     }
     
-    equal(10, add(1, 2, 3, 4));
-    equal(100, add(50, 50));
+    equal(10, add(1, 2, 3, 4), "sum should be 10");
+    equal(100, add(50, 50), "sum should be 100");
                                                 </code></pre>
+				</section>
+				<section data-state="imgslide">
+                                    <h2>Imagine if you wanted to unit test</h2>
+                                    <img src="assets/img2.png">
+				</section>
+				<section data-state="imgslide">
+                                    <h2>But our code doesn't look like that.</h2>
+                                    <p>Our lives are so much easier with client side MV*</p>
+                                    <p>We have modularity</p>
+                                    <p>We have "classes"</p>
+                                    <img src="assets/jump.jpg">
+				</section>
+				<section data-state="imgslide">
+                                    <img src="assets/img1.png">
+				</section>
+				<section>
+                                    <h2>What exactly is a unit?</h2>
+                                        <ul>
+                                            <li>On the client, it's a little blurry</li>
+                                            <li>How do we deal with units of code with dependencies?</li>
+                                            <li>is a template separately testable?</li>
+                                            <li class="fragment">minimize, but if necessary, integrate some pieces</li>
+                                        </ul>
+				</section>
+				<section>
+                                    <h2>Test imperative, then test events</h2>
+                                    <p>(in Backbone, test M and then test V)</p>
+                                        <ul>
+                                            <li>models and collections are fairly imperative</li>
+                                            <li>views are often tightly integrated with templates</li>
+                                        </ul>
+				</section>
+				<section>
+                                    <h2>Quick App Demo</h2>
+				</section>
+				<section data-state="imagetotal">
+                                    <p>QUnit test</p>
+                                    <img src="assets/img3.png">
+				</section>
+				<section data-state="imagetotal">
+                                    <p>Collection's fetch method</p>
+                                    <img src="assets/img4.png">
+				</section>
+				<section>
+                                    <h2>QUnit alternatives</h2>
+                                        <ul>
+                                            <li>Jasmine - BDD</li>
+                                            <li>Chai - TDD/BDD</li>
+                                            <li>BusterJS</li>
+                                            <li>JSTestDriver</li>
+                                        </ul>
 				</section>
 
 				
@@ -194,6 +250,55 @@
                                 }) 
                             }
                         }
+                       $(document).ready(function(){
+    $('code').keydown(
+        function(e){
+                switch(e.keyCode){
+                    case 9: /* tab */
+                        pasteHtmlAtCaret("    ");
+                        e.preventDefault();
+                        return false;
+                        break;
+                }
+                return true;
+        }
+    );
+}); 
+
+function pasteHtmlAtCaret(html) {
+    var sel, range;
+    if (window.getSelection) {
+        // IE9 and non-IE
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+
+            // Range.createContextualFragment() would be useful here but is
+            // non-standard and not supported in all browsers (IE9, for one)
+            var el = document.createElement("div");
+            el.innerHTML = html;
+            var frag = document.createDocumentFragment(), node, lastNode;
+            while ( (node = el.firstChild) ) {
+                lastNode = frag.appendChild(node);
+            }
+            range.insertNode(frag);
+            
+            // Preserve the selection
+            if (lastNode) {
+                range = range.cloneRange();
+                range.setStartAfter(lastNode);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    } else if (document.selection && document.selection.type != "Control") {
+        // IE < 9
+        document.selection.createRange().pasteHTML(html);
+    }
+}
+
 		</script>
 
 	</body>

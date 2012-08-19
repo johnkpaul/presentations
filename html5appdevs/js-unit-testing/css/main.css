@@ -53,6 +53,12 @@ html {
 /*********************************************
  * HEADERS
  *********************************************/
+.imgslide #reveal h1, 
+.imgslide #reveal h2, 
+.imgslide #reveal h3, 
+.imgslide #reveal h4 {
+	margin: 0 0 10px 0;
+}
 #reveal h1, 
 #reveal h2, 
 #reveal h3, 
@@ -228,6 +234,9 @@ html {
 		border-radius: 2px;
 	}
 
+.imgslide #reveal section img {
+        margin-top:10px;
+}
 #reveal section img {
 	margin: 30px 0 0 0;
 	background: rgba(255,255,255,0.12);
@@ -416,6 +425,12 @@ html {
  * SLIDES
  *********************************************/
 
+.imagetotal #reveal .slides {
+        margin-left:-520px;
+}
+.imgslide #reveal .slides {
+        margin-top:-340px;
+}
 #reveal .slides {
 	position: absolute;
 	width: 900px;
