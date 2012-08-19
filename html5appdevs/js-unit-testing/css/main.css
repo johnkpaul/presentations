@@ -428,6 +428,9 @@ html {
 .imagetotal #reveal .slides {
         margin-left:-520px;
 }
+.imagemed #reveal section img{
+        margin-top:10px;
+}
 .imgslide #reveal .slides {
         margin-top:-340px;
 }

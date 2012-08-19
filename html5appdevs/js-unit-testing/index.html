@@ -42,7 +42,7 @@
 				</section>
 				
 				<section>
-                                    <h2>Unit Testing</h2>
+                                    <h2>Unit Testing - Confidence</h2>
                                         <p>Domenic did an amazing job. I bet he convinced you all.</p>
                                         <ul>
                                             <li>I'm was tired of manually refreshing and manually debugging <i>everything</i></li>
@@ -51,7 +51,7 @@
                                         </ul>
 				</section>
 				<section>
-                                    <h2>Imperative code is so easy</h2>
+                                    <h2>Imperative code is easy to test</h2>
                                                 <pre><code contenteditable>
     function add(){
         var sum = 0;
@@ -66,7 +66,7 @@
                                                 </code></pre>
 				</section>
 				<section>
-                                    <h2>Refactoring is awesome</h2>
+                                    <h2>refactoring is awesome</h2>
                                                 <pre><code contenteditable>
     function add(){
         return Array.prototype.slice.call(arguments)
@@ -78,6 +78,7 @@
     equal(10, add(1, 2, 3, 4), "sum should be 10");
     equal(100, add(50, 50), "sum should be 100");
                                                 </code></pre>
+                                    <p class="fragment">cross browser test runners can verify that your tests pass everywhere</p>
 				</section>
 				<section data-state="imgslide">
                                     <h2>Imagine if you wanted to unit test</h2>
@@ -94,6 +95,62 @@
                                     <img src="assets/img1.png">
 				</section>
 				<section>
+                                <h2>What to test? </h2>
+                                <h2>imperative logic & event logic</h2>
+                                        <ul>
+                                            <li>models, collections and views each have a bit of both</li>
+                                            <li>it's logic we want to test, not every nitty gritty detail</li>
+                                            <li>views and templates are the most difficult to sort out</li>
+                                        </ul>
+				</section>
+				<section>
+                                    <h2>Quick App Demo</h2>
+                                    <h2>And then into the code!</h2>
+                                    <div class="fragment">
+                                        <p>First, we'll take a look at the collection</p>
+                                            <ul>
+                                                <li><b>ensure we store the last fetched id</b></li>
+                                                <li>ensure that last fetched id is sent with every subsequent request</li>
+                                                <li>ensure that when fetched, it always uses add:true option</li>
+                                            </ul>
+                                    </div>
+				</section>
+				<section data-state="imagetotal">
+                                    <p>QUnit test - sinon ajax example</p>
+                                    <img src="assets/img3.png">
+				</section>
+				<section data-state="imagetotal">
+                                    <p>Collection's fetch method</p>
+                                    <img src="assets/img4.png">
+				</section>
+				<section>
+                                    <div>
+                                        <p>Now, onto the view</p>
+                                            <ul>
+                                                <li><b>ensure that collection is fetched when rendered</b></li>
+                                                <li><b>ensure that collection is fetched periodically for update</b></li>
+                                                <li>ensure that subview is created for each model in the collection</li>
+                                                <li>ensure that new subviews are hidden when models are added to collection</li>
+                                                <li>ensure that show more button is visible, if there are hidden subviews</li>
+                                                <li>ensure that when clicking on show more button, hidden subviews are now visible</li>
+                                                <li>... and on and on...</li>
+                                            </ul>
+                                    </div>
+				</section>
+				<section data-state="imagetotal">
+                                    <p>collection is fetched when rendered</p>
+                                    <img src="assets/img5.png">
+                                    <img src="assets/img6.png">
+				</section>
+				<section data-state="imagetotal">
+                                    <p>Complex View test - sinon timer example</p>
+                                    <img src="assets/img7.png">
+				</section>
+				<section data-state="imagetotal">
+                                    <p>Code to pass test</p>
+                                    <img src="assets/img8.png">
+				</section>
+				<section data-state="imagemed">
                                     <h2>What exactly is a unit?</h2>
                                         <ul>
                                             <li>On the client, it's a little blurry</li>
@@ -102,24 +159,50 @@
                                             <li class="fragment">minimize, but if necessary, integrate some pieces</li>
                                         </ul>
 				</section>
-				<section>
-                                    <h2>Test imperative, then test events</h2>
-                                    <p>(in Backbone, test M and then test V)</p>
+				<section data-state="imagemed">
+                                    <h2>template conventions</h2>
                                         <ul>
-                                            <li>models and collections are fairly imperative</li>
-                                            <li>views are often tightly integrated with templates</li>
+                                            <li>.js- and .js-test- class prefixes</li>
+                                            <li>keep templates out of the DOM for sharing between app and tests</li>
                                         </ul>
+                                        <img src="assets/img10.png">
+				</section>
+				<section data-state="imagemed">
+                                        <h2>template dependent test</h2>
+                                        <img src="assets/img13.png">
+				</section>
+				<section data-state="imagemed">
+                                        <img src="assets/img10.png">
+                                        <img src="assets/img9.png">
+                                        <img src="assets/img12.png">
+				</section>
+				<section data-state="imagemed">
+                                        <img src="assets/img14.png">
 				</section>
 				<section>
-                                    <h2>Quick App Demo</h2>
+                                    <h2>event handling</h2>
+                                        <ul>
+                                            <li>make clean separation between triggering and handling of event</li>
+                                            <li>in Backbone's case, there is no need to test that view events fire correctly</li>
+                                            <li>But in the case of custom events, test that they are fired when expected</li>
+                                        </ul>
+                                        <img src="assets/img15.png">
 				</section>
-				<section data-state="imagetotal">
-                                    <p>QUnit test</p>
-                                    <img src="assets/img3.png">
+				<section>
+                                    <h2>How do we run all of these tests?</h2>
+                                    <h3>Grunt</h3>
+                                    <p>Grunt is a task-based command line build tool for JavaScript projects.</p>
+                                    <h3>grunt-junit</h3>
+                                    <p class="fragment">demo</p>
 				</section>
-				<section data-state="imagetotal">
-                                    <p>Collection's fetch method</p>
-                                    <img src="assets/img4.png">
+				<section>
+                                    <h2>Did I forget the router?</h2>
+                                    <p>You know what to do</p>
+				</section>
+				<section>
+                                    <h2>Real confidence</h2>
+                                    <h3>Jenkins</h3>
+                                    <p>(although any continuous integration system will do)</p>
 				</section>
 				<section>
                                     <h2>QUnit alternatives</h2>
@@ -128,6 +211,12 @@
                                             <li>Chai - TDD/BDD</li>
                                             <li>BusterJS</li>
                                             <li>JSTestDriver</li>
+                                        </ul>
+                                    <h2>Cross browser testing services</h2>
+                                        <ul>
+                                            <li>Testling</li>
+                                            <li>Browserling</li>
+                                            <li>Browserstack</li>
                                         </ul>
 				</section>
 
