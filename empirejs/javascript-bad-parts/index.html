@@ -58,7 +58,7 @@
                                             <li>continue/switch</li>
                                         </ul>
 					<p>How often do these issues come up?</p>
-                                        <p>how many <code>with</code> bugs have you come across?</p>
+                                        <p>how many <code>with</code> bugs have you wrangled?</p>
 				</section>
 
 				<section>
@@ -66,7 +66,7 @@
                                         <ul>
                                             <li>difficult concepts to grasp in the javascript language</li>
                                             <li>high blog post to understanding ratio</li>
-                                            <li>what we might understand, but can't easily explain</li>
+                                            <li>what we might understand, but can't easily explain to others</li>
                                         </ul>
 				</section>
 
@@ -75,8 +75,7 @@
                                         <ul>
                                             <li>How does <code>this</code> work?</li>
                                             <li>How does prototypal inheritance work?</li>
-                                            <li>How does scope work?</li>
-                                            <li>How does hoisting work?</li>
+                                            <li>How does scope and hoisting work?</li>
                                         </ul>
 				</section>
 				
@@ -164,7 +163,7 @@
                 }
              }
 
-        //this inside the Constructor function is a newly created object
+        //this is a newly created object
         var newObject = new Constructor(); 
         newObject.sayHey() // Hey 
                                             </code></pre>
@@ -252,14 +251,15 @@ myObj.longOuter();
 				</section>
 
 				<section>
-                                <h2><code>prototype</code> is an overloaded term</h2>
+                                <h2><code>prototype</code> is double speak</h2>
                                         <ul>
-                                            <li class="fragment">prototype property on a function</li>
+                                            <li class="fragment">prototype #1 - property on a function</li>
                                             <li class="fragment"><code>fallbackOfObjectsCreatedWithNew</code> would be better</li>
-                                            <li class="fragment">prototype internal reference of every object</li>
+                                            <li class="fragment">prototype #2 - internal reference of every object</li>
                                             <li class="fragment">ES6 now calls this dunderproto (__proto__)</li>
                                         </ul>
 				</section>
+                                <!--
 				<section>
                                         <h2>What does <code>new</code> do?</h2>
                                                 <pre><code contenteditable>
@@ -280,6 +280,7 @@ myObj.longOuter();
                                             <li class="fragment">not necessary</li>
                                         </ul>
 				</section>
+                                -->
 
 				<section>
 					<h2>Scoping: breaking the principle of least surprise</h2>
@@ -328,12 +329,12 @@ myObj.longOuter();
 				<section>
 					<h2>one of these is not like the other</h2>
                                                 <pre><code contenteditable>
-    testFunc(); // undefined is not a function
+    testFunc(); 
     var testFunc = function(){ alert("hey!"); };
                                                     </code></pre>
                                                 <pre><code contenteditable>
-    testFunc(); // testFunc is not defined
-    (function testFunc(){ alert("hey!"); }) 
+    testFunc(); 
+    (function testFunc(){ alert("hey!"); });
                                                     </code></pre>
                                                 <pre><code contenteditable>
     testFunc();
@@ -361,7 +362,7 @@ myObj.longOuter();
         foo = "bar";
     })();                                                     </code></pre>
                                 </section>
-                                <!--<section>
+                                <section>
                                     <div>
                                     
                                                 <pre><code contenteditable>
@@ -388,21 +389,28 @@ myObj.longOuter();
                                     <p>Only easy rule - if there's no name, it's a expression</p>
                                     <p>If there is a name, it depends on context</p>
                                     </div>
-                                    </section> -->
+                                    </section>
 				<section>
                                     <h2>Takeaways</h2>
                                     <ul>
                                         <li><code>this</code> can be set in <strike>5</strike> 6 different ways</li>
                                         <li>prototypal inheritance is based on fallbacks</li>
                                         <li>only a function can define a new scope (until let)</li>
-                                        <li>functions can be defined in two different ways</li>
-                                        <li class="fragment">ES 6 will make our lives easier in approximately 9 years</li>
-                                        <li class="fragment"><a href="http://paulirish.com/2011/browser-market-pollution-iex-is-the-new-ie6/">according to this</a></li>
+                                        <li>hoisting moves source code around before interpretation</li>
+                                        <li class="fragment"><a href="http://paulirish.com/2011/browser-market-pollution-iex-is-the-new-ie6/">ES 6 will make all of our lives easier in approximately 8 years</a>
+                                            <ul>
+                                               <li>depending on who you ask</li>
+                                            </ul>
+                                        </li>
                                     </ul>
+				</section>
+				<section>
+                                    <h2 style="font-size:700%;">;</h2>
 				</section>
 				
 				<section>
-					<h1>QUESTIONS</h1>
+					<h1>Javascript</h1>
+					<h3 class="inverted">The Real Bad Parts</h3>
 					<h3 class="inverted">By @johnkpaul</h3>
 					<h3 class="inverted">johnkpaul.com</h3>
 				</section>
@@ -420,6 +428,8 @@ myObj.longOuter();
 				controls: true,
 				progress: true,
 				history: true,
+				keyboard: true,
+				overview: true,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
