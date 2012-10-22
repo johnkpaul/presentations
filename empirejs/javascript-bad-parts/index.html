@@ -13,6 +13,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css">
 		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
 
 		<!-- For syntax highlighting -->
@@ -212,24 +213,24 @@ myObj.longOuter();
                                         <section>
 					    <h3>How does prototypal inheritance work?</h3>
                                             <pre><code contenteditable>
-        var base = {
-            firstName:"John",
-            lastName:"Paul",
-            getFullName:function(){
-               return this.firstName + " " + this.lastName; 
-            },
-        }; // base is the fallback
+      var base = {
+          firstName:"John",
+          lastName:"Paul",
+          getFullName:function(){
+             return this.firstName + " " + this.lastName; 
+          },
+      }; // base is the fallback
 
-        var obj = Object.create(base); // where the magic happens
-        obj.alertName = function(){
-                alert(this.getFullName());    
-        };
+      var obj = Object.create(base); // where the magic happens
+      obj.alertName = function(){
+              alert(this.getFullName());    
+      };
 
-        obj.alertName(); // John Paul
+      obj.alertName(); // John Paul
 
-        // this is code reuse!
-        alert("getFullName" in obj) //true
-        alert(obj.getFullName === base.getFullName)  //true
+      // this is code reuse!
+      alert("getFullName" in obj) //true
+      alert(obj.getFullName === base.getFullName)  //true
                                                 </code></pre>
                                         </section>
 				</section>
@@ -265,13 +266,13 @@ myObj.longOuter();
     //GROSS OVERSIMPLIFICATION
     function myNew(constructorFunction){
 
-       var newObj = Object.create(constructorFunction.prototype);
+     var newObj = Object.create(constructorFunction.prototype);
 
-       newObj.constructor = constructorFunction;
+     newObj.constructor = constructorFunction;
 
-       constructorFunction.call(newObj);
+     constructorFunction.call(newObj);
 
-       return newObj; 
+     return newObj; 
     }
                                                     </code></pre>
                                         <ul>
