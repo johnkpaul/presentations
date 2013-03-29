@@ -38,8 +38,8 @@
 				<section>
 					<h1>Javascript</h1>
 					<h3 class="inverted">The Real Bad Parts</h3>
-                                        <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
-                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/html5devconf</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">By @johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com/html5devconf</span></h3>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
@@ -96,8 +96,8 @@
                                             <h2>"method" call</h2>
                                             <pre><code contenteditable>
 1.        var obj = {
-2.           fullName:"John K. Paul",
-3.            alertName:function(greeting){
+2.           fullName: "John K. Paul",
+3.            alertName: function(greeting){
 4.                alert(greeting + " " + this.fullName);    
 5.            }
 6.        };
@@ -109,8 +109,8 @@
                                             <h2>baseless function call</h2>
                                             <pre><code contenteditable>
 1.        var obj = {
-2.            fullName:"John K. Paul",
-3.            alertName:function(greeting){
+2.            fullName: "John K. Paul",
+3.            alertName: function(greeting){
 4.                alert(greeting + " " + this.fullName);    
 5.            }
 6.        };
@@ -124,15 +124,15 @@
                                             <h2>using call</h2>
                                     <pre><code contenteditable>
         var obj = {
-            fullName:"John K. Paul",
-            alertName:function(greeting){
+            fullName: "John K. Paul",
+            alertName: function(greeting){
                 alert(greeting + " " + this.fullName);    
             }
         };
 
         var alertName = obj.alertName;
         var newContext = {
-            fullName:"John Doe"
+            fullName: "John Doe"
         };
         alertName.call(newContext, "Hey"); // Hey John Doe
                                             </code></pre>
@@ -141,15 +141,15 @@
                                             <h2>using apply</h2>
                                     <pre><code contenteditable>
         var obj = {
-            fullName:"John K. Paul",
-            alertName:function(greeting){
+            fullName: "John K. Paul",
+            alertName: function(greeting){
                 alert(greeting + " " + this.fullName);    
             }
         };
 
         var alertName = obj.alertName;
         var newContext = {
-            fullName:"John Doe"
+            fullName: "John Doe"
         };
         alertName.apply(newContext, ["Hey"]); // Hey John Doe
                                             </code></pre>
@@ -186,7 +186,7 @@ var myObj = {
 
 myObj.longOuter(); 
                                         </code></pre>
-                                        <footer><a href="http://javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">shamelessly stolen from @angustweets</a></footer>
+                                        <footer><a href="http: //javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">shamelessly stolen from @angustweets</a></footer>
 				</section>
 
 				<section>
@@ -213,9 +213,9 @@ myObj.longOuter();
 					    <h3>How does prototypal inheritance work?</h3>
                                             <pre><code contenteditable>
       var base = {
-          firstName:"John",
-          lastName:"Paul",
-          getFullName:function(){
+          firstName: "John",
+          lastName: "Paul",
+          getFullName: function(){
              return this.firstName + " " + this.lastName; 
           },
       }; // base is the fallback
@@ -343,7 +343,7 @@ myObj.longOuter();
 				</section>
 
 				<section>
-                                    <h4 style="margin-bottom:10px;">How does hoisting work?</h4>
+                                    <h4 style="margin-bottom: 10px;">How does hoisting work?</h4>
                                                 <pre><code contenteditable>
     (function(){
         var hello = "world";
@@ -397,7 +397,7 @@ myObj.longOuter();
                                         <li>prototypal inheritance is based on fallbacks</li>
                                         <li>only a function can define a new scope (until let)</li>
                                         <li>hoisting acts as if source code moves around before interpretation</li>
-                                        <li class="fragment"><a href="http://paulirish.com/2011/browser-market-pollution-iex-is-the-new-ie6/">ES 6 will make all of our lives easier in approximately 8 years</a>
+                                        <li class="fragment"><a href="http: //paulirish.com/2011/browser-market-pollution-iex-is-the-new-ie6/">ES 6 will make all of our lives easier in approximately 8 years</a>
                                             <ul>
                                                <li>depending on who you ask</li>
                                             </ul>
@@ -405,7 +405,7 @@ myObj.longOuter();
                                     </ul>
 				</section>
 				<section>
-                                    <h2 style="font-size:700%;">;</h2>
+                                    <h2 style="font-size: 700%;">;</h2>
 				</section>
 				
 				<section>
@@ -423,7 +423,7 @@ myObj.longOuter();
 		<script>
 
 			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
+			// https: //github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: true,
 				progress: true,
