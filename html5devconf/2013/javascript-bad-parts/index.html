@@ -123,35 +123,35 @@
                                     <section>
                                             <h2>using call</h2>
                                     <pre><code contenteditable>
-        var obj = {
-            fullName: "John K. Paul",
-            alertName: function(greeting){
-                alert(greeting + " " + this.fullName);    
-            }
-        };
-
-        var alertName = obj.alertName;
-        var newContext = {
-            fullName: "John Doe"
-        };
-        alertName.call(newContext, "Hey"); // Hey John Doe
+1.         var obj = {
+2.             fullName: "John K. Paul",
+3.             alertName: function(greeting){
+4.                 alert(greeting + " " + this.fullName);    
+5.             }
+6.         };
+7.
+8.         var alertName = obj.alertName;
+10.        var newContext = {
+11.            fullName: "John Doe"
+12.        };
+13.        alertName.call(newContext, "Hey"); // Hey John Doe
                                             </code></pre>
                                     </section>
                                     <section>
                                             <h2>using apply</h2>
                                     <pre><code contenteditable>
-        var obj = {
-            fullName: "John K. Paul",
-            alertName: function(greeting){
-                alert(greeting + " " + this.fullName);    
-            }
-        };
-
-        var alertName = obj.alertName;
-        var newContext = {
-            fullName: "John Doe"
-        };
-        alertName.apply(newContext, ["Hey"]); // Hey John Doe
+1.         var obj = {
+2.             fullName: "John K. Paul",
+3.             alertName: function(greeting){
+4.                 alert(greeting + " " + this.fullName);    
+5.             }
+6.         };
+7.
+8.         var alertName = obj.alertName;
+10.        var newContext = {
+11.            fullName: "John Doe"
+12.        };
+13.        alertName.apply(newContext, ["Hey"]); // Hey John Doe
                                             </code></pre>
                                     </section>
                                     <section>
@@ -447,7 +447,8 @@ myObj.longOuter();
 
                         Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
                             pre.ondblclick = function(event){
-                                var content = pre.firstChild.textContent.replace(/\d\./g,"");
+                                var content = pre.firstChild.textContent.replace(/\d+\./g,"");
+                                console.log(content);
                                 eval(content);
                                 pre.firstChild.blur();
                                 pre.blur();
