@@ -157,15 +157,15 @@
                                     <section>
                                             <h2>constructor with new</h2>
                                     <pre><code contenteditable>
-        var Constructor = function(){
-                this.sayHey = function(){
-                     alert("Hey");    
-                }
-             }
-
-        //this is a newly created object
-        var newObject = new Constructor(); 
-        newObject.sayHey() // Hey 
+1.         var Constructor = function(){
+2.                 this.sayHey = function(){
+3.                      alert("Hey");    
+4.                 }
+5.              }
+6. 
+7.         //this is a newly created object
+8.         var newObject = new Constructor(); 
+10.        newObject.sayHey() // Hey 
                                             </code></pre>
                                     </section>
 				</section>
@@ -174,17 +174,17 @@
                                         <h2>Fat Arrow =></h2>
 					<p>In ES6</p>
                                         <pre><code>
-// with fat arrow inner function
-var myObj = {
-  longOuter: function() {
-    console.log(this); // this is myObj
-    var fatInner = () => 
-      console.log(this); // this is also myObj
-    fatInner(); 
-  }
-}
-
-myObj.longOuter(); 
+1. // with fat arrow inner function
+2. var myObj = {
+3.   longOuter: function() {
+4.     console.log(this); // this is myObj
+5.     var fatInner = () => 
+6.       console.log(this); // this is also myObj
+7.     fatInner(); 
+8.   }
+10.}
+11.
+12.myObj.longOuter(); 
                                         </code></pre>
                                         <footer><a href="http: //javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">shamelessly stolen from @angustweets</a></footer>
 				</section>
@@ -212,24 +212,24 @@ myObj.longOuter();
                                         <section>
 					    <h3>How does prototypal inheritance work?</h3>
                                             <pre><code contenteditable>
-      var base = {
-          firstName: "John",
-          lastName: "Paul",
-          getFullName: function(){
-             return this.firstName + " " + this.lastName; 
-          },
-      }; // base is the fallback
-
-      var obj = Object.create(base); // where the magic happens
-      obj.alertName = function(){
-              alert(this.getFullName());    
-      };
-
-      obj.alertName(); // John Paul
-
-      // this is code reuse!
-      alert("getFullName" in obj) //true
-      alert(obj.getFullName === base.getFullName)  //true
+1.       var base = {
+2.           firstName: "John",
+3.           lastName: "Paul",
+4.           getFullName: function(){
+5.              return this.firstName + " " + this.lastName; 
+6.           },
+7.       }; // base is the fallback
+8. 
+10.      var obj = Object.create(base); // where the magic happens
+11.      obj.alertName = function(){
+12.              alert(this.getFullName());    
+13.      };
+14.
+15.      obj.alertName(); // John Paul
+16.
+17.      // this is code reuse!
+18.      alert("getFullName" in obj) //true
+19.      alert(obj.getFullName === base.getFullName)  //true
                                                 </code></pre>
                                         </section>
 				</section>
@@ -240,12 +240,12 @@ myObj.longOuter();
                                         <p>But we have a solution for < IE9 </p>
                                         <div class="fragment">
                                                 <pre><code contenteditable>
-    Object.closeToCreate = function (o) { 
-        //as close to Object.create's functionality in old IEs
-        function F() {}
-        F.prototype = o;
-        return new F();
-    };
+1.     Object.closeToCreate = function (o) { 
+2.         //as close to Object.create's functionality in old IEs
+3.         function F() {}
+4.         F.prototype = o;
+5.         return new F();
+6.     };
                                                     </code></pre>
                                         </div>
 				</section>
@@ -285,29 +285,29 @@ myObj.longOuter();
 				<section>
 					<h2>Scoping: breaking the principle of least surprise</h2>
                                                 <pre><code contenteditable>
-   var arr = [1,2,3];
-   var out = [];
-   for(var i = 0; i&lt;arr.length;i++) {
-      var item = arr[i];
-      out.push(function(){ alert(item); });
-   }
-   
-   out.forEach(function(func){ func(); });
+1.    var arr = [1,2,3];
+2.    var out = [];
+3.    for(var i = 0; i&lt;arr.length;i++) {
+4.       var item = arr[i];
+5.       out.push(function(){ alert(item); });
+6.    }
+7.    
+8.    out.forEach(function(func){ func(); });
                                                     </code></pre>
 				</section>
 				<section>
 					<h2>Only functions can create scope</h2>
                                                 <pre><code contenteditable>
-   var arr = [1,2,3];
-   var out = [];
-   for(var i = 0; i&lt;arr.length;i++) {
-      (function(valueToAlert){
-        var item = valueToAlert;
-        out.push(function(){ alert(item); });
-      })(arr[i]);
-   }
-   
-   out.forEach(function(func){ func(); });
+1.   var arr = [1,2,3];
+2.   var out = [];
+3.   for(var i = 0; i&lt;arr.length;i++) {
+4.      (function(valueToAlert){
+5.        var item = valueToAlert;
+6.        out.push(function(){ alert(item); });
+7.      })(arr[i]);
+8.   }
+9.   
+10.  out.forEach(function(func){ func(); });
                                                     </code></pre>
                                         <ul>
                                             <li class="fragment">Coffeescript has <code>do</code> keyword</li>
@@ -316,29 +316,29 @@ myObj.longOuter();
 				<section>
                                 <h2>ES6 adds <code>let</code></h2>
                                                 <pre><code contenteditable>
-   var arr = [1,2,3];
-   var out = [];
-   for(var i = 0; i&lt;arr.length;i++) {
-      let item = arr[i];  // block scoped 
-      out.push(function(){ alert(item); });
-   }
-   
-   out.forEach(function(func){ func(); });
+1.    var arr = [1,2,3];
+2.    var out = [];
+3.    for(var i = 0; i&lt;arr.length;i++) {
+4.       let item = arr[i];  // block scoped 
+5.       out.push(function(){ alert(item); });
+6.    }
+7.    
+8.    out.forEach(function(func){ func(); });
                                                     </code></pre>
 				</section>
 				<section>
 					<h2>one of these is not like the other</h2>
                                                 <pre><code contenteditable>
-    testFunc(); 
-    var testFunc = function(){ alert("hey!"); };
+1.    testFunc(); 
+2.    var testFunc = function(){ alert("hey!"); };
                                                     </code></pre>
                                                 <pre><code contenteditable>
-    testFunc(); 
-    (function testFunc(){ alert("hey!"); });
+1.    testFunc(); 
+2.    (function testFunc(){ alert("hey!"); });
                                                     </code></pre>
                                                 <pre><code contenteditable>
-    testFunc();
-    function testFunc(){ alert("hey!"); }; 
+1.    testFunc();
+2.    function testFunc(){ alert("hey!"); }; 
                                                     </code></pre>
 				</section>
 
@@ -419,6 +419,7 @@ myObj.longOuter();
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
 		<script>
 
@@ -446,9 +447,17 @@ myObj.longOuter();
 			});
 
                         Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
-                            pre.ondblclick = function(event){
+                            pre.onclick = function(event){
+                                var $pre = $(pre);
+                                var xInsidePre = event.pageX - $pre.offset().left;
+                                var yInsidePre = event.pageY - $pre.offset().top;
+                                var distanceFromRightEdge = $pre.width() - xInsidePre;
+                                var distanceFromTopEdge = yInsidePre;
+                                if(!(distanceFromRightEdge < 66 && distanceFromTopEdge < 44)){
+                                  return;
+                                }
                                 var content = pre.firstChild.textContent.replace(/\d+\./g,"");
-                                console.log(content);
+                               // console.log(content);
                                 eval(content);
                                 pre.firstChild.blur();
                                 pre.blur();
