@@ -157,14 +157,14 @@
                                     <section>
                                             <h2>constructor with new</h2>
                                     <pre><code contenteditable>
-1.         var Constructor = function(){
+1.         var Foo = function(){
 2.                 this.sayHey = function(){
 3.                      alert("Hey");    
 4.                 }
 5.              }
 6. 
 7.         //this is a newly created object
-8.         var newObject = new Constructor(); 
+8.         var newObject = new Foo(); 
 10.        newObject.sayHey() // Hey 
                                             </code></pre>
                                     </section>
@@ -191,7 +191,10 @@
 
 				<section>
 					<h2>What on earth is prototypal inheritance</h2>
-					<p>What is inheritance...really?</p>
+                                        <img src="img/animal.js.dot">
+				</section>
+				<section>
+					<h2>What is inheritance...really?</h2>
                                         <p class="fragment">Is it <code>classes</code>?</p>
                                         <p class="fragment">Is it <code>blueprints</code>?</p>
                                         <p class="fragment">Is it <code>super</code>?</p>
@@ -345,45 +348,45 @@
 				<section>
                                     <h4 style="margin-bottom: 10px;">How does hoisting work?</h4>
                                                 <pre><code contenteditable>
-    (function(){
-        var hello = "world";
-        //some other code
-        var expression = function(){ alert("expression!"); };
-        var foo = "bar";
-        function declaration(){ alert("declaration!"); }; 
-    })();                                                    </code></pre>
+1.    (function(){
+2.        var hello = "world";
+3.        //some other code
+4.        var expression = function(){ alert("expression!"); };
+5.        var foo = "bar";
+6.        function declaration(){ alert("declaration!"); }; 
+7.    })();                                                    </code></pre>
                                                 <pre><code contenteditable>
-    (function(){
-        var foo, hello, expression;
-        function declaration(){ alert("declaration!"); }; 
-        hello = "world";
-        //some other code
-        expression = function(){ alert("expression!"); };
-        foo = "bar";
-    })();                                                     </code></pre>
+1.    (function(){
+2.        var foo, hello, expression;
+3.        function declaration(){ alert("declaration!"); }; 
+4.        hello = "world";
+5.        //some other code
+6.        expression = function(){ alert("expression!"); };
+7.        foo = "bar";
+8.    })();                                                     </code></pre>
                                 </section>
                                 <section>
                                     <div>
                                     
                                                 <pre><code contenteditable>
-    function declaration(){}
-
-    (function expression(){
-        function declaration(){}
-    }())
-
-    var expression = function(){}; // assignment expression
-
-    var expression = function expression(){};
-
-    (function expression(){})(); // () is the grouping operator 
-
-    new function expression(){}; // new expression
-
-    0, function expression(){}; // the comma is an operator
-
-    void function expression(){}
-    +function expression(){}
+1.     function declaration(){}
+2. 
+3.     (function expression(){
+4.         function declaration(){}
+5.     }())
+6. 
+7.     var expression = function(){}; // assignment expression
+8. 
+10.    var expression = function expression(){};
+11.
+12.    (function expression(){})(); // () is the grouping operator 
+13.
+14.    new function expression(){}; // new expression
+15.
+16.    0, function expression(){}; // the comma is an operator
+17.
+18.    void function expression(){}
+19.    +function expression(){}
                                                     </code></pre>
                                     
                                     <p>Only easy rule - if there's no name, it's a expression</p>
