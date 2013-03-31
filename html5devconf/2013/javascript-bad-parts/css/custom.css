@@ -14,3 +14,5 @@ pre:before{
   color:red;
   border-radius:10px;
 }
+
+pre .comment{color:yellow !important;}

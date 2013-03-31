@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Javascript: The Real Bad Parts</title>
+		<title>JavaScript: The Real Bad Parts</title>
 
 		<meta name="description" content="Presentation for HTML5DevConf">
 		<meta name="author" content="John K. Paul">
@@ -36,10 +36,10 @@
             
 			<div class="slides">
 				<section>
-					<h1>Javascript</h1>
+					<h1>JavaScript</h1>
 					<h3 class="inverted">The Real Bad Parts</h3>
                                         <h3 class="inverted"><span style="text-transform: lowercase;">By @johnkpaul</span></h3>
-                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com/html5devconf</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com/2013/html5devconf</span></h3>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
@@ -64,19 +64,11 @@
 				<section>
 					<h2>The real bad parts</h2>
                                         <ul>
-                                            <li>difficult concepts to grasp in the javascript language</li>
+                                            <li>difficult concepts to grasp in the language</li>
                                             <li>high blog post to understanding ratio</li>
-                                            <li>what we might understand, but can't easily explain to others</li>
+                                            <li>can't explain them easily</li>
                                         </ul>
-				</section>
-
-				<section>
-					<h2>The real bad parts</h2>
-                                        <ul>
-                                            <li>How does <code>this</code> work?</li>
-                                            <li>How does prototypal inheritance work?</li>
-                                            <li>How does scope and hoisting work?</li>
-                                        </ul>
+                                        <img src="img/comic.jpg" width="500">
 				</section>
 				
 				<section>
@@ -191,7 +183,12 @@
 
 				<section>
 					<h2>What on earth is prototypal inheritance</h2>
+                                        <img src="img/boromir.jpg">
+				</section>
+				<section>
+					<h2>WAT</h2>
                                         <img src="img/animal.js.dot">
+                                        <p>from howtonode.org</p>
 				</section>
 				<section>
 					<h2>What is inheritance...really?</h2>
@@ -207,7 +204,7 @@
 					<p>Write code once, use in multiple situations</p>
 					<p>prototypal inheritance makes this easy</p>
                                         <p class="fragment">don't think about <code>new</code>, <code>super</code>, and <code>extends</code></p>
-                                        <p class="fragment">don't even think about javascript's prototype property</p>
+                                        <p class="fragment">don't even think about JavaScript's prototype property</p>
                                         <p class="fragment">Prototypal inheritance is about <strong>fallbacks</strong></p>
 				</section>
 
@@ -215,24 +212,25 @@
                                         <section>
 					    <h3>How does prototypal inheritance work?</h3>
                                             <pre><code contenteditable>
-1.       var base = {
-2.           firstName: "John",
-3.           lastName: "Paul",
-4.           getFullName: function(){
-5.              return this.firstName + " " + this.lastName; 
-6.           },
-7.       }; // base is the fallback
-8. 
-10.      var obj = Object.create(base); // where the magic happens
-11.      obj.alertName = function(){
-12.              alert(this.getFullName());    
-13.      };
+1.    var base = {
+2.        firstName: "John",
+3.        lastName: "Paul",
+4.        getFullName: function(){
+5.           return this.firstName + " " + this.lastName; 
+6.        },
+7.    }; // base is the fallback
+8.
+9.    // where the magic happens
+10.   var obj = Object.create(base); 
+11.   obj.alertName = function(){
+12.           alert(this.getFullName());    
+13.   };
 14.
-15.      obj.alertName(); // John Paul
+15.   obj.alertName(); // John Paul
 16.
-17.      // this is code reuse!
-18.      alert("getFullName" in obj) //true
-19.      alert(obj.getFullName === base.getFullName)  //true
+17.   // this is code reuse!
+18.   alert("getFullName" in obj) //true
+19.   alert(obj.getFullName === base.getFullName)  //true
                                                 </code></pre>
                                         </section>
 				</section>
@@ -244,13 +242,33 @@
                                         <div class="fragment">
                                                 <pre><code contenteditable>
 1.     Object.closeToCreate = function (o) { 
-2.         //as close to Object.create's functionality in old IEs
-3.         function F() {}
-4.         F.prototype = o;
-5.         return new F();
-6.     };
+2.         function F() {}
+3.         F.prototype = o;
+4.         return new F();
+5.     };
                                                     </code></pre>
                                         </div>
+				</section>
+
+				<section>
+                                        <h2>What does <code>new</code> do?</h2>
+                                        <ol>
+                                            <li>setup fallback with function's prototype property</li>
+                                            <li>run the constructor function with the new object as <code>this</code></li>
+                                        </ol>
+                                                <pre><code contenteditable>
+1.    //GROSS OVERSIMPLIFICATION
+2.    function myNew(constructorFunc){
+3.      var obj = Object.create(constructorFunc.prototype);
+4.      constructorFunc.call(obj);
+5.      return obj; 
+6.    }
+7.    
+8.    function Foo(){}
+9.    Foo.prototype.sayHey = function(){ alert("Hey"); };
+10.   var foo = myNew(Foo);
+11.   foo.sayHey();
+                                                    </code></pre>
 				</section>
 
 				<section>
@@ -262,29 +280,6 @@
                                             <li class="fragment">ES6 now calls this dunderproto (__proto__)</li>
                                         </ul>
 				</section>
-                                <!--
-				<section>
-                                        <h2>What does <code>new</code> do?</h2>
-                                                <pre><code contenteditable>
-    //GROSS OVERSIMPLIFICATION
-    function myNew(constructorFunction){
-
-     var newObj = Object.create(constructorFunction.prototype);
-
-     newObj.constructor = constructorFunction;
-
-     constructorFunction.call(newObj);
-
-     return newObj; 
-    }
-                                                    </code></pre>
-                                        <ul>
-                                            <li class="fragment">convoluted</li>
-                                            <li class="fragment">not necessary</li>
-                                        </ul>
-				</section>
-                                -->
-
 				<section>
 					<h2>Scoping: breaking the principle of least surprise</h2>
                                                 <pre><code contenteditable>
@@ -369,37 +364,38 @@
                                     <div>
                                     
                                                 <pre><code contenteditable>
-1.     function declaration(){}
+1.     function declaration(){} // hoisted
 2. 
 3.     (function expression(){
-4.         function declaration(){}
+4.         function declaration(){} // hoisted
 5.     }())
 6. 
-7.     var expression = function(){}; // assignment expression
+7.     var expression = function(){}; // not hoisted
 8. 
-10.    var expression = function expression(){};
+10.    var expression = function expression(){}; // not hoisted
 11.
-12.    (function expression(){})(); // () is the grouping operator 
+12.    (function expression(){})(); // not hoisted
 13.
-14.    new function expression(){}; // new expression
+14.    new function expression(){}; // not hoisted
 15.
-16.    0, function expression(){}; // the comma is an operator
+16.    0, function expression(){}; // not hoisted
 17.
-18.    void function expression(){}
-19.    +function expression(){}
+18.    void function expression(){}  // not hoisted
+19.    +function expression(){}  // not hoisted
                                                     </code></pre>
                                     
                                     <p>Only easy rule - if there's no name, it's a expression</p>
-                                    <p>If there is a name, it depends on context</p>
                                     </div>
                                     </section>
 				<section>
                                     <h2>Takeaways</h2>
                                     <ul>
+                                        <li>USE JSHINT</li>
                                         <li><code>this</code> can be set in <strike>5</strike> 6 different ways</li>
                                         <li>prototypal inheritance is based on fallbacks</li>
                                         <li>only a function can define a new scope (until let)</li>
                                         <li>hoisting acts as if source code moves around before interpretation</li>
+                                        <li>function expressions and function declarations can be distinguished</li>
                                         <li class="fragment"><a href="http: //paulirish.com/2011/browser-market-pollution-iex-is-the-new-ie6/">ES 6 will make all of our lives easier in approximately 8 years</a>
                                             <ul>
                                                <li>depending on who you ask</li>
@@ -410,9 +406,12 @@
 				<section>
                                     <h2 style="font-size: 700%;">;</h2>
 				</section>
+				<section>
+                                    <h2 style="font-size: 450%;">callbacks<h2>
+				</section>
 				
 				<section>
-					<h1>Javascript</h1>
+					<h1>JavaScript</h1>
 					<h3 class="inverted">The Real Bad Parts</h3>
 					<h3 class="inverted">By @johnkpaul</h3>
 					<h3 class="inverted">johnkpaul.com</h3>
