@@ -1,0 +1,408 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Async Javascript: Callbacks are so old school</title>
+
+		<meta name="description" content="Presentation for PGH Tech Fest">
+		<meta name="author" content="John K. Paul">
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+
+		<link rel="stylesheet" href="lib/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div id="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Asynchronous Javascript</h1>
+					<h3 class="inverted">Callbacks are so old school</h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/pghasync</span></h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+                                    <h2>Callbacks</h2>
+<pre><code>
+//browser
+$.get('/users', function(users){
+  //use users array
+});
+
+//nodejs
+fs = require('fs')
+fs.readFile('/etc/hosts', function (err,data) {
+  if (err) { /* Handle Error */}
+  console.log(data);
+});
+</pre></code>
+                                    <ul class="fragment">
+                                        <li>straightforward</li>
+                                        <li>conventional</li>
+                                        <li>asynchronous?</li>
+                                    </ul>
+				</section>
+				<!--<section style="display:none;">
+                                    <h2>Is it necessarily asynchronous?</h2>
+<pre><code>
+//browser
+$.get('/users', function(users){
+  //use users array
+});
+</pre></code>
+                                    </section>-->
+				<section>
+                                    <h2>callbacks.are("clunky")</h2>
+                                    <ul>
+                                        <li>Tons of boilerplate</li>
+                                        <li>Doesn't scale easily to large numbers of tasks</li>
+                                        <li>forces us to use continuation passing style</li>
+                                    </ul>
+				</section>
+				<section>
+                                    <h2>Continuation Passing Style (CPS)</h2>
+                                    <pre><code>
+        var userData;
+
+        $.get("/user/1",function(data){
+            userData = data;
+        });
+
+        console.log(userData);
+        // AAAH WHY IS IT UNDEFINED? 
+                                    </code></pre>
+				</section>
+				<section>
+                                        <h2>Why is this necessary?</h2>
+                                        <ul>
+                                            <li>JS is single threaded</li>
+                                            <li>The event loop</li>
+                                            <li>Need a way to do something with future state</li>
+                                            <li class="fragment">Just a design pattern</li>
+                                        </ul>
+				</section>
+				<section>
+<h2>Callback Hell</h2>
+<pre>
+                        <code>
+    step1(function (value1) {
+            step2(function (value2) {
+                step3(function (value3) {
+                    step4(function (value4) {
+                        step5(function (value5) {
+                            step6(function (value6) {
+                            // Do something with value6
+                            });
+                        });
+                    });
+                });
+            });
+    });
+                        </code>
+</pre>
+<!-- taken from http://raynos.github.com/presentation/shower/controlflow.htm?full#PyramidOfDoom -->
+				</section>
+				<section>
+                                        <h2>Parallel asynchronous requests</h2>                        
+                                    <pre><code contenteditable>
+var fs = require('fs');
+var file1,file2;
+
+fs.readFile('file1', function (err, buffer) {
+  if (err) { /* handle error */ }
+  file1 = buffer;
+  checkIfDone();
+});
+
+fs.readFile('file2', function (err, buffer) {
+  if (err) { /* handle error */ }
+  file2 = buffer;
+  checkIfDone();
+});
+
+function checkIfDone(){
+  if(file1 !== undefined && file2 !== undefined){
+    processFiles(file1,file2);
+  }
+}
+                                    </code></pre>
+
+                                </section>
+				<section>
+                                        <h2>Serial asynchronous requests</h2>                        
+                                    <pre><code contenteditable>
+ $.ajax({
+    url: API_URLS.FOLLOWERS_IDS+"johnkpaul",
+    success: function(data){
+             var ids = data.ids;
+             $.ajax({
+                url: API_URLS.USERS_LOOKUPS+ids.join(","),
+                success: function(followers){
+                   //only here I can actually use the data
+                    
+                }
+             });
+        
+    }
+ });
+
+                                    </code></pre>
+                                        <a href="https://github.com/johnkpaul/jquery-twitter-lookup">From here, if you want to see the whole thing</a>
+                                        <p class="fragment"> What's the problem here?</p>
+				</section>
+
+
+				<section>
+                                    <h2>Deferreds/Promises</h2>
+                                    <ul>
+                                        <li>let's return the future state</li>
+                                        <li>callers can pretend the state is already there</li>
+                                        <li>more readable, easier to express intent</li>
+                                        <li class="fragment">terminology sidetrack</li>
+                                    </ul>
+                                    <pre><code contenteditable>
+    var deferred = $.ajax({
+        url: API_URLS.FOLLOWERS_IDS+"johnkpaul"
+    });
+
+    deferred.done(function(data){
+             //do something with data.ids 
+    });
+
+    deferred.done(function(data){
+             //do something else with data.ids 
+    });
+
+                                    </code></pre>
+                                    
+				</section>
+				<section>
+                                    <h2>Deferred Object</h2>
+                                    <pre><code contenteditable>
+    var deferred = new $.Deferred();
+    deferred.done(callback);
+    deferred.fail(errback);
+
+    deferred.resolve({username:"John Paul"});
+
+    function callback(user){
+        alert(user.username);    
+    }
+
+    function errback(err){
+    }
+                                    </code></pre>
+                                    
+				</section>
+				<section>
+                                    <h2>Composition - solving clunkiness</h2>
+                                    <h3>Parallel async calls</h3>
+                                    <pre><code contenteditable>
+    var user1FollowersReq = $.ajax({
+        url: API_URLS.FOLLOWERS_IDS+"user1"
+    });
+    var user2FollowersReq = $.ajax({
+        url: API_URLS.FOLLOWERS_IDS+"user2"
+    });
+
+    $.when(user1FollowersReq, user2FollowersReq)
+        .done(function(user1Followers, user2Follwers){
+            //use both user's followers
+        });
+
+                                    </code></pre>
+                                </section>
+				<section>
+                                    <h2>$.when()</h2>
+                                    <h3>achieveing parallel async</h3>
+                                    <pre><code contenteditable>
+var dataSource1 = new $.Deferred();
+var dataSource2 = new $.Deferred();
+        
+$.when(dataSource1, dataSource2).done(function(data1, data2){
+    alert(data1+data2);
+});
+
+setTimeout(function(){
+    dataSource1.resolve(1);
+},500);
+
+setTimeout(function(){
+    dataSource2.resolve(10);
+},1000);
+                                    </code></pre>
+
+                                </section>
+				<section>
+                                    <h2>Composition - solving clunkiness</h2>
+                                    <h3>Serial async calls</h3>
+                                    <pre><code contenteditable>
+var user1FollowersReq = $.ajax({
+    url: API_URLS.FOLLOWERS_IDS+"user1"
+});
+
+user1FollowersReq.then(function(followers){
+         return $.ajax({
+            url: API_URLS.USERS_LOOKUPS+followers.ids.join(",")
+         });
+}).then(function(userData){
+         //now use the user data 
+});
+
+                                    </code></pre>
+                                    
+				</section>
+				<section>
+                                    <h2>then</h2>
+                                    <pre><code contenteditable>
+var num = 1;
+var deferred = new $.Deferred();
+deferred.resolve(num); 
+
+deferred.then(double).then(triple)
+.then(function(result){
+  alert(result);
+});
+
+function double(num){
+  return (new $.Deferred).resolve(num * 2); 
+}
+
+function triple(num){
+  return (new $.Deferred).resolve(num * 3); 
+}
+                                    </code></pre>
+                                </section>
+				<section>
+                                    <h2>Benefits</h2>
+                                    <ul>
+                                        <li>less annoyances</li>
+                                        <li>signifcantly more unit testable</li>
+                                    </ul>
+                                    <h2>not just ajax</h2>
+                                    <ul>
+                                        <li>any pub/sub behavior</li>
+                                        <li>90% of nodejs APIs</li>
+                                    </ul>
+                                </section>
+				<section>
+                                        <h2>Converting node callback hell</h2>                        
+                                    <pre><code contenteditable>
+var fs = require('fs');
+
+fs.readFile('file1', function (err, buffer) {
+  if (err) { errback(err); }
+  callback(buffer);
+});
+
+var deferred = Q.defer();
+fs.readFile('file1', deferred.makeNodeResolver());
+deferred.promise.then(callback, errback);
+
+//and now my heart melts
+var readFile = Q.nbind(fs.readFile, fs);
+readFile('file1').then(callback,errback);
+
+                                    </code></pre>
+
+                                </section>
+				<section>
+                                    <h2>Alternative implementations</h2>
+                                    <h3>CommonJS vs jQuery</h3>
+                                    <ul>
+                                        <li>jQuery.Deferred</li>
+                                        <li>Q</li>
+                                        <li>dojo.deferred</li>
+                                        <li>when.js</li>
+                                    </ul>
+                                </section>
+                                    
+
+				
+				<section>
+					<h1>QUESTIONS</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">johnkpaul.com</h3>
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="js/reveal.js"></script>
+		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
+		
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: false,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'neon', // default/neon
+
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+
+                        Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
+                            pre.ondblclick = function(event){
+                                eval(pre.firstChild.textContent);
+                                pre.firstChild.blur();
+                                pre.blur();
+                            }
+                        });
+		</script>
+
+	</body>
+</html>

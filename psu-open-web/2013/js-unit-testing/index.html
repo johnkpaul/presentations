@@ -1,0 +1,394 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Javascript: Unit Testing Single Page Applications</title>
+
+		<meta name="description" content="Presentation for NY HTML5 App Devs group">
+		<meta name="author" content="John K. Paul">
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+
+		<link rel="stylesheet" href="lib/zenburn.css">
+		<link rel="stylesheet" href="pnotify/jquery.pnotify.default.css">
+		<link rel="stylesheet" href="jqueryui/css/dot-luv/jqueryui.custom.css">
+	</head>
+	
+	<body>
+		
+		<div id="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Unit Testing</h1>
+					<h3 class="inverted">Single Page Applications</h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/html5devs</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">github.com/johnkpaul/twitter-show-more-example</span></h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+                                    <h2>Unit Testing - Confidence</h2>
+                                        <p>Domenic did an amazing job. I bet he convinced you all.</p>
+                                        <ul>
+                                            <li>I'm was tired of manually refreshing and manually debugging <i>everything</i></li>
+                                            <li>I was tired of not knowing when I've broken something</li>
+                                            <li>I was tired of using my app to find all the edge cases</li>
+                                        </ul>
+				</section>
+				<section>
+                                    <h2>Imperative code is easy to test</h2>
+                                                <pre><code contenteditable>
+    function add(){
+        var sum = 0;
+        for(var i = 0;i&lt;arguments.length;i++){
+            sum += arguments[i];
+        }
+        return sum;
+    }
+    
+    equal(10, add(1, 2, 3, 4), "sum should be 10");
+    equal(100, add(50, 50), "sum should be 100");
+                                                </code></pre>
+				</section>
+				<section>
+                                    <h2>refactoring is awesome</h2>
+                                                <pre><code contenteditable>
+    function add(){
+        return Array.prototype.slice.call(arguments)
+                        .reduce(function(prev, current){
+                            return prev + current;
+                        });
+    }
+    
+    equal(10, add(1, 2, 3, 4), "sum should be 10");
+    equal(100, add(50, 50), "sum should be 100");
+                                                </code></pre>
+                                    <p class="fragment">cross browser test runners can verify that your tests pass everywhere</p>
+				</section>
+				<section data-state="imgslide">
+                                    <h2>Imagine if you wanted to unit test</h2>
+                                    <img src="assets/img2.png">
+				</section>
+				<section data-state="imgslide">
+                                    <h2>But our code doesn't look like that.</h2>
+                                    <p>Our lives are so much easier with client side MV*</p>
+                                    <p>We have modularity</p>
+                                    <p>We have "classes"</p>
+                                    <img src="assets/jump.jpg">
+				</section>
+				<section data-state="imgslide">
+                                    <img src="assets/img1.png">
+				</section>
+				<section>
+                                <h2>What to test? </h2>
+                                <h2>imperative logic & event logic</h2>
+                                        <ul>
+                                            <li>models, collections and views each have a bit of both</li>
+                                            <li>it's logic we want to test, not every nitty gritty detail</li>
+                                            <li>views and templates are the most difficult to sort out</li>
+                                        </ul>
+				</section>
+				<section>
+                                    <h2>Quick App Demo</h2>
+                                    <h2>And then into the code!</h2>
+                                    <div class="fragment">
+                                        <p>First, we'll take a look at the collection</p>
+                                            <ul>
+                                                <li><b>ensure we store the last fetched id</b></li>
+                                                <li>ensure that last fetched id is sent with every subsequent request</li>
+                                                <li>ensure that when fetched, it always uses add:true option</li>
+                                            </ul>
+                                    </div>
+				</section>
+				<section data-state="imagetotal">
+                                    <p>QUnit test - sinon ajax example</p>
+                                    <img src="assets/img3.png">
+				</section>
+				<section data-state="imagetotal">
+                                    <p>Collection's fetch method</p>
+                                    <img src="assets/img4.png">
+				</section>
+				<section>
+                                    <div>
+                                        <p>Now, onto the view</p>
+                                            <ul>
+                                                <li><b>ensure that collection is fetched when rendered</b></li>
+                                                <li><b>ensure that collection is fetched periodically for update</b></li>
+                                                <li>ensure that subview is created for each model in the collection</li>
+                                                <li>ensure that new subviews are hidden when models are added to collection</li>
+                                                <li>ensure that show more button is visible, if there are hidden subviews</li>
+                                                <li>ensure that when clicking on show more button, hidden subviews are now visible</li>
+                                                <li>... and on and on...</li>
+                                            </ul>
+                                    </div>
+				</section>
+				<section data-state="imagetotal">
+                                    <p>collection is fetched when rendered</p>
+                                    <img src="assets/img5.png">
+                                    <img src="assets/img6.png">
+				</section>
+				<section data-state="imagetotal">
+                                    <p>Complex View test - sinon timer example</p>
+                                    <img src="assets/img7.png">
+				</section>
+				<section data-state="imagetotal">
+                                    <p>Code to pass test</p>
+                                    <img src="assets/img8.png">
+				</section>
+				<section data-state="imagemed">
+                                    <h2>What exactly is a unit?</h2>
+                                        <ul>
+                                            <li>On the client, it's a little blurry</li>
+                                            <li>How do we deal with units of code with dependencies?</li>
+                                            <li>is a template separately testable?</li>
+                                            <li class="fragment">minimize, but if necessary, integrate some pieces</li>
+                                        </ul>
+				</section>
+				<section data-state="imagemed">
+                                    <h2>template conventions</h2>
+                                        <ul>
+                                            <li>.js- and .js-test- class prefixes</li>
+                                            <li>keep templates out of the DOM for sharing between app and tests</li>
+                                        </ul>
+                                        <img src="assets/img10.png">
+				</section>
+				<section data-state="imagemed">
+                                        <h2>template dependent test</h2>
+                                        <img src="assets/img13.png">
+				</section>
+				<section data-state="imagemed">
+                                        <img src="assets/img10.png">
+                                        <img src="assets/img9.png">
+                                        <img src="assets/img12.png">
+				</section>
+				<section data-state="imagemed">
+                                        <img src="assets/img14.png">
+				</section>
+				<section>
+                                    <h2>event handling</h2>
+                                        <ul>
+                                            <li>make clean separation between triggering and handling of event</li>
+                                            <li>in Backbone's case, there is no need to test that view events fire correctly</li>
+                                            <li>But in the case of custom events, test that they are fired when expected</li>
+                                        </ul>
+                                        <img src="assets/img15.png">
+				</section>
+				<section>
+                                    <h2>How do we run all of these tests?</h2>
+                                    <h3>Grunt</h3>
+                                    <p>Grunt is a task-based command line build tool for JavaScript projects.</p>
+                                    <h3>grunt-junit</h3>
+                                    <p class="fragment">demo</p>
+				</section>
+				<section>
+                                    <h2>Did I forget the router?</h2>
+                                    <p>You know what to do</p>
+				</section>
+				<section>
+                                    <h2>Real confidence</h2>
+                                    <h3>Jenkins</h3>
+                                    <p>(although any continuous integration system will do)</p>
+				</section>
+				<section>
+                                    <h2>QUnit alternatives</h2>
+                                        <ul>
+                                            <li>Jasmine - BDD</li>
+                                            <li>Chai - TDD/BDD</li>
+                                            <li>BusterJS</li>
+                                            <li>JSTestDriver</li>
+                                        </ul>
+                                    <h2>Cross browser testing services</h2>
+                                        <ul>
+                                            <li>Testling</li>
+                                            <li>Browserling</li>
+                                            <li>Browserstack</li>
+                                        </ul>
+				</section>
+
+				
+				<section>
+					<h1>QUESTIONS</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">www.johnkpaul.com</h3>
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="js/reveal.js"></script>
+		<script src="js/qunit.js"></script>
+		<script src="js/sinon.js"></script>
+
+                <script src='js/jquery.js'></script>
+                <script src='pnotify/jquery.pnotify.js'></script>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
+		
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: false,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'neon', // default/neon
+
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+
+                        Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
+                            pre.ondblclick = function(event){
+                                var preRunCode = ';$.pnotify_remove_all();test("test",function(){';
+                                if($(pre).data('depends')){
+                                    var ids = $(pre).data('depends').split(" ");
+                                    for(var id in ids){
+                                        preRunCode += getSourceFromEl(ids[id]) + ';';
+                                    }
+                                }
+                                var postRunCode = '});';
+
+                                var code = preRunCode+pre.firstChild.textContent+postRunCode;
+                                console.log(code);
+                                eval(code);
+                                pre.firstChild.blur();
+                                pre.blur();
+
+                                function getSourceFromEl(id){
+                                   var el = document.getElementById(id)
+                                   return el.textContent;
+                                
+                                }
+                            }
+                        });
+
+
+                         $.pnotify.defaults.delay = 1500;
+                        QUnit.log = function(details){
+                            if(details.result){
+                                $.pnotify({
+                                    text: 'PASS',
+                                    animate_speed: 'fast',
+                                    type: 'success',
+                                    styling: 'jqueryui'
+                                }) 
+                            } 
+                            else{
+                                var message = details.message || "";
+                                if(message.indexOf('Expected at least one assertion, but none were run') > -1){
+                                    return; 
+                                }
+                                if (details.expected) {
+                                    if (message) {
+                                            message += ", ";
+                                    }
+                                    message = "expected: " + details.expected + ", but was: " + details.actual;
+                                }
+                                $.pnotify({
+                                    text: message,
+                                    type: 'error',
+                                    animate_speed: 'fast',
+                                    styling: 'jqueryui'
+                                }) 
+                            }
+                        }
+                       $(document).ready(function(){
+    $('code').keydown(
+        function(e){
+                switch(e.keyCode){
+                    case 9: /* tab */
+                        pasteHtmlAtCaret("    ");
+                        e.preventDefault();
+                        return false;
+                        break;
+                }
+                return true;
+        }
+    );
+}); 
+
+function pasteHtmlAtCaret(html) {
+    var sel, range;
+    if (window.getSelection) {
+        // IE9 and non-IE
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+
+            // Range.createContextualFragment() would be useful here but is
+            // non-standard and not supported in all browsers (IE9, for one)
+            var el = document.createElement("div");
+            el.innerHTML = html;
+            var frag = document.createDocumentFragment(), node, lastNode;
+            while ( (node = el.firstChild) ) {
+                lastNode = frag.appendChild(node);
+            }
+            range.insertNode(frag);
+            
+            // Preserve the selection
+            if (lastNode) {
+                range = range.cloneRange();
+                range.setStartAfter(lastNode);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    } else if (document.selection && document.selection.type != "Control") {
+        // IE < 9
+        document.selection.createRange().pasteHTML(html);
+    }
+}
+
+		</script>
+
+	</body>
+</html>
