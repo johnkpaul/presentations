@@ -1,41 +1,61 @@
-<!doctype html>  
+<!doctype html>
 <html lang="en">
-	
+
 	<head>
 		<meta charset="utf-8">
-		
-		<title>Async Javascript: Callbacks are so old school</title>
 
-		<meta name="description" content="Presentation for PGH Tech Fest">
+		<title>Asynchronous JavaScript</title>
+
+		<meta name="description" content="Presentation for PSU Open Web">
 		<meta name="author" content="John K. Paul">
-		
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-		
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/main.css">
 
-		<link rel="stylesheet" href="lib/zenburn.css">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
 	</head>
-	
-	<body>
-		
-		<div id="reveal">
 
-			<!-- Used to fade in a background when a specific slide state is reached -->
-			<div class="state-background"></div>
-			
-			<!-- Any section element inside of this container is displayed as a slide -->
+	<body>
+
+            <div class="reveal">
+            
+            
 			<div class="slides">
+                       
 				<section>
-					<h1>Asynchronous Javascript</h1>
+					<h1>Async Javascript</h1>
 					<h3 class="inverted">Callbacks are so old school</h3>
                                         <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
-                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/pghasync</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/psu-async</span></h3>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
 						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
 					</script>
+				</section>
+				<section>
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I work for Conde Nast</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">freenode: johnkpaul</span></h3>
 				</section>
 				
 				<section>
@@ -120,7 +140,7 @@ $.get('/users', function(users){
 <!-- taken from http://raynos.github.com/presentation/shower/controlflow.htm?full#PyramidOfDoom -->
 				</section>
 				<section>
-                                        <h2>Parallel asynchronous requests</h2>                        
+                                        <h2>Parallel requests</h2>                        
                                     <pre><code contenteditable>
 var fs = require('fs');
 var file1,file2;
@@ -146,7 +166,7 @@ function checkIfDone(){
 
                                 </section>
 				<section>
-                                        <h2>Serial asynchronous requests</h2>                        
+                                        <h2>Serial requests</h2>                        
                                     <pre><code contenteditable>
  $.ajax({
     url: API_URLS.FOLLOWERS_IDS+"johnkpaul",
@@ -175,18 +195,19 @@ function checkIfDone(){
                                         <li>let's return the future state</li>
                                         <li>callers can pretend the state is already there</li>
                                         <li>more readable, easier to express intent</li>
-                                        <li class="fragment">terminology sidetrack</li>
+                                        <li>modeled after synchronous control flow</li>
+                                        <li class="fragment">terminology sidetrack </li>
                                     </ul>
                                     <pre><code contenteditable>
     var deferred = $.ajax({
         url: API_URLS.FOLLOWERS_IDS+"johnkpaul"
     });
 
-    deferred.done(function(data){
+    deferred.then(function(data){
              //do something with data.ids 
     });
 
-    deferred.done(function(data){
+    deferred.then(function(data){
              //do something else with data.ids 
     });
 
@@ -195,18 +216,20 @@ function checkIfDone(){
 				</section>
 				<section>
                                     <h2>Deferred Object</h2>
+                                    <p>1 to 1 with return and exceptions</p>
                                     <pre><code contenteditable>
     var deferred = new $.Deferred();
-    deferred.done(callback);
-    deferred.fail(errback);
+    deferred.then(callback, errback);
 
     deferred.resolve({username:"John Paul"});
+    //deferred.reject({message: 'user not found'});
 
     function callback(user){
         alert(user.username);    
     }
 
     function errback(err){
+        alert(err.message);
     }
                                     </code></pre>
                                     
@@ -222,10 +245,12 @@ function checkIfDone(){
         url: API_URLS.FOLLOWERS_IDS+"user2"
     });
 
-    $.when(user1FollowersReq, user2FollowersReq)
-        .done(function(user1Followers, user2Follwers){
-            //use both user's followers
-        });
+    var combined = $.when(user1FollowersReq, 
+                                    user2FollowersReq);
+
+    combined.then(function(user1Followers, user2Follwers){
+        //use both user's followers
+    });
 
                                     </code></pre>
                                 </section>
@@ -236,7 +261,7 @@ function checkIfDone(){
 var dataSource1 = new $.Deferred();
 var dataSource2 = new $.Deferred();
         
-$.when(dataSource1, dataSource2).done(function(data1, data2){
+$.when(dataSource1, dataSource2).then(function(data1, data2){
     alert(data1+data2);
 });
 
@@ -254,15 +279,17 @@ setTimeout(function(){
                                     <h2>Composition - solving clunkiness</h2>
                                     <h3>Serial async calls</h3>
                                     <pre><code contenteditable>
-var user1FollowersReq = $.ajax({
+var user1Req = $.ajax({
     url: API_URLS.FOLLOWERS_IDS+"user1"
 });
 
-user1FollowersReq.then(function(followers){
-         return $.ajax({
-            url: API_URLS.USERS_LOOKUPS+followers.ids.join(",")
-         });
-}).then(function(userData){
+var serialDef = user1Req.then(function(followers){
+     return $.ajax({
+        url: API_URLS.USERS_LOOKUPS+followers.ids.join(",")
+     });
+})
+
+serialDef.then(function(userData){
          //now use the user data 
 });
 
@@ -270,12 +297,13 @@ user1FollowersReq.then(function(followers){
                                     
 				</section>
 				<section>
-                                    <h2>then</h2>
+                                    <h2>fluent transformations</h2>
                                     <pre><code contenteditable>
 var num = 1;
 var deferred = new $.Deferred();
 deferred.resolve(num); 
 
+//first pass through double transformation, then triple
 deferred.then(double).then(triple)
 .then(function(result){
   alert(result);
@@ -325,14 +353,19 @@ readFile('file1').then(callback,errback);
                                 </section>
 				<section>
                                     <h2>Alternative implementations</h2>
-                                    <h3>CommonJS vs jQuery</h3>
+                                    <h3>Promises A+ vs jQuery</h3>
                                     <ul>
                                         <li>jQuery.Deferred</li>
                                         <li>Q</li>
+                                        <li>RSVP.js</li>
                                         <li>dojo.deferred</li>
                                         <li>when.js</li>
                                     </ul>
                                 </section>
+				<section>
+                                    <h2>Want me to explain the fights?</h2>
+                                </section>
+                                    
                                     
 
 				
@@ -341,63 +374,52 @@ readFile('file1').then(callback,errback);
 					<h3 class="inverted">By @johnkpaul</h3>
 					<h3 class="inverted">johnkpaul.com</h3>
 				</section>
-			</div>
+			 
+                        </div>
+            </div>
 
-			<!-- The navigational controls UI -->
-			<aside class="controls">
-				<a class="left" href="#">&#x25C4;</a>
-				<a class="right" href="#">&#x25BA;</a>
-				<a class="up" href="#">&#x25B2;</a>
-				<a class="down" href="#">&#x25BC;</a>
-			</aside>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
-			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
-			<div class="progress"><span></span></div>
-			
-		</div>
-		
-		<script src="js/reveal.js"></script>
-		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-
-		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
-		<script src="lib/highlight.js"></script>
-		<script src="lib/classList.js"></script>
-		
 		<script>
-			// Parse the query string into a key/value object
-			var query = {};
-			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
-				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
-			} );
 
+			// Full list of configuration options available here:
+			// https: //github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				// Display controls in the bottom right corner
 				controls: true,
-
-				// Display a presentation progress bar
 				progress: true,
-
-				// If true; each slide will be pushed to the browser history
 				history: true,
+				keyboard: true,
+				overview: true,
 
-				// Flags if mouse wheel navigation should be enabled
-				mouseWheel: false,
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
 
-				// Apply a 3D roll to links on hover
-				rollingLinks: true,
-
-				// UI style
-				theme: query.theme || 'neon', // default/neon
-
-				// Transition style
-				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
 			});
 
-			hljs.initHighlightingOnLoad();
-
                         Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
-                            pre.ondblclick = function(event){
-                                eval(pre.firstChild.textContent);
+                            pre.onclick = function(event){
+                                var $pre = $(pre);
+                                var xInsidePre = event.pageX - $pre.offset().left;
+                                var yInsidePre = event.pageY - $pre.offset().top;
+                                var distanceFromRightEdge = $pre.width() - xInsidePre;
+                                var distanceFromTopEdge = yInsidePre;
+                                if(!(distanceFromRightEdge < 66 && distanceFromTopEdge < 44)){
+                                  return;
+                                }
+                                var content = pre.firstChild.textContent.replace(/^\d+\./g,"");
+                               // console.log(content);
+                                eval(content);
                                 pre.firstChild.blur();
                                 pre.blur();
                             }

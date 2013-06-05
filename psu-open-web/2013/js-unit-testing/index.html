@@ -6,7 +6,7 @@
 		
 		<title>Javascript: Unit Testing Single Page Applications</title>
 
-		<meta name="description" content="Presentation for NY HTML5 App Devs group">
+		<meta name="description" content="Presentation for PSU Open Web">
 		<meta name="author" content="John K. Paul">
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -32,7 +32,7 @@
 					<h1>Unit Testing</h1>
 					<h3 class="inverted">Single Page Applications</h3>
                                         <h3 class="inverted"><span style="text-transform:lowercase;">By @johnkpaul</span></h3>
-                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/html5devs</span></h3>
+                                        <h3 class="inverted"><span style="text-transform:lowercase;">johnkpaul.com/psu-unit</span></h3>
                                         <h3 class="inverted"><span style="text-transform:lowercase;">github.com/johnkpaul/twitter-show-more-example</span></h3>
 					<script>
 						// Delicously hacky. Look away.
@@ -40,10 +40,19 @@
 						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
 					</script>
 				</section>
+				<section>
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I work for Conde Nast</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">freenode: johnkpaul</span></h3>
+				</section>
 				
 				<section>
                                     <h2>Unit Testing - Confidence</h2>
-                                        <p>Domenic did an amazing job. I bet he convinced you all.</p>
                                         <ul>
                                             <li>I'm was tired of manually refreshing and manually debugging <i>everything</i></li>
                                             <li>I was tired of not knowing when I've broken something</li>
@@ -61,8 +70,8 @@
         return sum;
     }
     
-    equal(10, add(1, 2, 3, 4), "sum should be 10");
-    equal(100, add(50, 50), "sum should be 100");
+    equal(add(1, 2, 3, 4), 10, "sum should be 10");
+    equal(add(50, 50), 100, "sum should be 100");
                                                 </code></pre>
 				</section>
 				<section>
@@ -75,8 +84,8 @@
                         });
     }
     
-    equal(10, add(1, 2, 3, 4), "sum should be 10");
-    equal(100, add(50, 50), "sum should be 100");
+    equal(add(1, 2, 3, 4), 10, "sum should be 10");
+    equal(add(50, 50), 100, "sum should be 100");
                                                 </code></pre>
                                     <p class="fragment">cross browser test runners can verify that your tests pass everywhere</p>
 				</section>
@@ -192,16 +201,12 @@
                                     <h2>How do we run all of these tests?</h2>
                                     <h3>Grunt</h3>
                                     <p>Grunt is a task-based command line build tool for JavaScript projects.</p>
-                                    <h3>grunt-junit</h3>
+                                    <h3>grunt-qunit-junit</h3>
                                     <p class="fragment">demo</p>
 				</section>
 				<section>
-                                    <h2>Did I forget the router?</h2>
-                                    <p>You know what to do</p>
-				</section>
-				<section>
                                     <h2>Real confidence</h2>
-                                    <h3>Jenkins</h3>
+                                    <h3>Travis CI</h3>
                                     <p>(although any continuous integration system will do)</p>
 				</section>
 				<section>
@@ -219,10 +224,16 @@
                                             <li>Browserstack</li>
                                         </ul>
 				</section>
-
 				
 				<section>
-					<h1>QUESTIONS</h1>
+					<h2>your turn now</h2>
+                                        <ul>
+                                            <li>github.com/johnkpaul/workshop-test-harness</li>
+                                            <li>get tests running</li>
+                                            <li>add, subtract, multiply and divide</li>
+                                            <li>throw it onto travis ci</li>
+                                            <li>github.com/johnkpaul/twitter-show-more-example</li>
+                                        </ul>
 					<h3 class="inverted">By @johnkpaul</h3>
 					<h3 class="inverted">www.johnkpaul.com</h3>
 				</section>
@@ -285,7 +296,15 @@
 			hljs.initHighlightingOnLoad();
 
                         Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
-                            pre.ondblclick = function(event){
+                            pre.onclick = function(event){
+                                var $pre = $(pre);
+                                var xInsidePre = event.pageX - $pre.offset().left;
+                                var yInsidePre = event.pageY - $pre.offset().top;
+                                var distanceFromRightEdge = $pre.width() - xInsidePre;
+                                var distanceFromTopEdge = yInsidePre;
+                                if(!(distanceFromRightEdge < 66 && distanceFromTopEdge < 44)){
+                                  return;
+                                }
                                 var preRunCode = ';$.pnotify_remove_all();test("test",function(){';
                                 if($(pre).data('depends')){
                                     var ids = $(pre).data('depends').split(" ");
