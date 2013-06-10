@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>I Like My jQuery Plugins Warm and Toasty</title>
+
+		<meta name="description" content="Presentation for jQuery Conference Portland">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+            <div class="reveal">
+            
+            
+			<div class="slides">
+                                <!-- img from http://en.es-static.us/upl/2012/06/penguinCloseup.jpg -->
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .66);">
+                                  <div style="position:relative">
+                                    <h1>Cold Plugins</h1>
+                                    <h1 class="over fragment">Penguins</h1>
+                                  </div>
+                                        <h3 class="inverted">Keep them warm and toasty</h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">By @johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com/2013/jqcon</span></h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+
+				<section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I work for Conde Nast</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+				</section>
+				
+
+				<section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
+                                    <h2>Invention</h2>
+                                    <!-- img from http://www.flickr.com/photos/31897685@N06/8774370401/sizes/o/in/photostream/ -->
+                                    <img height="320" src="img/penguin-origami.jpg">
+					<p>Some start from nothing</p>
+					<p>Some start with something</p>
+                                        <!--<p class="fragment">Deadlines make us take a side</p>-->
+				</section>
+
+                                <!-- img from http://www.flickr.com/photos/trustypics/7619381184/sizes/l/in/photostream/-->
+				<section fullscreen-img="img/multitool2.jpg" style="background: rgba(255, 255, 255, .66);">
+                                    <h2>jQuery plugins</h2>
+                                        <!--<p class="fragment">There's probably something out there that fits your needs</p>-->
+                                        <p class="fragment">write less, do more</p>
+                                        <p class="fragment"><img width="350" src="img/jquery.png"></p>
+				</section>
+
+				<section fullscreen-img="img/multitool2.jpg" style="background: rgba(255, 255, 255, .85);">
+                                    <h2>To Each Their Own</h2>
+                                    <ul>
+                                      <li>A lightweight start</li>
+                                      <li>Widget factory</li>
+                                      <li>Widget factory + RequireJS</li>
+                                      <li>Namespaced pattern</li>
+                                      <li>Custom events (Publish/Subscribe)</li>
+                                      <li>Extend pattern</li>
+                                      <li>Non Widget-factory widget</li>
+                                      <li>Prototypal inheritance pattern</li>
+                                      <li>Universal Module Definition pattern</li>
+                                      <li>...</li>
+                                    </ul>
+				</section>
+
+
+
+                                <!-- img from http://www.flickr.com/photos/kevinomara/2841105371/sizes/l/in/photostream/ -->
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);">
+                                    <h2>Backbone Views</h2>
+                                    <ul class="fragment">
+                                      <li>Organization</li>
+                                      <li>Organization</li>
+                                      <li>Organization</li>
+                                    </ul>
+                                    <img src="http://www.businesscartoons.co.uk/shop/images/uploads/3902bwc.gif" class="fragment"> 
+				</section>
+
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);">
+                                    <h2>Backbone Views</h2>
+                                    <ul>
+                                      <li>initialization</li>
+                                      <li>event binding</li>
+                                      <li>rendering</li>
+                                    </ul>
+                                    <pre><code>
+var MyView = Backbone.View.extend({
+  events:{
+    'click .left-arrow': 'handleLeftArrowClick'
+  },
+  initialize: function(){
+  },
+  render: function(){
+    this.$el.html(TEMPLATE);  //populate HTML
+    return this; 
+  }
+  handleLeftArrowClick: function(event){}
+});                                    
+                                    </code></pre>
+				</section>
+
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);">
+<h2>Backbone + Plugin?</h2>
+                                    <pre><code>
+var PhotoCarouselTopNavView = Backbone.View.extend({
+  render: function() {
+    this.$('ul').jcarousel({
+      jcarouselNext: '.next',
+      jcarouselPrev: '.prev',
+      autoPlay: true
+
+
+
+
+
+
+
+
+
+
+
+    });
+  }
+});                                    
+                                    </code></pre>
+<img src="img/jquery.png" style="width:28%;position:relative;top:-395px;left: 100px;float:left;">
+<!-- img from http://www.flickr.com/photos/hatm/5704687186/sizes/o/in/photostream/ -->
+<img class="fragment" src="img/spaghetti.jpg" style="width:50%;position:relative;top:-391px;left: -165px;float:left;">
+<!-- img from http://www.flickr.com/photos/wsogmm/302345102/sizes/o/in/photostream/ -->
+<img src="img/penguin-scarf.jpg" class="fragment" style="position:absolute;top:74px;left:27px;">
+				</section>
+				
+				<section fullscreen-img="img/spaghetti.jpg" style="background: rgba(255, 255, 255, .66);">
+					<h1>What's wrong?</h1>
+                                    <ul class="fragment">
+                                      <li>Duplication</li>
+                                    </ul>
+<img class="fragment" src="img/jquery.png" style="width:48%;position:absolute;top:0px;left: 100px;float:left;">
+<img class="fragment" src="img/jquery.png" style="width:48%;position:absolute;top:90px;left: 400px;float:left;">
+<img class="fragment" src="img/jquery.png" style="width:48%;position:absolute;top:120px;left: 349px;float:left;">
+<img class="fragment" src="img/jquery.png" style="width:48%;position:absolute;top:32px;left: -100px;float:left;">
+				</section>
+
+				<section fullscreen-img="img/spaghetti.jpg" style="background: rgba(255, 255, 255, .66);">
+					<h1>Fix?</h1>
+                                    <ul>
+                                      <li>Decompose into the basic parts</li>
+                                    </ul>
+				</section>
+
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);height:740px;">
+<h2>duplication--</h2>
+                                    <pre><code style="max-height: 740px;">
+ var CarouselView = CarouselView.extend({
+  initialize: function(options){
+    this.carouselOptions = _.defaults(options, {
+      jcarouselNext: '.next',
+      jcarouselPrev: '.prev',
+      autoPlay: true
+      //required jQuery plugin initialization spaghetti goes here
+    });
+  },
+  render: function(){
+    this.$('ul').jcarousel(this.carouselOptions);
+  }
+ });
+
+  var portlandPhotoView = new CarouselView({
+    el: $('.photos-portland'),
+    jcarouselNext: '.next-portland'
+    jcarouselPrev: '.prev-portland'
+  }).render();
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
+					<h1 style="font-size:200%">What's wrong?</h1>
+<div class="fragment">
+<img src="img/rigidity.jpg">
+<p>Rigidity</p>
+</div>
+				</section>
+
+
+				<section fullscreen-img="img/patternsmorgasboard.png" style="background: rgba(255, 255, 255, .80);">
+                                  <h1>What to do?</h1>
+                                  <p>Design Patterns</p>
+				</section>
+
+<!-- img from http://www.flickr.com/photos/31019817@N02/4542030547/sizes/l/in/photostream/ -->
+				<section fullscreen-img="img/insidecar.jpg" style="background: none;">
+
+				</section>
+<!-- img from http://www.flickr.com/photos/45678944@N08/5145945115/sizes/o/in/photostream/ -->
+				<section fullscreen-img="img/car.jpg" style="background: none;">
+<div class="fragment" style="background:rgba(255, 255, 255, .76);">
+<h2 style="background:rgba(255, 255, 255, .76);">Facade</h2>
+<p>We use facades all the time</p>
+                                  <ul>
+                                    <li><code>$(document).ready(func);</code></li>
+                                    <li><code>$.ajax(options);</code></li>
+                                    <li><code>$('input').val(newVal);</code></li>
+                                    <li><code>$('input').on('click', func);</code></li>
+                                  </ul>
+</div>
+<p class="fragment" style="background:rgba(255, 255, 255, .76);">let's build a facade</p>
+				</section>
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);height:740px;">
+<h2></h2>
+                                    <pre><code style="max-height: 740px;">
+1. var CarouselView = Backbone.View.extend({
+2.   initialize: function(options){
+3.      this.carouselOptions = options;
+4.   },
+5.   render: function(){
+6.     this.$('ul').jcarousel({
+7.       jcarouselNext: carouselOptions.nextButtonSelector,
+8.       jcarouselPrev: carouselOptions.prevButtonSelector
+10.    });  
+11.  }
+12. });                                    
+13.
+14. var PhotoView = CarouselView.extend({
+15.   initialize: function(options){
+16.    CarouselView.initialize.call(this, options);
+17.  },
+18.  render: function(){
+19.    CarouselView.render.call(this);
+20.  }
+21. });
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);height:740px;">
+<h2> reuse </h2>
+                                    <pre><code style="max-height: 740px;">
+1.  var portlandView = new PhotoView({
+2.    el: $('.photos-portland'),
+3.    nextButtonSelector: '.next',
+4.    prevButtonSelector: '.prev'
+5.  }).render();
+6.  
+7.  var sfView = new PhotoView({
+8.    el: $('.photos-sf'),
+10.   nextButtonSelector: '.next',
+11.   prevButtonSelector: '.prev'
+12. }).render();
+13. 
+14. var nycView = new PhotoView({
+15.   el: $('.photos-nyc'),
+16.   nextButtonSelector: '.next',
+17.   prevButtonSelector: '.prev'
+18. }).render();
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);height:740px;">
+<h2> What have we won here? </h2>
+<img src="img/homunculus.png">
+				</section>
+<!--				<section fullscreen-img="img/car.jpg" style="background: none;">
+find other categories of jquery plugins
+add beiber code
+figure out what to say at jquery plugin image
+definitely not fur coat
+what to say on backbone views slide organization
+add twitter looking slide to explain backbone views
+update TEMPLTE with a actual HTML
+add template to backbone+plugin slide
+
+talk about why we like dashboards instead of the unerlying implementation
+facade decreases complexity
+law of demeter preserves that reduction //look for a hole inbetween manual transmission to show
+slide for critique of pure "patterns"
+homunculus - sensitivity to change
+add resources page
+				</section>-->
+
+				<section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
+                                    <h2>My Goal</h2>
+                                    <!-- image from http://dailypicksandflicks.com/wp-content/uploads/2011/12/where-did-you-guys-get-the-coats-penguin.jpg -->
+                                    <img src="img/penguin-coats.jpg">
+				</section>
+				<section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
+					<h2>Resources</h2>
+                                    <ul >
+                                      <li><a href="http://coding.smashingmagazine.com/2011/10/11/essential-jquery-plugin-patterns/">jQuery plugin pattern list</a></li>
+                                      <li><a href="http://zen-hacking.com/blog/2012/04/28/backbone-views-and-the-law-of-demeter/">Backbone Views and the law of Demeter</a></li>
+                                      <li><a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/">Learning JavaScript Design Patterns</a></li>
+                                      <li><a href="http://lostechies.com/derickbailey/">Derek Bailey on Backbone architecture</a></li>
+                                    </ul>
+				</section>
+				<section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
+					<h1>Thank You</h1>
+					<h1>Questions?</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">johnkpaul.com</h3>
+				</section>
+			</div>
+            </div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https: //github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				keyboard: true,
+				overview: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                                        { src: 'plugin/fullscreen-img.js' }
+				]
+			});
+
+                        Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
+                            pre.onclick = function(event){
+                                var $pre = $(pre);
+                                var xInsidePre = event.pageX - $pre.offset().left;
+                                var yInsidePre = event.pageY - $pre.offset().top;
+                                var distanceFromRightEdge = $pre.width() - xInsidePre;
+                                var distanceFromTopEdge = yInsidePre;
+                                if(!(distanceFromRightEdge < 66 && distanceFromTopEdge < 44)){
+                                  return;
+                                }
+                                var content = pre.firstChild.textContent.replace(/\d+\./g,"");
+                               // console.log(content);
+                                eval(content);
+                                pre.firstChild.blur();
+                                pre.blur();
+                            }
+                        });
+		</script>
+
+	</body>
+</html>
