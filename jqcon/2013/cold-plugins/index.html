@@ -44,10 +44,10 @@
                                   </div>
                                         <h3 class="inverted">Keep them warm and toasty</h3>
                                         <h3 class="inverted"><span style="text-transform: lowercase;">By @johnkpaul</span></h3>
-                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com/2013/jqcon</span></h3>
+                                        <!--<h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com/2013/jqcon</span></h3>-->
 					<script>
 						// Delicously hacky. Look away.
-						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						if( navigator.userAgent.match( /(iiiPad|iPod|Android)/i ) )
 						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
 					</script>
 				</section>
@@ -59,6 +59,7 @@
                                         <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
                                         <hr>
                                         <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">john@johnkpaul.com</span></h3>
                                         <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
 				</section>
 				
@@ -67,17 +68,39 @@
                                     <h2>Invention</h2>
                                     <!-- img from http://www.flickr.com/photos/31897685@N06/8774370401/sizes/o/in/photostream/ -->
                                     <img height="320" src="img/penguin-origami.jpg">
+<div class="fragment">
 					<p>Some start from nothing</p>
 					<p>Some start with something</p>
+</div>
                                         <!--<p class="fragment">Deadlines make us take a side</p>-->
 				</section>
 
                                 <!-- img from http://www.flickr.com/photos/trustypics/7619381184/sizes/l/in/photostream/-->
 				<section fullscreen-img="img/multitool2.jpg" style="background: rgba(255, 255, 255, .66);">
                                     <h2>jQuery plugins</h2>
-                                        <!--<p class="fragment">There's probably something out there that fits your needs</p>-->
-                                        <p class="fragment">write less, do more</p>
-                                        <p class="fragment"><img width="350" src="img/jquery.png"></p>
+                                        <img class="fragment" src="img/datepicker.png" 
+                                                style="position:absolute;top:20px;left:100px;">
+                                        <img class="fragment" src="img/modal.png" 
+                                                style="position:absolute;top:200px;left:100px;">
+                                        <img class="fragment" src="img/galleryplugin.png" 
+                                                style="position:absolute;top:70px;left:400px;">
+                                        <img class="fragment" src="img/autocomplete.png" 
+                                                style="position:absolute;top:350px;left:30px;">
+                                        <img class="fragment" src="img/barchart.png" 
+                                                style="position:absolute;top:300px;left:320px;">
+                                        <img class="fragment" src="img/jqvmap.png" 
+                                                style="position:absolute;top:230px;left:70px;">
+                                        <h1 class="fragment write-less">write less, do more</h1>
+				</section>
+
+                                <!-- img from http://www.flickr.com/photos/trustypics/7619381184/sizes/l/in/photostream/-->
+				<section fullscreen-img="img/multitool2.jpg" style="background: rgba(255, 255, 255, .66);">
+                                    <h2>Actually using plugins</h2>
+<div class="fragment">
+                                        <p style=""><img width="500" src="img/options1.png"></p>
+                                        <p style="position:absolute;top:100px;right:-70px;"><img width="400" src="img/options2.png"></p>
+                                        <p style="position:absolute;top:400px;"><img width="500" src="img/options3.png"></p>
+</div>
 				</section>
 
 				<section fullscreen-img="img/multitool2.jpg" style="background: rgba(255, 255, 255, .85);">
@@ -95,70 +118,81 @@
                                       <li>...</li>
                                     </ul>
 				</section>
+				<section fullscreen-img="img/multitool2.jpg" style="background: rgba(255, 255, 255, .85);">
+                                    <h2>on their own...</h2>
+<img class="fragment" src="img/spaghetti.jpg" style="">
+<img class="fragment" src="img/penguin.png" style="position:absolute;top:10px;left:10px;">
+				</section>
 
 
-
-                                <!-- img from http://www.flickr.com/photos/kevinomara/2841105371/sizes/l/in/photostream/ -->
 				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);">
-                                    <h2>Backbone Views</h2>
-                                    <ul class="fragment">
-                                      <li>Organization</li>
-                                      <li>Organization</li>
-                                      <li>Organization</li>
-                                    </ul>
-                                    <img src="http://www.businesscartoons.co.uk/shop/images/uploads/3902bwc.gif" class="fragment"> 
+<img src="img/backbone.png" style="border:none;outline:none;margin-top:120px;">
+				</section>
+
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);">
+<img src="img/yahoo-example.png" style="border:none;outline:none;margin-left:5px;margin-top:40px;">
 				</section>
 
 				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);">
                                     <h2>Backbone Views</h2>
                                     <ul>
-                                      <li>initialization</li>
+                                      <li>widget initialization</li>
                                       <li>event binding</li>
-                                      <li>rendering</li>
                                     </ul>
                                     <pre><code>
-var MyView = Backbone.View.extend({
-  events:{
-    'click .left-arrow': 'handleLeftArrowClick'
-  },
-  initialize: function(){
-  },
-  render: function(){
-    this.$el.html(TEMPLATE);  //populate HTML
-    return this; 
-  }
-  handleLeftArrowClick: function(event){}
-});                                    
+1.  var CenterPhotoCarouselView = Backbone.View.extend({
+2.    el: '.center-carousel',
+3.    events:{
+4.      'click .left-arrow': 'moveCarouselLeft'
+5.      'click .right-arrow': 'moveCarouselRight'
+6.    },
+7.    initialize: function(){
+8.      var photoCount = this.$el.find('li').length;
+9.    },
+10.   moveCarouselLeft: function(event){}
+11. });                                    
                                     </code></pre>
+				</section>
+
+
+                                <!-- img from http://www.flickr.com/photos/kevinomara/2841105371/sizes/l/in/photostream/ -->
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);">
+                                    <h2>Backbone Views</h2>
+                                    <ul >
+                                      <li>Organization</li>
+                                      <li>Organization</li>
+                                      <li>Organization</li>
+                                    </ul>
+                                    <img src="http://www.businesscartoons.co.uk/shop/images/uploads/3902bwc.gif" > 
 				</section>
 
 				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);">
 <h2>Backbone + Plugin?</h2>
                                     <pre><code>
-var PhotoCarouselTopNavView = Backbone.View.extend({
-  render: function() {
-    this.$('ul').jcarousel({
-      jcarouselNext: '.next',
-      jcarouselPrev: '.prev',
-      autoPlay: true
-
-
-
-
-
-
-
-
-
-
-
-    });
-  }
-});                                    
+1. var CenterPhotoCarouselView = Backbone.View.extend({
+2.   el: '.center-carousel',
+3.   initialize: function() {
+4.     this.$el.find('ul').jcarousel({
+5.       jcarouselNext: '.next',
+6.       jcarouselPrev: '.prev',
+7.       auto: 2,
+8.       vertical: false,
+9.       scroll: 1,
+10.      btnNextEvent: 'click',
+11.      btnPrevEvent: 'click',
+12. 
+13. 
+14. 
+15. 
+16. 
+17.     });
+18.   }
+19. });                                    
+20. var view = new CenterPhotoCarouselView();
                                     </code></pre>
-<img src="img/jquery.png" style="width:28%;position:relative;top:-395px;left: 100px;float:left;">
+<img class="fragment" src="img/options1.png" style="width:28%;position:relative;top:-275px;left: 100px;float:left;">
 <!-- img from http://www.flickr.com/photos/hatm/5704687186/sizes/o/in/photostream/ -->
-<img class="fragment" src="img/spaghetti.jpg" style="width:50%;position:relative;top:-391px;left: -165px;float:left;">
+<img class="fragment" src="img/spaghetti.jpg" style="width:50%;position:relative;top:-391px;left: -195px;float:left;">
 <!-- img from http://www.flickr.com/photos/wsogmm/302345102/sizes/o/in/photostream/ -->
 <img src="img/penguin-scarf.jpg" class="fragment" style="position:absolute;top:74px;left:27px;">
 				</section>
@@ -168,42 +202,47 @@ var PhotoCarouselTopNavView = Backbone.View.extend({
                                     <ul class="fragment">
                                       <li>Duplication</li>
                                     </ul>
-<img class="fragment" src="img/jquery.png" style="width:48%;position:absolute;top:0px;left: 100px;float:left;">
-<img class="fragment" src="img/jquery.png" style="width:48%;position:absolute;top:90px;left: 400px;float:left;">
-<img class="fragment" src="img/jquery.png" style="width:48%;position:absolute;top:120px;left: 349px;float:left;">
-<img class="fragment" src="img/jquery.png" style="width:48%;position:absolute;top:32px;left: -100px;float:left;">
+<img class="fragment" src="img/options1.png" style="width:48%;position:absolute;top:0px;left: 100px;float:left;">
+<img class="fragment" src="img/options3.png" style="width:48%;position:absolute;top:120px;left: 349px;float:left;">
+<img class="fragment" src="img/options3.png" style="width:48%;position:absolute;top:400;left: 349px;float:left;">
+<img class="fragment" src="img/options1.png" style="width:48%;position:absolute;top:32px;left: -100px;float:left;">
+<img class="fragment" src="img/options2.png" style="width:48%;position:absolute;top:90px;left: 400px;float:left;">
+<img class="fragment" src="img/options1.png" style="width:48%;position:absolute;top:120;left: 100px;float:left;">
+<img class="fragment" src="img/options2.png" style="width:48%;position:absolute;top:250;left: 400px;float:left;">
+<img class="fragment" src="img/options1.png" style="width:48%;position:absolute;top:475;left: -100px;float:left;">
 				</section>
 
 				<section fullscreen-img="img/spaghetti.jpg" style="background: rgba(255, 255, 255, .66);">
 					<h1>Fix?</h1>
                                     <ul>
-                                      <li>Decompose into the basic parts</li>
+                                      <li>Separate details from specific views</li>
                                     </ul>
 				</section>
 
 				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);height:740px;">
 <h2>duplication--</h2>
                                     <pre><code style="max-height: 740px;">
- var CarouselView = CarouselView.extend({
-  initialize: function(options){
-    this.carouselOptions = _.defaults(options, {
-      jcarouselNext: '.next',
-      jcarouselPrev: '.prev',
-      autoPlay: true
-      //required jQuery plugin initialization spaghetti goes here
-    });
-  },
-  render: function(){
-    this.$('ul').jcarousel(this.carouselOptions);
-  }
- });
-
-  var portlandPhotoView = new CarouselView({
-    el: $('.photos-portland'),
-    jcarouselNext: '.next-portland'
-    jcarouselPrev: '.prev-portland'
-  }).render();
+1.  var CarouselView = Backbone.View.extend({
+2.   initialize: function(options){
+3.     this.carouselOptions = _.defaults(options, {
+4.       jcarouselNext: '.next',
+5.       jcarouselPrev: '.prev',
+6.       autoPlay: true
+7.       //required jQuery plugin initialization 
+8.       //spaghetti goes here
+9.     });
+10.    this.$el.find('ul').jcarousel(this.carouselOptions);
+11.  }
+12. });
+13.
+14.  var centerCarouselView = new CarouselView({
+15.    el: '.photos-portland',
+16.    jcarouselNext: '.next-portland',
+17.    jcarouselPrev: '.prev-portland'
+18.  });
                                     </code></pre>
+<!-- img from http://img.auctiva.com/imgdata/1/6/6/1/9/8/8/webimg/653313408_o.jpg -->
+<img src="img/penguin-vest.jpg" class="fragment" style="position:absolute;top:60px;left:27px;">
 				</section>
 				<section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
 					<h1 style="font-size:200%">What's wrong?</h1>
@@ -237,73 +276,93 @@ var PhotoCarouselTopNavView = Backbone.View.extend({
 </div>
 <p class="fragment" style="background:rgba(255, 255, 255, .76);">let's build a facade</p>
 				</section>
+				<section fullscreen-img="img/car.jpg" style="background: none;">
+                                  <div  style="background:rgba(255, 255, 255, .76);">
+                                    <h2 style="background:rgba(255, 255, 255, .76);">Facade</h2>
+                                    <p>What are the important pieces?</p>
+                                  <ul class="fragment">
+                                    <li>next element</li>
+                                    <li>prev element</li>
+                                    <li>auto start</li>
+                                  </ul>
+                                  </div>
+				</section>
 				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);height:740px;">
 <h2></h2>
                                     <pre><code style="max-height: 740px;">
 1. var CarouselView = Backbone.View.extend({
 2.   initialize: function(options){
-3.      this.carouselOptions = options;
-4.   },
-5.   render: function(){
-6.     this.$('ul').jcarousel({
-7.       jcarouselNext: carouselOptions.nextButtonSelector,
-8.       jcarouselPrev: carouselOptions.prevButtonSelector
-10.    });  
-11.  }
-12. });                                    
-13.
-14. var PhotoView = CarouselView.extend({
-15.   initialize: function(options){
-16.    CarouselView.initialize.call(this, options);
-17.  },
-18.  render: function(){
-19.    CarouselView.render.call(this);
-20.  }
-21. });
+3.      var carouselOptions = _.defaults(options, {
+4.        jcarouselNext: '.next',
+5.        jcarouselPrev: '.next',
+6.        autoStart: false
+7.       //required jQuery plugin initialization 
+8.       //spaghetti goes here
+9.      });
+10.     this.$el.find('ul').jcarousel({
+11.       jcarouselNext: carouselOptions.nextButtonSelector,
+12.       jcarouselPrev: carouselOptions.prevButtonSelector,
+13.       autoPlay: carouselOptions.autoStart
+14.     });  
+15.  }
+16. });                                    
+17.
+18. //no jCarousel anywhere
+19. var portlandView = new CarouselView({
+20.   el: $('.photos-portland'),
+21.   nextButtonSelector: '.next',
+22.   prevButtonSelector: '.prev',
+23.   autoStart: true //your own name if you want
+24. });
                                     </code></pre>
 				</section>
 				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);height:740px;">
 <h2> reuse </h2>
                                     <pre><code style="max-height: 740px;">
-1.  var portlandView = new PhotoView({
+1.  var portlandView = new CarouselView({
 2.    el: $('.photos-portland'),
-3.    nextButtonSelector: '.next',
+3.    nextButtonSelector: '.next,
 4.    prevButtonSelector: '.prev'
-5.  }).render();
+5.  });
 6.  
-7.  var sfView = new PhotoView({
+7.  var sfView = new CarouselView({
 8.    el: $('.photos-sf'),
-10.   nextButtonSelector: '.next',
-11.   prevButtonSelector: '.prev'
-12. }).render();
-13. 
-14. var nycView = new PhotoView({
-15.   el: $('.photos-nyc'),
-16.   nextButtonSelector: '.next',
-17.   prevButtonSelector: '.prev'
-18. }).render();
+9.    nextButtonSelector: '.next',
+10.   prevButtonSelector: '.prev'
+11. });
+12. 
+13. var nycView = new CarouselView({
+14.   el: $('.photos-nyc'),
+15.   nextButtonSelector: '.next',
+16.   prevButtonSelector: '.prev',
+17.   autoStart: true
+18. });
                                     </code></pre>
 				</section>
 				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);height:740px;">
-<h2> What have we won here? </h2>
-<img src="img/homunculus.png">
+<h2>Sensitivity to change</h2>
+<!--<img  src="img/homunculus.png">-->
+                                  <ul>
+                                    <li>complexity is hidden</li>
+                                    <li>changes are much easier</li>
+                                  </ul>
+				</section>
+				<section fullscreen-img="img/backbone.jpg" style="background: rgba(255, 255, 255, .76);height:740px;">
+<h2>Law of Demeter</h2>
+<hr>
+<h2>Principle of Least Knowledge</h2>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/YhFpYs5njjw" frameborder="0" allowfullscreen></iframe>
 				</section>
 <!--				<section fullscreen-img="img/car.jpg" style="background: none;">
-find other categories of jquery plugins
 add beiber code
-figure out what to say at jquery plugin image
 definitely not fur coat
 what to say on backbone views slide organization
-add twitter looking slide to explain backbone views
-update TEMPLTE with a actual HTML
-add template to backbone+plugin slide
 
 talk about why we like dashboards instead of the unerlying implementation
 facade decreases complexity
 law of demeter preserves that reduction //look for a hole inbetween manual transmission to show
 slide for critique of pure "patterns"
-homunculus - sensitivity to change
-add resources page
+decomposition
 				</section>-->
 
 				<section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
@@ -312,6 +371,14 @@ add resources page
                                     <img src="img/penguin-coats.jpg">
 				</section>
 				<section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
+					<h2>Takeaways</h2>
+                                    <ul >
+                                      <li>jQuery plugins are useful</li>
+                                      <li>Using them on their own is not the only option</li>
+                                      <li>Find what you need to customize</li>
+                                    </ul>
+				</section>
+                                <section fullscreen-img="img/penguin.png" style="background: rgba(255, 255, 255, .66);">
 					<h2>Resources</h2>
                                     <ul >
                                       <li><a href="http://coding.smashingmagazine.com/2011/10/11/essential-jquery-plugin-patterns/">jQuery plugin pattern list</a></li>
@@ -324,7 +391,7 @@ add resources page
 					<h1>Thank You</h1>
 					<h1>Questions?</h1>
 					<h3 class="inverted">By @johnkpaul</h3>
-					<h3 class="inverted">johnkpaul.com</h3>
+					<h3 class="inverted">john@johnkpaul.com</h3>
 				</section>
 			</div>
             </div>
