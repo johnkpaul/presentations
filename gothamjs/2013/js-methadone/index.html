@@ -110,7 +110,7 @@
                                     </code></pre>
                                   <ul class="fragment">
                                     <li>esprima</li>
-                                    <li>Google Closure - Ant tasks</li>
+                                    <li>Google Closure</li>
                                     <li>grunt-jsvalidate</li>
                                   </ul>
 				</section>
@@ -147,10 +147,11 @@
                                   <h2>Linting Examples</h2>
                                     <pre><code contenteditable style="max-height: 740px;">
     1.    (function(){
-    2.      test();
-    3.
-    4.      var test = function(){};
-    5.    }());
+    2.      
+    3.      test();
+    4.
+    5.      var test = function(){};
+    6.    }());
                                     </code></pre>
                                     <pre><code contenteditable style="max-height: 740px;">
     [L2:C3] Missing "use strict" statement.
@@ -166,7 +167,7 @@
 
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
-                                  <h2>Complexity Analysis</h2>
+                                  <h2>Complexity</h2>
                                   <h3>Path counting</h3>
                                     <pre><code contenteditable style="max-height: 740px;">
 1.    (function () {
@@ -263,10 +264,10 @@
   # don't run on rebase
   if [ "$NAME" != '(no branch)' ]
   then
-    grunt jsbeautifier
-    git diff --name-only --cached | xargs git add
+    grunt jsbeautifier # controversy
+    git diff --name-only --cached | xargs git add # controversy
     STASH_OUTPUT=$(git stash --keep-index)
-    grunt
+    grunt precommit
 
     RETVAL=$?
 
@@ -300,7 +301,6 @@
 5.    add("a", "b"); 
                                     </code></pre>
 <pre><code>
-
     Supplied parameters do not match any signature of call target.
     Could not select overload for 'call' expression.
     (a: number, b: number): number
@@ -317,6 +317,7 @@
                                     <li class="fragment">Add validation and linting</li>
                                     <li class="fragment">Keep track of complexity</li>
                                     <li class="fragment"><img src="img/allthethings.jpg"></li>
+                                    <li class="fragment">Get Avril out of your head</li>
                                   </ul>
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
