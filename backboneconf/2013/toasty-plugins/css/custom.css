@@ -1,0 +1,36 @@
+.reveal code{
+max-height:500px;
+}
+pre{
+  position:relative;
+}
+/*pre:before{
+  content:'Run';
+  position:absolute;
+  right:10px;
+  top:10px;
+  padding:3px 9px;
+  background:white;
+  color:red;
+  border-radius:10px;
+}
+*/
+
+pre .comment{color:yellow !important;}
+
+h1.over{
+  position:absolute;
+  top: 126px;
+  transform: scale(.8, .8) rotate(12deg);
+  -webkit-transform: rotate(12deg);
+  left: 105px;
+  background: rgba(255, 255, 255, .9);
+}
+.write-less{
+  position:absolute;
+  top: 126px;
+  transform: scale(.8, .8) rotate(12deg);
+  -webkit-transform: rotate(12deg);
+  left: 105px;
+  background: rgba(255, 255, 255, .9);
+}
