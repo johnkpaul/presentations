@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript: The Real Bad Parts</title>
+
+		<meta name="description" content="Presentation for Distill">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+            <div class="reveal">
+            
+            
+			<div class="slides">
+				<section>
+					<h1>JavaScript</h1>
+					<h3 class="inverted">The Real Bad Parts</h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">By @johnkpaul</span></h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				<section >
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I work for Conde Nast</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">john@johnkpaul.com</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+				</section>
+				
+				<section>
+                                    <h2>What's bad but not <i>so</i> bad?</h2>
+                                        <p>from <i>Bad Parts: Appendix B - JavaScript: The Good Parts</i></p>
+                                        <ul>
+                                            <li>with</li>
+                                            <li>eval</li>
+                                            <li>void</li>
+                                            <li>type coersion</li>
+                                            <li>continue/switch</li>
+                                        </ul>
+					<p>How often do these issues come up?</p>
+                                        <p>how many <code>with</code> bugs have you wrangled?</p>
+				</section>
+
+				<section>
+					<h2>The real bad parts</h2>
+                                        <ul>
+                                            <li>difficult concepts to grasp in the language</li>
+                                            <li>high blog post to understanding ratio</li>
+                                        </ul>
+                                        <img src="img/comic.jpg" width="500">
+				</section>
+				
+				<section>
+                                    <h2>6 different ways to set <code>this</code></h2>
+                                        <ul>
+                                            <li>"method" call</li>
+                                            <li>baseless function call</li>
+                                            <li>using call</li>
+                                            <li>using apply</li>
+                                            <li>constructor with new</li>
+                                            <li>bind</li>
+                                            <li class="fragment">=&gt; fat arrow</li>
+                                        </ul>
+				</section>
+				<!-- Example of nested vertical slides -->
+				<section>
+                                        <section>
+                                            <h2>"method" call</h2>
+                                            <pre><code contenteditable>
+1.        var obj = {
+2.           fullName: "John K. Paul",
+3.            alertName: function(greeting){
+4.                alert(greeting + " " + this.fullName);    
+5.            }
+6.        };
+7.
+8.        obj.alertName("Hey"); // Hey John K. Paul
+                                                </code></pre>
+                                        </section>
+                                        <section>
+                                            <h2>baseless function call</h2>
+                                            <pre><code contenteditable>
+1.        var obj = {
+2.            fullName: "John K. Paul",
+3.            alertName: function(greeting){
+4.                alert(greeting + " " + this.fullName);    
+5.            }
+6.        };
+7.
+8.        var alertName = obj.alertName;
+10.       alertName("Hey"); // Hey undefined
+11.       // this is the global object unless in strict mode
+                                                </code></pre>
+                                        </section>
+                                    <section>
+                                            <h2>using call</h2>
+                                    <pre><code contenteditable>
+1.         var obj = {
+2.             fullName: "John K. Paul",
+3.             alertName: function(greeting){
+4.                 alert(greeting + " " + this.fullName);    
+5.             }
+6.         };
+7.
+8.         var alertName = obj.alertName;
+10.        var newContext = {
+11.            fullName: "John Doe"
+12.        };
+13.        alertName.call(newContext, "Hey"); // Hey John Doe
+                                            </code></pre>
+                                    </section>
+                                    <section>
+                                            <h2>using apply</h2>
+                                    <pre><code contenteditable>
+1.         var obj = {
+2.             fullName: "John K. Paul",
+3.             alertName: function(greeting){
+4.                 alert(greeting + " " + this.fullName);    
+5.             }
+6.         };
+7.
+8.         var alertName = obj.alertName;
+10.        var newContext = {
+11.            fullName: "John Doe"
+12.        };
+13.        alertName.apply(newContext, ["Hey"]); // Hey John Doe
+                                            </code></pre>
+                                    </section>
+                                    <section>
+                                            <h2>constructor with new</h2>
+                                    <pre><code contenteditable>
+1.         var Foo = function(){
+2.                 this.sayHey = function(){
+3.                      alert("Hey");    
+4.                 }
+5.              }
+6. 
+7.         //this is a newly created object
+8.         var newObject = new Foo(); 
+10.        newObject.sayHey() // Hey 
+                                            </code></pre>
+                                    </section>
+                                    <section>
+                                            <h2>using bind</h2>
+                                    <pre><code contenteditable>
+1.         var obj = {
+2.             fullName: "John K. Paul",
+3.             alertName: function(greeting){
+4.                 alert(greeting + " " + this.fullName);
+5.             }
+6.         };
+7.
+8.         var alertName = obj.alertName;
+10.        var newContext = {
+11.            fullName: "John Doe"
+12.        };
+13.        boundFunc = alertName.bind(newContext, "Hey");
+14.        boundFunc(); // Hey John Doe
+                                            </code></pre>
+                                    </section>
+				</section>
+
+				<section>
+                                        <h2>Fat Arrow =></h2>
+					<p>In ES6</p>
+                                        <pre><code>
+1. // with fat arrow inner function
+2. var myObj = {
+3.   longOuter: function() {
+4.     console.log(this); // this is myObj
+5.     var fatInner = () => 
+6.       console.log(this); // this is also myObj
+7.     fatInner(); 
+8.   }
+10.}
+11.
+12.myObj.longOuter(); 
+                                        </code></pre>
+                                        <footer><a href="http: //javascriptweblog.wordpress.com/2012/04/09/javascript-fat-city/">shamelessly stolen from @angustweets</a></footer>
+				</section>
+
+				<section>
+					<h2>What on earth is prototypal inheritance</h2>
+                                        <img src="img/boromir.jpg">
+				</section>
+				<section>
+					<h2>WAT</h2>
+                                        <img src="img/animal.js.dot">
+                                        <p>from howtonode.org</p>
+				</section>
+				<section>
+					<h2>What is inheritance...really?</h2>
+                                        <p class="fragment">Is it <code>classes</code>?</p>
+                                        <p class="fragment">Is it <code>blueprints</code>?</p>
+                                        <p class="fragment">Is it <code>super</code>?</p>
+                                        <p class="fragment">No, none of these</p>
+				</section>
+
+				<section>
+					<h1>Code Reuse</h1>
+					<p>This is what we really care about</p>
+					<p>Write code once, use in multiple situations</p>
+					<p>prototypal inheritance makes this easy</p>
+                                        <p class="fragment">don't think about <code>new</code>, <code>super</code>, and <code>extends</code></p>
+                                        <p class="fragment">don't even think about JavaScript's prototype property</p>
+                                        <p class="fragment">Prototypal inheritance is about <strong>fallbacks</strong></p>
+				</section>
+
+				<section>
+                                        <section>
+					    <h3>How does prototypal inheritance work?</h3>
+                                            <pre><code contenteditable>
+1.    var base = {
+2.        firstName: "John",
+3.        lastName: "Paul",
+4.        getFullName: function(){
+5.           return this.firstName + " " + this.lastName; 
+6.        },
+7.    }; // base is the fallback
+8.
+9.    // where the magic happens
+10.   var obj = Object.create(base); 
+11.   obj.alertName = function(){
+12.           alert(this.getFullName());    
+13.   };
+14.
+15.   obj.alertName(); // John Paul
+16.
+17.   // this is code reuse!
+18.   alert("getFullName" in obj) //true
+19.   alert(obj.getFullName === base.getFullName)  //true
+                                                </code></pre>
+                                        </section>
+				</section>
+				
+				<section>
+					<h2>Caveat</h2>
+                                        <p>Not all js environments have Object.create</p>
+                                        <p>But we have a solution for < IE9 </p>
+                                        <div class="fragment">
+                                                <pre><code contenteditable>
+1.     Object.closeToCreate = function (o) { 
+2.         function F() {}
+3.         F.prototype = o;
+4.         return new F();
+5.     };
+                                                    </code></pre>
+                                        </div>
+				</section>
+
+				<!--<section>-->
+                                        <!--<h2>What does <code>new</code> do?</h2>-->
+                                        <!--<ol>-->
+                                            <!--<li>setup fallback with function's prototype property</li>-->
+                                            <!--<li>run the constructor function with the new object as <code>this</code></li>-->
+                                        <!--</ol>-->
+                                                <!--<pre><code contenteditable>-->
+<!--1.    //GROSS OVERSIMPLIFICATION-->
+<!--2.    function myNew(constructorFunc){-->
+<!--3.      var obj = Object.create(constructorFunc.prototype);-->
+<!--4.      constructorFunc.call(obj);-->
+<!--5.      return obj; -->
+<!--6.    }-->
+<!--7.    -->
+<!--8.    function Foo(){}-->
+<!--9.    Foo.prototype.sayHey = function(){ alert("Hey"); };-->
+<!--10.   var foo = myNew(Foo);-->
+<!--11.   foo.sayHey();-->
+                                                    <!--</code></pre>-->
+				<!--</section>-->
+
+				<section>
+                                <h2><code>prototype</code> is double speak</h2>
+                                        <ul>
+                                            <li class="fragment">prototype #1 - property on a function</li>
+                                            <li class="fragment"><code>fallbackOfObjectsCreatedWithNew</code> would be better</li>
+                                            <li class="fragment">prototype #2 - internal reference of every object</li>
+                                            <li class="fragment">ES6 now calls this dunderproto (__proto__)</li>
+                                        </ul>
+				</section>
+				<section>
+					<h2>Scoping: breaking the principle of least surprise</h2>
+                                                <pre><code contenteditable>
+1.    var arr = [1,2,3];
+2.    var out = [];
+3.    for(var i = 0; i&lt;arr.length;i++) {
+4.       var item = arr[i];
+5.       out.push(function(){ alert(item); });
+6.    }
+7.    
+8.    out.forEach(function(func){ func(); });
+                                                    </code></pre>
+				</section>
+				<section>
+					<h2>Only functions can create scope</h2>
+                                                <pre><code contenteditable>
+1.   var arr = [1,2,3];
+2.   var out = [];
+3.   for(var i = 0; i&lt;arr.length;i++) {
+4.      (function(valueToAlert){
+5.        var item = valueToAlert;
+6.        out.push(function(){ alert(item); });
+7.      })(arr[i]);
+8.   }
+9.   
+10.  out.forEach(function(func){ func(); });
+                                                    </code></pre>
+                                        <ul>
+                                            <li class="fragment">Coffeescript has <code>do</code> keyword</li>
+                                        </ul>
+				</section>
+				<section>
+                                <h2>ES6 adds <code>let</code></h2>
+                                                <pre><code contenteditable>
+1.    var arr = [1,2,3];
+2.    var out = [];
+3.    for(var i = 0; i&lt;arr.length;i++) {
+4.       let item = arr[i];  // block scoped 
+5.       out.push(function(){ alert(item); });
+6.    }
+7.    
+8.    out.forEach(function(func){ func(); });
+                                                    </code></pre>
+				</section>
+				<section>
+					<h2>one of these is not like the other</h2>
+                                                <pre><code contenteditable>
+1.    testFunc(); 
+2.    var testFunc = function(){ alert("hey!"); };
+                                                    </code></pre>
+                                                <pre><code contenteditable>
+1.    testFunc(); 
+2.    (function testFunc(){ alert("hey!"); });
+                                                    </code></pre>
+                                                <pre><code contenteditable>
+1.    testFunc();
+2.    function testFunc(){ alert("hey!"); }; 
+                                                    </code></pre>
+				</section>
+
+				<section>
+                                    <h4 style="margin-bottom: 10px;">How does hoisting work?</h4>
+                                                <pre><code contenteditable>
+1.    (function(){
+2.        var hello = "world";
+3.        //some other code
+4.        var expression = function(){ alert("expression!"); };
+5.        var foo = "bar";
+6.        function declaration(){ alert("declaration!"); }; 
+7.    })();                                                    </code></pre>
+                                                <pre><code contenteditable>
+1.    (function(){
+2.        var foo, hello, expression;
+3.        function declaration(){ alert("declaration!"); }; 
+4.        hello = "world";
+5.        //some other code
+6.        expression = function(){ alert("expression!"); };
+7.        foo = "bar";
+8.    })();                                                     </code></pre>
+                                </section>
+                                <section>
+                                    <div>
+                                    
+                                                <pre><code contenteditable>
+1.     function declaration(){} // hoisted
+2. 
+3.     (function expression(){
+4.         function declaration(){} // hoisted
+5.     }())
+6. 
+7.     var expression = function(){}; // not hoisted
+8. 
+10.    var expression = function expression(){}; // not hoisted
+11.
+12.    (function expression(){})(); // not hoisted
+13.
+14.    new function expression(){}; // not hoisted
+15.
+16.    0, function expression(){}; // not hoisted
+17.
+18.    void function expression(){}  // not hoisted
+19.    +function expression(){}  // not hoisted
+                                                    </code></pre>
+                                    
+                                    <p>Only easy rule - if there's no name, it's a expression</p>
+                                    </div>
+                                    </section>
+				<section>
+                                    <h2>Takeaways</h2>
+                                    <ul>
+                                        <li>"use strict";</li>
+                                        <li><code>this</code> can be set in <strike>6</strike> 7 different ways</li>
+                                        <li>prototypal inheritance is based on fallbacks</li>
+                                        <li>only a function can define a new scope (until let)</li>
+                                        <li>hoisting acts as if source code moves around before interpretation</li>
+                                        <li>function expressions and function declarations can be distinguished</li>
+                                        <li class="fragment"><a href="http: //paulirish.com/2011/browser-market-pollution-iex-is-the-new-ie6/">ES 6 will make all of our lives easier</a>
+                                        <a href="http://addyosmani.com/blog/author-in-es6-transpile-to-es5-as-a-build-step-a-workflow-for-grunt/"> right now</a>
+                                        </li>
+                                    </ul>
+				</section>
+				<section>
+                                    <h2 style="font-size: 700%;">;</h2>
+				</section>
+				
+				<section>
+                                        <img src="img/obligatorycat.gif">
+					<h1>Thank you!</h1>
+					<h1>Happy Friday</h1>
+				</section>
+				<section>
+					<h1>JavaScript</h1>
+					<h3 class="inverted">The Real Bad Parts</h3>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">johnkpaul.com</h3>
+				</section>
+			</div>
+            </div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https: //github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				keyboard: true,
+				overview: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+                        Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
+                            pre.onclick = function(event){
+                                var $pre = $(pre);
+                                var xInsidePre = event.pageX - $pre.offset().left;
+                                var yInsidePre = event.pageY - $pre.offset().top;
+                                var distanceFromRightEdge = $pre.width() - xInsidePre;
+                                var distanceFromTopEdge = yInsidePre;
+                                if(!(distanceFromRightEdge < 66 && distanceFromTopEdge < 44)){
+                                  return;
+                                }
+                                var content = pre.firstChild.textContent.replace(/\d+\./g,"");
+                               // console.log(content);
+                                eval(content);
+                                pre.firstChild.blur();
+                                pre.blur();
+                            }
+                        });
+                        setTimeout(function(){
+                        console.clear();
+                        console.log("Hey Distill!");
+                        }, 1000);
+		</script>
+
+	</body>
+</html>
