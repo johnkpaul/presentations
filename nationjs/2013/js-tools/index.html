@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Strong Type System Withdrawal? Methadone for JavaScript Confidence</title>
+
+		<meta name="description" content="Presentation for NationJS 2013">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+            <div class="reveal">
+            
+            
+			<div class="slides">
+                                <!-- img from http://www.btgrecovery.com/images/suboxone-treatment-for-addiction.jpg -->
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .88);">
+                                  <div style="position:relative">
+                                    <h1>Type addiction got you down?</h1>
+                                  </div>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">By @johnkpaul</span></h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iiiPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I work for Conde Nast</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">john@johnkpaul.com</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+				</section>
+				
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <div style="position:relative;">
+                                    <img src="img/ondrugs.jpg">
+                                    <!--<div class="fragment" -->
+                                      <!--style="color: white;-->
+                                      <!--bottom: 28px;-->
+                                      <!--right: 75px;-->
+                                      <!--font-size: 16px;-->
+                                      <!--background: red;-->
+                                      <!--width: 100px;-->
+                                      <!--position: absolute;-->
+                                      <!--font-weight: bold;">-->
+                                      <!--Dart</div>-->
+                                  </div>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 0);">
+                                  <img src="img/tower-defense.jpg">
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Validation</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.    Nation.BaseView = Backbone.View.extend({
+2.      render: function(){
+3.      
+4.      }
+5.    );
+6. 
+7.    require('fs').readFile('foo', function(err, file){
+8.      handleSuccess(file.toUpperCase)());
+9.    });
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.    Nation.BaseView = Backbone.View.extend({
+2.      render: function(){
+3.      
+4.      }
+5.    );
+6. 
+7.    require('fs').readFile('foo', function(err, file){
+8.      handleSuccess(file.toUpperCase)());
+9.    });
+                                    </code></pre>
+                                    <pre><code contenteditable style="max-height: 740px;">
+>> Line 5: Unexpected token )                                    
+>> Line 8: Unexpected token )
+
+                                    </code></pre>
+                                  <ul class="fragment">
+                                    <li>esprima</li>
+                                    <li>grunt-jsvalidate</li>
+                                    <li>Google Closure</li>
+                                  </ul>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <img src="img/whocares.jpg">
+                                  <h2 class="fragment"> YOUR IDE CAN DO THAT</h2>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Linting</h2>
+                                  <ul>
+                                    <li>common semantic mistakes</li>
+                                    <li>code style</li>
+                                    <li>JSHint</li>
+                                  </ul>
+                                  <img src="img/mistake.gif">
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Linting Examples</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+    1.    if (value = 1) {
+    2.      doSomething(value)
+    3.    }
+                                    </code></pre>
+                                    <pre><code contenteditable style="max-height: 740px;">
+    [L1:C11] Expected a conditional expression and 
+             instead saw an assignment.
+    if (value = 1) {
+
+    [L2:C21] Missing semicolon.
+      doSomething(value)
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Linting Examples</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+    1.    (function(){
+    2.      
+    3.      test();
+    4.
+    5.      var test = function(){};
+    6.    }());
+                                    </code></pre>
+                                    <pre><code contenteditable style="max-height: 740px;">
+    [L2:C3] Missing "use strict" statement.
+      test();
+    [L4:C12] 'test' was used before it was defined.
+      var test = function(){};
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Decisions</h2>
+<!-- img from http://createfunnyphotos.com/uploads/saved_posters/funny-photo-4zfpgh6fnc-DECISIONS,-DECISIONS.jpg -->
+                                  <img src="img/decisions.jpg">
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Complexity</h2>
+                                  <h3>Path counting</h3>
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.    (function () {
+2.      if (test1()) {
+3.        doSomething();
+4.      } else if (test2()) {
+5.        doSomethingElse();
+6.      } else if (test3()) {
+7.        doSomethingElse2();
+8.      }
+9.    }());
+                                    </code></pre>
+
+                                    <pre><code contenteditable style="max-height: 740px;">
+    [L1:C11] This function's cyclomatic complexity is too high. 4
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h3>Why you gotta go and make things so complicated</h3>
+                                  <img src="img/complicated-avril.gif">
+                                  <br>
+                                  <ul>
+                                    <li>JSComplexity</li>
+                                    <li>Plato</li>
+                                  </ul>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 0);">
+                                  <img src="img/complexity.gif">
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Plato demo</h2>
+                                  <a href="http://jsoverson.github.io/plato/examples/jquery/">jQuery Analysis</a>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Beautification</h2>
+                                  <img src="img/beautifulcode.jpg" width="200">
+                                  <br>
+                                  <ul>
+                                    <li class="fragment">Editor Config</li>
+                                    <li class="fragment">code painter</li>
+                                    <li class="fragment">js-beautify</li>
+                                    <li class="fragment">esformatter</li>
+                                  </ul>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.      if (    test1())
+2.      {
+3.        doSomething();
+4.      } else if (test2()) {
+5.          doSomethingElse();
+6.      }
+7.      else if (test4())
+8.      {
+9.      doSomethingElse2();
+10.     }
+                                    </code></pre>
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.      if (test1()) {
+2.        doSomething();
+3.      } else if (test2()) {
+4.        doSomethingElse();
+5.      } else if (test4()) {
+6.        doSomethingElse2();
+7.      }
+                                    </code></pre>
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Enforcement</h2>
+                                  <img src="img/ross.gif">
+                                  <div class="fragment">
+                                    <h3>pre commit hooks</h3>
+                                    <pre><code contenteditable style="max-height: 740px;">
+  #!/bin/sh
+
+  # run script to check if commit is valid
+  node ./good-to-commit.js
+  RETVAL=$?
+
+  if [ $RETVAL -ne 0 ]
+  then
+    exit 1
+  fi
+                                    </code></pre>
+                                  </div>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Git pre-commit hook</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+  #!/bin/sh
+
+  NAME=$(git branch | grep '*' | sed 's/* //')
+
+  # don't run on rebase
+  if [ "$NAME" != '(no branch)' ]
+  then
+    grunt precommit # runs jsbeautifier:verify, jshint
+                    # jsvalidate, mocha, whatever
+
+    RETVAL=$?
+
+    if [ "$STASH_OUTPUT" != "No local changes to save" ]
+    then
+      git stash pop -q
+    fi
+    if [ $RETVAL -ne 0 ]
+    then
+      exit 1
+    fi
+  fi
+
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>pre commit demo</h2>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <img src="img/coolstorybro.jpg">
+				</section>
+                                <section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>TypeScript</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.    function add(a: number, b: number) {
+2.        return a + b;
+3.    }
+4.
+5.    add("a", "b"); 
+                                    </code></pre>
+<pre><code>
+    Supplied parameters do not match any signature of call target.
+    Could not select overload for 'call' expression.
+    (a: number, b: number): number
+
+</code></pre>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <img src="img/brainondrugs.jpg">
+				</section>
+                                <section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+
+                                  <h2>What you should do</h2>
+                                  <ul>
+                                    <li class="fragment">Add validation and linting</li>
+                                    <li class="fragment">Keep track of complexity</li>
+                                    <li class="fragment"><img src="img/allthethings.jpg"></li>
+                                    <li class="fragment">Get Avril out of your head</li>
+                                  </ul>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+					<h1>Thank You</h1>
+					<h1>Questions?</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">john@johnkpaul.com</h3>
+				</section>
+                        </div>
+            </div>
+            <!--
+prep plato demo
+prep precommit hook demo
+figure out why can't type
+add === check linting example
+
+first talk about defense to prevent relapse
+validation
+linting, possible options
+beautification, pitfalls and worries
+jsbeautifier and code painter
+
+precommit
+
+complexity analysis jshint, complexityReport.js
+plato
+
+if you really must, typescript
+
+            -->
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https: //github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				keyboard: true,
+				overview: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                                        { src: 'plugin/fullscreen-img.js' }
+				]
+			});
+
+                        Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
+                            pre.onclick = function(event){
+                                var $pre = $(pre);
+                                var xInsidePre = event.pageX - $pre.offset().left;
+                                var yInsidePre = event.pageY - $pre.offset().top;
+                                var distanceFromRightEdge = $pre.width() - xInsidePre;
+                                var distanceFromTopEdge = yInsidePre;
+                                if(!(distanceFromRightEdge < 66 && distanceFromTopEdge < 44)){
+                                  return;
+                                }
+                                var content = pre.firstChild.textContent.replace(/\d+\./g,"");
+                               // console.log(content);
+                                eval(content);
+                                pre.firstChild.blur();
+                                pre.blur();
+                            }
+                        });
+		</script>
+
+	</body>
+</html>
