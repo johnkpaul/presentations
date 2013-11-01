@@ -66,7 +66,13 @@
                                         <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
-					<h1>Ecmascript 6</h1>
+					<h1>ES6</h1>
+					<ul>
+					  <li>a hell of a long time coming</li>
+					</ul>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h1>ES6</h1>
 					<ul>
 					  <li>array comprehensions</li>
 					  <li>template strings</li>
@@ -76,74 +82,144 @@
 					</ul>
 				</section>
 
-<!-- img from http://www.baseformula.com/blog/wp-content/uploads/2013/05/jealousy2.jpg -->
-				<section fullscreen-img="img/jealousy2.jpg" style="background: rgba(255, 255, 255, .40);">
-					<h1>Envious?</h1>
-					<code>node --harmony</code>
-
-				</section>
 				<section>
-                                            <pre><code contenteditable>
+<h4>array comprehensions</h4>
+<button class='run'>Run</button>
+<div class='ace'>
 var arr = [1, 2, 3, 4];
 var doubled = [for (x of arr) 2*x];
 doubled.forEach(alert);
-                                                </code></pre>
+</div>
 				</section>
 				<section>
-                                            <pre><code contenteditable>
+<h4>template strings</h4>
+<button class='run'>Run</button>
+<div class='ace'>
 var first = "John K."
 var last = "Paul";
-var template = `Hello! My name is ${first} ${last}!`;
-alert(template1);
-                                                </code></pre>
+var t = `Hey, I'm ${first} ${last}!`;
+alert(t);
+</div>
 				</section>
 				<section>
-                                            <pre><code contenteditable>
+<button class='run'>Run</button>
+<div class='ace'>
 function* inf(){
   var i = 0;
   while(true){
     yield ++i;
   }
 }
-
-function* take(generator, num){
-  var i = 0;
-  for(var val of generator){
-    if(i++ === num){
-      return;
+var generator = inf();
+alert(generator.next().value);
+alert(generator.next().value);
+alert(generator.next().value);
+</div>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>
+class Greeter {
+    constructor(message) {
+      this.message = message;
     }
-    yield val;
-  }
+    greet() {
+      alert(this.message)
+    }
 }
 
-for(var x of take(inf(), 3)){
-  alert(x);
-}
-                                                </code></pre>
+var greeter = new Greeter('Hey');
+greeter.greet();
+</div>
+				</section>
+<!-- img from http://cdn04.cdn.socialitelife.com/wp-content/uploads/2013/07/11/tumblr_mc3hg5VpQP1qcy0p7o1_500.gif -->
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .40);">
+					<h2>Excited?</h2>
+<img src='img/excited.gif'>
+<p>There's a whole new language out there</p>
+<p>and I didn't even touch on half of the features</p>
+
+				</section>
+<!-- img from http://lovemeow.com/wp-content/uploads/2013/08/enhanced-buzz-32550-1377875028-4.jpg -->
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .40);">
+					<h2>But you can't have it</h2>
+<img src='img/sadcat.jpg'>
+
+				</section>
+<!-- img from http://www.baseformula.com/blog/wp-content/uploads/2013/05/jealousy2.jpg -->
+				<section fullscreen-img="img/jealousy2.jpg" style="background: rgba(255, 255, 255, .40);">
+					<h1>Envious?</h1>
+					<code>node --harmony</code>
+<p class="fragment">node has very different needs</p>
+
+				</section>
+
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2>How can we go on?</h2>
+<ul>
+<li>transpilers - ES6 input, ES5 output</li>
+<li>shims - fake as much of ES5 as possible</li>
+</ul>
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2>Traceur</h2>
+<p>
+  <a href='http://traceur-compiler.googlecode.com/git/demo/repl.html' target="_blank">Try the REPL</a>
+</p>
+<img src='img/traceur-compare.png'>
+
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2>grunt-traceur</h2>
+                                        <pre><code>
+  grunt.initConfig({
+    traceur: {
+        options: {
+          sourceMaps: true,
+          experimental: true,
+          blockBinding: true
+        },
+        custom: {
+          files:{
+            'build/': ['js/**/*.js'] // dest : [source files]
+          }
+        },
+      }
+  });
+                                        </code></pre>
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2>es6ify</h2>
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2>performance concerns</h2>
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2>shims</h2>
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2>JSHint Support</h2>
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2>other es6 transpilers</h2>
+
 				</section>
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
 		<script src="js/traceur.js"></script>
+		<script src="lib/task.js"></script>
 		<script src="js/ace/ace.js"></script>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
                 <script>
 
-$(function(){
-var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
-});
                 </script>
-<style type="text/css" media="screen">
-    #editor { 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-text-align:left;
-    }
-</style>
 
 <!--
 explain what node has and why it's so easy
@@ -157,6 +233,10 @@ grunt-traceur
 es6ify
 
 performance concerns weigned between everything else
+try catch performance
+http://square.github.io/es6-module-transpiler/
+http://facebook.github.io/regenerator/
+https://github.com/paulmillr/es6-shim/
 -->
 		<script>
 
@@ -184,18 +264,8 @@ performance concerns weigned between everything else
 				]
 			});
 
-                        Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
-                            pre.onclick = function(event){
-                                var $pre = $(pre);
-                                var xInsidePre = event.pageX - $pre.offset().left;
-                                var yInsidePre = event.pageY - $pre.offset().top;
-                                var distanceFromRightEdge = $pre.width() - xInsidePre;
-                                var distanceFromTopEdge = yInsidePre;
-                                if(!(distanceFromRightEdge < 66 && distanceFromTopEdge < 44)){
-                                  return;
-                                }
-                                var content = pre.firstChild.textContent.replace(/\d+\./g,"");
-                               // console.log(content);
+$('.run').click(function(){
+                               content = $(this).data('editor').getValue();
                                 var ProjectWriter = traceur.outputgeneration.ProjectWriter;
                                 var ErrorReporter = traceur.util.ErrorReporter;
                                 var url = location.href;
@@ -209,11 +279,39 @@ performance concerns weigned between everything else
                                 var source = ProjectWriter.write(res, traceur.options);
 
                                 eval(source);
-                                pre.firstChild.blur();
-                                pre.blur();
-                            }
                         });
-		</script>
+jQuery(function(){
+  jQuery('.ace').each(function(i, e){
 
+  var editor = ace.edit(e);
+      editor.setTheme("ace/theme/chaos");
+      editor.getSession().setMode("ace/mode/javascript");
+  $(e).prev().data('editor', editor);
+  });
+});
+		</script>
+<style type="text/css" media="screen">
+.run{
+position: absolute;
+right: 0px;
+z-index: 100000;
+font-size: 140%;
+}
+    .ace { 
+        top: 0;
+        left: 0;
+width:100%;height:576px;
+text-align:left;
+    }
+</style>
+
+<!--
+
+The list of solidified ES6 features keeps growing and client side engineers just get greener with envy. Many of these new features won’t be supported in a broad base of browsers for years to come, but there is hope for us nonetheless. While we don’t have the ease of flipping a command line flag, like node, to bask in the warm sunlight of ES6 sugar, I’ve pieced together a system that gives us the best that we can hope for.
+
+Using a combination of shims and transpilers, we can enjoy these new language features while still maintaining support for all of the browsers you’d need. I’ll first explain some of the great new additions to the javascript programming language and example use cases with code that take advantage of ES6’s elegance for client side development. I will go through the details of setting up a development environment with source maps for debugging the code that you wrote, rather than what is generated by a transpiler. Then I will discuss setting up a production build system to generate code for non-ES6 browsers.
+
+After listening to this talk, I hope your jealousy will be soothed, and I know that your curiosity will be satisfied. 
+-->
 	</body>
 </html>

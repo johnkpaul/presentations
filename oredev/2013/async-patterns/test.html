@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<script src='js/jquery.min.js'></script>
+<script src='js/q.js'></script>
+<script src='js/util.js'></script>
+<script>
+  var NUM = 20000000;
+</script>
+<script>
+  /* ANNOYING STYLE */
+
+  var webWorker = new Worker("js/fibonacci.js");
+
+  webWorker.onmessage = function (message) {
+    alert('Worker: Fibonacci of ' + NUM + ' is ' + JSON.parse(message.data).fib);
+  };
+
+  webWorker.fibonacci = function (num) {
+    webWorker.postMessage(JSON.stringify({id: getId(), n:num}));
+  };
+
+
+  //webWorker.fibonacci(NUM);
+
+  alert('Main thread: Fibonacci of ' + NUM + ' is ' + fibonacci(NUM));
+  
+  /* END ANNOYING STYLE */
+</script>
+<script>
+  <!--/* FLUENT STYLE */-->
+  <!--var webWorker = new Worker("js/fibonacci.js");-->
+
+  <!--webWorker.messages = {};-->
+  <!--webWorker.handlers = {-->
+    <!--fibonacci: function(data){-->
+      <!--var def = webWorker.messages[data.id];-->
+      <!--def.resolve(data.fib);-->
+    <!--}-->
+  <!--};-->
+
+  <!--webWorker.getFib = function(n){-->
+    <!--var id = getId();-->
+    <!--var def = Q.defer();-->
+    <!--webWorker.messages[id] = def;-->
+
+    <!--webWorker.postMessage(JSON.stringify({id: id, type: 'fibonacci', n: n}));-->
+
+    <!--return def.promise;-->
+  <!--}-->
+
+  <!--webWorker.onmessage = function (message) {-->
+    <!--var data = JSON.parse(message.data);-->
+    <!--webWorker.handlers[data.type](data);-->
+  <!--};-->
+
+
+  <!--webWorker.getFib(NUM).then(notifyResult);-->
+
+  <!--function notifyResult(fib){-->
+    <!--alert('Worker: Fibonacci of ' + NUM + ' is ' + fib);-->
+    <!--return Q(fib);-->
+  <!--}-->
+
+  <!--/* END FLUENT STYLE */-->
+</script>
+  <div id='box' style='width:500;height:500px;background:skyBlue'></div>
+<script>
+  var $box = jQuery('#box');
+  function toggle(){
+    $box.fadeOut().promise().then(function(){
+      $box.fadeIn().promise().then(toggle);
+    });
+  }
+toggle();
+</script>
+</html>
