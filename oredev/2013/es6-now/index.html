@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>ES6 in the front end</title>
+		<title>ES6 on the front end</title>
 
 		<meta name="description" content="Presentation for OreDev 2013">
 		<meta name="author" content="John K. Paul">
@@ -66,22 +66,43 @@
                                         <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
-					<h1>ES6</h1>
+					<h1>ECMAScript 6</h1>
 					<ul>
 					  <li>a hell of a long time coming</li>
+					  <li>ES3 - 1999</li>
+					  <li>ES5 - 2009</li>
+					  <li>ES6 - 2014?</li>
+					  <li class='fragment'>but who cares?</li>
 					</ul>
+<h3 class='fragment'>Jargon sidetrack</h3>
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
 					<h1>ES6</h1>
 					<ul>
+					  <li>block scoped variables</li>
 					  <li>array comprehensions</li>
 					  <li>template strings</li>
 					  <li>generators/iterators</li>
 					  <li>destructuring assignment</li>
-					  <li class="fragment">oh my</li>
 					</ul>
 				</section>
 
+				<section>
+<h4>block scoped variables</h4>
+<button class='run'>Run</button>
+<div class='ace'>
+var arr = [1,2,3];
+var o = [];
+
+for(var i = 0; i&lt;arr.length;i++) {
+ var val = arr[i];
+ o.push(function(){ alert(val); });
+}
+
+o.forEach(function(func){ func(); });
+
+</div>
+				</section>
 				<section>
 <h4>array comprehensions</h4>
 <button class='run'>Run</button>
@@ -92,34 +113,78 @@ doubled.forEach(alert);
 </div>
 				</section>
 				<section>
+<h4>lamda / fat arrow</h4>
+<button class='run'>Run</button>
+<div class='ace'>  'use strict';
+  var double = (x) => x * 2;
+  alert(double(10));
+
+/*
+  var alertHandle;
+  var obj = {
+    twitter: 'johnkpaul',
+    init: function(){
+      alertHandle = () => 
+        alert(this.twitter);
+    }
+  };
+  obj.init();
+  alertHandle();
+*/
+</div>
+				</section>
+				<section>
+<h4>destructuring assignment</h4>
+<button class='run'>Run</button>
+<div class='ace'>
+var arr = [1, 2, 3];
+func(arr);
+
+function func([fst, snd, thd]){
+  alert(fst);
+  alert(thd);
+}
+
+/*    REST PARAMETERS vvv
+function destructure(...args){
+  var [options, callback] = args;
+  alert(options.v);
+  alert(typeof callback);
+}
+var o = {v: true}
+destructure(o, () => $.noop);
+*/
+</div>
+				</section>
+				<section>
 <h4>template strings</h4>
 <button class='run'>Run</button>
 <div class='ace'>
 var first = "John K."
 var last = "Paul";
-var t = `Hey, I'm ${first} ${last}!`;
+var t = `I'm ${first} ${last}!`;
 alert(t);
 </div>
 				</section>
 				<section>
 <button class='run'>Run</button>
-<div class='ace'>
-function* inf(){
+<div class='ace'>function* inf(){
   var i = 0;
   while(true){
     yield ++i;
   }
 }
-var generator = inf();
-alert(generator.next().value);
-alert(generator.next().value);
-alert(generator.next().value);
+
+for(var x of inf()){
+  alert(x);
+  if(x > 3) { break; }
+}
+
 </div>
 				</section>
 				<section>
 <button class='run'>Run</button>
-<div class='ace'>
-class Greeter {
+<div class='ace'>class Greeter {
     constructor(message) {
       this.message = message;
     }
@@ -133,7 +198,7 @@ greeter.greet();
 </div>
 				</section>
 <!-- img from http://cdn04.cdn.socialitelife.com/wp-content/uploads/2013/07/11/tumblr_mc3hg5VpQP1qcy0p7o1_500.gif -->
-				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .40);">
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
 					<h2>Excited?</h2>
 <img src='img/excited.gif'>
 <p>There's a whole new language out there</p>
@@ -141,13 +206,13 @@ greeter.greet();
 
 				</section>
 <!-- img from http://lovemeow.com/wp-content/uploads/2013/08/enhanced-buzz-32550-1377875028-4.jpg -->
-				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .40);">
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
 					<h2>But you can't have it</h2>
 <img src='img/sadcat.jpg'>
 
 				</section>
 <!-- img from http://www.baseformula.com/blog/wp-content/uploads/2013/05/jealousy2.jpg -->
-				<section fullscreen-img="img/jealousy2.jpg" style="background: rgba(255, 255, 255, .40);">
+				<section fullscreen-img="img/jealousy2.jpg" style="background: rgba(255, 255, 255, .80);">
 					<h1>Envious?</h1>
 					<code>node --harmony</code>
 <p class="fragment">node has very different needs</p>
@@ -158,14 +223,14 @@ greeter.greet();
 					<h2>How can we go on?</h2>
 <ul>
 <li>transpilers - ES6 input, ES5 output</li>
-<li>shims - fake as much of ES5 as possible</li>
+<li>shims - fake as much of ES6 as possible without a build step</li>
 </ul>
 
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
 					<h2>Traceur</h2>
 <p>
-  <a href='http://traceur-compiler.googlecode.com/git/demo/repl.html' target="_blank">Try the REPL</a>
+  <a href='http://bit.ly/oredev2013traceur' target="_blank">Try the REPL</a>
 </p>
 <img src='img/traceur-compare.png'>
 
@@ -173,6 +238,7 @@ greeter.greet();
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
 					<h2>grunt-traceur</h2>
+                                        <p>by Aaron Frost</p>
                                         <pre><code>
   grunt.initConfig({
     traceur: {
@@ -188,35 +254,105 @@ greeter.greet();
         },
       }
   });
+
+  grunt.loadNpmTasks('grunt-traceur');
                                         </code></pre>
 
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
-					<h2>es6ify</h2>
+					<h2><a href='https://github.com/thlorenz/es6ify'>es6ify</a></h2>
+                                        <p>by Thorsten Lorenz</p>
+                                        <p>browserify transform</p>
+                                        <pre><code>
+var es6ify = require('es6ify');
+var browserify = require('browserify');
+browserify()
+  .add(es6ify.runtime)
+  .transform(es6ify)
+  .require(require.resolve('./src/main.js'), { entry: true })
+  .bundle({ debug: true }) //create source maps
+  .pipe(fs.createWriteStream(bundlePath));
+                                        </code></pre>
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2>sourcemaps</h2>
+<img src='img/sourcemaps.png'/>
+
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
+					<h2><a href='https://github.com/Benvie/continuum'>continuum</a></h2>
+<p>By Brandon Benvie</p>
+
+<p>gives you an <code>.eval()</code> which runs ES6 in a virtual machine that is written in ES3</p>
+<p>Has a long list of supported features</p>
+<!--<img src='img/continuum.png'>-->
+
 
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
 					<h2>performance concerns</h2>
+<img src='img/traceurperformance.png' style='margin-top:-20px'>
 
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
 					<h2>shims</h2>
+<p>no build step needed!</p>
+<p><a href='https://github.com/paulmillr/es6-shim/'>es6-shim by Paul Miller</a></p>
+<ul class='fragment'>
+  <li>Number.isNaN()</li>
+  <li>String.prototype.contains()</li>
+  <li>String.prototype.codePointAt()</li>
+  <li>Array.from()</li>
+  <li>Object.is()</li>
+  <li>Map()</li>
+  <li>Set()</li>
+</ul>
+
 
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
 					<h2>JSHint Support</h2>
+<p>Add <code>esnext: true</code> option</p>
 
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .80);">
-					<h2>other es6 transpilers</h2>
+<!-- image from http://images.fineartamerica.com/images-medium-large-5/elephant-in-the-room-wip-leah-saulnier-the-painting-maniac.jpg -->
+<img src='img/elephant.jpg' width="350">
+<p class='fragment'><a href='http://square.github.io/es6-module-transpiler/'>ES6 module transpiler</a></p>
 
+				</section>
+                                <section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .8);">
+
+                                  <h2>What you should do</h2>
+                                  <ul>
+                                    <li class="fragment">Play around in the traceur repl</li>
+                                    <li class="fragment"><a href='http://net.tutsplus.com/tutorials/javascript-ajax/eight-cool-features-coming-in-es6/'>Read up on ES6 features</a></li>
+                                    <li class="fragment"><a href='http://ariya.ofilabs.com/'>Read Ariya Hidayat</a></li>
+                                    <li class="fragment"><a href='http://www.2ality.com/'>Read Axel Rauschmayer</a></li>
+                                    <li class="fragment"><a href='http://addyosmani.com/blog/ecmascript-6-resources-for-the-curious-javascripter/'>Read Addy Osmani</a></li>
+                                    <li class="fragment">Add a branch with an ES6 transpiler</li>
+                                  </ul>
+				</section>
+                                <section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .8);">
+
+                                  <h2>What you should do</h2>
+                                  <ul>
+                                    <li ><img src="img/allthethings.jpg"></li>
+                                  </ul>
+				</section>
+				<section  fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, .8);">
+					<h1>Thank You</h1>
+					<h1>Questions?</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">john@johnkpaul.com</h3>
 				</section>
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
 		<script src="js/traceur.js"></script>
 		<script src="lib/task.js"></script>
 		<script src="js/ace/ace.js"></script>
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="js/jquery-1.9.1.js"></script>
                 <script>
 
                 </script>
@@ -289,6 +425,9 @@ jQuery(function(){
   $(e).prev().data('editor', editor);
   });
 });
+setTimeout(function(){
+console.clear();
+}, 2000);
 		</script>
 <style type="text/css" media="screen">
 .run{
