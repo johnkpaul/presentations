@@ -70,20 +70,22 @@
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
                                   <h2>Validation</h2>
                                     <pre><code contenteditable style="max-height: 740px;">
-1.    Nation.BaseView = Backbone.View.extend({
-2.      render: function(){
-3.      
-4.      }
-5.    );
-6. 
-7.    require('fs').readFile('foo', function(err, file){
-8.      handleSuccess(file.toUpperCase)());
-9.    });
+1.    // Backbone example
+2.    App.BaseView = Backbone.View.extend({
+3.      render: function(){
+4.      
+5.      }
+6.    );
+7.
+8.    // node example
+9.    fs.readFile('foo', function(err, file){
+10.     handleSuccess(file.toUpperCase)());
+11.   });
                                     </code></pre>
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
                                     <pre><code contenteditable style="max-height: 740px;">
-1.    Nation.BaseView = Backbone.View.extend({
+1.    App.BaseView = Backbone.View.extend({
 2.      render: function(){
 3.      
 4.      }
@@ -157,6 +159,17 @@
 
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Beautification</h2>
+                                  <img src="img/beautifulcode.jpg" width="200">
+                                  <br>
+                                  <ul>
+                                    <li class="fragment">Editor Config</li>
+                                    <li class="fragment">code painter</li>
+                                    <li class="fragment">js-beautify</li>
+                                    <li class="fragment">esformatter</li>
+                                  </ul>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
                                   <h3>Why you gotta go and make things so complicated</h3>
                                   <img src="img/complicated-avril.gif">
                                   <br>
@@ -171,17 +184,6 @@
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
                                   <h2>Plato demo</h2>
                                   <a href="http://jsoverson.github.io/plato/examples/jquery/">jQuery Analysis</a>
-				</section>
-				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
-                                  <h2>Beautification</h2>
-                                  <img src="img/beautifulcode.jpg" width="200">
-                                  <br>
-                                  <ul>
-                                    <li class="fragment">Editor Config</li>
-                                    <li class="fragment">code painter</li>
-                                    <li class="fragment">js-beautify</li>
-                                    <li class="fragment">esformatter</li>
-                                  </ul>
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
                                     <pre><code contenteditable style="max-height: 740px;">
@@ -223,33 +225,6 @@
   fi
                                     </code></pre>
                                   </div>
-				</section>
-				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
-                                  <h2>Git pre-commit hook</h2>
-                                    <pre><code contenteditable style="max-height: 740px;">
-  #!/bin/sh
-
-  NAME=$(git branch | grep '*' | sed 's/* //')
-
-  # don't run on rebase
-  if [ "$NAME" != '(no branch)' ]
-  then
-    grunt precommit # runs jsbeautifier:verify, jshint
-                    # jsvalidate, mocha, whatever
-
-    RETVAL=$?
-
-    if [ "$STASH_OUTPUT" != "No local changes to save" ]
-    then
-      git stash pop -q
-    fi
-    if [ $RETVAL -ne 0 ]
-    then
-      exit 1
-    fi
-  fi
-
-                                    </code></pre>
 				</section>
 				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
                                   <img src="img/precommitdemo.gif">
@@ -306,23 +281,20 @@
                         </div>
             </div>
             <!--
-prep plato demo
-prep precommit hook demo
-figure out why can't type
-add === check linting example
+too much time about complexity outside of plato
+remove one of the linting slides
+might not need slide with 3 if/elses
+add reference slide
+make beautification more important
+remove drug thing, find cat animated gif
+drop hints at typescript in the future
+make demos into real video players
+typescript intellisense and show that output JS doesnt change
+talk about typescript ecosystem
+emphasize STRICT SUPERSET of JavaScript
+add start of demo with regular JavaScript
+work on typescript introduction, talk about MS
 
-first talk about defense to prevent relapse
-validation
-linting, possible options
-beautification, pitfalls and worries
-jsbeautifier and code painter
-
-precommit
-
-complexity analysis jshint, complexityReport.js
-plato
-
-if you really must, typescript
 
             -->
 		<script src="lib/js/head.min.js"></script>
