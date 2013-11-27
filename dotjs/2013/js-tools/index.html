@@ -210,7 +210,7 @@
                                   </div>
 				</section>
 				<section fullscreen-img="img/csharpbaby.jpg" style="background: rgba(255, 255, 255, .5);">
-                                  <video src='video/precommit.mp4' width="800" controls></video>
+                                  <video src='video/precommit.ogv' width="800" controls></video>
 				</section>
 				<section fullscreen-img="img/scalababy.jpg" style="background: rgba(255, 255, 255, .5);">
                                   <img src="img/unimpressedcat.gif">
@@ -292,7 +292,30 @@ emphasize STRICT SUPERSET of JavaScript
 add start of demo with regular JavaScript
 work on typescript introduction, talk about MS
 
+talk about v8 optimization and how these things do get compiled eventually
 
+interface Person{
+        first: string;
+        last: string;
+        petCount: number;
+        
+}
+
+var people: Person[] = [
+        {first: 'John K.', last: 'Paul', petCount: 1},
+        {first: 'Todd', last: 'Kennedy', petCount: 10},
+        {first: 'Thorsten', last: 'Lorenz', petCount: 4},
+]
+
+var sumPets = function(people: Person[]){
+        return people.reduce(function(sum, person){
+                
+        }, 0);
+        
+}
+
+var sum = sumPets(people);
+alert(sum);
             -->
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>

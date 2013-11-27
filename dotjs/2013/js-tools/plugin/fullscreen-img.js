@@ -17,6 +17,7 @@ function fullscreen(event) {
     var size = event.currentSlide.getAttribute("fullscreen-size");
     if(size != "contain") {
       document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "0 -100px";
     }
     else {
       // Put image in 'contain' mode with black background
