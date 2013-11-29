@@ -1,3 +1,10 @@
+body {
+  background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #000000 100%);
+  background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #000000 100%);
+}
+.reveal{
+  font-size:50px;
+}
 .reveal code{
 max-height:500px;
 }
@@ -17,5 +24,8 @@ pre{
 */
 
 pre .comment{color:yellow !important;}
-
+.reveal .slides{
+  max-width: inherit;
 }
+
+

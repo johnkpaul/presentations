@@ -4,6 +4,7 @@
 var BGR;
 
 function fullscreen(event) {
+  return;
   var url = event.currentSlide.getAttribute("fullscreen-img");
   if(url) {
     if(typeof BGR == "undefined")
