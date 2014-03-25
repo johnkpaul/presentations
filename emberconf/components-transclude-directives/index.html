@@ -73,20 +73,133 @@
 				<section fullscreen-img="img/dale.jpg" >
 				</section>
 
-				<section fullscreen-img="img/puzzle.jpg" >
+<!-- http://pixabay.com/en/patience-games-puzzle-tricky-toys-232290/ -->
+				<section fullscreen-img="img/knobs.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <img src="img/AngularJS-large.png" style="display:inline;border:0px">
+                                
+                                      </div>
 				</section>
 
-				<section fullscreen-img="img/puzzle.jpg" >
+				<section fullscreen-img="img/swiss.svg" >
                                       <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Directives</h3>
+                                
+                                      </div>
+				</section>
+				<section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>Directives</h3>
+                                        <pre><code>
+  angular.module('emberconf', [])
+    .directive('jpAlertMsg', function() {
+      return {
+        restrict: 'E',
+        template: '<div class='alert'>Directive Example</div>'
+      };
+    });
+                                        </code></pre>
+                                
+                                        <pre><code>
+  &lt;body ng-app="emberconf"&gt;
+    <jp-alert-msg></jp-alert-msg>
+  &lt;/body&gt;
+                                        </code></pre>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>Directives</h3>
+                                        <pre><code>
+  angular.module('emberconf', [])
+    .directive('jpAlertMsg', function() {
+      return {
+        restrict: 'C',
+        template: '<div class='alert'>Directive Example</div>'
+      };
+    });
+                                        </code></pre>
+                                
+                                        <pre><code>
+  &lt;body ng-app="emberconf"&gt;
+    &lt;div class="jpAlertMsg"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+                                        </code></pre>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>Directives</h3>
+                                        <pre><code>
+  angular.module('emberconf', [])
+    .directive('jpAlertMsg', function() {
+      return {
+        restrict: 'C',
+        transclude: true,
+        compile: function() {
+          // stuff here
+        },
+        scope: {
+          title: '&amp;'
+          name: '=',
+          subTitle: '@',
+        }
+        template: '&lt;div class='alert' ng-transclude&gt;&lt;/div&gt;'
+      };
+    });
+                                        </code></pre>
+                                
+                                        <pre><code>
+  &lt;body ng-app="emberconf"&gt;
+    &lt;div class="jpAlertMsg" sub-title="test"&gt;Directive Example&lt;/div&gt;
+  &lt;/body&gt;
+                                        </code></pre>
+                                      </div>
+				</section>
+                                <section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>Directives</h3>
+                                        <ul>
+                                          <li>Make a DSL in your HTML</li>
+                                          <li>restrict: element/class/attribute</li>
+                                          <li>isolated scope: attribute/parent eval/bidirectional binding</li>
+                                          <li>transclude: content/element/function</li>
+                                        </ul>
+                                
+                                      </div>
+                                </section>
+<!-- http://pixabay.com/en/patience-games-puzzle-tricky-toys-232290/ -->
+				<section fullscreen-img="img/puzzle.jpg" >
+                                      <div  class='fragment' style="background:rgba(255, 255, 255, .8);padding:20px">
                                         <h3>Transclusion isn't so bad</h3>
                                         <div class='fragment'>
                                           <img src="img/transclusion.png"><br>
-                                          <small>^^^^ that's a transclusion</small>
+                                          <small>^^^^ that's transclusion</small>
                                         </div>
                                 
                                       </div>
 				</section>
 
+				<section fullscreen-img="img/puzzle.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Transclusion isn't so bad</h3>
+<iframe style="border: 1px solid #999;width: 100%; height: 300px"
+        src="http://embed.plnkr.co/kiGSISbP7CAuaGxcVo7R?t=code&f=index.html" frameborder="0"
+        allowfullscreen="allowfullscreen">
+  Loading plunk...
+</iframe>
+                                
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Same in Ember</h3>
+                                        <a class="jsbin-embed" href="http://jsbin.com/tegoyije/3/embed?html,output&height=600px">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+
+<!-- http://www.fantom-xp.com/en_23_~_Spider_Web_windows_7_wallpapers.html -->
 				<section fullscreen-img="img/web.jpg" >
                                       <div  style="background:rgba(255, 255, 255, .8);padding:20px">
                                         <h3>/(Web) Components/</h3>
@@ -120,6 +233,17 @@
                                       <div  style="background:rgba(255, 255, 255, .8);padding:20px">
                                         <h3>What got me hooked</h3>
                                         <a class="jsbin-embed" href="http://jsbin.com/AgoHITa/8/embed?html,output&height=600px">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+
+				<section fullscreen-img="img/puzzle.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Angular's bi-directionally bound isolate scope, transcluded, element restricted directives</h3>
+                                        <div class='fragment'>
+                                          <h3><code>===</code></h3>
+                                          <h3>Ember Components</h3>
+                                        </div>
+                                        <img src="img/confused.gif">
                                       </div>
 				</section>
 
@@ -164,10 +288,18 @@ introduce the many knobs and switches
 then introduce angular transclusion
 explain what it is doing
 
+handlebars by flobots
+amber by 311
+
+wikipedia judge joke
+
 
 
 http://engineering.nulogy.com/posts/transclusion-in-angular/
 http://amitgharat.wordpress.com/2013/06/08/the-hitchhikers-guide-to-the-directive/
+http://stackoverflow.com/questions/13183005/what-exactly-do-you-do-with-the-transclude-function-and-the-clone-linking-functi
+http://liamkaufman.com/blog/2013/05/13/understanding-angularjs-directives-part1-ng-repeat-and-compile/
+http://stackoverflow.com/questions/15296284/how-to-understand-the-transclude-of-directive-defination
                                   
                                 </section>
 -->

@@ -14,7 +14,7 @@ body{
 
 html.middle body{
   background: #faf4f1;
-  background: url(file:///Users/jpaul/workspace/presentations/manhattanjs/components/img/web.jpg) center 600px repeat-x, url(file:///Users/jpaul/workspace/presentations/manhattanjs/components/img/background-shades.svg);
+  background: url(../img/web.jpg) center 600px repeat-x, url(../img/background-shades.svg);
   background-size: initial;
 
 }
