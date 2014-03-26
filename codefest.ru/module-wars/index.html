@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Bridging the Gap of the Module Wars</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                          <!-- img from http://www.flickr.com/photos/41995251@N02/5089018983/sizes/l/ -->
+				<section fullscreen-img="img/war.jpg" >
+                                      <div  style="background:white;opacity:.8;padding:20px">
+					<h1>Module Wars</h1>
+					<h3>by @johnkpaul</h3>
+					<p>
+						<small>CodeFest</small>
+					</p>
+                                      </div>
+				</section>
+                          <!-- img from http://www.flickr.com/photos/mr_t_in_dc/5188244935/sizes/l/ -->
+				<section fullscreen-img="img/bridge.jpg" >
+                                      <div  style="background:white;opacity:.8;padding:20px">
+					<h1>Bridging the Gap</h1>
+					<h3>by @johnkpaul</h3>
+					<p>
+						<small>CodeFest</small>
+					</p>
+                                      </div>
+				</section>
+				<section style="background: rgba(255, 255, 255, .80);">
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <!--<h3 class="inverted"><span style="text-transform: none;">I work for Penton Media</span></h3>-->
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">john@johnkpaul.com</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+				</section>
+				<section>
+                                  <h2>&lt;script&gt; tag life</h2>
+                                  <!-- img from http://www.flickr.com/photos/mushon/282287572/sizes/o/ -->
+                                  <img class="fragment" src="img/giantshoulders.gif">
+                                  <h1 class="fragment write-less">write less, do more</h1>
+                                  <!-- This is where jQuery was born  -->
+				</section>
+				<section>
+                                  <section>
+                                    <h1>module system life</h1>
+                                  </section>
+                                  <section>
+                                            <p>AMD</p>
+                                  </section>
+                                <section>
+                                  <h2>AMD</h2>
+                                    <div>
+                                    
+                                                <pre><code contenteditable>
+1.   // point.js
+2.   define("point", function() {
+3.           function Point(x, y) {
+4.                   this.x = x;
+5.                   this.y = y;
+6.           }
+7.           return Point;
+8.   });
+9.  
+10.  // myapp.js
+11.  define("myapp", ["point"], function(Point) {
+12.          var origin = new Point(0, 0);
+13.          console.log(origin);
+14.  });
+                                                </code></pre>
+                                    
+                                    </div>
+                                        <ul class="fragment">
+                                            <li>RequireJS</li>
+                                            <li>curl.js</li>
+                                        </ul>
+                                    </section>
+                                  <section>
+                                            <p>CommonJS</p>
+                                  </section>
+                                <section>
+                                  <h2>Common JS (node)</h2>
+                                    <div>
+                                    
+                                                <pre><code contenteditable>
+1.   // point.js
+2.   function Point(x, y) {
+3.           this.x = x;
+4.           this.y = y;
+5.   }
+6.   module.exports = Point;
+7.   
+8.   // myapp.js
+9.   var Point = require("./point");
+10.  var origin = new Point(0, 0);
+11.  console.log(origin);
+     
+                                                </code></pre>
+                                    
+                                    </div>
+                                        <ul class="fragment">
+                                            <li>Node</li>
+                                            <li>browserify</li>
+                                        </ul>
+                                    </section>
+                                  <section>
+                                            <p>UMD</p>
+                                            <img src="img/beast1.jpg">
+                                  </section>
+                                <section>
+                                  <h2>UMD</h2>
+                                    <div>
+                                    
+                                                <pre><code contenteditable>// point.js
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(function () {
+            return (root.returnExportsGlobal = factory());
+        });
+    } else if (typeof exports === 'object') {
+        module.exports = factory();
+    } else {
+        root.returnExportsGlobal = factory();
+    }
+}(this, function () {
+    function Point(x, y) {
+            this.x = x;
+            this.y = y;
+    }
+    return Point;
+}));
+                                                  </code></pre>
+                                    
+                                    </div>
+                                        <ul class="fragment">
+                                            <li><a href="https://github.com/umdjs/umd">umdjs</a></li>
+                                            <li>Clunky as hell, but works!</li>
+                                        </ul>
+                                    </section>
+                                  <section>
+                                            <p>Native JavaScript Modules - ES6</p>
+                                            <!-- img from http://www.flickr.com/photos/crunchcandy/3833779868/sizes/o/ -->
+                                            <img src="img/beast2.jpg">
+                                  </section>
+                                <section>
+                                  <h2>ES6 Modules</h2>
+                                    <div>
+                                    
+                                                <pre><code contenteditable>
+1.   // point.js
+2.   function Point(x, y) {
+3.           this.x = x;
+4.           this.y = y;
+5.   }
+6.   export default Point;
+7.   
+8.   // myapp.js
+9.   import Point from "point";
+10.  var origin = new Point(0, 0);
+11.  console.log(origin);
+                                                  </code></pre>
+                                    
+                                    </div>
+                                        <ul class="fragment">
+                                            <li>es6-module-transpiler</li>
+                                        </ul>
+                                    </section>
+				</section>
+
+                                <section>
+                                  <h3>Where to find modules?</h3>
+                                  <ul>
+                                      <li>npm</li>
+                                      <li>bower</li>
+                                      <li>component</li>
+                                      <li>jam</li>
+                                      <li>jspm</li>
+                                      <li>download builders like jQuery UI</li>
+                                      <li>zip files from 2008</li>
+                                  </ul>
+
+                                    <br>
+                                  <img width="400" class="fragment" src="img/seeingalloptions.gif">
+
+                                </section>
+
+                                <section>
+                                  <h2>Let lib authors do what they want</h2>
+                                  <img src="img/flexiblecat.gif" class="fragment" width="800">
+
+                                </section>
+
+                                <section>
+                                  <section>
+                                    <h2>Using RequireJS?</h2>
+                                    <ul class="fragment">
+                                        <li>shim config for global scripts</li>
+                                        <li>r.js optimizer for node modules</li>
+                                    </ul>
+                                  </section>
+                                  <section>
+                                    <h2>RequireJS paths/shim</h2>
+                                                <pre><code contenteditable>
+  requirejs.config({
+      paths: {
+          "jquery": "bower_components/jquery/jquery-2.1.0.min.js"
+          "ember": "bower_components/ember/ember.js"
+      },
+      shim: {
+          "ember": {
+              deps: ["jquery"],
+              exports: "Ember"
+          }
+      }
+  });
+                                                </code></pre>
+                                  </section>
+                                  <section>
+                                    <h2>npm modules in RequireJS</h2>
+                                                <pre><code contenteditable>
+    > npm install euclidean-distance;
+    > node r.js -o name=myapp out=myapp.build.js;
+                                            </code></pre>
+                                                <pre><code contenteditable>
+    //myapp.js
+    define("myapp", ["point", "euclidean-distance"], function(Point, d) {
+            var origin = new Point(0, 0);
+            var otherPoint = new Point(1, 1);
+            var distance = d(origin, otherPoint);
+            console.log(distance);  //1
+    });
+                                            </code></pre>
+                                  </section>
+                                </section>
+
+                                <section>
+                                  <section>
+                                    <h2>Using browserify?</h2>
+                                    <h3>helpful transforms</h3>
+                                    <ul>
+                                        <li>deamdify</li>
+                                        <li>browserify-shim</li>
+                                    </ul>
+                                  </section>
+                                  <section>
+                                    <h2>What are transforms?</h2>
+                                    <ul>
+                                        <li>similar to RequireJS !plugins</li>
+                                        <li>Can change source code when <code>require</code>-ing</li>
+                                    </ul>
+                                  </section>
+                                  <section>
+                                    <h2>deamdify</h2>
+                                                <pre><code contenteditable>
+     > browserify -t deamdify -e entry.js > main.js
+                                            </code></pre>
+                                                <pre><code contenteditable>
+
+     //entry.js
+     var moduleWrittenInAmd = require("./vendor/amdModule.js");
+     useModule(moduleWrittenInAmd);
+
+                                            </code></pre>
+                                  </section>
+                                  <section>
+                                    <h2>browserify-shim</h2>
+                                                <pre><code contenteditable>
+     > browserify -t browserifyshim -e entry.js > main.js
+                                            </code></pre>
+                                                <pre><code contenteditable>
+// package.json
+{
+  "browser": {
+    "jquery": "bower_components/jquery/jquery-2.1.0.min.js"
+    "ember": "bower_components/ember/ember.js"
+  },
+  "browserify-shim": {
+    "jquery": { 
+       "exports": "$"
+     },
+    "ember": { 
+       "exports": "Ember"
+       "depends": ["jquery"]
+     }
+  }
+}
+                                            </code></pre>
+                                                <pre><code contenteditable>
+//entry.js
+
+var Ember = require('ember');
+var $ = require('jquery');
+                                            </code></pre>
+                                  </section>
+                                </section>
+                                
+
+				<!--<section>
+                                
+                                  regret using the word wars bc of cupcake wars shipping wars storage wars
+                                  we didn't have anything for so long
+                                  we like to build on the shoulder of giants
+                                    there was copied and pasted ratings plugins
+                                    protoype effects 
+
+                                  core tenent is that I don't care how authors write their modules
+                                  I want the power of using everything in a comforatble way
+
+                                  from requirejs/curl
+
+                                  from browserify
+
+                                    I chose browserify, because of npm and using a node shop
+
+                                  requireify
+                                  promethify
+                                  
+                                </section>
+-->
+
+
+				<section>
+					<h2>Embrace Dependencies</h2>
+                                        <img src="img/whenithought.jpg">
+				</section>
+				<section>
+					<h1>Questions?</h1>
+					<h3>@johnkpaul</h3>
+					<p>
+						<small>CodeFest</small>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: 'simple', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'lib/js/fullscreen-img.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
