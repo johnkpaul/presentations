@@ -38,16 +38,6 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-                          <!-- img from http://www.flickr.com/photos/41995251@N02/5089018983/sizes/l/ -->
-				<section fullscreen-img="img/war.jpg" >
-                                      <div  style="background:white;opacity:.8;padding:20px">
-					<h1>Module Wars</h1>
-					<h3>by @johnkpaul</h3>
-					<p>
-						<small>CodeFest</small>
-					</p>
-                                      </div>
-				</section>
                           <!-- img from http://www.flickr.com/photos/mr_t_in_dc/5188244935/sizes/l/ -->
 				<section fullscreen-img="img/bridge.jpg" >
                                       <div  style="background:white;opacity:.8;padding:20px">
@@ -72,8 +62,59 @@
                                   <h2>&lt;script&gt; tag life</h2>
                                   <!-- img from http://www.flickr.com/photos/mushon/282287572/sizes/o/ -->
                                   <img class="fragment" src="img/giantshoulders.gif">
-                                  <h1 class="fragment write-less">write less, do more</h1>
-                                  <!-- This is where jQuery was born  -->
+                                  <h1 class="fragment write-less"><img src="img/jslibs.jpg"></h1>
+				</section>
+				<section>
+                                                <pre><code contenteditable>
+&lt;script src=&quot;lib/vendor/jquery-2.1.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main.js&quot;&gt;&lt;/script&gt;
+                                                </code></pre>
+                                    
+				</section>
+				<section>
+                                                <pre><code contenteditable>
+&lt;script src=&quot;lib/vendor/jquery-2.1.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-plugin-for-maps.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main.js&quot;&gt;&lt;/script&gt;
+                                                </code></pre>
+                                    
+				</section>
+				<section>
+                                                <pre><code contenteditable>
+&lt;script src=&quot;google-analytics.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;chartbeat.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-2.1.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-plugin-for-maps.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-plugin-for-making-carousels.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main-for-landing-page.js&quot;&gt;&lt;/script&gt;
+                                                </code></pre>
+                                    
+				</section>
+				<section>
+                                                <pre><code contenteditable>
+&lt;script src=&quot;google-analytics.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;chartbeat.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-2.1.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-plugin-for-maps.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-plugin-for-making-carousels.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main-for-landing-page.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main-for-landing-page2.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-plugin-for-making-datepickers.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main-for-landing-page3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main-for-landing-page4.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-plugin-for-making-modals.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main-for-landing-page5.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main-for-landing-page6.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;lib/vendor/jquery-plugin-for-making-autocompletes.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main-for-landing-page7.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;main-for-landing-page8.js&quot;&gt;&lt;/script&gt;
+                                                </code></pre>
+                                    
+				</section>
+<!-- http://www.flickr.com/photos/calliope/5033415296/sizes/o/ -->
+				<section fullscreen-img="img/soup.jpg" >
 				</section>
 				<section>
                                   <section>
@@ -248,6 +289,11 @@
       }
   });
                                                 </code></pre>
+                                                <pre><code contenteditable>
+define("myapp", ["ember", "jquery"], function(Ember, jQuery) {
+  //use Ember and jQuery
+});
+                                                </code></pre>
                                   </section>
                                   <section>
                                     <h2>npm modules in RequireJS</h2>
@@ -278,6 +324,7 @@
                                   </section>
                                   <section>
                                     <h2>What are transforms?</h2>
+                                    <img src="img/blackbox.png">
                                     <ul>
                                         <li>similar to RequireJS !plugins</li>
                                         <li>Can change source code when <code>require</code>-ing</li>
@@ -327,10 +374,16 @@ var $ = require('jquery');
                                             </code></pre>
                                   </section>
                                 </section>
+                                <section>
+                                    <h2>webpack module bundler</h2>
+                                    <a href="http://webpack.github.io/docs/"><img src="img/what-is-webpack.png"></a>
+                                </section>
                                 
 
 				<!--<section>
                                 
+qrite example for transform
+write example for requiring
                                   regret using the word wars bc of cupcake wars shipping wars storage wars
                                   we didn't have anything for so long
                                   we like to build on the shoulder of giants
@@ -356,6 +409,12 @@ var $ = require('jquery');
 				<section>
 					<h2>Embrace Dependencies</h2>
                                         <img src="img/whenithought.jpg">
+				</section>
+				<section>
+                                      <div  style="padding:20px">
+                                        <img src="img/heart.gif" style="border: 0px none;">
+                                        <h2><a href="http://extensiblewebmanifesto.org/">Extensible Web Manifesto</a></h2>
+                                      </div>
 				</section>
 				<section>
 					<h1>Questions?</h1>
@@ -396,7 +455,7 @@ var $ = require('jquery');
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'lib/js/fullscreen-img.js', async: true },
+					{ src: 'lib/js/fullscreen-img.js', async: false },
 					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});

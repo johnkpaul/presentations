@@ -1,9 +1,9 @@
 .write-less{
   position:absolute;
-  top: 126px;
+  top: 182px;
   transform: scale(.8, .8) rotate(12deg);
   -webkit-transform: rotate(12deg);
-  left: 105px;
+  left: 174px;
   background: rgba(255, 255, 255, .9);
 }
 
