@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Automating Confidence</title>
+
+		<meta name="description" content="Presentation for PSU Web Conference 2014">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+            <div class="reveal">
+            
+            
+			<div class="slides">
+                                <!-- img from http://www.flickr.com/photos/drakelelane/3485293590/ -->
+				<section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, .40);">
+                                  <div style="position:relative">
+                                    <h1 style="font-size:150%">Automating Confidence</h1>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">By @johnkpaul</span></h3>
+                                        <!-- img from http://blueballfixed.ytmnd.com/ -->
+                                    <img src="img/rube.gif">
+                                  </div>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iiiPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, 1);">
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">Penton Media</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">john@johnkpaul.com</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+				</section>
+				<section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, 0);">
+				</section>
+				<section fullscreen-img="img/c++baby.jpg" style="background: rgba(255, 255, 255, 0);">
+                                  <img src="img/tower-defense.jpg">
+				</section>
+				<section fullscreen-img="img/haskellbaby.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h2>Validation</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.    // Backbone example
+2.    App.BaseView = Backbone.View.extend({
+3.      render: function(){
+4.      
+5.      }
+6.    );
+7.
+8.    // node example
+9.    fs.readFile('foo', function(err, file){
+10.     handleSuccess(file.toUpperCase)());
+11.   });
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/c++baby.jpg" style="background: rgba(255, 255, 255, .5);">
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.    App.BaseView = Backbone.View.extend({
+2.      render: function(){
+3.      
+4.      }
+5.    );
+6. 
+7.    require('fs').readFile('foo', function(err, file){
+8.      handleSuccess(file.toUpperCase)());
+9.    });
+                                    </code></pre>
+                                    <pre><code contenteditable style="max-height: 740px;">
+>> Line 5: Unexpected token )                                    
+>> Line 8: Unexpected token )
+
+                                    </code></pre>
+                                  <ul class="fragment">
+                                    <li>esprima</li>
+                                    <li>grunt-jsvalidate</li>
+                                    <li>Google Closure</li>
+                                  </ul>
+				</section>
+				<section fullscreen-img="img/csharpbaby.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <img src="img/whocares.jpg">
+                                  <h2 class="fragment"> YOUR IDE CAN DO THAT</h2>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Linting</h2>
+                                  <ul>
+                                    <li>common semantic mistakes</li>
+                                    <li>JSHint/ESLint/JSLint</li>
+                                    <li>code style</li>
+                                    <li>JSCS</li>
+                                  </ul>
+                                  <img src="img/mistake.gif">
+				</section>
+				<section fullscreen-img="img/scalababy.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h2>Linting</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+  1 (function(){
+  2
+  3   if (value = 1) {
+  4     doSomething(value)
+  5   }
+  6
+  7 }());
+                                    </code></pre>
+                                    <pre class='fragment'><code contenteditable style="max-height: 740px;">
+    line 3, col 3, Missing "use strict" statement.
+
+    line 3, col 16, Expected a conditional expression 
+                    and instead saw an assignment.
+
+    line 4, col 23, Missing semicolon.
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/bg.jpg" style="background: rgba(255, 255, 255, 1);">
+                                  <h2>Linting Examples</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+    1.    (function(){
+    2.      
+    3.      test();
+    4.
+    5.      var test = function(){};
+    6.    }());
+                                    </code></pre>
+                                    <pre><code contenteditable style="max-height: 740px;">
+    [L2:C3] Missing "use strict" statement.
+      test();
+    [L4:C12] 'test' was used before it was defined.
+      var test = function(){};
+                                    </code></pre>
+				</section>
+				<section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h2>Decisions</h2>
+<!-- img from http://createfunnyphotos.com/uploads/saved_posters/funny-photo-4zfpgh6fnc-DECISIONS,-DECISIONS.jpg -->
+                                  <img src="img/decisions.jpg">
+
+				</section>
+                                <section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h2>Complexity</h2>
+                                  <h3>Path counting</h3>
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.    (function () {
+2.      if (test1()) {
+3.        doSomething();
+4.      } else if (test2()) {
+5.        doSomethingElse();
+6.      } else if (test3()) {
+7.        doSomethingElse2();
+8.      }
+9.    }());
+                                    </code></pre>
+
+                                    <pre><code contenteditable style="max-height: 740px;">
+      line 1, col 11, This function's cyclomatic 
+                      complexity is too high. (4)
+                                    </code></pre>
+                                </section>
+                                <section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, 0);">
+                                  <img src="img/complexity.gif">
+                                </section>
+                                <section fullscreen-img="img/c++baby.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h4><a href="plato/jquery/index.html">Plato Analysis</a></h4>
+                                  <video src='video/plato.mp4' controls></video>
+                                </section>
+				<section fullscreen-img="img/haskellbaby.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h2>Beautification</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.      if (    test1())
+2.      {
+3.        doSomething();
+4.      } else if (test2()) {
+5.          doSomethingElse();
+6.      }
+7.      else if (test4())
+8.      {
+9.      doSomethingElse2();
+10.     }
+                                    </code></pre>
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.      if (test1()) {
+2.        doSomething();
+3.      } else if (test2()) {
+4.        doSomethingElse();
+5.      } else if (test4()) {
+6.        doSomethingElse2();
+7.      }
+                                    </code></pre>
+
+				</section>
+				<section fullscreen-img="img/csharpbaby.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h2>Beautification</h2>
+                                  <img src="img/beautifulcode.jpg" width="200">
+                                  <br>
+                                  <ul>
+                                    <li>EditorConfig</li>
+                                    <li>codepainter</li>
+                                    <li>js-beautify</li>
+                                    <li>esformatter</li>
+                                  </ul>
+				</section>
+                                <section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h2>Enforcement</h2>
+                                  <h3>pre commit hooks</h3>
+                                  <div>
+                                    <pre><code contenteditable style="max-height: 740px;">
+  #!/bin/sh
+
+  # run script to check if commit is valid
+  node ./good-to-commit.js
+  RETVAL=$?
+
+  if [ $RETVAL -ne 0 ]
+  then
+    exit 1
+  fi
+                                    </code></pre>
+                                  </div>
+                                </section>
+				<section fullscreen-img="img/csharpbaby.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h4>Enforcement</h2>
+                                  <video src='video/precommit.ogv'  controls></video>
+				</section>
+				<section fullscreen-img="img/scalababy.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <img src="img/unimpressedcat.gif">
+				</section>
+                                <section fullscreen-img="img/haskellbaby.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h2>TypeScript</h2>
+                                    <pre><code contenteditable style="max-height: 740px;">
+1.    function add(a: number, b: number) {
+2.        return a + b;
+3.    }
+4.
+5.    add("a", "b"); 
+                                    </code></pre>
+<pre><code>
+    Supplied parameters do not match any signature of call target.
+    Could not select overload for 'call' expression.
+    (a: number, b: number): number
+
+</code></pre>
+				</section>
+                                <section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <h2>TypeScript compiler</h2>
+                                  <ul>
+                                    <li>One tool for syntax validation and most of linting</li>
+                                    <li>Compile time structural type validation</li>
+                                    <li>Strict superset of JavaScript</li>
+                                    <li>Significantly inspired by ES6</li>
+                                    <li class="fragment">INTELLISENSE</li>
+                                  </ul>
+				</section>
+				<section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, .5);">
+                                  <video src='video/typescript2.ogv' controls></video>
+				</section>
+				<section fullscreen-img="img/typescriptbaby.jpg" style="background: rgba(255, 255, 255, 0);">
+				</section>
+                                <section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, .5);">
+
+                                  <h2>What you should do</h2>
+                                  <ul>
+                                    <li class="fragment">Add validation and linting</li>
+                                    <li class="fragment"><img src="img/allthethings.jpg"></li>
+                                  </ul>
+				</section>
+                                <section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, .5);">
+					<h2>Resources</h2>
+                                    <ul >
+                                      <li><a href="http://www.jshint.com/docs/options/">JSHint options</a></li>
+                                      <li><a href="http://johnkpaul.com/blog/2013/10/04/git-precommit-hook-awesomeness/">How to add a precommit hook</a></li>
+                                      <li><a href="http://www.typescriptlang.org/Playground/">TypeScript playground</a></li>
+                                      <li><a href="https://github.com/palantir/eclipse-typescript">Eclipse TypeScript plugin</a></li>
+                                    </ul>
+				</section>
+				<section fullscreen-img="img/javababy.jpg" style="background: rgba(255, 255, 255, .5);">
+					<h1>Thank you!</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">john@johnkpaul.com</h3>
+				</section>
+                        </div>
+            </div>
+            <!--
+too much time about complexity outside of plato
+remove one of the linting slides
+add reference slide
+make beautification more important
+remove drug thing, find cat animated gif
+drop hints at typescript in the future
+make demos into real video players
+typescript intellisense and show that output JS doesnt change
+talk about typescript ecosystem
+emphasize STRICT SUPERSET of JavaScript
+add start of demo with regular JavaScript
+work on typescript introduction, talk about MS
+
+talk about v8 optimization and how these things do get compiled eventually
+
+interface Person{
+        first: string;
+        last: string;
+        petCount: number;
+        
+}
+
+var people: Person[] = [
+        {first: 'John K.', last: 'Paul', petCount: 1},
+        {first: 'Todd', last: 'Kennedy', petCount: 10},
+        {first: 'Thorsten', last: 'Lorenz', petCount: 4},
+]
+
+var sumPets = function(people: Person[]){
+        return people.reduce(function(sum, person){
+                
+        }, 0);
+        
+}
+
+var sum = sumPets(people);
+alert(sum);
+
+
+ask question about who has pushed a syntax error to production on slide about validation
+can refer to dotrb talk for many other tools
+talk to Addy about what he's working on in yeoman talk
+remove backgrond and add blank background slides
+
+instill confidence and security
+plato explanation
+            -->
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https: //github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				keyboard: true,
+				overview: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                                        { src: 'plugin/fullscreen-img.js' }
+				]
+			});
+
+                        Array.prototype.map.call(document.getElementsByTagName("pre"),function(pre){
+                            pre.onclick = function(event){
+                                var $pre = $(pre);
+                                var xInsidePre = event.pageX - $pre.offset().left;
+                                var yInsidePre = event.pageY - $pre.offset().top;
+                                var distanceFromRightEdge = $pre.width() - xInsidePre;
+                                var distanceFromTopEdge = yInsidePre;
+                                if(!(distanceFromRightEdge < 66 && distanceFromTopEdge < 44)){
+                                  return;
+                                }
+                                var content = pre.firstChild.textContent.replace(/\d+\./g,"");
+                               // console.log(content);
+                                eval(content);
+                                pre.firstChild.blur();
+                                pre.blur();
+                            }
+                        });
+		</script>
+
+	</body>
+</html>

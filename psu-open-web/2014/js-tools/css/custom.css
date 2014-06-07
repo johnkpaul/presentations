@@ -1,0 +1,31 @@
+body {
+  background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #000000 100%);
+  background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #000000 100%);
+}
+.reveal{
+  font-size:50px;
+}
+.reveal code{
+max-height:500px;
+}
+pre{
+  position:relative;
+}
+/*pre:before{
+  content:'Run';
+  position:absolute;
+  right:10px;
+  top:10px;
+  padding:3px 9px;
+  background:white;
+  color:red;
+  border-radius:10px;
+}
+*/
+
+pre .comment{color:yellow !important;}
+.reveal .slides{
+  max-width: inherit;
+}
+
+
