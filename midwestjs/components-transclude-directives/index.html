@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Ember Components Transclude My Directives</title>
+
+		<meta name="description" content="Talk for MidwestJS 2014">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                          <!-- img from http://www.flickr.com/photos/bbum/301661917/sizes/o/ -->
+				<section data-state='the-first'>
+                                      <div  style="padding:20px">
+					<h1>Ember Components</h1>
+					<h2>Transclude My Directives</h2>
+					<h3>by <a href="http://twitter.com/johnkpaul">@johnkpaul</a></h3>
+					<p>
+						<small>MidwestJS</small>
+					</p>
+                                      </div>
+				</section>
+				<section style="background: rgba(255, 255, 255, .80);">
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <!--<h3 class="inverted"><span style="text-transform: none;">I work for Penton Media</span></h3>-->
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">john@johnkpaul.com</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+				</section>
+
+				<section fullscreen-img="img/dale.jpg" >
+				</section>
+
+<!-- http://pixabay.com/en/patience-games-puzzle-tricky-toys-232290/ -->
+				<section fullscreen-img="img/knobs.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <img src="img/AngularJS-large.png" style="display:inline;border:0px">
+                                
+                                      </div>
+				</section>
+
+				<section fullscreen-img="img/swissarmy.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Directives</h3>
+                                
+                                      </div>
+				</section>
+				<section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>Directives</h3>
+                                        <pre><code>
+  angular.module('midwestjs', [])
+    .directive('jpAlertMsg', function() {
+      return {
+        restrict: 'E',
+        template: '<div class='alert'>Directive Example</div>'
+      };
+    });
+                                        </code></pre>
+                                
+                                        <pre><code>
+  &lt;body ng-app="midwestjs"&gt;
+    <jp-alert-msg></jp-alert-msg>
+  &lt;/body&gt;
+                                        </code></pre>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>Directives</h3>
+                                        <pre><code>
+  angular.module('midwestjs', [])
+    .directive('jpAlertMsg', function() {
+      return {
+        restrict: 'C',
+        template: '<div class='alert'>Directive Example</div>'
+      };
+    });
+                                        </code></pre>
+                                
+                                        <pre><code>
+  &lt;body ng-app="midwestjs"&gt;
+    &lt;div class="jpAlertMsg"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+                                        </code></pre>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>Directives</h3>
+                                        <pre><code>
+  angular.module('midwestjs', [])
+    .directive('jpAlertMsg', function() {
+      return {
+        restrict: 'C',
+        transclude: true,
+        compile: function(element, attrs) {},
+        link: function(scope, element, attrs, ctrls, transclude) {},
+        scope: {
+          title: '&amp;'
+          name: '=',
+          subTitle: '@',
+        }
+        template: '&lt;div class='alert' ng-transclude&gt;&lt;/div&gt;'
+      };
+    });
+                                        </code></pre>
+                                
+                                        <pre><code>
+  &lt;body ng-app="midwestjs"&gt;
+    &lt;div class="jpAlertMsg" sub-title="test"&gt;Directive Example&lt;/div&gt;
+  &lt;/body&gt;
+                                        </code></pre>
+                                      </div>
+				</section>
+                                <section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>Directives</h3>
+                                        <ul>
+                                          <li>Make a DSL in your HTML</li>
+                                          <li>restrict: element/class/attribute</li>
+                                          <li>isolated scope: attribute/parent eval/bidirectional binding</li>
+                                          <li>transclude: content/element/5th parameter to the linking function</li>
+                                        </ul>
+                                
+                                      </div>
+                                </section>
+<!-- http://pixabay.com/en/patience-games-puzzle-tricky-toys-232290/ -->
+				<section fullscreen-img="img/puzzle.jpg" >
+                                      <div  class='fragment' style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Transclusion isn't so bad</h3>
+                                        <div class='fragment'>
+                                          <img src="img/transclusion.png"><br>
+                                          <small>^^^^ that's transclusion</small>
+                                        </div>
+                                
+                                      </div>
+				</section>
+
+				<section fullscreen-img="img/puzzle.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Transclusion isn't so bad</h3>
+<iframe style="border: 1px solid #999;width: 100%; height: 300px"
+        src="http://embed.plnkr.co/NzarQxRg8w9PxYEPMaVQ?t=code&f=index.html" frameborder="0"
+        allowfullscreen="allowfullscreen">
+  Loading plunk...
+</iframe>
+                                
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Same in Ember</h3>
+                                        <a class="jsbin-embed" href="http://jsbin.com/tegoyije/7/embed?html,output&height=600px">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+
+<!-- http://www.fantom-xp.com/en_23_~_Spider_Web_windows_7_wallpapers.html -->
+				<section fullscreen-img="img/web.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>/(Web) Components/</h3>
+                                        <ul>
+                                          <li>Roll your own reusable widgets</li>
+                                          <li>Fully encapsulate HTML, CSS, and JS</li>
+                                          <li class="fragment"><a href="http://extensiblewebmanifesto.org">Extensible Web Manifesto</a></li>
+                                        </ul>
+                                      </div>
+				</section>
+
+				<section data-state="middle" >
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <img src="img/webcomponents.png">
+                                        <h3>/(Web)|(Ember) Components/</h3>
+                                        <ul>
+                                          <li>Roll your own reusable widgets now</li>
+                                          <li>Encapsulate structure and behavior</li>
+                                        </ul>
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>What got me hooked</h3>
+                                        <!--http://gifrific.com/wp-content/uploads/2012/04/buster-im-a-monster.gif-->
+                                        <img src="img/monster.gif">
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>What got me hooked</h3>
+                                        <a class="jsbin-embed" href="http://jsbin.com/AgoHITa/22/embed?html,output&height=600px">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Ember Tabs</h3>
+                                        <a class="jsbin-embed" href="http://jsbin.com/uvovug/2/embed?html,output&height=600px">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Ember Component Lists</h3>
+                                        <ul>
+                                          <li><a href="https://gist.github.com/johnkpaul/6796944">My Component List</a></li>
+                                          <li><a href="http://coderberry.me/">Eric Berry Component List</a></li>
+                                        </ul>
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Angular Directive List</h3>
+                                        <ul>
+                                          <li><a href="http://ngmodules.org/">NG Modules</a></li>
+                                        </ul>
+                                      </div>
+				</section>
+				<section>
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Digging further into Transclusion</h3>
+                                        <ul>
+                                          <li>transclude: true</li>
+                                          <li>transclude: 'element'</li>
+                                          <li>transclude: true + the 5th parameter to the linking function</li>
+                                        </ul>
+                                      </div>
+				</section>
+
+				<section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>transclude: true</h3>
+                                        <pre><code>
+  angular.module('midwestjs', [])
+    .directive('jpAlertMsg', function() {
+      return {
+        restrict: 'E',
+        transclude: true,
+        template: '&lt;div class='alert' ng-transclude&gt;&lt;/div&gt;'
+      };
+    });
+                                        </code></pre>
+                                
+                                        <pre><code>
+  &lt;body ng-app="midwestjs"&gt;
+    &lt;jp-alert-msg&gt;
+      This is the message I want with a red background
+    &lt;/jp-alert-msg&gt;
+  &lt;/body&gt;
+                                        </code></pre>
+
+                                        <pre><code>
+  &lt;body ng-app="midwestjs"&gt;
+    &lt;div class='alert'&gt;
+      This is the message I want with a red background
+    &lt;/div&gt;
+  &lt;/body&gt;
+                                        </code></pre>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h3>transclude: 'element'</h3>
+                                        <pre><code>
+  angular.module('midwestjs', [])
+    .directive('jpAlertMsg', function() {
+      return {
+        restrict: 'C',
+        transclude: true,
+        template: '&lt;div class='alert' ng-transclude&gt;&lt;/div&gt;'
+      };
+    });
+                                        </code></pre>
+                                
+                                        <pre><code>
+  &lt;body ng-app="midwestjs"&gt;
+    &lt;strong class="jpAlertMsg"&gt;
+      This is the message I want with a red background
+    &lt;/strong&gt;
+  &lt;/body&gt;
+                                        </code></pre>
+
+                                        <pre><code>
+  &lt;body ng-app="midwestjs"&gt;
+    &lt;div class='alert'&gt;
+      &lt;strong class="jpAlertMsg"&gt;
+        This is the message I want with a red background
+      &lt;/strong&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+                                        </code></pre>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/directivewc.svg" >
+                                      <div  style="background:rgba(255, 255, 255, .7);padding:20px">
+                                        <h4><a href="http://plnkr.co/edit/yiB3juB46gcKUQCMnO24?p=preview">transclude: true & 5th param to linking function</a></h4>
+                                        <pre><code>
+  angular.module('midwestjs', [])
+    .directive('jpAlertMsg', function() {
+      return {
+        restrict: 'E',
+        transclude: true,
+        template: '&lt;img src=&quot;expoint.svg&quot;&gt;&lt;div class=&quot;msg&quot;&gt;&lt;/div&gt;',
+        link: function(scope, element, attrs, ctrls, transclude) {
+          transclude(function(clone){
+             element.find('.msg').append(clone);
+          }); } }; }); </code></pre>
+                                
+                                        <pre><code>
+    &lt;jp-alert-msg&gt;
+      This is the message I want with a red background
+    &lt;/jp-alert-msg&gt;
+                                        </code></pre>
+
+                                        <pre><code>
+    &lt;jp-alert-msg&gt;
+        &lt;img src=&quot;expoint.svg&quot;&gt;
+        &lt;div class=&quot;msg&quot;&gt;
+            &lt;span class=&quot;ng-scope&quot;&gt;
+              This is the message I want with a red background
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/jp-alert-msg&gt;
+                                        </code></pre>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/puzzle.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Angular's bi-directionally bound isolate scope, transcluded, element restricted directives</h3>
+                                        <div class='fragment'>
+                                          <h3><code>===</code></h3>
+                                          <h3>Ember Components</h3>
+                                        </div>
+                                        <img src="img/confused.gif">
+                                      </div>
+				</section>
+
+
+				<section>
+                                      <div  style="padding:20px">
+                                        <img src="img/heart.gif" style="border: 0px none;">
+                                      </div>
+				</section>
+
+
+				<section>
+					<h1>Questions?</h1>
+					<h3>@johnkpaul</h3>
+					<p>
+						<small>MidwestJS</small>
+					</p>
+				</section>
+
+			</div>
+				<!--<section>
+
+find confused gif for elementr restricted, transcluded, isolate scope directive
+introduce angular directive 
+introduce the many knobs and switches
+then introduce angular transclusion
+explain what it is doing
+
+handlebars by flobots
+amber by 311
+
+wikipedia judge joke
+
+
+
+http://engineering.nulogy.com/posts/transclusion-in-angular/
+http://amitgharat.wordpress.com/2013/06/08/the-hitchhikers-guide-to-the-directive/
+http://stackoverflow.com/questions/13183005/what-exactly-do-you-do-with-the-transclude-function-and-the-clone-linking-functi
+http://liamkaufman.com/blog/2013/05/13/understanding-angularjs-directives-part1-ng-repeat-and-compile/
+http://stackoverflow.com/questions/15296284/how-to-understand-the-transclude-of-directive-defination
+http://neverindoubtnet.blogspot.com/2014/02/adventures-in-angular-directives.html
+                                  
+                                </section>
+-->
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: 'simple', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'lib/js/fullscreen-img.js', async: false },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
