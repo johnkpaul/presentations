@@ -8,7 +8,7 @@ pre{
   position:relative;
 }
 pre:before{
-  content:'Run';
+  /*content:'Run';*/
   position:absolute;
   right:10px;
   top:10px;
