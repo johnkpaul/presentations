@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>ES6 right now</title>
+
+		<meta name="description" content="Presentation for NomadJS 2014">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+            <div class="reveal">
+            
+            
+			<div class="slides">
+                                <!-- img from http://blog.defenderdirect.com/wp-content/uploads/2013/05/Future-State.jpg -->
+				<section fullscreen-size="contain" fullscreen-img="img/line.jpg" style="background: rgba(255, 255, 255, .00);">
+                                  <div style="position:relative;width:auto;margin: 0px auto auto auto;background:rgba(255, 255, 255, .02)">
+                                    <h1 style="margin-bottom: 0px;padding-left:20px;color: rgb(0, 0, 0 );">ES6 right now</h1>
+                                    <h3 class="inverted"><span style="text-transform: lowercase;color: rgb(0, 0, 0);">By @johnkpaul</span></h3>
+                                  </div>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iiiPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/ball.jpg" style="background: rgba(255, 255, 255, .60);">
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">NYCHTML5</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">Penton Media</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/ball.jpg" style="background: rgba(255, 255, 255, .00);">
+                                </section>
+                                <!-- img from http://pixabay.com/en/black-business-computer-computing-18295/-->
+				<section fullscreen-img="img/floppy.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .00);">
+                                  <h2 style="position:absolute;left:100px;bottom:-301px;text-transform:none;">Ecma International</h2>
+				</section>
+				<section fullscreen-img="img/snail.jpg" fullscreen-size="contain">
+                                </section>
+				<section fullscreen-img="img/snail.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .80);">
+					<h1>ECMAScript</h1>
+                                        <ul>
+					  <li>3 - 1999</li>
+					  <li>5 - 2009</li>
+					  <li>6 - 2014?</li>
+					  <li class='fragment'>but who cares?</li>
+					</ul>
+                                        <!--<h3 class='fragment'>Jargon sidetrack</h3>-->
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/iptheft.jpg" style="background: rgba(255, 255, 255, .00);">
+				</section>
+
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>
+
+var hasB = "abc".indexOf('b') > -1;
+alert(hasB);
+</div>
+				</section>
+
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>
+var p = new Promise(
+  function(resolve, reject){
+    setTimeout(resolve, 1000);
+  }
+);
+
+p.then(function(){
+  alert('after 1 second');
+});
+</div>
+				</section>
+
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>var obj = {key: 'val'};
+var obj2 = {key2: 'val2'};
+var merged = Object.assign(obj, obj2);
+
+alert(merged.key);
+alert(merged.key2);
+</div>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>
+let set = new Set();
+set.add('a');
+set.add('b');
+set.add('c');
+set.add('b');
+
+alert(set.size);
+set.forEach(alert);
+</div>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>
+var obj = {'key': 'val'};
+
+var map = new Map();
+map.set('key', 'val');
+
+alert('key' in obj);
+alert(map.has('key'));
+
+</div>
+				</section>
+				<section  fullscreen-size="contain" fullscreen-img="" style="background: rgba(255, 255, 255, .00);">
+<p style="margin-top:192px;font-size: 450%;font-family: monospace;background: white;" class="">&lt;script&gt;</p>
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="" style="background: rgba(255, 255, 255, .90);">
+<p><a href='https://github.com/paulmillr/es6-shim/'>es6-shim by Paul Miller</a></p>
+<ul class='fragment'>
+  <li>Promise()</li>
+  <li>Map()</li>
+  <li>Number.isNaN()</li>
+  <li>Object.is()</li>
+  <li>String.prototype.contains()</li>
+  <li>String.prototype.codePointAt()</li>
+  <li>Array.from()</li>
+  <li>Set()</li>
+  <li>so much more</li>
+</ul>
+
+
+				</section>
+				<section>
+<h4>block scoped variables</h4>
+<button class='run'>Run</button>
+<div class='ace'>
+var arr = [1,2,3];
+var o = [];
+
+for(var i = 0; i&lt;arr.length;i++) {
+ var val = arr[i];
+ o.push(function(){ alert(val); });
+}
+
+o.forEach(function(func){ func(); });
+
+</div>
+				</section>
+				<section>
+<h4>lamda / fat arrow</h4>
+<button class='run'>Run</button>
+<div class='ace'>  'use strict';
+  var double = (x) => x * 2;
+  alert(double(10));
+
+/*
+  var alertLoc;
+  var obj = {
+    loc: 'Nomadic',
+    init: function(){
+      alertLoc = () => 
+        alert("We're " + this.loc);
+    }
+  };
+  obj.init();
+  alertLoc();
+*/
+</div>
+				</section>
+				<section>
+<h4>destructuring assignment</h4>
+<button class='run'>Run</button>
+<div class='ace'>
+var arr = [1, 2, 3];
+func(arr);
+
+function func([fst, snd, thd]){
+  alert(fst);
+  alert(thd);
+}
+
+/*    REST PARAMETERS vvv
+function destructure(...args){
+  var [options, callback] = args;
+  alert(options.v);
+  alert(typeof callback);
+}
+var o = {v: true}
+destructure(o, () => $.noop);
+*/
+</div>
+				</section>
+				<section>
+<h4>template strings</h4>
+<button class='run'>Run</button>
+<div class='ace'>
+var first = "John K."
+var last = "Paul";
+var t = `I'm ${first} ${last}!`;
+alert(t);
+</div>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>function* inf(){
+  var i = 0;
+  while(true){
+    yield ++i;
+  }
+}
+
+for(var x of inf()){
+  alert(x);
+  if(x > 3) { break; }
+}
+
+</div>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>class Greeter {
+    constructor(message) {
+      this.message = message;
+    }
+    greet() {
+      alert(this.message)
+    }
+}
+
+var greeter = new Greeter('Hey');
+greeter.greet();
+</div>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>class Greeter {
+    constructor(message) {
+      this.message = message;
+    }
+    greet() {
+      alert(this.message)
+    }
+}
+
+var greeter = new Greeter('Hey');
+greeter.greet();
+</div>
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/waiting.gif" >
+				</section>
+				<section fullscreen-img="img/lego.jpg" style="background: rgba(255, 255, 255, .00);">
+<h2 class="fragment" style="background: rgba(255, 255, 255, .8); display: inline-block; padding: 10px;">default exports</h2>
+<div class="ace">// a.js 
+var name = "nomadjs";
+export default name;
+
+// b.js
+import name from "a";
+alert(name);
+</div>
+
+				</section>
+				<section fullscreen-img="img/lego.jpg" style="background: rgba(255, 255, 255, .00);">
+<h2 style="background: rgba(255, 255, 255, .8); display: inline-block; padding: 10px;">named exports</h2>
+<div class='ace'>// a.js 
+var name = "nomadjs";
+var location = "Everywhere";
+export name;
+export location;
+
+// b.js
+import {location, name} from "a";
+alert(name + " is in " + location);
+</div>
+
+				</section>
+				<section fullscreen-img="img/lego.jpg" style="background: rgba(255, 255, 255, .00);">
+<h2 style="background: rgba(255, 255, 255, .8); display: inline-block; padding: 10px;">named exports, import namespace</h2>
+<div class='ace'>// a.js 
+var name = "nomadjs";
+var location = "Everywhere";
+export name;
+export location;
+
+// b.js
+import * as a from "a";
+alert(a.name + " is in " + a.location);
+</div>
+
+				</section>
+<!-- img from http://cdn04.cdn.socialitelife.com/wp-content/uploads/2013/07/11/tumblr_mc3hg5VpQP1qcy0p7o1_500.gif -->
+				<section fullscreen-img="img/excited.gif" >
+				</section>
+<!-- img from http://giphy.com/gifs/hoaFB12CCE824  -->
+				<section fullscreen-img="img/sadcat.gif" >
+
+				</section>
+<!-- img from http://www.baseformula.com/blog/wp-content/uploads/2013/05/jealousy2.jpg -->
+				<section fullscreen-img="img/jealousy2.jpg" style="background: rgba(255, 255, 255, .00);">
+					<code>node --harmony</code>
+
+				</section>
+
+				<section fullscreen-img="img/trippygears.gif" style="background: rgba(255, 255, 255, .00);">
+                                  <!--<div class="fragment" style="background: rgba(255, 255, 255, .8);">-->
+                                    <!--<ul>-->
+                                      <!--<li>transpilers</li>-->
+                                      <!--<li>shims</li>-->
+                                    <!--</ul>-->
+                                  <!--</div>-->
+
+				</section>
+				<section fullscreen-img="img/trippygears.gif" style="background: rgba(255, 255, 255, .00);">
+                                  <div style="background: rgba(255, 255, 255, .8);">
+					<h2>Traceur</h2>
+<p>
+  <a href='http://bit.ly/nomadjsnov2014traceur' target="_blank">Try the REPL</a>
+</p>
+<img src='img/traceur-compare.png'>
+
+
+                                  </div>
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/grunt.svg" style="background: rgba(255, 255, 255, .80);">
+					<h2>grunt-traceur</h2>
+                                        <p>by Aaron Frost</p>
+                                        <pre><code>
+  // Gruntfile.js
+  module.exports = function(grunt){
+    grunt.loadNpmTasks('grunt-traceur');
+    grunt.initConfig({
+      traceur: {
+        options: {
+          experimental: true,
+          includeRuntime: true,
+          modules: 'register'
+        },
+        custom: {
+          files: [{
+            expand: true,
+            src: ['es6.js'],
+            dest: 'dist'
+          }]
+        },
+      },
+    });
+  };
+
+                                        </code></pre>
+
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/gulp.svg" style="background: rgba(255, 255, 255, .80);">
+					<h2>gulp-traceur</h2>
+                                        <p>by Sindre Sorhus</p>
+                                          <pre><code>
+  // gulpfile.js
+  var gulp = require('gulp');
+  var traceur = require('gulp-traceur');
+  var concat = require('gulp-concat');
+
+  var traceurOptions = {
+    experimental: true,
+    modules: false
+  };
+
+  gulp.task('default', function () {
+      gulp.src([traceur.RUNTIME_PATH])
+          .pipe(gulp.dest('dist'));
+
+      return gulp.src(['es6.js'])
+          .pipe(traceur(traceurOptions))
+          .pipe(gulp.dest('dist'));
+  });
+
+                                          </code></pre>
+
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/broccoli.png" style="background: rgba(255, 255, 255, .80);">
+					<h2>broccoli-traceur</h2>
+                                        <p>by Sindre Sorhus</p>
+                                        <pre><code>
+  // Brocfile.js
+  var pickFiles = require('broccoli-static-compiler');
+  var tree = pickFiles('app', {
+    srcDir: '/',
+    destDir: 'dist'
+  });
+  var traceurOptions = {
+    experimental: true,
+    modules: false
+  };
+
+  var traceur = require('broccoli-traceur');
+  tree = traceur(tree, traceurOptions);
+
+  module.exports = tree;
+
+                                        </code></pre>
+
+				</section>
+				<section fullscreen-img="img/browserify_logo.png" fullscreen-size="contain" style="background: rgba(255, 255, 255, .80);">
+					<h2><a href='https://github.com/thlorenz/es6ify'>es6ify</a></h2>
+                                        <p>by Thorsten Lorenz</p>
+                                        <p>browserify transform</p>
+                                        <pre><code>
+  var es6ify = require('es6ify');
+  var browserify = require('browserify');
+  browserify()
+    .add(es6ify.runtime)
+    .transform(es6ify)
+    .require(require.resolve('./es6.js'), { entry: true })
+    .bundle()
+    .pipe(fs.createWriteStream('es5.js'));
+                                        </code></pre>
+
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/sourcemaps.png" style="background: rgba(255, 255, 255, .00);">
+
+				</section>
+				<!--<section fullscreen-size="contain" fullscreen-img="img/traceurperformance.png" style="background: rgba(255, 255, 255, .00);">-->
+
+				<!--</section>-->
+				<section fullscreen-size="contain" fullscreen-img="img/iceberg.jpg" style="background: rgba(255, 255, 255, .00);">
+				</section>
+				<section fullscreen-img="img/iceberg.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .50);">
+					<h1>ES6</h1>
+<a href="http://kangax.github.io/compat-table/es6/"><img width="600" src="img/compat.png"></a>
+				</section>
+                                <section  style="background: rgba(255, 255, 255, .8);">
+
+                                  <h2>What you should do</h2>
+                                  <ul>
+                                    <li class="fragment">Add es6-shim</li>
+                                    <li class="fragment">Play around in the traceur repl</li>
+                                    <li class="fragment"><a href='http://net.tutsplus.com/tutorials/javascript-ajax/eight-cool-features-coming-in-es6/'>Read up on ES6 features</a></li>
+                                    <li class="fragment"><a href='http://ariya.ofilabs.com/'>Read Ariya Hidayat</a></li>
+                                    <li class="fragment"><a href='http://www.2ality.com/'>Read Axel Rauschmayer</a></li>
+                                    <li class="fragment"><a href='http://addyosmani.com/blog/ecmascript-6-resources-for-the-curious-javascripter/'>Read Addy Osmani</a></li>
+                                    <li class="fragment">Add a branch with an ES6 transpiler</li>
+                                  </ul>
+				</section>
+                                <section fullscreen-size="contain" fullscreen-img="img/allthethings.jpg" style="background: rgba(255, 255, 255, .0);">
+				</section>
+<!-- img from http://giphy.com/gifs/cat-funny-mixed-gif-pYpqrM6OehRYc -->
+				<section fullscreen-size="contain" fullscreen-img="img/impossible.gif" >
+                                </section>
+				<section  fullscreen-size="contain" fullscreen-img="img/impossible.gif" style="background: rgba(255, 255, 255, .8);">
+					<h1>Thank You</h1>
+					<h1>Questions?</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">john@johnkpaul.com</h3>
+				</section>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="js/traceur.js"></script>
+		<script src="lib/task.js"></script>
+		<script src="js/ace/ace.js"></script>
+		<script src="js/jquery-1.9.1.js"></script>
+                <script>
+
+                </script>
+
+<!--
+explain what node has and why it's so easy
+green eyes of jealousy
+
+explain some of es6 itself and what makes it so awesome
+
+what is traceur, what's hapepning
+
+grunt-traceur
+es6ify
+
+performance concerns weigned between everything else
+try catch performance
+http://square.github.io/es6-module-transpiler/
+http://facebook.github.io/regenerator/
+https://github.com/paulmillr/es6-shim/
+-->
+		<script>
+
+			// Full list of configuration options available here:
+			// https: //github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				keyboard: true,
+				overview: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                                        { src: 'plugin/fullscreen-img.js' }
+				]
+			});
+
+$('.run').click(function(){
+                               content = $(this).data('editor').getValue();
+                                var compiler = new traceur.Compiler;
+                                compiler.script(content, {experimental: true})
+                                        .then(function(result){
+                                            var source = result.js;
+                                            eval(source);
+                                        });
+
+                        });
+jQuery(function(){
+  jQuery('.ace').each(function(i, e){
+
+  var editor = ace.edit(e);
+      editor.setTheme("ace/theme/chaos");
+      editor.getSession().setMode("ace/mode/javascript");
+  $(e).prev().data('editor', editor);
+  });
+});
+setTimeout(function(){
+console.clear();
+}, 2000);
+		</script>
+<style type="text/css" media="screen">
+.run{
+position: absolute;
+right: 0px;
+z-index: 100000;
+font-size: 140%;
+}
+    .ace { 
+        top: 0;
+        left: 0;
+width:100%;height:576px;
+text-align:left;
+    }
+</style>
+
+<!--
+
+traceur
+grunt
+gulp
+brocolli
+
+-->
+	</body>
+</html>
