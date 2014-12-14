@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Ember Components: Make My ♥ Sing</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                          <!-- img from http://www.flickr.com/photos/bbum/301661917/sizes/o/ -->
+				<section data-state='the-first'>
+                                      <div  style="padding:20px">
+					<h1>Ember Components</h1>
+					<h2>Make My ♥ Sing</h2>
+					<h3>by @johnkpaul</h3>
+					<p>
+						<small>Backbone Conf 2014</small>
+					</p>
+                                        <!--http://singingalto2.files.wordpress.com/2013/03/singing20heart.gif-->
+                                        <!--<img src="img/heart.gif" style="border: 0px none;">-->
+                                      </div>
+				</section>
+				<section >
+					<h1>Who?</h1>
+					<h3 class="inverted">John K. Paul</h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">Penton</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;"><a href="http://www.meetup.com/nychtml5">NYCHTML5</a></span></h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;"><a href="http://twitter.com/johnkpaul">@johnkpaul</a></span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">john@johnkpaul.com</span></h3>
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/monkey.svg">
+                                  <img class="fragment" 
+                                       style="background:white;width:100px;max-width:initial;max-height:initial;position:absolute;top:-100px;left:0px;" 
+                                       src="img/prototype.png">
+
+                                  <img class="fragment" 
+                                       style="background:white;width:130px;max-width:initial;max-height:initial;position:absolute;top:-138px;left:162px;" 
+                                       src="img/jquery.svg">
+
+                                  <img class="fragment" 
+                                       style="background:white;width:100px;max-width:initial;max-height:initial;position:absolute;top:-188px;left:371px;" 
+                                       src="img/backbone.png">
+
+                                  <img class="fragment" 
+                                       style="background:white;width:140px;max-width:initial;max-height:initial;position:absolute;top:-240px;left:525px;" 
+                                       src="img/angular.png">
+
+                                  <img class="fragment" 
+                                       style="background:white;width:130px;max-width:initial;max-height:initial;position:absolute;top:-322px;left:787px;" 
+                                       src="img/logo.png">
+				</section>
+				<section >
+                                  <img src="img/logo.png" border="0" style="border:none;">
+				</section>
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>The typical example</h3>
+                                        <a class="jsbin-embed" href="http://emberjs.jsbin.com/huxurisefi/3/embed?html,output&height=600px">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+                                <!-- http://robots.thoughtbot.com/shared-terminology-yet-different-concepts-between-emberjs-and-rails -->
+				<section fullscreen-size="contain" fullscreen-img="img/ember.png">
+				</section>
+				<section fullscreen-img="img/web.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>/(Web) Components/</h3>
+                                        <ul>
+                                          <li>Create your own reusable widgets</li>
+                                          <li>Fully encapsulate HTML, CSS, and JS</li>
+                                        </ul>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/web.jpg" >
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>/(Web) Components/</h3>
+                                        <ul>
+                                          <li>Custom Elements</li>
+                                          <li>Templates</li>
+                                          <li>HTML Imports</li>
+                                          <li>Shadow DOM</li>
+                                        </ul>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/roll.jpg" fullscreen-size="contain">
+                                      <div  class="fragment" style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>/(Web)|(Ember) Components/</h3>
+                                        <ul>
+                                          <li>Custom Elements</li>
+                                          <li>Templates</li>
+                                        </ul>
+                                        <br>
+                                        <!-- we're trying to be able to use future specs without tying down to browsers -->
+                                      </div>
+				</section>
+				<section>
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>/(Ember) Components/</h3>
+                                        <ul>
+                                          <li>Handlebars partials++</li>
+                                          <li>Reusable, knows only what's passed in</li>
+                                          <li>Well defined interface</li>
+                                        </ul>
+                                      </div>
+				</section>
+				<section>
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>What's a partial?</h3>
+                                        <pre><code>
+   <script type="text/x-handlebars" data-template-name='_author'>
+    Written by {{author.firstName}} {{author.lastName}}
+   </script>
+
+   <script type="text/x-handlebars" data-template-name='post'>
+    <h1>{{title}}</h1>
+    <div>{{body}}</div>
+    {{partial "author"}}
+   </script>
+
+
+                                        </code></pre>
+                                      </div>
+				</section>
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Seems like a regular handlebars partial</h3>
+                                        <a class="jsbin-embed" href="http://emberjs.jsbin.com/nulixoqavo/1/embed?html,output&height=600px">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>But wait, there's more</h3>
+                                        <a class="jsbin-embed" href="http://emberjs.jsbin.com/sokibopola/1/embed?html,output&height=600px">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>What got me hooked</h3>
+                                        <!--http://gifrific.com/wp-content/uploads/2012/04/buster-im-a-monster.gif-->
+                                        <img src="img/monster.gif">
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>What got me hooked</h3>
+                                        <a class="jsbin-embed" href="http://jsbin.com/wiqemojame/1/embed?html,output&height=600px">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Ember Tabs</h3>
+                                        <a class="jsbin-embed" href="http://jsbin.com/uvovug/2/embed?html,output&height=600px">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3></h3>
+                                        <a class="jsbin-embed" href="http://emberjs.jsbin.com/woyefawiho/2/embed?html,output&height=600px">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
+                                      </div>
+				</section>
+
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>Component Lists</h3>
+                                        <ul>
+                                          <li><a href="https://gist.github.com/johnkpaul/6796944">My Component List</a></li>
+                                          <li><a href="http://coderberry.me/blog/2013/08/07/useful-ember-code-examples/">Eric Berry Component List</a></li>
+                                        </ul>
+                                      </div>
+				</section>
+				<section fullscreen-img="img/ootb.gif" fullscreen-size="contain">
+                                </section>
+				<section data-state="jsbinembed">
+                                      <div  style="background:rgba(255, 255, 255, .8);padding:20px">
+                                        <h3>ember-cli</h3>
+                                        <br>
+                                          <a href="https://gist.github.com/kristianmandrup/ae3174217f68a6a51ed5#components">Sharing components using ember-cli</a>
+                                          <br><br>
+                                          <a href="http://www.emberaddons.com/">Ember Addons</a>
+                                      </div>
+                                    
+				</section>
+				<section>
+                                  <pre><code>npm install --save ember-youtube</pre></code>
+                                      <div  style="padding:20px">
+                                        <img src="img/emberyoutube.png" style="border: 0px none;">
+                                      </div>
+				</section>
+				<section>
+                                  <pre><code>npm install --save ember-infinite-scroll</pre></code>
+                                      <div  style="padding:20px">
+                                        <img src="img/emberinfinitescroll.png" style="border: 0px none;">
+                                      </div>
+				</section>
+
+				<section>
+                                      <div  style="padding:20px">
+                                        <img src="img/heart.gif" style="border: 0px none;">
+                                      </div>
+				</section>
+				<!--<section>
+                                industry/job role
+                                country/state or province
+                                category/sub category
+                                role/user
+
+
+                                every ember joke has already been made
+                                web components are so far away, but ember apps have something
+                                heres where I first need to talk about examples of something that's good, but something that's better
+
+soemthing that just makes EVERYTHING easier
+something that everyone wants
+something that has such a clear API
+                                  
+                                </section>
+-->
+
+				<section>
+					<h1>Questions?</h1>
+					<h3>@johnkpaul</h3>
+					<p>
+						<small>Backbone Conf 2014</small>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: 'simple', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'lib/js/fullscreen-img.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
