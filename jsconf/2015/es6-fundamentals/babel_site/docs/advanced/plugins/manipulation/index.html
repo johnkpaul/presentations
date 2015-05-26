@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Plugins - Manipulation · Babel</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/docs/advanced/plugins/manipulation/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="Plugins - Manipulation · Babel">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="Plugins - Manipulation · Babel">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/docs/advanced/plugins/manipulation/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li class="active">
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Plugins - Manipulation</h1>
+        <p>How to remove and replace nodes</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 docs-content">
+      <h2 id="replacing-a-node">Replacing a node</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">babel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">types</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">Transformer</span><span class="p">(</span><span class="s2">&quot;foo-bar&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">FunctionDeclaration</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// this is shorthand for `this.replaceWith(newNode)`</span>
+      <span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">expressionStatement</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">literal</span><span class="p">(</span><span class="s2">&quot;i hate function declarations!&quot;</span><span class="p">));</span> 
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div>
+<h2 id="replacing-with-multiple-nodes">Replacing with multiple nodes</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">babel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">Transformer</span><span class="p">(</span><span class="s2">&quot;foo-bar&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">FunctionDeclaration</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">types</span><span class="p">;</span>
+
+      <span class="c1">// this is shorthand for `this.replaceWithMultiple(newNodes)`</span>
+      <span class="k">return</span> <span class="p">[</span>
+        <span class="nx">t</span><span class="p">.</span><span class="nx">expressionStatement</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">literal</span><span class="p">(</span><span class="s2">&quot;i hate function declarations!&quot;</span><span class="p">)),</span>
+        <span class="nx">t</span><span class="p">.</span><span class="nx">expressionStatement</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">literal</span><span class="p">(</span><span class="s2">&quot;jk they&#39;re alright&quot;</span><span class="p">)),</span>
+        <span class="nx">node</span>
+      <span class="p">];</span> 
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div>
+<p><strong>NOTE:</strong> When replacing an expression with multiple nodes, they <strong>must</strong> be statements. This is because
+Babel uses heuristics extensively when replacing nodes which means that you can do some pretty crazy
+transformations that would be extremely verbose otherwise.</p>
+
+<h2 id="replacing-a-node-with-a-source-string">Replacing a node with a source string</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">babel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">Transformer</span><span class="p">(</span><span class="s2">&quot;foo-bar&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">FunctionExpression</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// this is shorthand for `this.replaceWithSourceString(str)`</span>
+      <span class="k">return</span> <span class="s2">&quot;function (a, b) { return a * b; }&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div>
+<p><strong>NOTE:</strong> It&#39;s not recommended to use this API unless you&#39;re dealing with dynamic source strings, otherwise
+it&#39;s more efficient to parse the code outside of the visitor.</p>
+
+<h2 id="inserting-a-sibling-node">Inserting a sibling node</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">babel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">Transformer</span><span class="p">(</span><span class="s2">&quot;foo-bar&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">FunctionDeclaration</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">siblingNode</span><span class="p">);</span> <span class="c1">// or `insertAfter`</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div>
+<p><strong>NOTE:</strong> This should <strong>always</strong> be a statement or an array of statements. This uses the same heuristics
+mentioned in <a href="#replacing-with-multiple-nodes">replacing with multiple nodes</a>.</p>
+
+<h2 id="removing-a-node">Removing a node</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">babel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">Transformer</span><span class="p">(</span><span class="s2">&quot;foo-bar&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">FunctionDeclaration</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>You don&#39;t need to worry about the contexts where you can remove a node as it&#39;ll be cleaned up for you.
+ie. if you remove the <code>LEFT</code> node in <code>LEFT || RIGHT</code> then Babel will automatically turn it into just <code>RIGHT</code>.</p>
+
+<h2 id="replacing-a-parent">Replacing a parent</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">babel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">Transformer</span><span class="p">(</span><span class="s2">&quot;foo-bar&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">FunctionDeclaration</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">types</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">parentPath</span><span class="p">.</span><span class="nx">replaceWith</span><span class="p">(</span>
+        <span class="nx">t</span><span class="p">.</span><span class="nx">expressionStatement</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">literal</span><span class="p">(</span><span class="s2">&quot;no function declarations allowed!&quot;</span><span class="p">))</span>
+      <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div>
+<h2 id="removing-a-parent">Removing a parent</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">babel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">babel</span><span class="p">.</span><span class="nx">Transformer</span><span class="p">(</span><span class="s2">&quot;foo-bar&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">FunctionDeclaration</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">parentPath</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="sidebar">
+        <ul class="nav"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/docs.js?t=2015-05-27T15:59:04-04:00"></script>
+
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

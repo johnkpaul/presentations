@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>ES6 Overview by @johnkpaul</title>
+
+		<meta name="description" content="A Workshop about ES6">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+                        <div class="slides">
+                          <section>
+                          </section>
+                          <section data-background="img/floppy.jpg">
+                            <h2 style="background:white;padding:10px;">Ecma International</h2>
+                          </section>
+                          <section data-background="img/snail.jpg" >
+                            <div style="background:rgba(255, 255, 255, .5)">
+                              <h1>ECMAScript</h1>
+                              <ul>
+                                <li>3 - 1999</li>
+                                <li>5 - 2009</li>
+                                <li>6 - 2015</li>
+                                <li>but who cares?</li>
+                              </ul>
+                            </div>
+                          </section>
+                          <section data-background="img/phraselist.png">
+                          </section>
+                          <section>
+                            <h2>Pretty Code</h2>
+                            <button class="run">Run</button>
+                            <pre><code data-trim contenteditable>
+      class What extends Array {
+        constructor() {
+          super();
+          console.log('creating array');
+        }
+      }
+
+      var w = new What();
+                            </code></pre>
+                          </section>
+
+                        </div>
+
+                        <div class='footer'>
+                          ES6 Overview by <a href="http://twitter.com/johnkpaul">@johnkpaul</a>
+                        </div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+                        [].slice.call(document.querySelectorAll('.run')).forEach(function(el){
+                          el.addEventListener('click', function(){
+                            var text = el.nextElementSibling.firstChild.innerText;
+                            window.open('https://babeljs.io/repl/#?experimental=true&evaluate=false&loose=false&spec=false&code='+encodeURIComponent(text));
+                          });
+                        });
+
+		</script>
+
+	</body>
+</html>

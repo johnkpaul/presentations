@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Caveats · Babel</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/docs/advanced/caveats/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="Caveats · Babel">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="Caveats · Babel">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/docs/advanced/caveats/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li class="active">
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Caveats</h1>
+        <p>Just some things to keep in mind when using babel.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 docs-content">
+      <h2 id="polyfills">Polyfills</h2>
+
+<p>In order for certain features to work they require certain polyfills. You can satisfy <strong>all</strong>
+Babel feature requirements by using the included <a href="/docs/usage/polyfill">polyfill</a>.</p>
+
+<p>You may alternatively selectively include what you need:</p>
+
+<table><thead>
+<tr>
+<th>Feature</th>
+<th>Requirements</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Abstract References</td>
+<td><code>Symbol</code></td>
+</tr>
+<tr>
+<td>Array destructuring</td>
+<td><code>Symbol</code></td>
+</tr>
+<tr>
+<td>Async functions, Generators</td>
+<td><a href="https://github.com/facebook/regenerator/blob/master/runtime.js">regenerator runtime</a></td>
+</tr>
+<tr>
+<td>Comprehensions</td>
+<td><code>Array.from</code></td>
+</tr>
+<tr>
+<td>For Of</td>
+<td><code>Symbol</code>, <code>prototype[Symbol.iterator]</code></td>
+</tr>
+<tr>
+<td>Spread</td>
+<td><code>Array.from</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="classes">Classes</h2>
+
+<p>Built-in classes such as <code>Date</code>, <code>Array</code>, <code>DOM</code> etc cannot be properly subclassed
+due to limitations in ES5.</p>
+
+<h2 id="es5">ES5</h2>
+
+<p>Since Babel assumes that your code will be ran in an ES5 environment it uses ES5
+functions. So if you&#39;re using an environment that has limited or no support for
+ES5 such as lower versions of IE then using the
+<a href="https://github.com/es-shims/es5-shim">es5-shim</a> along with the
+<a href="/docs/usage/polyfill">Babel polyfill</a> will add support for these methods.</p>
+
+<h2 id="internet-explorer">Internet Explorer</h2>
+
+<h3 id="classes-(10-and-below)">Classes (10 and below)</h3>
+
+<p>If you&#39;re inheriting from a class then static properties are inherited from it
+via <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto">__proto__</a>,
+this is widely supported but you may run into problems with much older browsers.</p>
+
+<p><strong>NOTE:</strong> <code>__proto__</code> is not supported on IE &lt;= 10 so static properties
+<strong>will not</strong> be inherited. See the
+<a href="/docs/advanced/transformers/spec/proto-to-assign">protoToAssign</a> for a possible work
+around.</p>
+
+<p>For classes that have <code>super</code>s, the super class won&#39;t resolve correctly. You can
+get around this by enabling <a href="/docs/advanced/loose/">loose mode</a> for classes.</p>
+
+<h3 id="getters/setters-(8-and-below)">Getters/setters (8 and below)</h3>
+
+<p>In IE8 <code>Object.defineProperty</code> can only be used on DOM objects. This is
+unfortunate as it&#39;s required to set getters and setters. Due to this if
+you plan on supporting IE8 or below then the usage of getters and setters
+isn&#39;t recommended.</p>
+
+<p><strong>Reference</strong>: <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Internet_Explorer_8_specific_notes">MDN</a>.</p>
+
+<h4 id="modules">Modules</h4>
+
+<p>By default, when using modules with Babel a non-enumerable <code>__esModule</code> property
+is exported. This is done through the use of <code>Object.defineProperty</code> which is
+unsupported in IE8 and below. A workaround for this is to enable
+<a href="/docs/advanced/loose/#es6-modules">loose mode - modules</a>.</p>
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="sidebar">
+        <ul class="nav"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/docs.js?t=2015-05-27T15:59:04-04:00"></script>
+
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

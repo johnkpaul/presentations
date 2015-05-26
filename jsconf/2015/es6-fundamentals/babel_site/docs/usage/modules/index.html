@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Modules · Babel</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/docs/usage/modules/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="Modules · Babel">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="Modules · Babel">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/docs/usage/modules/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li class="active">
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Modules</h1>
+        <p>How to use module formatters.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 docs-content">
+      <p>See <a href="/docs/faq#what-is-a-module-formatter-">FAQ - What is a module formatter?</a>
+for module formatter terminology.</p>
+
+<p class="lead">
+  Babel has the ability to compile ES6 modules to the module system of your
+  choice. You can even easily create your own.
+</p>
+
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --modules common script.js
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">babel</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="s1">&#39;import &quot;foo&quot;;&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">modules</span><span class="o">:</span> <span class="s2">&quot;common&quot;</span> <span class="p">});</span>
+</code></pre></div>
+<h2 id="formats">Formats</h2>
+
+<h3 id="common-(default)">Common (Default)</h3>
+
+<p><a href="http://wiki.commonjs.org/wiki/Modules/1.1">CommonJS (CJS) Modules/1.1</a></p>
+
+<p><strong>Usage</strong></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --modules common
+</code></pre></div>
+<p><strong>Example</strong></p>
+
+<p>Exports:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="p">{</span><span class="nx">test</span><span class="p">};</span>
+<span class="kr">export</span> <span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">exports</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="nx">test</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div>
+<p>Bare import:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Default import:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">foo</span> <span class="nx">from</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">_interopRequire</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">));</span>
+</code></pre></div>
+<p>Wildcard import:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">foo</span> <span class="nx">from</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">_interopRequireWildcard</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">));</span>
+</code></pre></div>
+<p>Named import:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="p">{</span><span class="nx">bar</span><span class="p">,</span> <span class="nx">baz</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">bar</span><span class="p">()</span> <span class="o">+</span> <span class="nx">baz</span><span class="p">();</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">_bar$baz</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">_bar$baz</span><span class="p">.</span><span class="nx">bar</span><span class="p">()</span> <span class="o">+</span> <span class="nx">_bar$baz</span><span class="p">.</span><span class="nx">baz</span><span class="p">();</span>
+</code></pre></div>
+<p>Named alias import:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="p">{</span><span class="nx">bar</span> <span class="nx">as</span> <span class="nx">baz</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">baz</span><span class="p">();</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">_baz</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">_baz</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span>
+</code></pre></div>
+<h4 id="interop">Interop</h4>
+
+<p>In order to encourage the use of CommonJS and ES6 modules, when exporting a default
+export with <strong>no</strong> other exports <code>module.exports</code> will be set in addition to <code>exports[&quot;default&quot;]</code>.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">export</span> <span class="k">default</span> <span class="nx">test</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">exports</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">test</span><span class="p">;</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">];</span>
+</code></pre></div>
+<p>If you don&#39;t want this behaviour then you can use the <code>commonStrict</code> module formatter.</p>
+
+<h3 id="amd">AMD</h3>
+
+<p><a href="https://github.com/amdjs/amdjs-api">Asynchronous Module Definition (AMD)</a></p>
+
+<p><strong>Usage</strong></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --modules amd
+</code></pre></div>
+<p><strong>Example</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">foo</span> <span class="nx">from</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;exports&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="nx">_foo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="nx">_interopRequire</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">obj</span> <span class="o">&amp;&amp;</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">__esModule</span> <span class="o">?</span> <span class="nx">obj</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">:</span> <span class="nx">obj</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">exports</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="nx">bar</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">_interopRequire</span><span class="p">(</span><span class="nx">_foo</span><span class="p">);</span>
+
+  <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>You can optionally specify to include the module id (using the <code>--module-ids</code>
+argument):</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;exports&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="nx">_foo</span><span class="p">)</span> <span class="p">{})</span>
+</code></pre></div>
+<h3 id="system">System</h3>
+
+<p><strong>Usage</strong></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --modules system
+</code></pre></div>
+<p><strong>Example</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">foo</span> <span class="nx">from</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">System</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">_export</span><span class="p">)</span> <span class="p">{</span>
+  <span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">__moduleName</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">foo</span><span class="p">;</span>
+  <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">setters</span><span class="o">:</span> <span class="p">[</span><span class="kd">function</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">foo</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="k">default</span><span class="p">;</span>
+    <span class="p">}],</span>
+    <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">_export</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="nx">bar</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="umd">UMD</h3>
+
+<p><a href="https://github.com/umdjs/umd">Universal Module Definition (UMD)</a></p>
+
+<p><strong>Usage</strong></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --modules umd
+</code></pre></div>
+<p><strong>Example</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">foo</span> <span class="nx">from</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">factory</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">define</span><span class="p">.</span><span class="nx">amd</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">define</span><span class="p">([</span><span class="s2">&quot;exports&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">],</span> <span class="nx">factory</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">exports</span> <span class="o">!==</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">factory</span><span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">})(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="nx">_foo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="nx">_interopRequire</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">obj</span> <span class="o">&amp;&amp;</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">__esModule</span> <span class="o">?</span> <span class="nx">obj</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">:</span> <span class="nx">obj</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">exports</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="nx">bar</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">_interopRequire</span><span class="p">(</span><span class="nx">_foo</span><span class="p">);</span>
+
+  <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="ignore">Ignore</h3>
+
+<p><strong>Usage</strong></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --modules ignore
+</code></pre></div>
+<p><strong>Example</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">foo</span> <span class="nx">from</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="custom">Custom</h3>
+
+<p>You can alternatively specify module names instead of one of the built-in types.</p>
+
+<p><strong>Usage</strong></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --modules custom-module-formatter
+</code></pre></div>
+<p><strong>Example</strong></p>
+
+<p><strong><code>node_modules/custom-module-formatter/index.js</code></strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">ModuleFormatter</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">ModuleFormatter</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="nx">ModuleFormatter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">ast</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// this is ran after all transformers have had their turn at modifying the ast</span>
+  <span class="c1">// feel free to modify this however</span>
+<span class="p">};</span>
+
+<span class="nx">ModuleFormatter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">importDeclaration</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// node is an ImportDeclaration</span>
+<span class="p">};</span>
+
+<span class="nx">ModuleFormatter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">importSpecifier</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">specifier</span><span class="p">,</span> <span class="nx">node</span><span class="p">,</span> <span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// specifier is an ImportSpecifier</span>
+  <span class="c1">// node is an ImportDeclaration</span>
+<span class="p">};</span>
+
+<span class="nx">ModuleFormatter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">exportDeclaration</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// node is an ExportDeclaration</span>
+<span class="p">};</span>
+
+<span class="nx">ModuleFormatter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">exportSpecifier</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">specifier</span><span class="p">,</span> <span class="nx">node</span><span class="p">,</span> <span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// specifier is an ExportSpecifier</span>
+  <span class="c1">// node is an ExportDeclaration</span>
+<span class="p">};</span>
+</code></pre></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="sidebar">
+        <ul class="nav"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/docs.js?t=2015-05-27T15:59:04-04:00"></script>
+
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

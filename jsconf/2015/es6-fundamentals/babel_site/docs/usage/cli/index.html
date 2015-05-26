@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CLI · Babel</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/docs/usage/cli/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="CLI · Babel">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="CLI · Babel">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/docs/usage/cli/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li class="active">
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>CLI</h1>
+        <p>How to use the CLI tools.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 docs-content">
+      <p class="lead">
+  Babel comes with a built-in CLI which can be used to compile files from the
+  command line.
+</p>
+
+<h2 id="install">Install</h2>
+
+<p>Using <a href="https://www.npmjs.com/">npm</a> you can install Babel globally, making it
+available from the command line.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --global babel
+</code></pre></div>
+<h2 id="babel">babel</h2>
+
+<h4 id="compile-files">Compile Files</h4>
+
+<p>Compile the file <code>script.js</code> and <strong>output to stdout</strong>.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel script.js
+<span class="c"># output...</span>
+</code></pre></div>
+<p>If you would like to <strong>output to a file</strong> you may use <code>--out-file</code> or <code>-o</code>.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel script.js --out-file script-compiled.js
+</code></pre></div>
+<p>To compile a file <strong>every time that you change it</strong>, use the <code>--watch</code> or <code>-w</code> option:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel script.js --watch --out-file script-compiled.js
+</code></pre></div>
+<h3 id="compile-with-source-maps">Compile with Source Maps</h3>
+
+<p>If you would then like to add a <strong>source map file</strong> you can use
+<code>--source-maps</code> or <code>-s</code>. <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">Learn more about source maps</a>.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel script.js --out-file script-compiled.js --source-maps
+</code></pre></div>
+<p>If you would rather have <strong>inline source maps</strong>, you may use <code>--source-maps inline</code>.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel script.js --out-file script-compiled.js --source-maps inline
+</code></pre></div>
+<h3 id="compile-directories">Compile Directories</h3>
+
+<p>Compile the entire <code>src</code> directory and output it to the <code>lib</code> directory.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel src --out-dir lib
+</code></pre></div>
+<p>Compile the entire <code>src</code> directory and output it to the one concatenated file.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel src --out-file script-compiled.js
+</code></pre></div>
+<h3 id="piping-files">Piping Files</h3>
+
+<p>Pipe a file in via stdin and output it to <code>script-compiled.js</code></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --out-file script-compiled.js &lt; script.js
+</code></pre></div>
+<h2 id="babel-node">babel-node</h2>
+
+<p>babel comes with a second CLI which works exactly the same as Node.js&#39;s CLI, only
+it will compile ES6 code before running it.</p>
+
+<p>Launch a REPL (Read-Eval-Print-Loop).</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel-node
+</code></pre></div>
+<p>Evaluate code.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel-node -e <span class="s2">&quot;class Test { }&quot;</span>
+</code></pre></div>
+<p>Compile and run <code>test.js</code>.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel-node <span class="nb">test</span>
+</code></pre></div>
+<h3 id="usage">Usage</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel-node <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span> -e script <span class="p">|</span> script.js <span class="o">]</span> <span class="o">[</span>arguments<span class="o">]</span>
+</code></pre></div>
+<p>When arguments for user script have names conflicting with node options, double dash placed before script name can be used to resolve ambiguities</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel-node --debug --stage <span class="m">0</span> -- script.js --debug
+</code></pre></div>
+<h3 id="options">Options</h3>
+
+<table><thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>-e, --eval [script]</code></td>
+<td></td>
+<td>Evaluate script</td>
+</tr>
+<tr>
+<td><code>-p, --print</code></td>
+<td></td>
+<td>Evaluate script and print result</td>
+</tr>
+<tr>
+<td><code>-i, --ignore [regex]</code></td>
+<td><code>node_modules</code></td>
+<td>Ignore all files that match this regex when using the require hook</td>
+</tr>
+<tr>
+<td><code>-x, --extensions</code></td>
+<td><code>&quot;.js&quot;,&quot;.jsx&quot;,&quot;.es6&quot;,&quot;.es&quot;</code></td>
+<td>List of extensions to hook into</td>
+</tr>
+<tr>
+<td><code>-r, --stage [stage]</code></td>
+<td><code>2</code></td>
+<td>Set the <a href="/docs/usage/experimental">experimental</a> proposal stage</td>
+</tr>
+<tr>
+<td><code>-w, --whitelist</code></td>
+<td></td>
+<td>Whitelist of transformers to ONLY use</td>
+</tr>
+<tr>
+<td><code>-b, --blacklist</code></td>
+<td></td>
+<td>Blacklist of transformers to NOT use</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="sidebar">
+        <ul class="nav"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/docs.js?t=2015-05-27T15:59:04-04:00"></script>
+
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

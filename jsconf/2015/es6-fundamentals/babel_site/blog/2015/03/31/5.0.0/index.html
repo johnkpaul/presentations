@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>5.0.0 Released · Babel</title>
+  <meta name="description" content="In the past few months Babel has been welcomed into several major communitiessuch as Node, React, Ember, Backbone, Angular, Rails, and many others. Welaunche...">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/blog/2015/03/31/5.0.0">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="5.0.0 Released · Babel">
+  <meta name="og:description" content="In the past few months Babel has been welcomed into several major communitiessuch as Node, React, Ember, Backbone, Angular, Rails, and many others. Welaunche...">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="5.0.0 Released · Babel">
+  <meta name="twitter:description" content="In the past few months Babel has been welcomed into several major communitiessuch as Node, React, Ember, Backbone, Angular, Rails, and many others. Welaunche...">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/blog/2015/03/31/5.0.0">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li class="active">
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-push-3">
+        <h1 class="text-center">5.0.0 Released</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-push-3 babel-blog-content">
+      <p class="small text-center text-muted">Posted Mar 31, 2015 by Sebastian McKenzie</p>
+
+      <p>In the past few months Babel has been welcomed into several major communities
+such as Node, React, Ember, Backbone, Angular, Rails, and many others. We
+launched the <a href="/users">Users page</a> only a few weeks ago and it&#39;s really cool to
+see everyone that is using it. Companies like CloudFlare, Netflix, Mozilla, and
+Yahoo!. Projects like Ghost, Atom, Mapbox, and so many more.</p>
+
+<p>We&#39;ve seen tons of blog posts, talks, events, courses all about ES6+ using
+Babel, and official Babel tools have been downloaded nearly 2 million times.</p>
+
+<p>Today we are making by far the largest release of Babel ever.</p>
+
+<p><strong>If you&#39;re upgrading from Babel 4.x please see the
+<a href="#breaking-changes">breaking changes</a></strong>.</p>
+
+<p>This release includes the new ES7 proposals:</p>
+
+<ul>
+<li><a href="https://github.com/wycats/javascript-decorators">Decorators</a></li>
+<li><a href="https://gist.github.com/jeffmo/054df782c05639da2adb">Class properties</a></li>
+<li><a href="https://github.com/leebyron/ecmascript-more-export-from">Export extensions</a></li>
+</ul>
+
+<p>The entire internal traversal and transformation pipeline has undergone a
+rewrite that substantially increases flexibility and will allow many future
+pipeline performance optimisations.</p>
+
+<p>This release also brings a plugin API, this allows consumers to plug in their
+own custom transformers to utilise the powerful transformation mechanisms that
+Babel has to offer.</p>
+
+<p>You can view the complete CHANGELOG
+<a href="https://github.com/babel/babel/blob/master/CHANGELOG.md#500">here</a>.</p>
+
+<p>And as usual <strong>if you run into any regressions please report them immediately</strong>.</p>
+
+<h3 id="tc39-process">TC39 Process</h3>
+
+<p>In this release you&#39;ll start to see us aligned with the
+<a href="https://docs.google.com/document/d/1QbEE0BsO4lvl7NFTn5WXWeiEIBfaVUF7Dk0hpPpPDzU">TC39 process</a>.
+The TC39 is the technical committee from ECMA that writes the ECMAScript
+standard. Their process is categorised into 5 stages:</p>
+
+<ul>
+<li>Stage 0 - Strawman</li>
+<li>Stage 1 - Proposal</li>
+<li>Stage 2 - Draft</li>
+<li>Stage 3 - Candidate</li>
+<li>Stage 4 - Finished</li>
+</ul>
+
+<p>Proposals that are <strong>stage 2 or above</strong> are enabled in Babel by default. Now
+this does not mean that they&#39;re guaranteed to be included in future ECMAScript
+specifications or even Babel itself. Stage 2 is considered a good point for
+inclusion by default in Babel due to their relative maturity and need for
+critical proposal feedback.</p>
+
+<p>Now let&#39;s dive into the changes we made to 5.0.</p>
+
+<hr>
+
+<p><strong>Contents:</strong></p>
+
+<ul>
+<li><a href="#new-features">New Features</a>
+
+<ul>
+<li><a href="#new-proposals">New Proposals</a>
+
+<ul>
+<li><a href="#stage-0:-class-properties">Stage 0: Class Properties</a></li>
+<li><a href="#stage-1:-decorators">Stage 1: Decorators</a></li>
+<li><a href="#stage-1:-export-extensions">Stage 1: Export Extensions</a></li>
+</ul></li>
+<li><a href="#react-optimisations">React Optimisations</a>
+
+<ul>
+<li><a href="#constant-elements">Constant Elements</a></li>
+<li><a href="#inline-elements">Inline Elements</a></li>
+</ul></li>
+<li><a href="#babelrc">.babelrc</a></li>
+<li><a href="#plugin-api">Plugin API</a></li>
+</ul></li>
+<li><a href="#breaking-changes">Breaking Changes</a>
+
+<ul>
+<li><a href="#experimental-option">Experimental Option</a></li>
+<li><a href="#class-changes">Class Changes</a></li>
+<li><a href="#removed-features">Removed Features</a></li>
+<li><a href="#imports-are-now-hoisted">imports are now hoisted</a></li>
+</ul></li>
+</ul>
+
+<h1 id="new-features" class="babel-blog-section-title">New Features</h1>
+
+<h2 id="new-proposals">New Proposals</h2>
+
+<h3 id="stage-0:-class-properties">Stage 0: Class Properties</h3>
+
+<p><a href="https://github.com/jeffmo">Jeff Morrison&#39;s</a> stage 0
+<a href="https://gist.github.com/jeffmo/054df782c05639da2adb">class property initializers proposal</a>
+fills the void of property composition on classes. These are analogous with the
+class properties example listed in the
+<a href="https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#es7-property-initializers">React 0.13 beta announcement</a>.</p>
+
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">firstName</span> <span class="o">=</span> <span class="s2">&quot;Sebastian&quot;</span><span class="p">;</span>
+  <span class="kr">static</span> <span class="nx">lastName</span> <span class="o">=</span> <span class="s2">&quot;McKenzie&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">assert</span><span class="p">(</span><span class="k">new</span> <span class="nx">Person</span><span class="p">().</span><span class="nx">firstName</span><span class="p">,</span> <span class="s2">&quot;Sebastian&quot;</span><span class="p">);</span>
+<span class="nx">assert</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">lastName</span><span class="p">,</span> <span class="s2">&quot;McKenzie&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Usage:</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">optional</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;es7.classProperties&quot;</span><span class="p">]</span>
+<span class="p">});</span>
+<span class="c1">// or</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">stage</span><span class="o">:</span> <span class="mi">0</span> <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --optional es7.classProperties script.js
+<span class="c"># or</span>
+<span class="nv">$ </span>babel --stage <span class="m">0</span> script.js
+</code></pre></div>
+<h3 id="stage-1:-decorators">Stage 1: Decorators</h3>
+
+<p><a href="https://github.com/wycats">Yehuda Katz&#39;</a> stage 1
+<a href="https://github.com/wycats/javascript-decorators">decorators proposal</a> allows
+you to elegantly compose property descriptors and metadata decoration. In the
+future this will allow the powerful
+<a href="http://guides.emberjs.com/v1.10.0/object-model/classes-and-instances/">Ember Object Model</a>
+to easily be represented with native classes.</p>
+
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">concat</span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">sep</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">descriptor</span><span class="p">.</span><span class="nx">initializer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">args</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">arg</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">[</span><span class="nx">arg</span><span class="p">]).</span><span class="nx">join</span><span class="p">(</span><span class="nx">sep</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">autobind</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="k">delete</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="k">delete</span> <span class="nx">descriptor</span><span class="p">.</span><span class="nx">writable</span><span class="p">;</span>
+  <span class="nx">descriptor</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">bound</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">value</span><span class="o">:</span> <span class="nx">bound</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">bound</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">firstName</span> <span class="o">=</span> <span class="s2">&quot;Sebastian&quot;</span><span class="p">;</span>
+  <span class="nx">lastName</span> <span class="o">=</span> <span class="s2">&quot;McKenzie&quot;</span><span class="p">;</span>
+
+  <span class="err">@</span><span class="nx">concat</span><span class="p">(</span><span class="s2">&quot;firstName&quot;</span><span class="p">,</span> <span class="s2">&quot;lastName&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="nx">fullName</span><span class="p">;</span>
+  <span class="err">@</span><span class="nx">concat</span><span class="p">(</span><span class="s2">&quot;lastName&quot;</span><span class="p">,</span> <span class="s2">&quot;firstName&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="p">)</span> <span class="nx">formalName</span><span class="p">;</span>
+
+  <span class="err">@</span><span class="nx">autobind</span>
+  <span class="nx">getFullName</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="err">`</span><span class="nx">$</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">}</span> <span class="nx">$</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">assert</span><span class="p">(</span><span class="k">new</span> <span class="nx">Person</span><span class="p">().</span><span class="nx">fullName</span><span class="p">,</span> <span class="s2">&quot;Sebastian McKenzie&quot;</span><span class="p">);</span>
+<span class="nx">assert</span><span class="p">(</span><span class="k">new</span> <span class="nx">Person</span><span class="p">().</span><span class="nx">formalName</span><span class="p">,</span> <span class="s2">&quot;McKenzie, Sebastian&quot;</span><span class="p">);</span>
+<span class="nx">assert</span><span class="p">(</span><span class="k">new</span> <span class="nx">Person</span><span class="p">().</span><span class="nx">getFullName</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kc">null</span><span class="p">),</span> <span class="s2">&quot;Sebastian McKenzie&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Usage:</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">optional</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;es7.decorators&quot;</span><span class="p">]</span>
+<span class="p">});</span>
+<span class="c1">// or</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">stage</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --optional es7.decorators script.js
+<span class="c"># or</span>
+<span class="nv">$ </span>babel --stage <span class="m">1</span> script.js
+</code></pre></div>
+<h3 id="stage-1:-export-extensions">Stage 1: Export Extensions</h3>
+
+<p><a href="https://github.com/leebyron">Lee Byron&#39;s</a> stage 1
+<a href="https://github.com/leebyron/ecmascript-more-export-from">additional export-from statements proposal</a>
+completes the symmetry between import and export statement, allowing you to
+easily export namespaces and defaults from external modules without 
+modifying the local scope.</p>
+
+<p><strong>Exporting a default</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="nx">foo</span> <span class="nx">from</span> <span class="s2">&quot;bar&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>equivalent to:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">_foo</span> <span class="nx">from</span> <span class="s2">&quot;bar&quot;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="p">{</span> <span class="nx">_foo</span> <span class="nx">as</span> <span class="nx">foo</span> <span class="p">};</span>
+</code></pre></div>
+<p><strong>Exporting a namespace</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">ns</span> <span class="nx">from</span> <span class="s2">&quot;mod&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>equivalent to:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">_ns</span> <span class="nx">from</span> <span class="s2">&quot;mod&quot;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="p">{</span> <span class="nx">_ns</span> <span class="nx">as</span> <span class="nx">ns</span> <span class="p">};</span>
+</code></pre></div>
+<p><strong>Usage:</strong></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">optional</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;es7.exportExtensions&quot;</span><span class="p">]</span>
+<span class="p">});</span>
+<span class="c1">// or</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">stage</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --optional es7.exportExtensions script.js
+<span class="c"># or</span>
+<span class="nv">$ </span>babel --stage <span class="m">1</span> script.js
+</code></pre></div>
+<h2 id="react-optimisations">React Optimisations</h2>
+
+<p>In preparation for React 0.14, Babel supports some optimisation transformers for
+JSX.</p>
+
+<h3 id="constant-elements"><a href="https://github.com/facebook/react/issues/3226">Constant Elements</a></h3>
+
+<p>Starting with 0.14 ReactElements and their props objects can be treated as as
+value types. i.e. any instance is conceptually equivalent if all their values
+are the same.</p>
+
+<p>Take this function for example:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span> <span class="o">/&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This can be optimized by moving the JSX out of the function body so that each
+time it is called the same instance is returned:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">_ref</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span> <span class="o">/&gt;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">_ref</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Not only does it allow us to reuse the same objects, React will automatically
+bail out any reconciliation of constant components - without a manual
+<code>shouldComponentUpdate</code>.</p>
+
+<p><strong>Usage:</strong></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">optional</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;optimisation.react.constantElements&quot;</span><span class="p">]</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --optional optimisation.react.constantElements script.js
+</code></pre></div>
+<h3 id="inline-elements"><a href="https://github.com/facebook/react/issues/3228">Inline Elements</a></h3>
+
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>Production only</h4>
+  <p>
+    Inline Elements should <strong>only</strong> be enabled in production as
+    multiple React warning messages are suppressed which is extremely risky
+    in development.
+  </p>
+</blockquote>
+
+<p>Starting with React 0.14 ReactElements can be inlined:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">bar</span><span class="p">}</span><span class="o">&lt;</span><span class="nx">Baz</span> <span class="nx">key</span><span class="o">=</span><span class="s2">&quot;baz&quot;</span> <span class="o">/&gt;&lt;</span><span class="err">/div&gt;</span>
+</code></pre></div>
+<p>as objects:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="nx">props</span><span class="o">:</span> <span class="p">{</span> <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="nx">children</span><span class="o">:</span>
+  <span class="p">[</span> <span class="nx">bar</span><span class="p">,</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Baz</span><span class="p">,</span> <span class="nx">props</span><span class="o">:</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="nx">ref</span><span class="o">:</span> <span class="kc">null</span> <span class="p">}</span> <span class="p">]</span>
+<span class="p">},</span> <span class="nx">key</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">ref</span><span class="o">:</span> <span class="kc">null</span> <span class="p">}</span>
+</code></pre></div>
+<p>This improves performance over the existing <code>React.createElement</code> call by
+inlining the result of it.</p>
+
+<p><strong>Usage:</strong></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">optional</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;optimisation.react.inlineElements&quot;</span><span class="p">]</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --optional optimisation.react.inlineElements script.js
+</code></pre></div>
+<h2 id=".babelrc">.babelrc</h2>
+
+<p>Babel 5.0.0 has support for <code>.babelrc</code> out of the box across its <strong>entire</strong>
+range of integrations. This means that it will work across
+<a href="/docs/usage/register"><code>babel/register</code></a>,
+<a href="/docs/usage/cli#babel-node"><code>babel-node</code></a> as well as across the entire range
+of build system plugins and module loaders such as
+<a href="https://github.com/babel/babel-loader"><code>babel-loader</code></a>,
+<a href="https://github.com/babel/babelify"><code>babelify</code></a>, and others.</p>
+
+<p><code>.babelrc</code> is equivalent to JSHint&#39;s <a href="http://jshint.com/docs/"><code>.jshintrc</code></a> and
+JSCS&#39; <a href="http://jscs.info/overview.html"><code>.jscsrc</code></a>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;stage&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;ignore&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;foo.js&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bar/**/*.js&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>See the <a href="/docs/usage/babelrc">docs</a> for more info.</p>
+
+<h2 id="plugin-api">Plugin API</h2>
+
+<p>5.0.0 also introduces the long anticipated plugin API. This allows you to hook
+into the powerful traversal and transformation internals of Babel. See the
+<a href="/docs/usage/plugins">docs</a> for more info.</p>
+
+<h1 id="breaking-changes" class="babel-blog-section-title">Breaking Changes</h1>
+
+<h3 id="experimental-option">Experimental Option</h3>
+
+<p>The <code>experimental</code> option has been <strong>removed</strong>. Fear not though, there is a
+replacement. Babel now categories the ES7 transformers by
+<a href="#tc39-changes">TC39 stages</a>.</p>
+
+<p>tl;dr If you&#39;re using the <code>experimental</code> option, simply change it to
+<code>$ babel --stage 0</code> or <code>{ stage: 0 }</code>.</p>
+
+<blockquote>
+<p><strong>Reminder:</strong> Proposals that are <strong>stage 2 or above</strong> are enabled by default.</p>
+</blockquote>
+
+<p><strong>Stage 0</strong></p>
+
+<ul>
+<li><code>es7.classProperties</code></li>
+<li><code>es7.comprehensions</code></li>
+</ul>
+
+<p><strong>Stage 1</strong></p>
+
+<ul>
+<li><code>es7.asyncFunctions</code></li>
+<li><code>es7.decorators</code></li>
+<li><code>es7.exportExtensions</code></li>
+<li><code>es7.objectRestSpread</code></li>
+</ul>
+
+<p><strong>Stage 2</strong> (Stage 2 and above are enabled by default)</p>
+
+<ul>
+<li><code>es7.exponentiationOperator</code></li>
+</ul>
+
+<p>For a list of all current ES7 proposals please see the
+<a href="https://github.com/tc39/ecma262">tc39/ecma262 repo</a>.</p>
+
+<h3 id="returnusedhelpers-option"><code>returnUsedHelpers</code> option</h3>
+
+<p>The <code>returnUsedHelpers</code> option has been renamed to <code>metadataUsedHelpers</code> and the returning result
+object has been changed from <code>usedHelpers</code> to <code>metadata.usedHelpers</code>.</p>
+
+<h3 id="class-changes">Class Changes</h3>
+
+<p>5.0.0 introduces some updated derived class semantics that are long overdue.</p>
+
+<p><code>super()</code> <strong>must</strong> be called in a derived class constructor.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Foo</span> <span class="kr">extends</span> <span class="nx">Bar</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// no `super();`</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Access to <code>this</code> before <code>super()</code> in a derived class constructor is <strong>not</strong>
+allowed.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Foo</span> <span class="kr">extends</span> <span class="nx">Bar</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">foo</span><span class="p">;</span> <span class="c1">// `this` access before `super();`</span>
+    <span class="kr">super</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>super()</code> is <strong>only</strong> allowed in derived class constructors.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Foo</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">();</span> <span class="c1">// not in a derived constructor</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="removed-features">Removed Features</h2>
+
+<ul>
+<li>The playground has been removed so development can be focussed on mainstream
+ES features and proposals. This also reduces the risk of syntactic conflicts
+preventing certain official features from being implemented.</li>
+<li><a href="https://github.com/zenparsing/es-abstract-refs">Abstract references</a> have
+been removed as the proposal has been superseded. Support for one or more of the
+superseding proposals may be implemented in the future.</li>
+</ul>
+
+<hr>
+
+<p>In closing, we hope that you are now as excited about this release as we are.
+There&#39;s a lot that went into it, and we believe this will set us up for a long
+time into the future.</p>
+
+<p class="text-right">— The Babel team</p>
+
+<h2 id="imports-are-now-hoisted">Imports are now hoisted</h2>
+
+<p>In <code>4.x</code>, imports were inlined as where they appeared in the code. Which means that this code:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">global.test = &#39;test&#39;
+import &#39;./test&#39;
+</code></pre></div>
+<p>would compile to:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&#39;use strict&#39;;
+
+global.test = &#39;test&#39;;
+require(&#39;./test&#39;);
+</code></pre></div>
+<p>However, from <code>5.x</code> on, this behaviour has been changed in order to comply with the ES6 spec and <em><a href="https://gitter.im/babel/babel?at=5525474d80f7bb0315a369ce">imports will</a> <a href="http://stackoverflow.com/questions/29329662/are-es6-module-imports-hoisted">now be hoisted</a></em>. What this means in practical code is that the snippet above will get converted to something like:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&#39;use strict&#39;;
+
+require(&#39;./test&#39;);
+global.test = &#39;test&#39;;
+</code></pre></div>
+<p>If your code required certain bits and pieces to be executed in between a specific module being imported -which might be the case while testing code and you need to fake some <code>window</code> properties :)- you may want to extract that away into its own file and import it before the code that needs it.</p>
+
+
+      <hr>
+
+      <div class="babel-share-buttons">
+        <div class="fb-share-button" data-layout="button_count"></div>
+        <a class="twitter-share-button" href="https://twitter.com/share" data-via="babeljs" data-text="5.0.0 Released">Tweet</a>
+      </div>
+
+      <div id="fb-root"></div>
+
+      <hr>
+
+      <div id="disqus_thread"></div>
+
+      <script type="text/javascript">
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
+
+      <script type="text/javascript">
+      window.twttr = (function(d, s, id) {
+        var t, js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src="https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        return window.twttr || (t = { _e: [], ready: function(f) { t._e.push(f) } })
+      }(document,"script","twitter-wjs"));
+      </script>
+
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = '6to5'; // required: replace example with your forum shortname
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </div>
+  </div>
+</div>
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

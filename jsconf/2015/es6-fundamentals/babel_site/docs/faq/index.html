@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>FAQ · Babel</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/docs/faq/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="FAQ · Babel">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="FAQ · Babel">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/docs/faq/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li class="active">
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>FAQ</h1>
+        <p>Frequently Asked Questions and Answers</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 docs-content">
+      <h2 id="what-is-the-browser-compatibility?">What is the browser compatibility?</h2>
+
+<p>As a rule of thumb, IE9+. You can support IE8 by limiting yourself to a subset of ES6 features. The
+<a href="/docs/advanced/caveats">Caveats</a> page goes into the details of supporting legacy browsers.</p>
+
+<h2 id="why-am-i-getting-a-syntax-error-when-using-{-...props-}-and-async-function-foo()-{}?">Why am I getting a syntax error when using <code>{ ...props }</code> and <code>async function foo() {}</code>?</h2>
+
+<p>You need to enable the <a href="/docs/usage/experimental">experimental option</a>.</p>
+
+<h2 id="why-is-the-output-of-for...of-so-verbose-and-ugly?">Why is the output of <code>for...of</code> so verbose and ugly?</h2>
+
+<p>This is necessary in order to comply with the spec as an iterators <code>return</code> method must be called on
+errors. An alternative is to enable <a href="/docs/advanced/loose#abrupt-completions">loose mode</a> but please note
+that there are <strong>many</strong> caveats to be aware of if you enable loose mode and that you&#39;re willingly choosing
+to be spec incompliant.</p>
+
+<p>Please see <a href="https://github.com/google/traceur-compiler/issues/1773">google/traceur-compiler#1773</a> and
+<a href="https://github.com/babel/babel/issues/838">babel/babel/#838</a> for more information.</p>
+
+<h2 id="why-are-this-and-arguments-being-remapped-in-arrow-functions?">Why are <code>this</code> and <code>arguments</code> being remapped in arrow functions?</h2>
+
+<p>Arrow functions <strong>are not</strong> synonymous with normal functions. <code>arguments</code> and <code>this</code> inside arrow functions
+reference their <em>outer function</em> for example:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&quot;Sebastian&quot;</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&quot;McKenzie&quot;</span><span class="p">,</span>
+  <span class="nx">getFullName</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// whoops! `this` doesn&#39;t actually reference `user` here</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Please see <a href="https://github.com/babel/babel/issues/842">#842</a>, <a href="https://github.com/babel/babel/issues/814">#814</a>,
+<a href="https://github.com/babel/babel/issues/733">#733</a> and <a href="https://github.com/babel/babel/issues/730">#730</a> for
+more information.</p>
+
+<h2 id="why-is-this-being-remapped-to-undefined?">Why is <code>this</code> being remapped to <code>undefined</code>?</h2>
+
+<p>Babel assumes that all input code is an ES2015 module. ES2015 modules are implicitly strict mode so this means
+that top-level <code>this</code> is not <code>window</code> in the browser nor is it <code>exports</code> in node.</p>
+
+<p>If you don&#39;t want this behaviour then you have the option of disabling the <code>strict</code> transformer:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --blacklist strict script.js
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">blacklist</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;strict&quot;</span><span class="p">]</span> <span class="p">});</span>
+</code></pre></div>
+<p><strong>PLEASE NOTE:</strong> If you do this you&#39;re willingly deviating from the spec and this may cause future
+interop issues.</p>
+
+<p>See the <a href="/docs/advanced/transformers/other/strict">strict transformer docs</a> for more info.</p>
+
+<h2 id="how-does-babel-differ-from-other-transpilers?">How does Babel differ from other transpilers?</h2>
+
+<p>Many issues plague current transpilers, Babel takes a unique approach to many aspects.</p>
+
+<h3 id="no-runtime-dependency">No runtime dependency</h3>
+
+<p>Many transpilers require a globally polluting polyfill and runtime. Babel has various ways
+to avoid this, including concise code that utilises minimal inline helpers as well as
+features such as <a href="/docs/usage/runtime">runtime</a> that enable library authors to utilise ES2015
+methods without the aforementioned polyfill.</p>
+
+<h3 id="readable-output">Readable output</h3>
+
+<p>Babel cares immensely about your output code. Not only should it not be bound to a bulky
+runtime but it should always retain as much of the source formatting as possible
+(newlines and comments).</p>
+
+<h3 id="source-maps">Source maps</h3>
+
+<p>Source maps are critical in the context of transpiled languages. This enables you to
+seamlessly write and debug your code without worrying about what it turns into.</p>
+
+<h3 id="toggleable-transformers">Toggleable transformers</h3>
+
+<p>With support for ES2015 being implemented into engines at a rapid rate it&#39;s critical that
+certain transformations have the ability to be turned off. With Babel <strong>every single</strong>
+transformation can be turned off. Classes get supported in your target environment?
+Simply disable it and reap the benefits of all the other transformers.</p>
+
+<h3 id="feature-rich">Feature-rich</h3>
+
+<p>The Babel feature set is very comprehensive, supporting every ES2015 syntactic feature. With
+built-in support for emerging standards such as <a href="http://flowtype.org">Flow</a> and
+<a href="/docs/usage/jsx">JSX/React</a> it makes it extremely easy to integrate.</p>
+
+<h3 id="flexible">Flexible</h3>
+
+<p>Babel is very flexible in it&#39;s usage, it has support for an extensive range of
+<a href="/docs/setup#build-systems">build systems</a> as well as for the
+<a href="/docs/usage/browser">browser</a>, <a href="/docs/setup#node-js">node</a> and <a href="/docs/setup#misc">more!</a>.</p>
+
+<h2 id="what-is-a-module-formatter?">What is a module formatter?</h2>
+
+<p>A module formatter is a transformer that turns exports and imports into their equivalent
+target format. For example, the <code>common</code> module formatter transforms
+<code>import { foo } from &quot;bar&quot;;</code> into the CommonJS <code>var foo = require(&quot;bar&quot;).foo;</code></p>
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="sidebar">
+        <ul class="nav"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/docs.js?t=2015-05-27T15:59:04-04:00"></script>
+
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

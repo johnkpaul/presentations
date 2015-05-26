@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Babel · The compiler for writing next generation JavaScript</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/page2/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="Babel · The compiler for writing next generation JavaScript">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="Babel · The compiler for writing next generation JavaScript">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/page2/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="jumbotron text-center">
+  <div class="container-fluid">
+    <h1>Babel is a JavaScript compiler.</h1>
+    <p>Use next generation JavaScript, today.</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <a class="jumbotron-callout" href="/blog/2015/03/31/5.0.0/">
+          <p>v5.0.0 has been released! Read the blog post here.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <iframe src="https://ghbtns.com/github-btn.html?user=babel&repo=babel&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+</div>
+
+<div class="container">
+  <div class="row featurette text-center">
+    <h2 class="text-center">Babel transforms your JavaScript</h2>
+
+    <div class="col-lg-6">
+      <h3>You put JavaScript in</h3>
+      <div class="lead">
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">myOldWeirdJavaScript</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">);</span></code></pre></div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <h3>And get JavaScript out</h3>
+      <div class="lead">
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">myNewTransformedJavaScript</span><span class="p">(</span><span class="s2">&quot;yay!&quot;</span><span class="p">);</span></code></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-6">
+      <h2>ES2015 and beyond</h2>
+      <p>By default, Babel ships with a set of ES2015 syntax transformers. These allow you to use new syntax, <strong>right now</strong> without waiting for browser support. <a href="/docs/learn-es2015/">Learn more &rarr;</a></p>
+    </div>
+
+    <div class="col-md-6">
+      <div class="col-md-6">
+        <ul class="babel-tick-list">
+          <li>Array comprehensions</li>
+          <li>Arrow functions</li>
+          <li>Async functions</li>
+          <li>Async generator functions</li>
+          <li>Classes</li>
+          <li>Class properties</li>
+          <li>Computed property names</li>
+          <li>Constants</li>
+          <li>Decorators</li>
+          <li>Default parameters</li>
+          <li>Destructuring</li>
+          <li>Exponentiation operator</li>
+          <li>For-of</li>
+          <li>Function bind</li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <ul class="babel-tick-list">
+          <li>Generators</li>
+          <li>Generator comprehensions</li>
+          <li>Let scoping</li>
+          <li>Modules</li>
+          <li>Module export extensions</li>
+          <li>Object rest/spread</li>
+          <li>Property method assignment</li>
+          <li>Property name shorthand</li>
+          <li>Rest parameters</li>
+          <li>React</li>
+          <li>Spread</li>
+          <li>Template literals</li>
+          <li>Type annotations</li>
+          <li>Unicode regex</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-5">
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">export</span> <span class="k">default</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+  <span class="nx">getInitialState</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="nx">num</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">getRandomNumber</span><span class="p">()</span> <span class="p">};</span>
+  <span class="p">},</span>
+
+  <span class="nx">getRandomNumber</span><span class="p">()</span><span class="o">:</span> <span class="nx">number</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">);</span>
+  <span class="p">},</span>
+
+  <span class="nx">render</span><span class="p">()</span><span class="o">:</span> <span class="nx">any</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">&lt;div&gt;</span>
+      <span class="s2">Your dice roll:</span>
+      <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">num</span><span class="p">}</span>
+    <span class="nx">&lt;/div&gt;;</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+    </div>
+
+    <div class="col-md-7">
+      <h2>JSX and React</h2>
+      <p>Babel ships with built-in support for JSX. Use it together with the <a href="https://github.com/babel/babel-sublime">babel-sublime</a> package to bring syntax highlighting to a whole new level.</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-6">
+      <h2>Pluggable</h2>
+      <p>Babel supports user plugins. These allow you to plug into the powerful Babel transformation layer. <a href="/docs/advanced/plugins/">Learn more &rarr;</a></p>
+    </div>
+    <div class="col-md-6">
+      <img src="/images/featurettes/blueprint.png?t=2015-05-27T15:59:04-04:00" alt="Plugins and Browsers" class="featurette-image img-responsive">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!--<div class="row featurette">
+    <div class="col-md-4">
+      <h2>Readable</h2>
+      <p>
+        Formatting is retained if possible so your generated code is as similar
+        as possible.
+      </p>
+    </div>
+    <div class="col-md-4 col-sm-6">
+
+      </div>
+      <div class="col-md-4 col-sm-6">
+
+    </div>
+  </div>
+
+  <hr class="featurette-divider">-->
+
+  <!--<hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-4">
+      <h2>Debuggable</h2>
+      <p><strong>Source map</strong> support so you can debug your compiled code with ease.</p>
+    </div>
+    <div class="col-md-8">
+      <img src="/images/featurettes/debuggable.png?t=2015-05-27T15:59:04-04:00" alt="Debuggable Sourcemaps" class="featurette-image img-responsive">
+    </div>
+  </div>-->
+
+  <!--<hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-4 col-md-push-8">
+      <h2>Compact</h2>
+      <p>Babel uses the least amount of code possible with no dependence on a bulky runtime.</p>
+    </div>
+    <div class="col-md-4 col-md-pull-4 col-sm-6">
+
+    </div>
+    <div class="col-md-4 col-md-pull-4 col-sm-6">
+
+    </div>
+  </div>-->
+
+  <div class="text-center">
+    <div class="btn-wrapper btn-wrapper-lg">
+      <a href="/docs/learn-es2015/" class="btn btn-featured">Learn ES2015</a>
+      <a href="/docs/setup/" class="btn btn-featured">Setup Babel</a>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="featurette">
+    <h2 class="text-center">
+      <a href="/users/">
+        Who's using Babel?
+      </a>
+    </h2>
+
+    <div class="babel-user-container babel-slider">
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://cloudflare.com/" title="CloudFlare">
+            <img class="img-responsive" data-lazy="/images/users/cloudflare.png" alt="CloudFlare">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://www.netflix.com/" title="Netflix">
+            <img class="img-responsive" data-lazy="/images/users/netflix.svg" alt="Netflix">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://www.mozilla.org/" title="Mozilla">
+            <img class="img-responsive" data-lazy="/images/users/mozilla.svg" alt="Mozilla">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://yahoo.com/" title="Yahoo!">
+            <img class="img-responsive" data-lazy="/images/users/yahoo.png" alt="Yahoo!">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://paypal.com" title="PayPal">
+            <img class="img-responsive" data-lazy="/images/users/paypal.svg" alt="PayPal">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://www.airbnb.com/" title="Airbnb">
+            <img class="img-responsive" data-lazy="/images/users/airbnb.svg" alt="Airbnb">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://www.reddit.com" title="Reddit">
+            <img class="img-responsive" data-lazy="/images/users/reddit.png" alt="Reddit">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://www.atlassian.com/" title="Atlassian">
+            <img class="img-responsive" data-lazy="/images/users/atlassian.svg" alt="Atlassian">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="http://www.nfl.com" title="NFL">
+            <img class="img-responsive" data-lazy="/images/users/nfl.svg" alt="NFL">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="http://bocoup.com/" title="Bocoup">
+            <img class="img-responsive" data-lazy="/images/users/bocoup.png" alt="Bocoup">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://soundcloud.com" title="SoundCloud">
+            <img class="img-responsive" data-lazy="/images/users/soundcloud.png" alt="SoundCloud">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://vimeo.com" title="Vimeo">
+            <img class="img-responsive" data-lazy="/images/users/vimeo.svg" alt="Vimeo">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://www.npmjs.com" title="npm">
+            <img class="img-responsive" data-lazy="/images/users/npm.svg" alt="npm">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="http://emberjs.com/" title="Ember">
+            <img class="img-responsive" data-lazy="/images/users/ember.png" alt="Ember">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://slack.com/" title="Slack">
+            <img class="img-responsive" data-lazy="/images/users/slack.svg" alt="Slack">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://ghost.org/" title="Ghost">
+            <img class="img-responsive" data-lazy="/images/users/ghost.svg" alt="Ghost">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://flipboard.com/" title="Flipboard">
+            <img class="img-responsive" data-lazy="/images/users/flipboard.svg" alt="Flipboard">
+          </a>
+        </div>
+      
+        <div class="col-md-4 col-sm-6">
+          <a class="babel-user" href="https://atom.io/" title="Atom">
+            <img class="img-responsive" data-lazy="/images/users/atom.png" alt="Atom">
+          </a>
+        </div>
+      
+    </div>
+
+    <div class="text-center">
+      <div class="btn-wrapper">
+        <a href="/users/" class="btn btn-sm btn-featured">Meet more Users</a>
+      </div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.4.1/slick.css">
+  <script src="//cdn.rawgit.com/thejameskyle/slick/lazy-load-responsive-2/slick/slick.min.js"></script>
+  <script>
+    $('.babel-slider').slick({
+      lazyLoad: 'ondemand',
+      arrows: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      responsive: [{
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3
+        }
+      }, {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      }, {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }]
+    });
+  </script>
+</div>
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

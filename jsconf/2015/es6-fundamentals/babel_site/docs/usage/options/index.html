@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Options · Babel</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/docs/usage/options/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="Options · Babel">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="Options · Babel">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/docs/usage/options/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li class="active">
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Options</h1>
+        <p>Options for babel transpiling.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 docs-content">
+      <h2 id="usage">Usage</h2>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">babel</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">code</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --name<span class="o">=</span>value
+</code></pre></div>
+<h2 id="options">Options</h2>
+
+<table><thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>filename</code></td>
+<td><code>&quot;unknown&quot;</code></td>
+<td>Filename for use in errors etc.</td>
+</tr>
+<tr>
+<td><code>filenameRelative</code></td>
+<td><code>(filename)</code></td>
+<td>Filename relative to <code>sourceRoot</code>.</td>
+</tr>
+<tr>
+<td><code>blacklist</code></td>
+<td><code>[]</code></td>
+<td>Array of transformers to <strong>exclude</strong>. Run <code>babel --help</code> to see a full list of transformers.</td>
+</tr>
+<tr>
+<td><code>whitelist</code></td>
+<td><code>[]</code></td>
+<td>Array of transformers to <strong>only</strong> use. Run <code>babel --help</code> to see a full list of transformers.</td>
+</tr>
+<tr>
+<td><code>loose</code></td>
+<td><code>[]</code></td>
+<td>Array of transformers to enable <a href="/docs/advanced/loose">loose mode</a> on.</td>
+</tr>
+<tr>
+<td><code>optional</code></td>
+<td><code>[]</code></td>
+<td>Array of transformers to <a href="/docs/advanced/transformers#optional">optionally</a> use. Run <code>babel --help</code> to see a full list of transformers. Optional transformers displayed inside square brackets.</td>
+</tr>
+<tr>
+<td><code>nonStandard</code></td>
+<td><code>true</code></td>
+<td>Enable support for JSX and Flow.</td>
+</tr>
+<tr>
+<td><code>highlightCode</code></td>
+<td><code>true</code></td>
+<td>ANSI highlight syntax error code frames</td>
+</tr>
+<tr>
+<td><code>only</code></td>
+<td><code>null</code></td>
+<td>A <a href="https://github.com/isaacs/minimatch">glob</a>, regex, or mixed array of both, matching paths to <strong>only</strong> compile. Can also be an array of arrays containing paths to explicitly match. When attempting to compile a non-matching file it&#39;s returned verbatim.</td>
+</tr>
+<tr>
+<td><code>ignore</code></td>
+<td><code>null</code></td>
+<td>Opposite to the <code>only</code> option.</td>
+</tr>
+<tr>
+<td><code>jsxPragma</code></td>
+<td><code>null</code></td>
+<td>Custom pragma to use for JSX elements</td>
+</tr>
+<tr>
+<td><code>auxiliaryComment</code></td>
+<td><code>null</code></td>
+<td>Attach a comment before all helper declarations and auxiliary code. eg. <code>&quot;istanbul ignore next&quot;</code></td>
+</tr>
+<tr>
+<td><code>sourceMaps</code></td>
+<td><code>false</code></td>
+<td>If truthy, adds a <code>map</code> property to returned output. If set to <code>&quot;inline&quot;</code>, a comment with a sourceMappingURL directive is added to the bottom of the returned code. If set to <code>&quot;both&quot;</code> then a <code>map</code> property is returned as well as a source map comment appended.</td>
+</tr>
+<tr>
+<td><code>inputSourceMap</code></td>
+<td><code>null</code></td>
+<td>A source map object that the output source map will be based on.</td>
+</tr>
+<tr>
+<td><code>sourceMapTarget</code></td>
+<td><code>(filenameRelative)</code></td>
+<td>Set <code>file</code> on returned source map.</td>
+</tr>
+<tr>
+<td><code>sourceFileName</code></td>
+<td><code>(filenameRelative)</code></td>
+<td>Set <code>sources[0]</code> on returned source map.</td>
+</tr>
+<tr>
+<td><code>sourceRoot</code></td>
+<td><code>(moduleRoot)</code></td>
+<td>The root from which all sources are relative.</td>
+</tr>
+<tr>
+<td><code>moduleRoot</code></td>
+<td><code>(sourceRoot)</code></td>
+<td>Optional prefix for the AMD module formatter that will be prepend to the filename on module definitions.</td>
+</tr>
+<tr>
+<td><code>modules</code></td>
+<td><code>&quot;common&quot;</code></td>
+<td>Which module formatter to use. Run <code>babel --help</code> to see a full list of module formatters.</td>
+</tr>
+<tr>
+<td><code>moduleIds</code></td>
+<td><code>false</code></td>
+<td>If truthy, insert an explicit id for modules. By default, all modules are anonymous. (Not available for <code>common</code> modules)</td>
+</tr>
+<tr>
+<td><code>moduleId</code></td>
+<td><code>null</code></td>
+<td>Specify a custom name for module ids.</td>
+</tr>
+<tr>
+<td><code>getModuleId</code></td>
+<td><code>null</code></td>
+<td>Specify a custom callback to generate a module id with. Called as <code>getModuleId(moduleName)</code>. If falsy value is returned then the generated module id is used.</td>
+</tr>
+<tr>
+<td><code>resolveModuleSource</code></td>
+<td><code>null</code></td>
+<td>Resolve a module source ie. <code>import &quot;SOURCE&quot;;</code> to a custom value. Called as <code>resolveModuleSource(source, filename)</code>.</td>
+</tr>
+<tr>
+<td><code>keepModuleIdExtensions</code></td>
+<td><code>false</code></td>
+<td>Keep extensions in module ids</td>
+</tr>
+<tr>
+<td><code>externalHelpers</code></td>
+<td><code>false</code></td>
+<td>Uses a reference to <code>babelHelpers</code> instead of placing helpers at the top of your code. Meant to be used in conjunction with <a href="/docs/advanced/external-helpers">external helpers</a>.</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>true</code></td>
+<td>Enable code generation</td>
+</tr>
+<tr>
+<td><code>ast</code></td>
+<td><code>true</code></td>
+<td>Include the AST in the returned object</td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td><code>2</code></td>
+<td>Set the <a href="/docs/usage/experimental">experimental</a> proposal stage.</td>
+</tr>
+<tr>
+<td><code>compact</code></td>
+<td><code>&quot;auto&quot;</code></td>
+<td>Do not include superfluous whitespace characters and line terminators. When set to <code>&quot;auto&quot;</code> compact is set to <code>true</code> on input sizes of &gt;100KB.</td>
+</tr>
+<tr>
+<td><code>comments</code></td>
+<td><code>true</code></td>
+<td>Output comments in generated output.</td>
+</tr>
+<tr>
+<td><code>metadataUsedHelpers</code></td>
+<td><code>false</code></td>
+<td>See <a href="/docs/advanced/external-helpers#selective-builds">external helpers - selective builds</a> for more information.</td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td><code>{}</code></td>
+<td><p>This is an object of keys that represent different environments. For example, you may have:</p> <pre><code>{ env: { production: { /* specific options */ } } }`</pre></code> <p>which will use those options when the enviroment variable <code>BABEL_ENV</code> is set to <code>&quot;production&quot;</code>. If <code>BABEL_ENV</code> isn&#39;t set then <code>NODE_ENV</code> will be used, if it&#39;s not set then it defaults to <code>&quot;development&quot;</code></p></td>
+</tr>
+<tr>
+<td><code>retainLines</code></td>
+<td><code>false</code></td>
+<td><p>Retain line numbers. This will lead to wacky code but is handy for scenarios where you can&#39;t use source maps.</p><strong>NOTE:</strong> This will obviously not retain the columns.</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="sidebar">
+        <ul class="nav"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/docs.js?t=2015-05-27T15:59:04-04:00"></script>
+
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

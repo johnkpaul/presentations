@@ -1,0 +1,13 @@
+.run {
+  position: absolute;
+  right: 48px;
+  z-index: 100000;
+  font-size: 140%;
+}
+
+.reveal .footer {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  font-size: 0.5em;
+}

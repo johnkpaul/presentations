@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Function Bind Syntax · Babel</title>
+  <meta name="description" content="Babel 5.4 was just released and with it comes support for a newexperimental ES7 syntaxproposed by Kevin Smith (@zenparsing) andimplemented in Babel by Ingvar...">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/blog/2015/05/14/function-bind">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="Function Bind Syntax · Babel">
+  <meta name="og:description" content="Babel 5.4 was just released and with it comes support for a newexperimental ES7 syntaxproposed by Kevin Smith (@zenparsing) andimplemented in Babel by Ingvar...">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="Function Bind Syntax · Babel">
+  <meta name="twitter:description" content="Babel 5.4 was just released and with it comes support for a newexperimental ES7 syntaxproposed by Kevin Smith (@zenparsing) andimplemented in Babel by Ingvar...">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/blog/2015/05/14/function-bind">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li class="active">
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-push-3">
+        <h1 class="text-center">Function Bind Syntax</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-push-3 babel-blog-content">
+      <p class="small text-center text-muted">Posted May 14, 2015 by James Kyle</p>
+
+      <p>Babel 5.4 was just released and with it comes support for a new
+<a href="https://github.com/zenparsing/es-function-bind">experimental ES7 syntax</a>
+proposed by Kevin Smith (<a href="https://github.com/zenparsing">@zenparsing</a>) and
+implemented in Babel by Ingvar Stepanyan
+(<a href="https://github.com/RReverser">@RReverser</a>).</p>
+
+<blockquote>
+<p><strong><em>Warning: This syntax is highly experimental and you should not use
+it for anything serious (yet).</em></strong> If you do use this syntax, please
+provide feedback on <a href="https://github.com/zenparsing/es-function-bind">GitHub</a>.</p>
+</blockquote>
+
+<p>The function bind syntax introduces a new operator <code>::</code> which performs function
+binding and method extraction.</p>
+
+<h3 id="virtual-methods">Virtual Methods</h3>
+
+<p>Using an iterator library implemented as a module of &quot;virtual methods&quot;:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* ES7 */</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">takeWhile</span><span class="p">,</span> <span class="nx">forEach</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;iterlib&quot;</span><span class="p">;</span>
+
+<span class="nx">getPlayers</span><span class="p">()</span>
+<span class="o">::</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">character</span><span class="p">())</span>
+<span class="o">::</span><span class="nx">takeWhile</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">strength</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span>
+<span class="o">::</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* ES6 */</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">takeWhile</span><span class="p">,</span> <span class="nx">forEach</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;iterlib&quot;</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">_val</span><span class="p">;</span>
+<span class="nx">_val</span> <span class="o">=</span> <span class="nx">getPlayers</span><span class="p">();</span>
+<span class="nx">_val</span> <span class="o">=</span> <span class="nx">map</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">_val</span><span class="p">,</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">character</span><span class="p">());</span>
+<span class="nx">_val</span> <span class="o">=</span> <span class="nx">takeWhile</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">_val</span><span class="p">,</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">strength</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">);</span>
+<span class="nx">_val</span> <span class="o">=</span> <span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">_val</span><span class="p">,</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> Babel&#39;s <a href="/repl/#?experimental=true&amp;evaluate=false&amp;loose=false&amp;spec=false&amp;playground=false&amp;code=import%20%7B%20map%2C%20takeWhile%2C%20forEach%20%7D%20from%20%22iterlib%22%3B%0A%0AgetPlayers()%0A%3A%3Amap(x%20%3D%3E%20x.character())%0A%3A%3AtakeWhile(x%20%3D%3E%20x.strength%20%3E%20100)%0A%3A%3AforEach(x%20%3D%3E%20console.log(x))%3B">output</a>
+looks different than this in order to be more concise.</p>
+</blockquote>
+
+<p>Using a jquery-like library of virtual methods:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* ES7 */</span>
+<span class="c1">// Create bindings for just the methods that we need</span>
+<span class="kd">let</span> <span class="p">{</span> <span class="nx">find</span><span class="p">,</span> <span class="nx">html</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">jake</span><span class="p">;</span>
+
+<span class="c1">// Find all the divs with class=&quot;myClass&quot;, then get all of the</span>
+<span class="c1">// &quot;p&quot;s and replace their content.</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;div.myClass&quot;</span><span class="p">)</span><span class="o">::</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span><span class="o">::</span><span class="nx">html</span><span class="p">(</span><span class="s2">&quot;hahaha&quot;</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* ES6 */</span>
+<span class="kd">let</span> <span class="nx">_val</span><span class="p">;</span>
+<span class="nx">_val</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;div.myClass&quot;</span><span class="p">);</span>
+<span class="nx">_val</span> <span class="o">=</span> <span class="nx">find</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">_val</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">);</span>
+<span class="nx">_val</span> <span class="o">=</span> <span class="nx">html</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">_val</span><span class="p">,</span> <span class="s2">&quot;hahaha&quot;</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="method-extraction">Method Extraction</h3>
+
+<p>Using method extraction to print the eventual value of a promise to the console:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* ES7 */</span>
+<span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">123</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="o">::</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* ES6 */</span>
+<span class="c1">// Which could be written in ES6 as:</span>
+<span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">123</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">console</span><span class="p">));</span>
+</code></pre></div>
+<p>Using method extraction to call an object method when a DOM event occurs:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* ES7 */</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.some-link&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="o">::</span><span class="nx">view</span><span class="p">.</span><span class="nx">reset</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* ES6 */</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.some-link&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="nx">view</span><span class="p">.</span><span class="nx">reset</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">view</span><span class="p">));</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> You can read more about this syntax in the
+<a href="https://github.com/zenparsing/es-function-bind">Function Bind Syntax proposal</a>.</p>
+</blockquote>
+
+<h3 id="usage">Usage</h3>
+
+<p>Enable by stage:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --stage 0
+</code></pre></div>
+<p>Enable by transformer:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --optional es7.functionBind
+</code></pre></div>
+<hr>
+
+<p>The function bind syntax will only make it into ES7 if there is enough interest.
+If you would like to see this syntax make it in, please give it a star on
+<a href="https://github.com/zenparsing/es-function-bind">GitHub</a> and provide any
+feedback you have on <a href="https://github.com/zenparsing/es-function-bind/issues">GitHub issues</a>.</p>
+
+<p>Special thanks to Ingvar Stepanyan (<a href="https://github.com/RReverser">@RReverser</a>)
+for the <a href="https://github.com/babel/babel/pull/1518">implementation</a> in Babel.</p>
+
+<p class="text-right">— The Babel team</p>
+
+
+      <hr>
+
+      <div class="babel-share-buttons">
+        <div class="fb-share-button" data-layout="button_count"></div>
+        <a class="twitter-share-button" href="https://twitter.com/share" data-via="babeljs" data-text="New in Babel 5.4: Function Bind Syntax">Tweet</a>
+      </div>
+
+      <div id="fb-root"></div>
+
+      <hr>
+
+      <div id="disqus_thread"></div>
+
+      <script type="text/javascript">
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
+
+      <script type="text/javascript">
+      window.twttr = (function(d, s, id) {
+        var t, js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src="https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        return window.twttr || (t = { _e: [], ready: function(f) { t._e.push(f) } })
+      }(document,"script","twitter-wjs"));
+      </script>
+
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = '6to5'; // required: replace example with your forum shortname
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </div>
+  </div>
+</div>
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

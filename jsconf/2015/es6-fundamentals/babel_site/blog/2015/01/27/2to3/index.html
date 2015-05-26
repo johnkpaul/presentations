@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>2to3 · Babel</title>
+  <meta name="description" content="These past few weeks we’ve seen lots of activity on 6to5; thousands are downloading it every day from all corners of the world. In the past month, over 200 i...">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/blog/2015/01/27/2to3">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="2to3 · Babel">
+  <meta name="og:description" content="These past few weeks we’ve seen lots of activity on 6to5; thousands are downloading it every day from all corners of the world. In the past month, over 200 i...">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="2to3 · Babel">
+  <meta name="twitter:description" content="These past few weeks we’ve seen lots of activity on 6to5; thousands are downloading it every day from all corners of the world. In the past month, over 200 i...">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/blog/2015/01/27/2to3">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li class="active">
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-push-3">
+        <h1 class="text-center">2to3</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-push-3 babel-blog-content">
+      <p class="small text-center text-muted">Posted Jan 27, 2015 by James Kyle</p>
+
+      <p>These past few weeks we’ve seen lots of activity on 6to5; thousands are downloading it every day from all corners of the world. In the past month, over 200 issues have been closed. Since the 2.0 release, there have been 867 commits and 60 minor and patch releases. It’s now among the top 1% of most downloaded packages on npm, with nearly 100k downloads in the last month alone.</p>
+
+<p>Today we are releasing 3.0.</p>
+
+<blockquote>
+<p><strong>Note:</strong> 6to5 doesn&#39;t hold onto bug fixes or new backwards compatible features for major releases. Some of the features listed are from later 2.x releases.</p>
+</blockquote>
+
+<h3 id="loose-mode">Loose Mode</h3>
+
+<p>6to5 is very focused on spec-compliancy in everything that it does. Sometimes the spec requires a lot of complexity around edgecases that don&#39;t affect most code.</p>
+
+<p>We’ve added Loose Mode for ignoring some of these edgecases in order to create cleaner, smaller, and faster executing output.</p>
+
+<p>For example, calling <code>super()</code> inside a constructor would normally be compiled to:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">_get</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">Foo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">),</span> <span class="s2">&quot;constructor&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">).</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>However, with Loose Mode it is compiled to:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Bar</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Before you use Loose Mode, you should be aware that it doesn&#39;t line up with the spec completely, it may lead to incompatible code if you aren&#39;t aware of these inconsistencies. Check out the <a href="/docs/usage/loose">docs</a> for more info.</p>
+
+<h3 id="performance-improvements">Performance Improvements</h3>
+
+<p>In the past few weeks <a href="https://github.com/gaearon">@gaearon</a> has done some amazing work to improve 6to5 compilation time by over 200%. These kinds of improvements are extremely important to us and we’re happy to see such great contributions from community members.</p>
+
+<h3 id="playground:-mallet-operator">Playground: Mallet Operator</h3>
+
+<p>As seen in Ruby and CoffeeScript, the Mallet operator allows you to conditionally assign values based on their falsy-ness.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">a</span> <span class="o">||=</span> <span class="nx">b</span>
+</code></pre></div>
+<p>will behave like</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">)</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
+</code></pre></div>
+<p>This one comes to you from <a href="https://github.com/jridgewell">@jridgewell</a>. We encourage proposal authors to come forward in order to get their ideas implemented alongside all of the latest language and API features.</p>
+
+<h3 id="selfcontained">selfContained</h3>
+
+<p>We’ve also introduced a new optional transformer that negates the need for a polyfill and bypasses all 6to5 <a href="/docs/usage/caveats">caveats</a>. It will automatically alias ES6 static methods and built-ins as well as include <code>regenerator</code> whenever you use async functions or generators. This is great for libraries that don&#39;t want to pollute the global scope.</p>
+
+<p>This replaces the <code>coreAliasing</code> transform and the <code>includeRegenerator</code> option. Check out the <a href="/docs/usage/transformers#selfContained">docs</a> for more info.</p>
+
+<h3 id="namespaced-transformers">Namespaced Transformers</h3>
+
+<p>In 3.0, we’ve renamed all of the transformers, not just for consistency but in order to namespace them.</p>
+
+<p>For example, we’ve renamed all of the es7 transformers to be things like <code>es7.comprehensions</code> or <code>es7.objectSpread</code> so if you would like to blacklist all of the es7 transformers you can simply:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>6to5 --blacklist es7
+</code></pre></div>
+<p>For a full list of the renamed transformers see the <a href="https://github.com/6to5/6to5/blob/master/CHANGELOG.md#300">Changelog</a>.</p>
+
+<hr>
+
+<p>There are many new features and bug fixes that makes v3 an excellent release. Be sure to review them all in the <a href="https://github.com/6to5/6to5/blob/master/CHANGELOG.md#300">Changelog</a>.</p>
+
+<p>We’d like to thank everyone who has been involved in the 6to5 community and especially those who have contributed to making 3.0 happen.</p>
+
+<p>The future is looking bright.</p>
+
+<p class="text-right">— The 6to5 team</p>
+
+
+      <hr>
+
+      <div class="babel-share-buttons">
+        <div class="fb-share-button" data-layout="button_count"></div>
+        <a class="twitter-share-button" href="https://twitter.com/share" data-via="babeljs" data-text="6to5: 2to3">Tweet</a>
+      </div>
+
+      <div id="fb-root"></div>
+
+      <hr>
+
+      <div id="disqus_thread"></div>
+
+      <script type="text/javascript">
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
+
+      <script type="text/javascript">
+      window.twttr = (function(d, s, id) {
+        var t, js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src="https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        return window.twttr || (t = { _e: [], ready: function(f) { t._e.push(f) } })
+      }(document,"script","twitter-wjs"));
+      </script>
+
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = '6to5'; // required: replace example with your forum shortname
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </div>
+  </div>
+</div>
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

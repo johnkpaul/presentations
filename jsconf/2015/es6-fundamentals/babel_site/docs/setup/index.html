@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Using Babel · Babel</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/docs/setup/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="Using Babel · Babel">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="Using Babel · Babel">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/docs/setup/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li class="active">
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Using Babel</h1>
+        <p>How to use Babel with your tool of choice</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container docs-content">
+  <div class="step-wizard">
+    <div class="step">
+      <h2><span class="step-no">1</span> Choose your tool</h2>
+
+      
+        <h5>Babel built-ins</h5>
+
+        <div class="btn-group">
+          
+            <div class="btn btn-default" data-name="babel_cli">CLI</div>
+          
+            <div class="btn btn-default" data-name="babel_register">Require hook</div>
+          
+            <div class="btn btn-default" data-name="babel_in_browser">Browser</div>
+          
+        </div>
+      
+        <h5>Build systems</h5>
+
+        <div class="btn-group">
+          
+            <div class="btn btn-default" data-name="broccoli">Broccoli</div>
+          
+            <div class="btn btn-default" data-name="browserify">Browserify</div>
+          
+            <div class="btn btn-default" data-name="brunch">Brunch</div>
+          
+            <div class="btn btn-default" data-name="duo">Duo</div>
+          
+            <div class="btn btn-default" data-name="gobble">Gobble</div>
+          
+            <div class="btn btn-default" data-name="grunt">Grunt</div>
+          
+            <div class="btn btn-default" data-name="gulp">Gulp</div>
+          
+            <div class="btn btn-default" data-name="jspm">jspm</div>
+          
+            <div class="btn btn-default" data-name="make">Make</div>
+          
+            <div class="btn btn-default" data-name="requirejs">RequireJS</div>
+          
+            <div class="btn btn-default" data-name="sprockets">Sprockets</div>
+          
+            <div class="btn btn-default" data-name="webpack">Webpack</div>
+          
+        </div>
+      
+        <h5>Frameworks</h5>
+
+        <div class="btn-group">
+          
+            <div class="btn btn-default" data-name="ember">Ember</div>
+          
+            <div class="btn btn-default" data-name="meteor">Meteor</div>
+          
+            <div class="btn btn-default" data-name="rails">Rails</div>
+          
+            <div class="btn btn-default" data-name="sails">Sails</div>
+          
+        </div>
+      
+        <h5>Test frameworks</h5>
+
+        <div class="btn-group">
+          
+            <div class="btn btn-default" data-name="mocha">Mocha</div>
+          
+            <div class="btn btn-default" data-name="jest">Jest</div>
+          
+            <div class="btn btn-default" data-name="karma">Karma</div>
+          
+        </div>
+      
+        <h5>Utilities</h5>
+
+        <div class="btn-group">
+          
+            <div class="btn btn-default" data-name="connect">Connect</div>
+          
+            <div class="btn btn-default" data-name="nodemon">Nodemon</div>
+          
+        </div>
+      
+        <h5>Language APIs</h5>
+
+        <div class="btn-group">
+          
+            <div class="btn btn-default" data-name="node">Node</div>
+          
+            <div class="btn btn-default" data-name="ruby">Ruby</div>
+          
+        </div>
+      
+        <h5>Template engines</h5>
+
+        <div class="btn-group">
+          
+            <div class="btn btn-default" data-name="jade">Jade</div>
+          
+        </div>
+      
+        <h5>Editors and IDEs</h5>
+
+        <div class="btn-group">
+          
+            <div class="btn btn-default" data-name="webstorm">WebStorm</div>
+          
+        </div>
+      
+    </div>
+
+    <div class="step step-install">
+      <h2><span class="step-no">2</span> Install</h2>
+      
+  
+    <div class="item" data-name="babel_cli">
+      <h3>CLI</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install -g babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="babel_register">
+      <h3>Require hook</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install -g babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="babel_in_browser">
+      <h3>Browser</h3>
+      
+      
+      <p>Available from <code>browser.js</code> inside the folder of a <code>babel-core</code> npm release.</p>
+
+    </div>
+  
+
+  
+    <div class="item" data-name="broccoli">
+      <h3>Broccoli</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev broccoli-babel-transpiler
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="browserify">
+      <h3>Browserify</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev babelify
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="brunch">
+      <h3>Brunch</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev babel-brunch
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="duo">
+      <h3>Duo</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev duo-babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="gobble">
+      <h3>Gobble</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev gobble-babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="grunt">
+      <h3>Grunt</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev grunt-babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="gulp">
+      <h3>Gulp</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev gulp-babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="jspm">
+      <h3>jspm</h3>
+      
+      
+      <p>Select <code>babel</code> as the transpiler when running <code>jspm init -p</code> or to switch an existing project into Babel use:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">  jspm dl-loader --babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="make">
+      <h3>Make</h3>
+      
+      
+      <p>Installed already on <em>most</em> Unix systems. Available from <a href="https://github.com/bmatzelle/gow">gow</a> on Windows.</p>
+
+    </div>
+  
+    <div class="item" data-name="requirejs">
+      <h3>RequireJS</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install requirejs-babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="sprockets">
+      <h3>Sprockets</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem install sprockets-es6
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="webpack">
+      <h3>Webpack</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev babel-loader
+</code></pre></div>
+    </div>
+  
+
+  
+    <div class="item" data-name="ember">
+      <h3>Ember</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh">npm install --save-dev ember-cli-babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="meteor">
+      <h3>Meteor</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>meteor add grigio:babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="rails">
+      <h3>Rails</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem install sprockets-es6
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="sails">
+      <h3>Sails</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev sails-hook-babel
+</code></pre></div>
+    </div>
+  
+
+  
+    <div class="item" data-name="mocha">
+      <h3>Mocha</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev babel
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="jest">
+      <h3>Jest</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev babel-jest
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="karma">
+      <h3>Karma</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev karma-babel-preprocessor
+</code></pre></div>
+    </div>
+  
+
+  
+    <div class="item" data-name="connect">
+      <h3>Connect</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install babel-connect
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="nodemon">
+      <h3>Nodemon</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install -g babel
+</code></pre></div>
+    </div>
+  
+
+  
+    <div class="item" data-name="node">
+      <h3>Node</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install --save-dev babel-core
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="ruby">
+      <h3>Ruby</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem install babel-transpiler
+</code></pre></div>
+    </div>
+  
+
+  
+    <div class="item" data-name="jade">
+      <h3>Jade</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install jade-babel
+</code></pre></div>
+    </div>
+  
+
+  
+    <div class="item" data-name="webstorm">
+      <h3>WebStorm</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install -g babel
+</code></pre></div>
+    </div>
+  
+
+
+    </div>
+
+    <div class="step step-setup">
+      <h2><span class="step-no">3</span> Usage</h2>
+      
+  
+    <div class="item" data-name="babel_cli">
+      <h3>CLI</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel script.js
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For full documentation on the Babel CLI see the <a href="/docs/usage/cli/">usage docs</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="babel_register">
+      <h3>Require hook</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel/register&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>All subsequent files required by node with the extensions <code>.es6</code>, <code>.es</code>, <code>.jsx</code> and <code>.js</code> will be transformed by Babel. The polyfill specified in <a href="/docs/usage/polyfill">polyfill</a> is also automatically required.</p>
+
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>Not suitable for libraries</h4>
+  <p>
+    The require hook automatically hooks itself into <strong>all</strong> node requires. This will pollute the global scope and introduce conflicts. Because of this it's not suitable for libraries, if however you're writing an application then it's completely fine to use.
+  </p>
+</blockquote>
+
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For full documentation on the Babel require hook see the <a href="/docs/usage/require/">usage docs</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="babel_in_browser">
+      <h3>Browser</h3>
+      
+      
+      <p>Add the <code>type=&quot;text/babel&quot;</code> attribute to your <code>&lt;script&gt;</code> tags. For example:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;node_modules/babel-core/browser.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/babel&quot;</span><span class="nt">&gt;</span>
+<span class="kr">class</span> <span class="nx">Test</span> <span class="p">{</span>
+  <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;test&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Test</span><span class="p">;</span>
+<span class="nx">test</span><span class="p">.</span><span class="nx">test</span><span class="p">();</span> <span class="c1">// &quot;test&quot;</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For full documentation on browser compilation see the <a href="/docs/usage/browser/">usage docs</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+
+  
+    <div class="item" data-name="broccoli">
+      <h3>Broccoli</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">babelTranspiler</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;broccoli-babel-transpiler&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">scriptTree</span> <span class="o">=</span> <span class="nx">babelTranspiler</span><span class="p">(</span><span class="nx">inputTree</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/broccoli-babel-transpiler">babel/broccoli-babel-transpiler repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="browserify">
+      <h3>Browserify</h3>
+      
+      
+      <h4 id="via-cli">Via CLI</h4>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>browserify script.js -t babelify --outfile bundle.js
+</code></pre></div>
+<h4 id="via-node-api">Via Node API</h4>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">browserify</span><span class="p">({</span> <span class="nx">debug</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">babelify</span><span class="p">);</span>
+</code></pre></div>
+<p>Or a more complete example:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;fs&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">browserify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;browserify&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">babelify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babelify&quot;</span><span class="p">);</span>
+
+<span class="nx">browserify</span><span class="p">({</span> <span class="nx">debug</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">babelify</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./script.js&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">entry</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">bundle</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s2">&quot;bundle.js&quot;</span><span class="p">));</span>
+</code></pre></div>
+<h4 id="passing-options">Passing options</h4>
+
+<p><strong>CLI</strong></p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>browserify -d -e script.js -t <span class="o">[</span> babelify --blacklist regenerator <span class="o">]</span>
+</code></pre></div>
+<h5 id="node-api">Node API</h5>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">browserify</span><span class="p">().</span><span class="nx">transform</span><span class="p">(</span><span class="nx">babelify</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span>
+  <span class="nx">blacklist</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;regenerator&quot;</span><span class="p">]</span>
+<span class="p">}))</span>
+</code></pre></div>
+<h5 id="package.json">package.json</h5>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;transform&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="s2">&quot;babelify&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nt">&quot;blacklist&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;regenerator&quot;</span><span class="p">]</span> <span class="p">}]]</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/babelify">babel/babelify repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="brunch">
+      <h3>Brunch</h3>
+      
+      
+      <p>That&#39;s it! Set babel options in your brunch config (such as <code>brunch-config.coffee</code>) except
+for <code>filename</code> and <code>sourceMap</code> which are handled internally.</p>
+<div class="highlight"><pre><code class="language-coffee" data-lang="coffee"><span class="nv">plugins:</span>
+  <span class="nv">ESbabel:</span>
+    <span class="nv">whitelist: </span><span class="p">[</span><span class="s">&quot;arrowFunctions&quot;</span><span class="p">]</span>
+    <span class="nv">format:</span>
+      <span class="nv">semicolons: </span><span class="kc">false</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/babel-brunch">babel/babel-brunch repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="duo">
+      <h3>Duo</h3>
+      
+      
+      <h4 id="via-cli">Via CLI</h4>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>duo --use duo-babel
+</code></pre></div>
+<h4 id="via-node-api">Via Node API</h4>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">Duo</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">entry</span><span class="p">(</span><span class="nx">entry</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">babel</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/duo-babel">babel/duo-babel repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="gobble">
+      <h3>Gobble</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">gobble</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;gobble&quot;</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">gobble</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/gobble-babel">babel/gobble-babel repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="grunt">
+      <h3>Grunt</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;load-grunt-tasks&quot;</span><span class="p">)(</span><span class="nx">grunt</span><span class="p">);</span> <span class="c1">// npm install --save-dev load-grunt-tasks</span>
+
+<span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+  <span class="s2">&quot;babel&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">sourceMap</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="nx">dist</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">files</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;dist/app.js&quot;</span><span class="o">:</span> <span class="s2">&quot;src/app.js&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;babel&quot;</span><span class="p">]);</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/grunt-babel">babel/grunt-babel repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="gulp">
+      <h3>Gulp</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;gulp&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">babel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;gulp-babel&quot;</span><span class="p">);</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s2">&quot;src/app.js&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">babel</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="with-source-maps">With source maps</h3>
+
+<p>Use <a href="https://github.com/floridoo/gulp-sourcemaps">gulp-sourcemaps</a> like this:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;gulp&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">sourcemaps</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;gulp-sourcemaps&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">babel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;gulp-babel&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">concat</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;gulp-concat&quot;</span><span class="p">);</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s2">&quot;src/**/*.js&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">init</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">concat</span><span class="p">(</span><span class="s2">&quot;all.js&quot;</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">babel</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/gulp-babel">babel/gulp-babel repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="jspm">
+      <h3>jspm</h3>
+      
+      
+      <p>Babel will automatically be used when loading any source with <code>import</code> or <code>export</code> module syntax.</p>
+
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    JSX support is currently disabled by jspm. To re-enable it, add `"blacklist": []` to `babelOptions` in the jspm configuration file.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="make">
+      <h3>Make</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-make" data-lang="make"><span class="nv">SRC</span> <span class="o">=</span> <span class="k">$(</span>wildcard src/*.js<span class="k">)</span>
+<span class="nv">LIB</span> <span class="o">=</span> <span class="k">$(</span>SRC:src/%.js<span class="o">=</span>lib/%.js<span class="k">)</span>
+
+<span class="nf">lib</span><span class="o">:</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span>
+<span class="nf">lib/%.js</span><span class="o">:</span> <span class="n">src</span>/%.<span class="n">js</span>
+  mkdir -p <span class="k">$(</span>@D<span class="k">)</span>
+  babel <span class="nv">$&lt;</span> -o <span class="nv">$@</span>
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>make
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="requirejs">
+      <h3>RequireJS</h3>
+      
+      
+      <p>Add the following paths to your configuration:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">es6</span><span class="o">:</span> <span class="s2">&quot;node_modules/requirejs-babel/es6&quot;</span><span class="p">,</span>
+  <span class="nx">babel</span><span class="o">:</span> <span class="s2">&quot;node_modules/requirejs-babel/babel-4.6.6.min&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then reference files via the <code>es6!</code> plugin name:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;es6!your-es6-module&quot;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">module</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/mikach/requirejs-babel">mikach/requirejs-babel repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="sprockets">
+      <h3>Sprockets</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-rb" data-lang="rb"><span class="c1"># Gemfile</span>
+<span class="n">gem</span> <span class="s2">&quot;sprockets&quot;</span>
+<span class="n">gem</span> <span class="s2">&quot;sprockets-es6&quot;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-rb" data-lang="rb"><span class="nb">require</span> <span class="s2">&quot;sprockets/es6&quot;</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/TannerRogalsky/sprockets-es6">TannerRogalsky/sprockets-es6 repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="webpack">
+      <h3>Webpack</h3>
+      
+      
+      <h4 id="via-config">Via config</h4>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span> <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span><span class="p">,</span> <span class="nx">loader</span><span class="o">:</span> <span class="s2">&quot;babel-loader&quot;</span><span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="via-loader">Via loader</h4>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel!./Person.js&quot;</span><span class="p">).</span><span class="k">default</span><span class="p">;</span>
+<span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/babel-loader">babel/babel-loader repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+
+  
+    <div class="item" data-name="ember">
+      <h3>Ember</h3>
+      
+      
+      <p>That&#39;s it!</p>
+
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/ember-cli-babel">babel/ember-cli-babel repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="meteor">
+      <h3>Meteor</h3>
+      
+      
+      <p>That&#39;s it! Any files with the extensions <code>.es6.js</code>, <code>.es6</code>, <code>.es</code> and <code>.jsx</code> will automatically be compiled with Babel.</p>
+
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/grigio/meteor-babel">grigio/meteor-babel repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="rails">
+      <h3>Rails</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-rb" data-lang="rb"><span class="c1"># Gemfile</span>
+<span class="n">gem</span> <span class="s2">&quot;sprockets&quot;</span>
+<span class="n">gem</span> <span class="s2">&quot;sprockets-es6&quot;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-rb" data-lang="rb"><span class="nb">require</span> <span class="s2">&quot;sprockets/es6&quot;</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/TannerRogalsky/sprockets-es6">TannerRogalsky/sprockets-es6 repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="sails">
+      <h3>Sails</h3>
+      
+      
+      <p>That&#39;s it!</p>
+
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/artificialio/sails-hook-babel">artificialio/sails-hook-babel repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+
+  
+    <div class="item" data-name="mocha">
+      <h3>Mocha</h3>
+      
+      
+      <p>In your <code>package.json</code> file make the following changes:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+  <span class="s2">&quot;scripts&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;test&quot;</span><span class="o">:</span> <span class="s2">&quot;mocha --compilers js:babel/register&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  
+    <div class="item" data-name="jest">
+      <h3>Jest</h3>
+      
+      
+      <p>In your <code>package.json</code> file make the following changes:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;test&quot;</span><span class="p">:</span> <span class="s2">&quot;jest&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;jest&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;scriptPreprocessor&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;rootDir&gt;/node_modules/babel-jest&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;testFileExtensions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;es6&quot;</span><span class="p">,</span> <span class="s2">&quot;js&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;moduleFileExtensions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;js&quot;</span><span class="p">,</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="s2">&quot;es6&quot;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/babel-jest">babel/babel-jest repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="karma">
+      <h3>Karma</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">config</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s2">&quot;src/**/*.js&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;test/**/*.js&quot;</span>
+    <span class="p">],</span>
+    <span class="nx">preprocessors</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;src/**/*.js&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;babel&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;test/**/*.js&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;babel&quot;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;babelPreprocessor&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// options go here</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/karma-babel-preprocessor">babel/karma-babel-preprocessor repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+
+  
+    <div class="item" data-name="connect">
+      <h3>Connect</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">babelMiddleware</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel-connect&quot;</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">babelMiddleware</span><span class="p">({</span>
+  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// options to use when transforming files</span>
+  <span class="p">},</span>
+  <span class="nx">src</span><span class="o">:</span> <span class="s2">&quot;assets&quot;</span><span class="p">,</span>
+  <span class="nx">dest</span><span class="o">:</span> <span class="s2">&quot;cache&quot;</span>
+<span class="p">}));</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">connect</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s2">&quot;cache&quot;</span><span class="p">));</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/babel-connect">babel/babel-connect repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="nodemon">
+      <h3>Nodemon</h3>
+      
+      
+      <p>In your <code>package.json</code> file make the following changes:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+  <span class="s2">&quot;scripts&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;babel-node&quot;</span><span class="o">:</span> <span class="s2">&quot;babel-node --stage 0 --ignore=&#39;foo|bar|baz&#39;&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then call your script with:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>nodemon --exec npm run babel-node -- path/to/script.js
+</code></pre></div>
+<h4 id="arguments-caveat">Arguments caveat</h4>
+
+<p>Calling nodemon with babel-node may lead to arguments getting parsed incorrectly if you forget to use a double dash. Using npm-scripts helpers prevent this. If you chose to skip using npm-scripts, it can be expressed as:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>nodemon --exec babel-node --stage <span class="m">0</span> --ignore<span class="o">=</span><span class="s1">&#39;foo\|bar\|baz&#39;</span> -- path/to/script.js
+</code></pre></div>
+    </div>
+  
+
+  
+    <div class="item" data-name="node">
+      <h3>Node</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel-core&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For full documentation on the Babel API see the <a href="/docs/usage/api/">usage docs</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+    <div class="item" data-name="ruby">
+      <h3>Ruby</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;babel/transpiler&#39;</span>
+<span class="no">Babel</span><span class="o">::</span><span class="no">Transpiler</span><span class="o">.</span><span class="n">transform</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;foo.es6&quot;</span><span class="p">)</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/ruby-babel-transpiler">babel/ruby-babel-transpiler repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+
+  
+    <div class="item" data-name="jade">
+      <h3>Jade</h3>
+      
+      
+      <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">jade</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;jade&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">babel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;jade-babel&quot;</span><span class="p">);</span>
+
+<span class="nx">jade</span><span class="p">.</span><span class="nx">filters</span><span class="p">.</span><span class="nx">babel</span> <span class="o">=</span> <span class="nx">babel</span><span class="p">({});</span>
+</code></pre></div>
+<p>OR</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">jade</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;jade&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">babel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;jade-babel&quot;</span><span class="p">);</span>
+
+<span class="nx">jade</span> <span class="o">=</span> <span class="nx">babel</span><span class="p">({},</span> <span class="nx">jade</span><span class="p">);</span>
+</code></pre></div>
+<p>Now you can use ES6 in your jade templates as following.</p>
+<div class="highlight"><pre><code class="language-jade" data-lang="jade"><span class="nt">script</span>
+  <span class="nd">:babel</span>
+    <span class="nd">console.log(&quot;Hello World !!!&quot;);</span>
+    <span class="nd">class Person {</span>
+      <span class="nd">constructor(name) {</span>
+        <span class="nd">this.name = name;</span>
+      <span class="nd">}</span>
+      <span class="nd">sayName(){</span>
+        <span class="nd">console.log(`Hello, my name is ${this.name}`);</span>
+      <span class="nd">}</span>
+    <span class="nd">}</span>
+    <span class="nd">var person = new Person(&quot;Apoxx&quot;);</span>
+    <span class="nd">person.sayName();</span>
+</code></pre></div>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/babel/jade-babel">babel/jade-babel repo</a>.
+  </p>
+</blockquote>
+
+    </div>
+  
+
+  
+    <div class="item" data-name="webstorm">
+      <h3>WebStorm</h3>
+      
+      
+      <p>In <strong>Preferences | Tools | File watchers</strong>, click <strong>+</strong> button and select Babel file watcher from the list.</p>
+
+<p>Specify the path to Babel executable and click Ok.</p>
+
+<p>By default all files with <code>.js</code> and <code>.jsx</code> extensions will be automatically compiled with Babel upon change. The generated ES5 files and source maps will be saved next to original files.</p>
+
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="http://blog.jetbrains.com/webstorm/2015/05/ecmascript-6-in-webstorm-transpiling#babelfilewatcher">post</a> in the WebStorm blog.
+  </p>
+</blockquote>
+
+    </div>
+  
+
+
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/tools.js?t=2015-05-27T15:59:04-04:00"></script>
+
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

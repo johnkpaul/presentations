@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Runtime · Babel</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/docs/usage/runtime/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="Runtime · Babel">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="Runtime · Babel">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/docs/usage/runtime/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li class="active">
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Runtime</h1>
+        <p>How to use the optional `runtime` transformer.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 docs-content">
+      <p>Babel uses very small helpers for common functions such as <code>_extend</code>. By default
+this will be added to every file that requires it. This duplication is sometimes
+unnecessary, especially when your application is spread out over multiple files.</p>
+
+<p>This is where the <code>runtime</code> optional transformer comes in. All of the helpers
+will reference the module <code>babel-runtime</code> to avoid duplication across your
+compiled output.</p>
+
+<p>Another purpose of this transformer is to create a sandboxed environment for your
+code. Built-ins such as <code>Promise</code>, <code>Set</code> and <code>Map</code> are aliased to <code>core-js</code> so
+you can use them seamlessly without having to require a globally polluting
+<a href="/docs/usage/polyfill">polyfill</a>. This is fantastic for libraries as you can
+write your code without the cognitive overhead of worrying about the environment
+that it&#39;s going to be ran in.</p>
+
+<p>See the <a href="#technical-details">technical details</a> section for more information on
+how this works and the types of transformations that occur.</p>
+
+<blockquote class="babel-callout babel-callout-info">
+  <h4>External package required</h4>
+  <p>
+    The package <code>babel-runtime</code> is required for this transformer. Run <code>npm install babel-runtime --save</code> to add it to your current node/webpack/browserify project. <code>babel-runtime</code> does not support AMD module loaders like RequireJS.
+  </p>
+</blockquote>
+
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">optional</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;runtime&quot;</span><span class="p">]</span> <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --optional runtime script.js
+</code></pre></div>
+<h2 id="technical-details">Technical details</h2>
+
+<p>The <code>runtime</code> optional transformer does three things:</p>
+
+<ul>
+<li>Automatically requires <code>babel-runtime/regenerator</code> when you use generators/async functions.</li>
+<li>Automatically requires <code>babel-runtime/core-js</code> and maps ES6 static methods and built-ins.</li>
+<li>Removes the inline babel helpers and uses the module <code>babel-runtime/helpers</code> instead.</li>
+</ul>
+
+<p>What does this actually mean though? Basically, you can use built-ins such as <code>Promise</code>,
+<code>Set</code>, <code>Symbol</code> etc as well use as all the Babel features that require a polyfill seamlessly,
+without global pollution, making it extremely suitable for libraries.</p>
+
+<h3 id="regenerator-aliasing">Regenerator aliasing</h3>
+
+<p>Whenever you use a generator function or async function:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span><span class="o">*</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="nx">async</span> <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>the following is generated:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">regeneratorRuntime</span><span class="p">.</span><span class="nx">mark</span><span class="p">(</span><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">regeneratorRuntime</span><span class="p">.</span><span class="nx">async</span><span class="p">(</span><span class="kd">function</span> <span class="nx">bar$</span><span class="p">(</span><span class="nx">context$1$0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">},</span> <span class="kc">null</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This isn&#39;t ideal as then you have to include the regenerator runtime which
+pollutes the global scope.</p>
+
+<p>Instead what the <code>runtime</code> transformer does it compile that to:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">_regeneratorRuntime</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel-runtime/regenerator&quot;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">_regeneratorRuntime</span><span class="p">.</span><span class="nx">mark</span><span class="p">(</span><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">_regeneratorRuntime</span><span class="p">.</span><span class="nx">async</span><span class="p">(</span><span class="kd">function</span> <span class="nx">bar$</span><span class="p">(</span><span class="nx">context$1$0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">},</span> <span class="kc">null</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This means that you can use the regenerator runtime without polluting your current environment.</p>
+
+<h3 id="core-js-aliasing"><code>core-js</code> aliasing</h3>
+
+<p>Sometimes you may want to use new built-ins such as <code>Map</code>, <code>Set</code>, <code>Promise</code> etc. Your only way
+to use these is usually to include a globally polluting polyfill.</p>
+
+<p>What the <code>runtime</code> transformer does is transform the following:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">sym</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">]());</span>
+</code></pre></div>
+<p>into the following:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">_core</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel-runtime/core-js&quot;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">sym</span> <span class="o">=</span> <span class="nx">_core</span><span class="p">.</span><span class="nx">Symbol</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">_core</span><span class="p">.</span><span class="nx">Promise</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">_core</span><span class="p">.</span><span class="nx">$for</span><span class="p">.</span><span class="nx">getIterator</span><span class="p">(</span><span class="nx">arr</span><span class="p">));</span>
+</code></pre></div>
+<p>This means is that you can seamlessly use these native built-ins and static methods
+without worrying about where they come from.</p>
+
+<p><strong>NOTE:</strong> Instance methods such as <code>&quot;foobar&quot;.includes(&quot;foo&quot;)</code> will <strong>not</strong> work.</p>
+
+<h3 id="helper-aliasing">Helper aliasing</h3>
+
+<p>Usually babel will place helpers at the top of your file to do common tasks to avoid
+duplicating the code around in the current file. Sometimes these helpers can get a
+little bulky and add unnecessary duplication across files. The <code>runtime</code>
+transformer replaces all the helper calls to a module.</p>
+
+<p>That means that the following code:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">foo</span> <span class="nx">from</span> <span class="s2">&quot;bar&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>usually turns into:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">_interopRequire</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">obj</span> <span class="o">&amp;&amp;</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">__esModule</span> <span class="o">?</span> <span class="nx">obj</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">:</span> <span class="nx">obj</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">_interopRequire</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">));</span>
+</code></pre></div>
+<p>the <code>runtime</code> transformer however turns this into:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">_babelHelpers</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel-runtime/helpers&quot;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">_babelHelpers</span><span class="p">.</span><span class="nx">interopRequire</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">));</span>
+</code></pre></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="sidebar">
+        <ul class="nav"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/docs.js?t=2015-05-27T15:59:04-04:00"></script>
+
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>

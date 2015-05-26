@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Transformers · Babel</title>
+  <meta name="description" content="The compiler for writing next generation JavaScript">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/main.css?t=2015-05-27T15:59:04-04:00">
+  <link rel="canonical" href="https://babeljs.io/docs/advanced/transformers/">
+  <link rel="alternate" type="application/rss+xml" title="Babel" href="https://babeljs.io/feed.xml" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <meta name="og:url" content="https://babeljs.io/">
+  <meta name="og:image" content="website">
+  <meta name="og:title" content="Transformers · Babel">
+  <meta name="og:description" content="The compiler for writing next generation JavaScript">
+  <meta name="og:image" content="https://babeljs.io/images/share-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@babeljs">
+  <meta name="twitter:title" content="Transformers · Babel">
+  <meta name="twitter:description" content="The compiler for writing next generation JavaScript">
+  <meta name="twitter:image:src" content="https://babeljs.io/images/share-image.png">
+  <meta name="twitter:url" content="https://babeljs.io/docs/advanced/transformers/">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>$("html").removeClass("no-js").addClass("js");</script>
+</head>
+
+
+  <body>
+
+    <nav role="navigation" id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Babel</a>
+    </div>
+    <div id="navigation" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+          
+            <li >
+              <a href="/docs/learn-es2015/">Learn ES2015</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/setup/">Setup</a>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/usage/options/">Options</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/babelrc/">babelrc</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/cli/">CLI</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/require/">Require Hook</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/api/">API</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/polyfill/">Polyfill</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/runtime/">Runtime</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/modules/">Modules</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/experimental/">Experimental</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/browser/">Browser</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/usage/jsx/">JSX</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Advanced <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                
+                  <li >
+                    <a href="/docs/advanced/plugins/">Plugins</a>
+                  </li>
+                
+                  <li class="active">
+                    <a href="/docs/advanced/transformers/">Transformers</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/caveats/">Caveats</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/loose/">Loose mode</a>
+                  </li>
+                
+                  <li >
+                    <a href="/docs/advanced/external-helpers/">External helpers</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/repl/">Try it out</a>
+            </li>
+          
+        
+          
+            <li >
+              <a href="/docs/faq/">FAQ</a>
+            </li>
+          
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://gitter.im/babel/babel">Support</a></li>
+        <li >
+          <a href="/blog/">Blog</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/babeljs">Twitter</a>
+        </li>
+        <li>
+          <a href="https://github.com/babel/babel">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="docs-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Transformers</h1>
+        <p>What are the various transformers?</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 docs-content">
+      <p>A transformer is a module with a specific goal that is ran against your code to transform it. For example,
+the <code>es6.arrowFunctions</code> transformer has the very specific goal of transforming <a href="https://babeljs.io/docs/learn-es2015/#arrows">ES6 Arrow Functions</a>
+to the equivalent ES3. This allows transformers to be completely unaware of the other transformations happening
+so that you can easily chain them together.</p>
+
+<h2 id="es3">ES3</h2>
+
+<ul>
+<li><a href="/docs/advanced/transformers/es3/member-expression-literals">es3.memberExpressionLiterals</a></li>
+<li><a href="/docs/advanced/transformers/es3/property-literals">es3.propertyLiterals</a></li>
+</ul>
+
+<h2 id="es5">ES5</h2>
+
+<ul>
+<li><a href="/docs/advanced/transformers/es5/properties-mutators">es5.properties.mutators</a></li>
+</ul>
+
+<h2 id="es6">ES6</h2>
+
+<ul>
+<li><a href="/docs/learn-es2015/#arrows">es6.arrowFunctions</a></li>
+<li><a href="/docs/learn-es2015/#let-const">es6.blockScoping</a></li>
+<li><a href="/docs/learn-es2015/#classes">es6.classes</a></li>
+<li><a href="/docs/learn-es2015/#let-const">es6.constants</a></li>
+<li><a href="/docs/learn-es2015/#destructuring">es6.destructuring</a></li>
+<li><a href="/docs/learn-es2015/#iterators-for-of">es6.forOf</a></li>
+<li><a href="/docs/learn-es2015/#modules">es6.modules</a></li>
+<li><a href="/docs/learn-es2015/#default-rest-spread">es6.parameters.default</a></li>
+<li><a href="/docs/learn-es2015/#default-rest-spread">es6.parameters.rest</a></li>
+<li><a href="/docs/learn-es2015/#enhanced-object-literals">es6.properties.computed</a></li>
+<li><a href="/docs/learn-es2015/#enhanced-object-literals">es6.properties.shorthand</a></li>
+<li><a href="/docs/learn-es2015/#default-rest-spread">es6.spread</a></li>
+<li><a href="/docs/learn-es2015/#tail-calls">es6.tailCall</a></li>
+<li><a href="/docs/learn-es2015/#template-strings">es6.templateLiterals</a></li>
+<li><a href="/docs/learn-es2015/#unicode">es6.regex.unicode</a></li>
+<li>es6.regex.sticky</li>
+</ul>
+
+<h2 id="es7-(experimental)">ES7 (Experimental)</h2>
+
+<ul>
+<li><a href="https://github.com/lukehoban/ecmascript-asyncawait">es7.asyncFunctions</a></li>
+<li><a href="https://gist.github.com/jeffmo/054df782c05639da2adb">es7.classProperties</a></li>
+<li><a href="/docs/learn-es2015/#comprehensions">es7.comprehensions</a></li>
+<li><a href="https://github.com/wycats/javascript-decorators">es7.decorators</a></li>
+<li><a href="https://github.com/rwaldron/exponentiation-operator">es7.exponentiationOperator</a></li>
+<li><a href="https://github.com/leebyron/ecmascript-more-export-from">es7.exportExtensions</a></li>
+<li><a href="https://github.com/zenparsing/es-function-bind">es7.functionBind</a></li>
+<li><a href="https://github.com/sebmarkbage/ecmascript-rest-spread">es7.objectRestSpread</a></li>
+<li><a href="https://github.com/jeffmo/es-trailing-function-commas">es7.trailingFunctionCommas</a></li>
+</ul>
+
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>Disabled by default</h4>
+  <p>
+    These are only usable if you enable staged support. See <a href="/docs/usage/experimental">experimental usage</a> for information.
+  </p>
+</blockquote>
+
+<h2 id="other">Other</h2>
+
+<ul>
+<li><a href="/docs/advanced/transformers/other/flow">flow</a></li>
+<li><a href="/docs/advanced/transformers/other/react">react</a></li>
+<li><a href="/docs/advanced/transformers/other/react-compat">reactCompat</a></li>
+<li><a href="/docs/advanced/transformers/other/regenerator">regenerator</a></li>
+<li><a href="/docs/advanced/transformers/other/strict">strict</a></li>
+<li><a href="/docs/advanced/transformers/other/jscript">jscript</a></li>
+</ul>
+
+<h2 id="optional">Optional</h2>
+
+<p>Babel also includes some optional transformers for those who want to take their code that extra mile.</p>
+
+<p>These are disabled by default, see <a href="#usage">usage</a> for instructions on how to enable them.</p>
+
+<ul>
+<li><a href="/docs/advanced/transformers/es6/spec-block-scoping">es6.spec.blockScoping</a></li>
+<li><a href="/docs/advanced/transformers/es6/spec-symbols">es6.spec.symbols</a></li>
+<li><a href="/docs/advanced/transformers/es6/spec-template-literals">es6.spec.templateLiterals</a></li>
+<li><a href="/docs/advanced/transformers/other/async-to-generator">asyncToGenerator</a></li>
+<li><a href="/docs/advanced/transformers/other/bluebird-coroutines">bluebirdCoroutines</a></li>
+<li><a href="/docs/advanced/runtime">runtime</a></li>
+<li><a href="/docs/advanced/transformers/minification/dead-code-elimination">minification.deadCodeElimination</a></li>
+<li><a href="/docs/advanced/transformers/utility/inline-expressions">minification.inlineExpressions</a></li>
+<li><a href="/docs/advanced/transformers/minification/member-expression-literals">minification.memberExpressionLiterals</a></li>
+<li><a href="/docs/advanced/transformers/minification/property-literals">minification.propertyLiterals</a></li>
+<li><a href="/docs/advanced/transformers/utility/remove-console">minification.removeConsole</a></li>
+<li><a href="/docs/advanced/transformers/utility/remove-debugger">minification.removeDebugger</a></li>
+<li><a href="/docs/advanced/transformers/utility/inline-environment-variables">utility.inlineEnvironmentVariables</a></li>
+<li><a href="/docs/advanced/transformers/spec/proto-to-assign">spec.protoToAssign</a></li>
+<li><a href="/docs/advanced/transformers/spec/undefined-to-void">spec.undefinedToVoid</a></li>
+<li><a href="/docs/advanced/transformers/validation/undeclared-variable-check">validation.undeclaredVariableCheck</a></li>
+<li><a href="/docs/advanced/transformers/validation/react">validation.react</a></li>
+</ul>
+
+<h3 id="usage">Usage</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;babel&quot;</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">optional</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;transformerName&quot;</span><span class="p">]</span> <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>babel --optional transformerName script.js
+</code></pre></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="sidebar">
+        <ul class="nav"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/docs.js?t=2015-05-27T15:59:04-04:00"></script>
+
+
+
+    <div class="footer text-center">
+  <a href="https://github.com/babel/babel">Babel</a> · v5.4.4
+ · Distributed under MIT License
+</div>
+
+
+  </body>
+
+</html>
