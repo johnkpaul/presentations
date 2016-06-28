@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>ES6 for React Developers</title>
+
+		<meta name="description" content="ES6 for React Developers">
+		<meta name="author" content="John K. Paul">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+            <div class="reveal">
+            
+			<div class="slides">
+                                <!-- img from http://blog.defenderdirect.com/wp-content/uploads/2013/05/Future-State.jpg -->
+				<section fullscreen-size="contain" fullscreen-img="img/line.jpg" style="background: rgba(255, 255, 255, .00);">
+                                  <div style="position:relative;width:auto;margin: 0px auto auto auto;background:rgba(255, 255, 255, .02)">
+                                    <h1 style="margin-bottom: 0px;padding-left:20px;color: rgb(0, 0, 0 );">ES2015 for React</h1>
+                                    <h3 class="inverted"><span style="text-transform: lowercase;color: rgb(0, 0, 0);">By @johnkpaul</span></h3>
+                                  </div>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iiiPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				<section style="background: rgba(255, 255, 255, .60);">
+					<h3 class="inverted">John K. Paul</h3>
+                                        <h3 class="inverted"><span style="text-transform: none;">I ♥ JavaScript</span></h3>
+                                        <hr>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">@johnkpaul</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">john@johnkpaul.com</span></h3>
+                                        <h3 class="inverted"><span style="text-transform: lowercase;">johnkpaul.com</span></h3>
+				</section>
+                                <!-- img from http://pixabay.com/en/black-business-computer-computing-18295/-->
+				<section fullscreen-img="img/floppy.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .00);">
+                                  <h2 style="position:absolute;left:100px;bottom:-30px;text-transform:none;">Ecma International</h2>
+				</section>
+				<section fullscreen-img="img/snail.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .80);">
+					<h1>ECMAScript</h1>
+                                        <ul>
+					  <li>3 - 1999</li>
+					  <li>5 - 2009</li>
+					  <li>6 - 2015</li>
+					  <li>2015 - 2015</li>
+					  <li>2016 - 2016</li>
+					</ul>
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/iptheft.jpg" style="background: rgba(255, 255, 255, .00);">
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/iptheft.jpg" style="background: rgba(255, 255, 255, .80);">
+                                  <h1>CopyScript</h1>
+                                        <ul >
+					  <li>CoffeeScript - Arrow Functions</li>
+					  <li>Python - Generators</li>
+					  <li>Lisp - Destructuring</li>
+					  <li>C - const/block scope</li>
+					  <li>E - Template Strings</li>
+					</ul>
+				</section>
+
+				<section   style="background: rgba(255, 255, 255, .00);">
+                                  <h1>React Focused Plan</h1>
+                                  <ul>
+                                    <li>Classes</li>
+                                    <li>Arrow Functions</li>
+                                    <li>Computed Property Names</li>
+                                    <li>Spread Operator/Rest params</li>
+                                  </ul>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>class Greeter {
+    constructor(message) {
+      this.message = message;
+    }
+    greet() {
+      alert(this.message)
+    }
+}
+
+var greeter = new Greeter('Hey');
+greeter.greet();
+</div>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>class Greeter {
+    constructor(message) {
+      this.message = message;
+    }
+    greet() {
+      alert(this.message)
+    }
+}
+class Pirate extends Greeter {
+  constructor(message) {
+    super("Ahoy! " + message);
+  }
+}
+
+var greeter = new Pirate('Hey');
+greeter.greet();
+</div>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>class Button extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {};
+  }
+}
+</div>
+				</section>
+				<section>
+<h4>arrow functions</h4>
+<button class='run'>Run</button>
+<div class='ace'>  var double = (x) => x * 2;
+  alert(double(10));
+
+</div>
+				</section>
+				<section>
+<h4>arrow functions - <a href="https://jsfiddle.net/reactjs/69z2wepo/">React Fiddle</a>
+</h4>
+<button class='run'>Run</button>
+<div class='ace'>  
+class Hello extends React.Component{
+  constructor(){
+      super()
+      this.msg = 'sup';
+  }
+  render() {
+    return <div onClick={this.alert}>Hello</div>;
+  }
+  alert(){
+    alert(this.msg);
+  }
+};
+
+</div>
+				</section>
+				<section>
+<h4>destructuring</h4>
+<button class='run'>Run</button>
+<div class='ace'>
+var arr = [1, 2, 3];
+func(arr);
+
+function func([fst, snd, thd]){
+  alert(fst);
+  alert(thd);
+}
+</div>
+				</section>
+				<section>
+<h4>destructuring/rest params</h4>
+<button class='run'>Run</button>
+<div class='ace'>
+function destructure(...args){
+  var [options, callback] = args;
+  alert(options.v);
+  alert(typeof callback);
+}
+var o = {v: true}
+destructure(o, () => 1);
+</div>
+				</section>
+				<section>
+<h4>template strings</h4>
+<button class='run'>Run</button>
+<div class='ace'>
+var first = "John K."
+var last = "Paul";
+var t = `I'm ${first} ${last}!`;
+alert(t);
+</div>
+				</section>
+				<section>
+<button class='run'>Run</button>
+<div class='ace'>function* inf(){
+  var i = 0;
+  while(true){
+    yield ++i;
+  }
+}
+
+for(var x of inf()){
+  alert(x);
+  if(x > 3) { break; }
+}
+
+</div>
+				</section>
+				<section style="background: rgba(255, 255, 255, .80);">
+                                  <h1>Try It Out</h1>
+                                        <ul >
+                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/arrow-functions/basics">Arrow Functions</a></li>
+                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/rest/as-parameter">Rest Parameters</a></li>
+                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/destructuring/object">Destructuring Objects</a></li>
+                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/destructuring/defaults">Destructuring with default parameters</a></li>
+					</ul>
+				</section>
+				<section fullscreen-img="img/lego.jpg" style="background: rgba(255, 255, 255, .00);">
+				</section>
+<!-- img from http://cdn04.cdn.socialitelife.com/wp-content/uploads/2013/07/11/tumblr_mc3hg5VpQP1qcy0p7o1_500.gif -->
+
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/cube.gif" >
+<div class="fragment" style="background: rgba(255, 255, 255, .80);">
+					<h2>The intractable</h2>
+                                        <ul>
+                                          <li>Weak Maps</li>
+                                          <li>Proxies</li>
+                                          <li>Tail call optimization</li>
+                                        </ul>
+</div>
+
+				</section>
+				<section fullscreen-size="contain" fullscreen-img="img/iceberg.jpg" style="background: rgba(255, 255, 255, .00);">
+				</section>
+				<section fullscreen-img="img/iceberg.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .50);">
+					<h1>ES6</h1>
+<a href="http://kangax.github.io/compat-table/es6/"><img width="600" src="img/compat.png"></a>
+				</section>
+                                <section  style="background: rgba(255, 255, 255, .8);">
+
+                                  <h2>What you should do</h2>
+                                  <ul>
+                                    <li class="fragment">Add es6-shim</li>
+                                    <!--<li class="fragment">Play around in the Babel repl</li>-->
+                                    <li class="fragment"><a href='http://www.2ality.com/'>Read Axel Rauschmayer</a></li>
+                                    <li class="fragment"><a href='http://ariya.ofilabs.com/'>Read Ariya Hidayat</a></li>
+                                    <li class="fragment"><a href='http://addyosmani.com/blog/ecmascript-6-resources-for-the-curious-javascripter/'>Read Addy Osmani</a></li>
+                                    <li class="fragment">Add a branch with an ES6 transpiler</li>
+                                  </ul>
+				</section>
+                                <section fullscreen-size="contain" fullscreen-img="img/allthethings.jpg" style="background: rgba(255, 255, 255, .0);">
+				</section>
+				<section  style="background: rgba(255, 255, 255, .8);">
+					<h1>Thank You</h1>
+					<h1>Questions?</h1>
+					<h3 class="inverted">By @johnkpaul</h3>
+					<h3 class="inverted">john@johnkpaul.com</h3>
+				</section>
+                        </div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="js/traceur.js"></script>
+		<script src="lib/task.js"></script>
+		<script src="js/ace/ace.js"></script>
+		<script src="js/jquery-1.9.1.js"></script>
+		<script src="js/babel.min.js"></script>
+                <script>
+
+                </script>
+
+<!--
+explain what node has and why it's so easy
+green eyes of jealousy
+
+explain some of es6 itself and what makes it so awesome
+
+what is traceur, what's hapepning
+
+grunt-traceur
+es6ify
+
+performance concerns weigned between everything else
+try catch performance
+http://square.github.io/es6-module-transpiler/
+http://facebook.github.io/regenerator/
+https://github.com/paulmillr/es6-shim/
+-->
+		<script>
+
+			// Full list of configuration options available here:
+			// https: //github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				keyboard: true,
+                                mouseWheel: false,
+				overview: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                                        { src: 'plugin/fullscreen-img.js' }
+				]
+			});
+
+$('.run').click(function(){
+                               content = $(this).data('editor').getValue();
+
+                               try{
+                                 eval(Babel.transform(content, { presets: ['es2015'] }).code)
+                               }catch(e){
+                                  alert(e.message);
+                               }
+                        });
+jQuery(function(){
+  jQuery('.ace').each(function(i, e){
+
+  var editor = ace.edit(e);
+      editor.setTheme("ace/theme/chaos");
+      editor.getSession().setMode("ace/mode/javascript");
+  $(e).prev().data('editor', editor);
+  });
+});
+setTimeout(function(){
+console.clear();
+}, 2000);
+		</script>
+<style type="text/css" media="screen">
+.run{
+position: absolute;
+right: 0px;
+z-index: 100000;
+font-size: 140%;
+}
+    .ace { 
+        top: 0;
+        left: 0;
+width:100%;height:576px;
+text-align:left;
+    }
+</style>
+
+<!--
+
+traceur
+grunt
+gulp
+brocolli
+
+-->
+	
+
+                        <div class='footer'>
+                          ES2015 for React by <a href="http://twitter.com/johnkpaul">@johnkpaul</a>
+            
+</div>
+</body>
+</html>
