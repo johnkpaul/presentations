@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>ES6 for React Developers</title>
+		<title>ES2015 for React Developers</title>
 
 		<meta name="description" content="ES6 for React Developers">
 		<meta name="author" content="John K. Paul">
@@ -83,7 +83,7 @@
 				</section>
 
 				<section   style="background: rgba(255, 255, 255, .00);">
-                                  <h1>React Focused Plan</h1>
+                                  <h1>React-ey features</h1>
                                   <ul>
                                     <li>Classes</li>
                                     <li>Arrow Functions</li>
@@ -145,17 +145,45 @@ greeter.greet();
 </div>
 				</section>
 				<section>
-<h4>arrow functions - <a href="https://jsfiddle.net/reactjs/69z2wepo/">React Fiddle</a>
+<h4>arrow functions - <a href="https://jsfiddle.net/69z2wepo/47256/">React Fiddle</a>
 </h4>
 <button class='run'>Run</button>
-<div class='ace'>  
-class Hello extends React.Component{
+<div class='ace'>class Button extends React.Component{
   constructor(){
-      super()
-      this.msg = 'sup';
+      super();
+      this.msg = 'hey DC';
   }
   render() {
-    return <div onClick={this.alert}>Hello</div>;
+    return &lt;button onClick={this.alert}&gt;Say Hey DC&lt;/button&gt;
+  }
+  alert(){
+    alert(this.msg);
+  }
+};
+
+</div>
+				</section>
+				<section>
+<h4>computed property names</h4>
+<button class='run'>Run</button>
+<div class='ace'>
+var key = 'hello';
+var obj = {};
+obj[key] = 'world';
+alert(obj.hello);
+</div>
+				</section>
+				<section>
+<h4>computed property names - <a href="https://jsfiddle.net/69z2wepo/47244/">React Fiddle</a>
+</h4>
+<button class='run'>Run</button>
+<div class='ace'>class Button extends React.Component{
+  constructor(){
+      super();
+      this.msg = 'hey DC';
+  }
+  render() {
+    return (&lt;div&gt;&lt;button onClick={this.alert}&gt;{this.msg}&lt;/button&gt;&lt;/div&gt;)
   }
   alert(){
     alert(this.msg);
@@ -200,63 +228,21 @@ var t = `I'm ${first} ${last}!`;
 alert(t);
 </div>
 				</section>
-				<section>
-<button class='run'>Run</button>
-<div class='ace'>function* inf(){
-  var i = 0;
-  while(true){
-    yield ++i;
-  }
-}
-
-for(var x of inf()){
-  alert(x);
-  if(x > 3) { break; }
-}
-
-</div>
-				</section>
-				<section style="background: rgba(255, 255, 255, .80);">
-                                  <h1>Try It Out</h1>
-                                        <ul >
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/arrow-functions/basics">Arrow Functions</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/rest/as-parameter">Rest Parameters</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/destructuring/object">Destructuring Objects</a></li>
-                                          <li><a target="_blank" href="http://tddbin.com/#?kata=es6/language/destructuring/defaults">Destructuring with default parameters</a></li>
-					</ul>
-				</section>
-				<section fullscreen-img="img/lego.jpg" style="background: rgba(255, 255, 255, .00);">
-				</section>
-<!-- img from http://cdn04.cdn.socialitelife.com/wp-content/uploads/2013/07/11/tumblr_mc3hg5VpQP1qcy0p7o1_500.gif -->
-
-				</section>
-				<section fullscreen-size="contain" fullscreen-img="img/cube.gif" >
-<div class="fragment" style="background: rgba(255, 255, 255, .80);">
-					<h2>The intractable</h2>
-                                        <ul>
-                                          <li>Weak Maps</li>
-                                          <li>Proxies</li>
-                                          <li>Tail call optimization</li>
-                                        </ul>
-</div>
-
-				</section>
 				<section fullscreen-size="contain" fullscreen-img="img/iceberg.jpg" style="background: rgba(255, 255, 255, .00);">
 				</section>
 				<section fullscreen-img="img/iceberg.jpg" fullscreen-size="contain" style="background: rgba(255, 255, 255, .50);">
-					<h1>ES6</h1>
+					<h1>ES2015</h1>
 <a href="http://kangax.github.io/compat-table/es6/"><img width="600" src="img/compat.png"></a>
 				</section>
                                 <section  style="background: rgba(255, 255, 255, .8);">
 
                                   <h2>What you should do</h2>
                                   <ul>
-                                    <li class="fragment">Add es6-shim</li>
+                                    <li class="fragment">Switch to ES2015 class based components</li>
                                     <!--<li class="fragment">Play around in the Babel repl</li>-->
                                     <li class="fragment"><a href='http://www.2ality.com/'>Read Axel Rauschmayer</a></li>
                                     <li class="fragment"><a href='http://ariya.ofilabs.com/'>Read Ariya Hidayat</a></li>
                                     <li class="fragment"><a href='http://addyosmani.com/blog/ecmascript-6-resources-for-the-curious-javascripter/'>Read Addy Osmani</a></li>
-                                    <li class="fragment">Add a branch with an ES6 transpiler</li>
                                   </ul>
 				</section>
                                 <section fullscreen-size="contain" fullscreen-img="img/allthethings.jpg" style="background: rgba(255, 255, 255, .0);">
